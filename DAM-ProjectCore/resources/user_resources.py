@@ -69,13 +69,3 @@ class ResourceRegisterUser(DAMCoreResource):
 
         resp.status = falcon.HTTP_200
 
-
-class ResourceDeleteUser(DAMCoreResource):
-    def on_delete(self, req, resp, *args, **kwargs):
-        super(ResourceDeleteUser, self).on_delete(req, resp, *args, **kwargs)
-        '''
-        try:
-            self.db_session.query
-            '''
-
-

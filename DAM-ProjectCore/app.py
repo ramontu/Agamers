@@ -37,9 +37,12 @@ application.add_route("/account/profile", account_resources.ResourceAccountUserP
 application.add_route("/account/profile/update_profile_image", account_resources.ResourceAccountUpdateProfileImage())
 application.add_route("/account/create_token", account_resources.ResourceCreateUserToken())
 application.add_route("/account/delete_token", account_resources.ResourceDeleteUserToken())
+application.add_route("/account/delete_account", account_resources.ResourceAccountDelete()) # TODO: Provar
+application.add_route("/account/update_account", account_resources.ResourceAccountUpdate()) # TODO: Provar
+
+
 
 application.add_route("/users/register", user_resources.ResourceRegisterUser())
-application.add_route("/users/delete/{username}", user_resources.ResourceDeleteUser()) # TODO: no funciona encara
 application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile())
 
 application.add_route("/events", event_resources.ResourceGetEvents())
