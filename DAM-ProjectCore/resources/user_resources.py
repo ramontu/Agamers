@@ -77,3 +77,5 @@ class ResourceDeleteUser(DAMCoreResource):
         try:
             self.db_session.query
             '''
+
+

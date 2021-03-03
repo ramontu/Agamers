@@ -92,20 +92,13 @@ class ResourceAccountUserProfile(DAMCoreResource):
 @falcon.before(requires_auth)
 class ResourceAccountUpdateProfileImage(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
-        super(ResourceAccountUpdateProfileImage, self).on_post(req, resp, *args, **kwargs)
-
-        # Get the user from the token
+        super().on_post(req, resp, *args, **kwargs)
         current_user = req.context["auth_user"]
-        resource_path = current_user.photo_path
 
-        # Get the file from form
-        incoming_file = req.get_param("image_file")
-
-        # Run the common part for storing
-        filename = utils.save_static_media_file(incoming_file, resource_path)
-
-        # Update db model
-        current_user.photo = filename
+        # bucle
+        for i in req.media:
+            setattr(current_user, i, req.media[i])
+ 
         self.db_session.add(current_user)
         self.db_session.commit()
 
