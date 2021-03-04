@@ -121,7 +121,12 @@ class ResourceAccountUpdate(DAMCoreResource):
 
         # bucle
         for i in req.media:
-            setattr(current_user, i, req.media[i])
+            valor = req.media[i]
+            if i == "genere":
+                valor = GenereEnum(valor.upper)
+            elif i == "pago":
+                valor = PagoTypeEnum(valor.upper)
+            setattr(current_user, i, valor)
 
         self.db_session.add(current_user)
         self.db_session.commit()
