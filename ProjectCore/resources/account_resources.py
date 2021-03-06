@@ -94,6 +94,7 @@ class ResourceAccountUpdateProfileImage(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceAccountUpdateProfileImage, self).on_post(req, resp, *args, **kwargs)
 
+
         # Get the user from the token
         current_user = req.context["auth_user"]
         resource_path = current_user.photo_path
@@ -110,3 +111,40 @@ class ResourceAccountUpdateProfileImage(DAMCoreResource):
         self.db_session.commit()
 
         resp.status = falcon.HTTP_200
+
+# update
+@falcon.before(requires_auth)
+class ResourceAccountUpdate(DAMCoreResource):
+    def on_post(self, req, resp, *args, **kwargs):
+        super().on_post(req, resp, *args, **kwargs)
+        current_user = req.context["auth_user"]
+
+        # bucle
+        for i in req.media:
+            valor = req.media[i]
+            if i == "genere":
+                valor = GenereEnum(valor.upper)
+            elif i == "pago":
+                valor = PagoTypeEnum(valor.upper)
+            setattr(current_user, i, valor)
+
+        self.db_session.add(current_user)
+        self.db_session.commit()
+
+        resp.status = falcon.HTTP_200
+
+@falcon.before(requires_auth)
+class ResourceAccountDelete(DAMCoreResource):
+    def on_delete(self, req, resp, *args, **kwargs):
+        super(ResourceAccountDelete, self).on_delete(req, resp, *args, **kwargs)
+
+        current_user = req.context["auth_user"]
+
+        try:
+            self.db_session.delete(current_user)
+            self.db_session.commit()
+
+            resp.status = falcon.HTTP_200
+        except Exception as e:
+            mylogger.critical("{}:{}".format(messages.error_removing_user, e))
+            raise falcon.HTTPInternalServerError()
