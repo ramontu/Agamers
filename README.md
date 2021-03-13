@@ -32,7 +32,7 @@ _Els fòrums els podran crear tant els usuaris, empreses i desenvolupadors. Es n
 ### 4.Tornejos
 _La secció de tornejos serà l'última a implementar, ja que es necessitarà comptar amb una eina de calendari que permeti als usuaris veure les planificacions i els tipus de tornejos que es faran. A més de tota la informació, dels premis i pagaments per participació._
 
-_Junt a aqueste funciolaitats anirem desenvolupant els diferents perfils d'usuaris per tal de limitar les funcions de cadascún._
+_Junt amb aquestes funcionalitats anirem desenvolupant els diferents perfils d'usuaris per tal de limitar les funcions de cadascún._
 
 ## Perfils d'usuari
 
