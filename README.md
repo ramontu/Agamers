@@ -9,10 +9,13 @@ _El nostre objectiu és oferir als usuaris una eina per conèixer gent amb la qu
 ## El nostre equip
 _La nostra empresa està formada per quatre integrants:
 
-_-L'Oriol Lladós, que compta amb un gran coneixement sobre organització empresarial i màrqueting.
-_-En David Estebanell, la seva experiència en el món dels videojocs i el seu coneixement en programació ens permet apropar-nos més als usuaris i a les seves necessitats.
-_-En Ramon Trilla, gran coneixedor sobre els fòrums i tornejos relacionats amb els videojocs aportarà a l'equip els seus coneixements junt amb la seva gran habilitat en programació i domini.
-_-La Samantha Roldán, ens proporciona la seva experiència en el coneixement de l'usuari, dissenyant i implementat les interfícies gràfiques de l'aplicació per a ser intuïtives i atractives per a l'usuari.
+_-L'Oriol Lladós, que compta amb un gran coneixement sobre organització empresarial i màrqueting._
+
+_-En David Estebanell, la seva experiència en el món dels videojocs i el seu coneixement en programació ens permet apropar-nos més als usuaris i a les seves necessitats._
+
+_-En Ramon Trilla, gran coneixedor sobre els fòrums i tornejos relacionats amb els videojocs aportarà a l'equip els seus coneixements junt amb la seva gran habilitat en programació i domini._
+
+_-La Samantha Roldán, ens proporciona la seva experiència en el coneixement de l'usuari, dissenyant i implementat les interfícies gràfiques de l'aplicació per a ser intuïtives i atractives per a l'usuari._
 
 ## Prioritat d'implementació
 ### 1.Sistema de matchmaking
