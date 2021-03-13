@@ -19,4 +19,14 @@ _-La Samantha Roldán, ens proporciona la seva experiència en el coneixement de
 
 ## Prioritat d'implementació
 ### 1.Sistema de matchmaking
-_El sistema de matchmaking ha de permetre als usuaris coneixer nova gent dels voltants que tinguin interessos similars._
+_El sistema de matchmaking ha de permetre als usuaris coneixer nova gent dels voltants que tinguin interessos similars. Per tant, desprès de realitzar una primera enquesta és la funcionalitat que més ha agradat als usuaris_
+
+### 2.Xats
+_Els xats permetràn als usuaris comunicar-se tant individualment com de forma grupal. Els usuaris van escollir aquesta funcionalitat com la segona i des de el nostre punt de vista i coneixement creiem que és la segona prioritat._
+
+### 3.Fòrums
+_Els fòrums els podran crear tant els usuaris, empreses i desenvolupadors. Es necessitarà un perfil d'usuari que actuï com a moderador pel fet que es necessita un control perquè els temes de conversa siguin agradables i no hi hagi situacions de conflicte._
+
+### 4.Tornejos
+_La secció de tornejos serà l'última a implementar, ja que es necessitarà comptar amb una eina de calendari que permeti als usuaris veure les planificacions i els tipus de tornejos que es faran. A més de tota la informació, dels premis i pagaments per participació._
+
