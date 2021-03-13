@@ -7,7 +7,7 @@ _La xarxa social que estem creant està destinada als usuaris que comparteixen c
 _El nostre objectiu és oferir als usuaris una eina per conèixer gent amb la qual poder quedar tant online com en presencial i així augmentar el cercle d'amistats. Per tal d'aconseguir-ho, reunirem en una mateixa aplicació funcionalitats que es troben per separat i així captar l'atenció de més usuaris. A més a més, el fet que les empreses tinguin el seu lloc dintre de l'aplicació impulsarà la població o comarca en la qual es testegi l'aplicació._
 
 ## El nostre equip
-_La nostra empresa està formada per quatre integrants:
+_La nostra empresa està formada per quatre integrants:_
 
 _-L'Oriol Lladós, que compta amb un gran coneixement sobre organització empresarial i màrqueting._
 
