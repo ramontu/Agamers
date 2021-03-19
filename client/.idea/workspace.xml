@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="44460fa5-a6d6-4d41-ac8e-eddf1a58a263" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dam/agamers/gtidic/udl/agamers/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dam/agamers/gtidic/udl/agamers/user/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/background_splash.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_splash_bona.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/dam/agamers/gtidic/udl/agamers/UtilsUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dam/agamers/gtidic/udl/agamers/Inici.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dam/agamers/gtidic/udl/agamers/Inici_de_sessio.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dam/agamers/gtidic/udl/agamers/Inici_de_sessio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dam/agamers/gtidic/udl/agamers/Registre_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dam/agamers/gtidic/udl/agamers/Registre_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dam/agamers/gtidic/udl/agamers/Splash.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_inici.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_inici_de_sessio.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_inici_de_sessio.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_registre_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_registre_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[T758XXDH8C301549]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="valueResourceFile" />
+        <option value="resourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1pbi7GapYVJYXMfoyPZ0rY36deK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="T758XXDH8C301549" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-03-18T09:29:22.228Z" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android-custom-viewC:/Users/Uni/AppData/Local/Android/Sdk/sources/android-30/android/widget/TextView.java_SELECTED" value="TextView" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="multi-representation-previewC:/Users/Uni/AppData/Local/Android/Sdk/sources/android-30/android/widget/TextView.java_selected" value="Custom views" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Uni\Desktop\Agamers\Agamers\client\app\src\main\res\drawable" />
+      <recent name="C:\Users\Uni\Desktop\Agamers\Agamers\Agamers\app\src\main\res\drawable" />
+    </key>
+    <key name="android.template.-1118038516">
+      <recent name="dam.agamers.gtidic.udl.agamers" />
+    </key>
+    <key name="android.template.253889951">
+      <recent name="dam.agamers.gtidic.udl.agamers" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dam.agamers.gtidic.udl.agamers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Uni\Desktop\Agamers\Agamers\client\app\src\main\res\drawable" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration name="UtilsUnitTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Agamers.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dam.agamers.gtidic.udl.agamers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dam.agamers.gtidic.udl.agamers" />
+      <option name="MAIN_CLASS_NAME" value="dam.agamers.gtidic.udl.agamers.UtilsUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilsUnitTest.contra_test1" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Agamers.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dam.agamers.gtidic.udl.agamers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dam.agamers.gtidic.udl.agamers" />
+      <option name="MAIN_CLASS_NAME" value="dam.agamers.gtidic.udl.agamers.UtilsUnitTest" />
+      <option name="METHOD_NAME" value="contra_test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilsUnitTest.contra_test2_0" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Agamers.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dam.agamers.gtidic.udl.agamers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dam.agamers.gtidic.udl.agamers" />
+      <option name="MAIN_CLASS_NAME" value="dam.agamers.gtidic.udl.agamers.UtilsUnitTest" />
+      <option name="METHOD_NAME" value="contra_test2_0" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilsUnitTest.contra_test2_1" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Agamers.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dam.agamers.gtidic.udl.agamers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dam.agamers.gtidic.udl.agamers" />
+      <option name="MAIN_CLASS_NAME" value="dam.agamers.gtidic.udl.agamers.UtilsUnitTest" />
+      <option name="METHOD_NAME" value="contra_test2_1" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilsUnitTest.nom_cog_test_1" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Agamers.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dam.agamers.gtidic.udl.agamers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dam.agamers.gtidic.udl.agamers" />
+      <option name="MAIN_CLASS_NAME" value="dam.agamers.gtidic.udl.agamers.UtilsUnitTest" />
+      <option name="METHOD_NAME" value="nom_cog_test_1" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="Agamers.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android JUnit.UtilsUnitTest" />
+        <item itemvalue="Android JUnit.UtilsUnitTest.nom_cog_test_1" />
+        <item itemvalue="Android JUnit.UtilsUnitTest.contra_test2_1" />
+        <item itemvalue="Android JUnit.UtilsUnitTest.contra_test2_0" />
+        <item itemvalue="Android JUnit.UtilsUnitTest.contra_test1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="44460fa5-a6d6-4d41-ac8e-eddf1a58a263" name="Default Changelist" comment="" />
+      <created>1615458021191</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615458021191</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2494" y="139" key="#com.intellij.ide.util.MemberChooser" timestamp="1616062526751">
+      <screen x="1920" y="0" width="1536" height="864" />
+    </state>
+    <state x="2494" y="139" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616062526751" />
+    <state x="2471" y="301" width="433" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1615968601517">
+      <screen x="1920" y="0" width="1536" height="864" />
+    </state>
+    <state x="2471" y="301" width="433" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1615968601517" />
+    <state x="2384" y="151" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616059490936">
+      <screen x="1920" y="0" width="1536" height="864" />
+    </state>
+    <state x="2333" y="134" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720/1920.0.1366.768@1920.0.1366.768" timestamp="1615458608559" />
+    <state x="387" y="126" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720/1920.0.1536.864@0.0.1280.720" timestamp="1615715770031" />
+    <state x="2384" y="151" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616059490936" />
+    <state x="387" y="126" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1615821959622" />
+    <state x="2185" y="139" key="AndroidCreateResourceDirectoryDialog" timestamp="1615968124845">
+      <screen x="1920" y="0" width="1536" height="864" />
+    </state>
+    <state x="221" y="116" key="AndroidCreateResourceDirectoryDialog/0.0.1280.720/1920.0.1536.864@0.0.1280.720" timestamp="1615715714495" />
+    <state x="2185" y="139" key="AndroidCreateResourceDirectoryDialog/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1615968124845" />
+    <state x="221" y="116" key="AndroidCreateResourceDirectoryDialog/0.0.1280.720@0.0.1280.720" timestamp="1615822639401" />
+    <state x="291" y="156" width="838" height="481" key="AndroidCreateResourceFileDialog" timestamp="1615822302628">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="291" y="156" key="AndroidCreateResourceFileDialog/0.0.1280.720/1920.0.1536.864@0.0.1280.720" timestamp="1615717956222" />
+    <state x="2269" y="187" key="AndroidCreateResourceFileDialog/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1615800140146" />
+    <state x="291" y="156" width="838" height="481" key="AndroidCreateResourceFileDialog/0.0.1280.720@0.0.1280.720" timestamp="1615822302628" />
+    <state x="663" y="85" key="AndroidCreateXmlResourceDialog" timestamp="1616088858335">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="2504" y="181" key="AndroidCreateXmlResourceDialog/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1615804771575" />
+    <state x="663" y="85" key="AndroidCreateXmlResourceDialog/0.0.1280.720@0.0.1280.720" timestamp="1616088858335" />
+    <state x="434" y="133" key="FileChooserDialogImpl" timestamp="1615880476432">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="2383" y="142" key="FileChooserDialogImpl/0.0.1280.720/1920.0.1366.768@1920.0.1366.768" timestamp="1615458535580" />
+    <state x="434" y="133" key="FileChooserDialogImpl/0.0.1280.720/1920.0.1536.864@0.0.1280.720" timestamp="1615880476432" />
+    <state x="2441" y="160" key="FileChooserDialogImpl/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1615649413120" />
+    <state width="1491" height="220" key="GridCell.Tab.0.bottom" timestamp="1616141191319">
+      <screen x="1920" y="0" width="1536" height="864" />
+    </state>
+    <state width="618" height="174" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1536.864@0.0.1280.720" timestamp="1615718945101" />
+    <state width="1491" height="220" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616141191319" />
+    <state width="1236" height="174" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1616088745518" />
+    <state width="1491" height="220" key="GridCell.Tab.0.center" timestamp="1616141191319">
+      <screen x="1920" y="0" width="1536" height="864" />
+    </state>
+    <state width="618" height="174" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1536.864@0.0.1280.720" timestamp="1615718945101" />
+    <state width="1491" height="220" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616141191319" />
+    <state width="1236" height="174" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1616088745518" />
+    <state width="1491" height="220" key="GridCell.Tab.0.left" timestamp="1616141191318">
+      <screen x="1920" y="0" width="1536" height="864" />
+    </state>
+    <state width="618" height="174" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1536.864@0.0.1280.720" timestamp="1615718945101" />
+    <state width="1491" height="220" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616141191318" />
+    <state width="1236" height="174" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1616088745518" />
+    <state width="1491" height="220" key="GridCell.Tab.0.right" timestamp="1616141191319">
+      <screen x="1920" y="0" width="1536" height="864" />
+    </state>
+    <state width="618" height="174" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1536.864@0.0.1280.720" timestamp="1615718945101" />
+    <state width="1491" height="220" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616141191319" />
+    <state width="1236" height="174" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1616088745518" />
+    <state width="1236" height="175" key="GridCell.Tab.1.bottom" timestamp="1616083511496">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1488" height="221" key="GridCell.Tab.1.bottom/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616068388148" />
+    <state width="1236" height="175" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1616083511496" />
+    <state width="1236" height="175" key="GridCell.Tab.1.center" timestamp="1616083511496">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1488" height="221" key="GridCell.Tab.1.center/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616068388147" />
+    <state width="1236" height="175" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1616083511496" />
+    <state width="1236" height="175" key="GridCell.Tab.1.left" timestamp="1616083511496">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1488" height="221" key="GridCell.Tab.1.left/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616068388147" />
+    <state width="1236" height="175" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1616083511496" />
+    <state width="1236" height="175" key="GridCell.Tab.1.right" timestamp="1616083511496">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1488" height="221" key="GridCell.Tab.1.right/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616068388148" />
+    <state width="1236" height="175" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1616083511496" />
+    <state x="452" y="139" key="chooseDestDirectoryDialog" timestamp="1615476762152">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="452" y="139" key="chooseDestDirectoryDialog/0.0.1280.720@0.0.1280.720" timestamp="1615476762152" />
+    <state x="1784" y="176" width="1294" height="600" key="dock-window-1" timestamp="1616057418709">
+      <screen x="1920" y="0" width="1536" height="864" />
+    </state>
+    <state x="1784" y="176" width="1294" height="600" key="dock-window-1/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616057418709" />
+    <state x="501" y="273" width="1294" height="737" key="dock-window-2" timestamp="1616078118620">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="0" y="0" width="1294" height="737" key="dock-window-2/0.0.1280.720/1920.0.1536.864@1920.0.1536.864" timestamp="1616067707587" />
+    <state x="501" y="273" width="1294" height="737" key="dock-window-2/0.0.1280.720@0.0.1280.720" timestamp="1616078118620" />
+  </component>
+</project>

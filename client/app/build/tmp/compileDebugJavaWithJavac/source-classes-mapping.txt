@@ -1,0 +1,15 @@
+dam/agamers/gtidic/udl/agamers/MainActivity.java
+ dam.agamers.gtidic.udl.agamers.MainActivity
+dam/agamers/gtidic/udl/agamers/BuildConfig.java
+ dam.agamers.gtidic.udl.agamers.BuildConfig
+dam/agamers/gtidic/udl/agamers/user/Utils.java
+ dam.agamers.gtidic.udl.agamers.user.Utils
+dam/agamers/gtidic/udl/agamers/Inici_de_sessio.java
+ dam.agamers.gtidic.udl.agamers.Inici_de_sessio
+dam/agamers/gtidic/udl/agamers/Registre_1.java
+ dam.agamers.gtidic.udl.agamers.Registre_1
+ dam.agamers.gtidic.udl.agamers.Registre_1$1
+ dam.agamers.gtidic.udl.agamers.Registre_1$2
+ dam.agamers.gtidic.udl.agamers.Registre_1$3
+ dam.agamers.gtidic.udl.agamers.Registre_1$4
+ dam.agamers.gtidic.udl.agamers.Registre_1$5
