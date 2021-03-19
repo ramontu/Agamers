@@ -36,22 +36,23 @@ if __name__ == "__main__":
     SQLAlchemyBase.metadata.drop_all(db.DB_ENGINE)
     mylogger.info("Creating database...")
     SQLAlchemyBase.metadata.create_all(db.DB_ENGINE)
-    '''
+
     # -------------------- CREATE USERS --------------------
     mylogger.info("Creating default users...")
     # noinspection PyArgumentList
     user_admin = User(
         created_at=datetime.datetime(2020, 1, 1, 0, 1, 1),
         username="admin",
-        pago=PagoTypeEnum.Freemium,
+        account_type=AccountTypeEnum.premium,
         email="admin@damcore.com",
         name="Administrator",
         surname="DamCore",
-        genere=GenereEnum.male,
+        genere=GenereEnum.male
     )
     user_admin.set_password("DAMCoure")
     db_session.add(user_admin)
 
+    '''
     user_1 = User(
         created_at=datetime.datetime(2020, 1, 1, 0, 1, 1),
         username="usuari1",
@@ -152,7 +153,7 @@ if __name__ == "__main__":
         registered=[user_1,user_2]
     )
     db_session.add(event_livecoding)
-    
+    '''
     db_session.commit()
     db_session.close()
-    '''
+

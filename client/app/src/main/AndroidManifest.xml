@@ -9,18 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Agamers">
-        <activity android:name=".Registre_1"></activity>
-        <activity android:name=".Inici_de_sessio" />
+
         <activity
-            android:name=".Inici"
-            android:label="Home" />
-        <activity android:name=".Splash">
+            android:name=".Inici_de_sessio">
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/SplashTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Registre_1">
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -22,6 +22,8 @@ public class Inici_de_sessio extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
+
+
     public void obre_registre (View view){
         Intent i = new Intent(Inici_de_sessio.this, Registre_1.class);
         startActivity(i);

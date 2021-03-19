@@ -179,7 +179,10 @@ class UserToken(SQLAlchemyBase):
     user_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
     user = relationship("User", back_populates="tokens")
 
+
 #Forums seguits TODO
+'''
+
 Following_Forums = Table("f_forums", SQLAlchemyBase.metadata,
                                      Column("user_id", Integer,
                                             ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
@@ -189,7 +192,8 @@ Following_Forums = Table("f_forums", SQLAlchemyBase.metadata,
                                             nullable=False),
 
                                      )
-
+'''
+'''
 Banned_Forums   = Table("b_forums", SQLAlchemyBase.metadata,
                                      Column("user_id", Integer,
                                             ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
@@ -199,6 +203,7 @@ Banned_Forums   = Table("b_forums", SQLAlchemyBase.metadata,
                                             nullable=False),
 
                                      )
+'''
 #TODO afegir si l'user esta bloquejat (no bloquejat, bloqueig temporal, bloqueig permanent)
 #TODO data en que la conta es desbloqueja
 #USERS
@@ -209,15 +214,15 @@ class User(SQLAlchemyBase, JSONModel):
     created_at = Column(DateTime, default=datetime.datetime.now, nullable=False)
     username = Column(Unicode(50), nullable=False, unique=True)
     account_type = Column(Enum(AccountTypeEnum), nullable=False)
-    following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #foros que segueixes TODO no funciona
-    banned_forums = relationship("Jocs") #foros dels que estas banejat TODO no funciona
-    banned_users = relationship("User") #usuaris bloquejats TODO no funciona
-    friends = relationship("User") #amics todo no funciona
-    firends_request = relationship("User") #solicituds amics todo no funciona
+    #following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #foros que segueixes TODO no funciona
+    #banned_forums = relationship("Jocs") #foros dels que estas banejat TODO no funciona
+    #banned_users = relationship("User") #usuaris bloquejats TODO no funciona
+    #friends = relationship("User") #amics todo no funciona
+    #firends_request = relationship("User") #solicituds amics todo no funciona
     short_description = Column(Unicode(100)) #OK
     long_description = Column(UnicodeText) #OK
-    points = Column(Integer, default=int(0), nullable=False) #OK TODO mirar si es pot inserir sense posar res
-    level = Column(Enum(UserLevelEnum), nullable=False) #OK TODO mirar si es pot inserir sense posar res
+    #points = Column(Integer, default=int(0), nullable=False) #OK TODO mirar si es pot inserir sense posar res
+    #level = Column(Enum(UserLevelEnum), nullable=False) #OK TODO mirar si es pot inserir sense posar res
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False)
     tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
@@ -300,15 +305,15 @@ class User(SQLAlchemyBase, JSONModel):
             "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
             "username": self.username,
             "account_type": self.account_type.value,
-            "following_forums": [Jocs.name for _ in self.following_forums],
-            "banned_forums": self.banned_forums,
-            "banned_users": self.banned_users,
-            "friends": self.friends,
-            "friends_request": self.firends_request,
+            #"following_forums": [Jocs.name for _ in self.following_forums],
+            #"banned_forums": self.banned_forums,
+            #"banned_users": self.banned_users,
+            #"friends": self.friends,
+            #"friends_request": self.firends_request,
             "short_description": self.short_description,
             "long_description": self.long_description,
-            "points": self.points,
-            "level": self.level,
+            #"points": self.points,
+            #"level": self.level,
             "email": self.email,
             "name": self.name,
             "surname": self.surname,
@@ -351,7 +356,7 @@ class Comments(SQLAlchemyBase, JSONModel): #TODO: acabar
     points = Column(Float, default=0 ,nullable=False)
     comment = Comments(UnicodeText)
 '''
-''''''
+'''
 #Base de dades dels jocs
 class Jocs(SQLAlchemyBase, JSONModel): #TODO: acabar
     __tablename__ = "jocs"
@@ -389,3 +394,4 @@ class Modesjocs(SQLAlchemyBase, JSONModel):
 
 #TODO implementar mes endavant: crear model per a les tendes
 #Base de dades per a les tendes
+'''
