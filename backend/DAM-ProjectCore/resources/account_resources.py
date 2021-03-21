@@ -124,8 +124,8 @@ class ResourceAccountUpdate(DAMCoreResource):
             valor = req.media[i]
             if i == "genere":
                 valor = GenereEnum(valor.upper)
-            elif i == "pago":
-                valor = PagoTypeEnum(valor.upper)
+            elif i == "account_type":
+                valor = AccountTypeEnum(valor.upper)
             setattr(current_user, i, valor)
 
         self.db_session.add(current_user)

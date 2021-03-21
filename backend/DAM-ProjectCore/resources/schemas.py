@@ -14,13 +14,13 @@ SchemaRegisterUser = {
     "properties": {
         "username": {"type": "string"},
         "password": {"type": "string"},
-        "pago": {"type": "string"},
+        "account_type": {"type": "string"},
         "email": {"type": "string"},
         "name": {"type": "string"},
         "surname": {"type": "string"},
         "genere": {"type": "string"}
     },
-    "required": ["username", "password", "pago", "email", "name", "surname", "genere"]
+    "required": ["username", "password", "account_type", "email", "name", "surname", "genere"]
 }
 
 SchemaUpdateUser = {
@@ -28,7 +28,7 @@ SchemaUpdateUser = {
     "properties": {
         "username": {"type": "string"},
         "password": {"type": "string"},
-        "pago": {"type": "string"},
+        "account_type": {"type": "string"},
         "email": {"type": "string"},
         "name": {"type": "string"},
         "surname": {"type": "string"},

@@ -1,0 +1,4 @@
+
+backend/DAM-ProjectCore/db/models.py
+backend/DAM-ProjectCore/dev/reset_database.py
+backend/DAM-ProjectCore/requirements.txt

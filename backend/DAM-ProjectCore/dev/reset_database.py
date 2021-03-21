@@ -9,7 +9,7 @@ from sqlalchemy.sql import text
 
 import db
 import settings
-from db.models import SQLAlchemyBase, User, PagoTypeEnum, GenereEnum, UserToken, Event, EventTypeEnum
+from db.models import SQLAlchemyBase, User, AccountTypeEnum, GenereEnum, UserToken
 from settings import DEFAULT_LANGUAGE
 
 # LOGGING
@@ -43,15 +43,16 @@ if __name__ == "__main__":
     user_admin = User(
         created_at=datetime.datetime(2020, 1, 1, 0, 1, 1),
         username="admin",
-        pago=PagoTypeEnum.Freemium,
+        account_type=AccountTypeEnum.premium,
         email="admin@damcore.com",
         name="Administrator",
         surname="DamCore",
-        genere=GenereEnum.male,
+        genere=GenereEnum.male
     )
     user_admin.set_password("DAMCoure")
     db_session.add(user_admin)
 
+    '''
     user_1 = User(
         created_at=datetime.datetime(2020, 1, 1, 0, 1, 1),
         username="usuari1",
@@ -152,6 +153,7 @@ if __name__ == "__main__":
         registered=[user_1,user_2]
     )
     db_session.add(event_livecoding)
-
+    '''
     db_session.commit()
     db_session.close()
+

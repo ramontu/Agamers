@@ -8,7 +8,7 @@ import falcon
 import messages
 import middlewares
 from falcon_multipart.middleware import MultipartMiddleware
-from resources import account_resources, common_resources, user_resources, event_resources
+from resources import account_resources, common_resources, user_resources
 from settings import configure_logging
 
 # LOGGING
@@ -37,15 +37,16 @@ application.add_route("/account/profile", account_resources.ResourceAccountUserP
 application.add_route("/account/profile/update_profile_image", account_resources.ResourceAccountUpdateProfileImage())
 application.add_route("/account/create_token", account_resources.ResourceCreateUserToken())
 application.add_route("/account/delete_token", account_resources.ResourceDeleteUserToken())
-application.add_route("/account/delete_account", account_resources.ResourceAccountDelete()) # TODO: Provar
-application.add_route("/account/update_account", account_resources.ResourceAccountUpdate()) # TODO: Provar
+application.add_route("/account/delete_account", account_resources.ResourceAccountDelete())
+application.add_route("/account/update_account", account_resources.ResourceAccountUpdate())
 
 
 
 application.add_route("/users/register", user_resources.ResourceRegisterUser())
 application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile())
 
+'''
 application.add_route("/events", event_resources.ResourceGetEvents())
 application.add_route("/events/show/{id:int}", event_resources.ResourceGetEvent())
-
+'''
 application.add_sink(handle_404, "")
