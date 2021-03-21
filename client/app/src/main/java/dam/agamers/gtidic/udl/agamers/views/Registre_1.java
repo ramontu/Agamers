@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers;
+package dam.agamers.gtidic.udl.agamers.views;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,7 @@ import android.widget.CompoundButton;
 import com.google.android.material.slider.Slider;
 import com.google.android.material.textfield.TextInputLayout;
 
+import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.user.Utils;
 
 public class Registre_1 extends AppCompatActivity {

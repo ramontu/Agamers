@@ -1,10 +1,12 @@
-package dam.agamers.gtidic.udl.agamers;
+package dam.agamers.gtidic.udl.agamers.views;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import dam.agamers.gtidic.udl.agamers.R;
 
 public class MainActivity extends AppCompatActivity {
 
