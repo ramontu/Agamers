@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 public class UtilsUnitTest {
 
-    //TODO acabar de fer els test
+
     //USERNAME
     @Test
     public void username_test1_1(){
@@ -40,7 +40,13 @@ public class UtilsUnitTest {
         assertFalse(Utils.comprovar_username(""));
     }
 
-    //TEST CONTRASSENYA TODO acabar
+    @Test
+    public void username_test1_7(){
+        assertFalse(Utils.comprovar_username("aGAMERS"));
+    }
+
+    //TEST CONTRASSENYA
+    //DONE
 
     @Test
     public void contra_test2_1() { assertTrue(Utils.comprovar_contrasenya("aCb123456"));}
@@ -69,6 +75,12 @@ public class UtilsUnitTest {
     @Test
     public void contra_test2_9() { assertFalse(Utils.comprovar_contrasenya("1234"));}
 
+    @Test
+    public void contra_test2_10() { assertTrue(Utils.comprovar_contrasenya("aCb123456@"));}
+
+    @Test
+    public void contra_test2_11() { assertTrue(Utils.comprovar_contrasenya("aCbhgahgjhik@"));}
+
 
     //TEST MAIL
     //DONE
@@ -94,8 +106,21 @@ public class UtilsUnitTest {
     public void mail_test_7() { assertFalse(Utils.comprovar_mail("ram   ontu@gmail.com"));}
 
     //TEST NOM_COGNOM
+    //DONE
     @Test
     public void nom_cog_test_1() { assertTrue(Utils.comprovar_nom_o_cognom("Ramon"));}
+
+    @Test
+    public void nom_cog_test_2() { assertTrue(Utils.comprovar_nom_o_cognom("Ramon Trilla"));} //NOM/COGNOM compost
+
+    @Test
+    public void nom_cog_test_3() { assertFalse(Utils.comprovar_nom_o_cognom("Ramo566732n"));}
+
+    @Test
+    public void nom_cog_test_4() { assertFalse(Utils.comprovar_nom_o_cognom("R@mon"));}
+
+    @Test
+    public void nom_cog_test_5() { assertFalse(Utils.comprovar_nom_o_cognom("Ramondavidsamanthaoriolramondavidsamanthaoriolramondavidsamanthaoriol"));}
 
 
 

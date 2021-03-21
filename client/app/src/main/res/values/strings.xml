@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Agamers</string>
-    <string name="usuari_o_email">Usuari o email</string>
-    <string name="correu_o_usuari">Correu o usuari</string>
-    <string name="contrassenya">Contrasenya</string>
+
     <string name="registre_nom">Nom*</string>
     <string name="registre_cognom">Cognoms*</string>
     <string name="nom_d_usuari">Nom d\'usuari*</string>
@@ -12,7 +10,25 @@
     <string name="registre_titol_pantalla">Registre</string>
     <string name="registre_termes_i_condicions">Termes i condicions</string>
     <string name="registrar_button">Registrar</string>
+    <string name="registre_ok">T\'has registrat correctament!</string>
+    <string name="registre_error">Hi ha algut algún error, torna-ho a intentar de nou o contacta amb nosaltres a anoiagamers@gmail.com</string>
 
+    <string name="error_nom_no_vàlid">El nom conté valors no vàlids. Revisa que no hi hagi cap numero o caràcter especial. Max 40 caràcters</string>
+    <string name="error_cognom_no_vàlid">El cognom conté valors no vàlids. Revisa que no hi hagi cap numero o caràcter especial. Max 40 caràcters</string>
+    <string name="error_contra_no_vàlida">8-20 caràcters. Escull com a mínim 3: Majúscules, minúscules, numeros i/o caracters especials (!@#$%^&amp;*)</string>
+    <string name="error_confirmar_contra">La contrasenya que has introduït no es la mateixa que la de sobre. Revisa-ho</string>
+    <string name="error_mail_no_vàlid">El correu no es vàlid. Torna a comprovar-ho</string>
+
+    <string name="inici_recuperar_contra">Recuperar contrasenya</string>
+    <string name="inici_camp_user">Usuari o email</string>
+    <string name="inici_camp_contra">Contrasenya</string>
+    <string name="inici_mantenir_sesio">Mantenir sessió iniciada</string>
+    <string name="inici_button_iniciar">Iniciar sessió</string>
+    <string name="inici_button_registre">Registrar-me</string>
+
+
+    <string name="terms_button_acceptar">Accepto</string>
+    <string name="terms_button_declinar">No accepto</string>
     <string name="termes_i_condicions_titol">End-User License Agreement (EULA) of AGamers</string>
     <string name="termes_i_condicions_text">This End-User License Agreement ("EULA") is a legal agreement between you and Anoia Gamers Corp.. Our EULA was created by EULA Template for AGamers.
 

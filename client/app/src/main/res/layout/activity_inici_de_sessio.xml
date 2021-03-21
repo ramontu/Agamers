@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Inici_de_sessio"
+    tools:context=".views.Inici_de_sessio"
     android:background="@drawable/fondo"
     >
 
@@ -46,7 +46,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/usuari_o_email">
+            android:hint="@string/inici_camp_user">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name_edit_text"
@@ -64,7 +64,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/contrassenya"
+            android:hint="@string/inici_camp_contra"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -84,7 +84,7 @@
             android:id="@+id/checkBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mantenir la sessió iniciada" />
+            android:text="@string/inici_mantenir_sesio" />
 
         <Space
             android:layout_width="match_parent"
@@ -94,22 +94,26 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Iniciar sessió" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="o"
-            android:textAlignment="center" />
+            android:text="@string/inici_button_iniciar" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registrar-me"
+            android:text="@string/inici_button_registre"
             android:onClick="obre_registre"
             />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="19dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inici_recuperar_contra"
+            android:textAlignment="center" />
     </LinearLayout>
 
 

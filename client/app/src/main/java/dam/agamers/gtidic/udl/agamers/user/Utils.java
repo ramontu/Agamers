@@ -3,19 +3,16 @@ package dam.agamers.gtidic.udl.agamers.user;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @version 1.0
+ */
 public class Utils {
-
-    //TODO num max de caràctes
-    //TODO Resticions del que no hi pot haver
-
-
 
     /**
      * Comprova que el username cumpleix ems els paràmetres establerts
      * @param username String: Nom d'usuari que es vol comprovar
      * @return És viable o no
      * TODO falta fer la comprovació amb el client per a veure si ja existeix l'usuari
-     * TODO limite caracteres
      */
     public static boolean comprovar_username(String username){
         if (username.length() > 3 && username.length() < 21){
@@ -64,7 +61,6 @@ public class Utils {
             }
         }
         return comptador >= 3;
-        //return comprovar_patro(contrasenya, "^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?!.*[!@#$%^&*]))(?=.{8,20})+$");
     }
 
     /**
@@ -73,6 +69,9 @@ public class Utils {
      * @return Retorna si es viable
      */
     public static boolean comprovar_mail(String mail){
+        if (mail.length() > 40){
+            return false;
+        }
         return comprovar_patro(mail, "^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)$");
     }
 
@@ -84,7 +83,10 @@ public class Utils {
      */
     public static boolean comprovar_nom_o_cognom(String nom_cognom){
         int comptador = 0;
-
+        //màxim 40 caràcters
+        if (nom_cognom.length() > 40){
+            return false;
+        }
         //Si no te min o maj salta
         if (!comprovar_patro(nom_cognom,".*[a-z].*" ) || !comprovar_patro(nom_cognom,".*[A-Z].*" )){
             return false;

@@ -1,17 +1,12 @@
-package dam.agamers.gtidic.udl.agamers;
+package dam.agamers.gtidic.udl.agamers.views;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.OnLifecycleEvent;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 
-import com.google.android.material.textfield.TextInputLayout;
+import dam.agamers.gtidic.udl.agamers.R;
 
 public class Inici_de_sessio extends AppCompatActivity {
 
