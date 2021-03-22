@@ -43,12 +43,15 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/registre_nom">
+                android:hint="@string/registre_nom"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/name_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.Name}"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +69,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/cognom_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.Surname}"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +89,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.Email}"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,7 +110,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/contra_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.Password}"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -146,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/registrar_button"
                 android:enabled="false"
-                android:onClick="missatge_registrat"
+                android:onClick="@{ () -> viewModel.onRegister() }"
                 />
         </LinearLayout>
     </ScrollView>

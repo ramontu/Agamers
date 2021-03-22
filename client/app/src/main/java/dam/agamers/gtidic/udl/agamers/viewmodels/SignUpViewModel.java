@@ -17,7 +17,16 @@ public class SignUpViewModel extends ViewModel {
 
     public void onRegister(){
         Account account = new Account();
+        account.setName(Name.getValue());
+        account.setSurname(Surname.getValue());
+        account.setEmail(Email.getValue());
+        account.setPassword(Password.getValue());
+
+        //default values per a que no es queixi
+        account.setUsername("prova_client");
+
         this.accountRepo.registerAccount(account);
+
     }
 
 }

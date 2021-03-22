@@ -3,6 +3,9 @@ package dam.agamers.gtidic.udl.agamers.views;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,16 +26,25 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import dam.agamers.gtidic.udl.agamers.R;
+import dam.agamers.gtidic.udl.agamers.databinding.ActivityIniciDeSessioBinding;
 import dam.agamers.gtidic.udl.agamers.user.Utils;
+import dam.agamers.gtidic.udl.agamers.viewmodels.SignUpViewModel;
 
 public class Registre_1 extends AppCompatActivity {
 
+
+    private SignUpViewModel signUpViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registre_1);
         getSupportActionBar().hide();
+        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
+        ActivityIniciDeSessioBinding activityIniciDeSessioBinding = DataBindingUtil.setContentView(this,R.layout.activity_registre_1);
+        activityIniciDeSessioBinding.setLifecycleOwner(this);
+        activityIniciDeSessioBinding.setViewModel(signUpViewModel);
+
         //boto per a tornar a inici (el propi de android)
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
