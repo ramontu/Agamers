@@ -4,13 +4,13 @@ import org.junit.Test;
 
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class AccountValidatorUnitTest {
 
 
+    //@Jordi: Els noms de les funcions no són informatius... usernameWithLettersandNumbersMustBeValid.
     //USERNAME
     @Test
     public void username_test1_1(){
