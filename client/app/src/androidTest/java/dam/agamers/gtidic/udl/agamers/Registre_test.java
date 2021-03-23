@@ -1,40 +1,20 @@
 package dam.agamers.gtidic.udl.agamers;
-import android.view.View;
 
-import dam.agamers.gtidic.udl.agamers.views.Registre_1;
+import dam.agamers.gtidic.udl.agamers.views.SignUpActivity;
 
 
-import org.hamcrest.CustomMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.ViewAssertion;
-import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.assertion.ViewAssertions;
-import androidx.test.espresso.matcher.BoundedMatcher;
-import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
-
-import com.google.android.material.textfield.TextInputLayout;
-
-import java.sql.Wrapper;
-
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 
 
 @RunWith(AndroidJUnit4.class)
 public class Registre_test {
     @Rule
-    public ActivityTestRule<Registre_1> mActivityRule = new ActivityTestRule<>(Registre_1.class);
+    public ActivityTestRule<SignUpActivity> mActivityRule = new ActivityTestRule<>(SignUpActivity.class);
 
     @Before
     public void setUp(){

@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers.user;
+package dam.agamers.gtidic.udl.agamers.validators;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * @version 1.0
  */
-public class Utils {
+public class AccountValidator {
 
     /**
      * Comprova que el username cumpleix ems els paràmetres establerts

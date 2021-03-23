@@ -1,31 +1,22 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
-import com.google.android.material.slider.Slider;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import dam.agamers.gtidic.udl.agamers.R;
-import dam.agamers.gtidic.udl.agamers.user.Utils;
+import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 
-public class Registre_1 extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
 
     @Override
@@ -73,7 +64,7 @@ public class Registre_1 extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Utils.comprovar_nom_o_cognom(s.toString())){
+                if (!AccountValidator.comprovar_nom_o_cognom(s.toString())){
                     nom.setError(getString(R.string.error_nom_no_vàlid));
                     b_nom = false;
                 }
@@ -96,7 +87,7 @@ public class Registre_1 extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Utils.comprovar_nom_o_cognom(s.toString())){
+                if (!AccountValidator.comprovar_nom_o_cognom(s.toString())){
                     cognom.setError(getString(R.string.error_cognom_no_vàlid));
                     b_cog = false;
                 }
@@ -120,7 +111,7 @@ public class Registre_1 extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Utils.comprovar_contrasenya(s.toString())){
+                if (!AccountValidator.comprovar_contrasenya(s.toString())){
                     contra.setError(getString(R.string.error_contra_no_vàlida));
                     b_contra = false;
                 }
@@ -168,7 +159,7 @@ public class Registre_1 extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Utils.comprovar_mail(s.toString())){
+                if (!AccountValidator.comprovar_mail(s.toString())){
                     email.setError(getString(R.string.error_mail_no_vàlid));
                     b_mail = false;
                 }

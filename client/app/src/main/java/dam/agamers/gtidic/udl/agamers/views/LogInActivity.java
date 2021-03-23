@@ -5,7 +5,7 @@ import android.os.Bundle;
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
 
-public class Inici_de_sessio extends CommonActivity {
+public class LogInActivity extends CommonActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

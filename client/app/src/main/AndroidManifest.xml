@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Agamers">
         <activity android:name=".CommonActivity"></activity>
         <activity
-            android:name=".views.Inici_de_sessio"
+            android:name=".views.LogInActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".views.MainActivity"
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.Registre_1"
+            android:name=".views.SignUpActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 
