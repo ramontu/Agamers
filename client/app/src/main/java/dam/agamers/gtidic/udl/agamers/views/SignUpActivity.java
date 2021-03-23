@@ -40,6 +40,8 @@ public class SignUpActivity extends AppCompatActivity {
         comprovacions();
     }
 
+    //@Jordi -> poseu noms adients b_nom === isNameValid isPasswordValid -> sóc molt pesat amb
+    // punyetetes ho sento!
     private boolean b_nom = false;
     private boolean b_cog = false;
     private boolean b_contra = false;
@@ -111,15 +113,8 @@ public class SignUpActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!AccountValidator.comprovar_contrasenya(s.toString())){
-                    contra.setError(getString(R.string.error_contra_no_vàlida));
-                    b_contra = false;
-                }
-                else {
-                    contra.setError(null);
-                    b_contra = true;
-                }
-                tots_camps_valids();
+                b_contra = !AccountValidator.comprovar_contrasenya(s.toString());
+                updateForm(b_mail, contra, getString(R.string.error_contra_no_vàlida));
             }
         });
 
@@ -159,31 +154,27 @@ public class SignUpActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!AccountValidator.comprovar_mail(s.toString())){
-                    email.setError(getString(R.string.error_mail_no_vàlid));
-                    b_mail = false;
-                }
-                else {
-                    email.setError(null);
-                    b_mail = true;
-
-                }
-                tots_camps_valids();
+                b_mail = AccountValidator.comprovar_mail(s.toString());
+                updateForm(b_mail, email, getString(R.string.error_mail_no_vàlid));
             }
         });
 
+    }
 
-
-
-
-
-
+    private void updateForm(boolean isValid, TextInputLayout textInput, String error_msg) {
+        if (!isValid) {
+            textInput.setError(error_msg);
+        } else {
+            textInput.setError(null);
+        }
+        tots_camps_valids();
     }
 
     /**
      * Es l'encarregat de que al donar-li al CheckBox de termes i condicions aparegui un diàleg on s'informa a l'usuari dels termes i condicions de l'app
      * @param view Pantalla actual
      */
+    // @Jordi: Aixo millor en una classe apart tipus com el DAM-TIPS
     public void termes_condicions(View view){
         CheckBox term = findViewById(R.id.termes);
 
@@ -219,7 +210,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void missatge_registrat(View view){
-
+        //Ok, però OMG! De moment no cal el if, més endavant ja el posareu xD
         Snackbar snackbar;
         if (true){
             snackbar = Snackbar.make(view, getString(R.string.registre_ok), 5000);
