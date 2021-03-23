@@ -32,6 +32,9 @@ public class Registre_1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registre_1);
+
+        /* No cal per defecte android ja fa aquesta acció, si voleu anar a una activity que no es
+        l'anterior llavors si que cal fer-ho però de moment no es necesari
         getSupportActionBar().hide();
         //boto per a tornar a inici (el propi de android)
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
@@ -42,7 +45,7 @@ public class Registre_1 extends AppCompatActivity {
                 finish();
             }
         };
-        this.getOnBackPressedDispatcher().addCallback(this,callback);
+        this.getOnBackPressedDispatcher().addCallback(this,callback);*/
         comprovacions();
     }
 
