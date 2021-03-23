@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
  */
 public class AccountValidator {
 
+    //@Jordi: Poseu al javadoc les condicions de validació
     /**
      * Comprova que el username cumpleix ems els paràmetres establerts
      * @param username String: Nom d'usuari que es vol comprovar
@@ -22,10 +23,7 @@ public class AccountValidator {
                 }
 
                 //Detecta maj caracteres especiales (excepte "_" i ".")
-                if (comprovar_patro(username, ".*[^a-z\\d:(?!_.)].*")){
-                    return false;
-                }
-                return true;
+                return !comprovar_patro(username, ".*[^a-z\\d:(?!_.)].*");
             }
             return false;
         }
@@ -87,10 +85,11 @@ public class AccountValidator {
         if (nom_cognom.length() > 40){
             return false;
         }
-        //Si no te min o maj salta
-        if (!comprovar_patro(nom_cognom,".*[a-z].*" ) || !comprovar_patro(nom_cognom,".*[A-Z].*" )){
-            return false;
-        }
+// @Jordi: Crec que no cal aquesta
+//        //Si no te min o maj salta
+//        if (!comprovar_patro(nom_cognom,".*[a-z].*" ) || !comprovar_patro(nom_cognom,".*[A-Z].*" )){
+//            return false;
+//        }
         //si tenim nums salta
         if (comprovar_patro(nom_cognom, ".*[0-9].*")){
             return false;
@@ -101,10 +100,7 @@ public class AccountValidator {
         }
 
         //caracters especials
-        if (comprovar_patro(nom_cognom, "[^a-zA-Z\\d\\s:]")){
-            return false;
-        }
-        return true;
+        return !comprovar_patro(nom_cognom, "[^a-zA-Z\\d\\s:]");
     }
 
     /**
