@@ -1,6 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
 import android.os.Bundle;
+import android.view.View;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
@@ -14,6 +15,9 @@ public class LogInActivity extends CommonActivity {
        // Eliminar no us cal... getSupportActionBar().hide();
     }
 
+    public void obre_registre (View view){
+        goTo(SignUpActivity.class);
+    }
 
 /* Eliminar
     public void obre_registre (View view){
