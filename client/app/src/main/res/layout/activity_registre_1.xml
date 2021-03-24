@@ -4,17 +4,17 @@
     <data>
         <variable
             name="viewModel"
-            type="dam.agamers.gtidic.udl.agamers.viewmodels.SignUpViewModel"
+            type="dam.agamers.gtidic.udl.agamers.viewmodels.Registre_1ViewModel"
             />
-
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.Registre_1">
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/registrar_button"
                 android:enabled="false"
-                android:onClick="@{ () -> viewModel.onRegister() }"
+                android:onClick="@{() -> viewModel.onRegister()}"
                 />
         </LinearLayout>
     </ScrollView>

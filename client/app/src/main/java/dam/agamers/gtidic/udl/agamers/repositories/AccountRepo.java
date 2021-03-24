@@ -5,6 +5,9 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+
+import java.io.IOException;
+
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceI;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
@@ -24,7 +27,6 @@ public class AccountRepo {
         this.accountService = new AccountServiceImpl();
         this.mResponseRegister = new MutableLiveData<>();
     }
-
 
     public void registerAccount(Account account){
 
@@ -53,5 +55,6 @@ public class AccountRepo {
 
     }
 
-
 }
+
+

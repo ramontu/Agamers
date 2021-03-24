@@ -1,50 +1,48 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
-import com.google.android.material.slider.Slider;
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import dam.agamers.gtidic.udl.agamers.R;
-import dam.agamers.gtidic.udl.agamers.databinding.ActivityIniciDeSessioBinding;
+import dam.agamers.gtidic.udl.agamers.databinding.ActivityRegistre1Binding;
 import dam.agamers.gtidic.udl.agamers.user.Utils;
-import dam.agamers.gtidic.udl.agamers.viewmodels.SignUpViewModel;
+import dam.agamers.gtidic.udl.agamers.viewmodels.Registre_1ViewModel;
 
 public class Registre_1 extends AppCompatActivity {
-
-
-    private SignUpViewModel signUpViewModel;
+    final String TAG = "Registre";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registre_1);
         getSupportActionBar().hide();
-        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
-        ActivityIniciDeSessioBinding activityIniciDeSessioBinding = DataBindingUtil.setContentView(this,R.layout.activity_registre_1);
-        activityIniciDeSessioBinding.setLifecycleOwner(this);
-        activityIniciDeSessioBinding.setViewModel(signUpViewModel);
+        initView();
+        set_accio_tornar_enrere();
+    }
 
+    private void initView(){
+        Registre_1ViewModel registre1ViewModel = new ViewModelProvider(this).get(Registre_1ViewModel.class);
+        ActivityRegistre1Binding activityRegistre1Binding =
+                DataBindingUtil.setContentView(this,R.layout.activity_registre_1);
+        activityRegistre1Binding.setLifecycleOwner(this);
+        activityRegistre1Binding.setViewModel(registre1ViewModel);
+    }
+
+    private void set_accio_tornar_enrere(){
         //boto per a tornar a inici (el propi de android)
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override

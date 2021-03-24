@@ -12,8 +12,6 @@ public class Account {
     private String name;
     @SerializedName("surname")
     private String surname;
-    @SerializedName("genere")
-    private String genere;
     @SerializedName("password")
     private String password;
 
@@ -51,14 +49,6 @@ public class Account {
         this.surname = surname;
     }
 
-    public String getGenere() {
-        return genere;
-    }
-
-    public void setGenere(String genere) {
-        this.genere = genere;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -75,6 +65,11 @@ public class Account {
         this.password = Utils.encode(password,salt,29000);
     }
     */
+
+    @Override
+    public String toString(){
+        return this.name + " " + this.surname  + " " + this.email + " " + this.password;
+    }
 
 
 

@@ -8,8 +8,8 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface AccountServiceI {
-
-    @POST("account/create_token")
+    @POST("/users/register")
     Call<ResponseBody> register(@Body Account account);
+
 
 }
