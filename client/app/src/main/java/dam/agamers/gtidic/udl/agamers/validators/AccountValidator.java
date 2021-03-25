@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class AccountValidator {
 
     //TODO posar condicions de validació al javadoc
-
+    //hola
     /**
      * Comprova que el username cumpleix ems els paràmetres establerts
      * @param username String: Nom d'usuari que es vol comprovar
