@@ -2,3 +2,21 @@
 backend/DAM-ProjectCore/db/models.py
 backend/DAM-ProjectCore/dev/reset_database.py
 backend/DAM-ProjectCore/requirements.txt
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/resources/__pycache__/utils.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/resources/__pycache__/user_resources.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/resources/__pycache__/schemas.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/resources/__pycache__/common_resources.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/resources/__pycache__/base_resources.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/resources/__pycache__/account_resources.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/resources/__pycache__/__init__.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/db/__pycache__/models.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/db/__pycache__/json_model.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/db/__pycache__/__init__.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/__pycache__/settings.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/__pycache__/middlewares.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/__pycache__/messages.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/__pycache__/hooks.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/__pycache__/app.cpython-37.pyc
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/.idea/workspace.xml
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/.idea/vcs.xml
+backend/Backend_prova_movil_funciona/backend net/DAM-ProjectCore/.idea/inspectionProfiles/Project_Default.xml
