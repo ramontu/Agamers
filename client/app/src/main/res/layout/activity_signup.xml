@@ -13,7 +13,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.Registre_1">
+    tools:context=".views.SignUpActivity">
 
 
     <ScrollView
@@ -162,7 +162,7 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="93dp"
         android:adjustViewBounds="false"
         android:scaleType="fitXY"
@@ -172,7 +172,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/barra_superior" />
+        app:srcCompat="@drawable/barra_superior"
+        android:contentDescription="@string/fondo_agamers"  />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -186,7 +187,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/logo_sense_lletres" />
+        app:srcCompat="@drawable/logo_sense_lletres"
+        android:contentDescription="@string/lodo_agamers"  />
 
     <TextView
         android:id="@+id/textView2"

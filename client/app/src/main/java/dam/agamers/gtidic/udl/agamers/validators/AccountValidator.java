@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers.user;
+package dam.agamers.gtidic.udl.agamers.validators;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -6,7 +6,9 @@ import java.util.regex.Pattern;
 /**
  * @version 1.0
  */
-public class Utils {
+public class AccountValidator {
+
+    //TODO posar condicions de validació al javadoc
 
     /**
      * Comprova que el username cumpleix ems els paràmetres establerts
@@ -22,10 +24,7 @@ public class Utils {
                 }
 
                 //Detecta maj caracteres especiales (excepte "_" i ".")
-                if (comprovar_patro(username, ".*[^a-z\\d:(?!_.)].*")){
-                    return false;
-                }
-                return true;
+                return !comprovar_patro(username, ".*[^a-z\\d:(?!_.)].*");
             }
             return false;
         }
@@ -87,10 +86,13 @@ public class Utils {
         if (nom_cognom.length() > 40){
             return false;
         }
+        //TODO IMPLEMENTAR AUTOMATICAMENT
         //Si no te min o maj salta
+        /*
         if (!comprovar_patro(nom_cognom,".*[a-z].*" ) || !comprovar_patro(nom_cognom,".*[A-Z].*" )){
             return false;
         }
+         */
         //si tenim nums salta
         if (comprovar_patro(nom_cognom, ".*[0-9].*")){
             return false;
@@ -101,10 +103,7 @@ public class Utils {
         }
 
         //caracters especials
-        if (comprovar_patro(nom_cognom, "[^a-zA-Z\\d\\s:]")){
-            return false;
-        }
-        return true;
+        return !comprovar_patro(nom_cognom, "[^a-zA-Z\\d\\s:]");
     }
 
     /**

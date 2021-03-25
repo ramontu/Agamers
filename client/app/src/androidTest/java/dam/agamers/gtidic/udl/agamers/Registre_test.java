@@ -1,10 +1,11 @@
 package dam.agamers.gtidic.udl.agamers;
+
+import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 
-import dam.agamers.gtidic.udl.agamers.views.Registre_1;
+import dam.agamers.gtidic.udl.agamers.views.SignUpActivity;
 
-
-import org.hamcrest.CustomMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -14,50 +15,64 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.ViewAssertion;
-import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.assertion.ViewAssertions;
-import androidx.test.espresso.matcher.BoundedMatcher;
-import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.rule.ActivityTestRule;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.sql.Wrapper;
+import java.io.IOException;
 
+import static androidx.test.espresso.Espresso.closeSoftKeyboard;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-
+import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.supportsInputMethods;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 public class Registre_test {
+
     @Rule
-    public ActivityTestRule<Registre_1> mActivityRule = new ActivityTestRule<>(Registre_1.class);
+    public ActivityScenarioRule<SignUpActivity> mActivityRule = new ActivityScenarioRule<>(SignUpActivity.class);
+
+    private Context context;
 
     @Before
-    public void setUp(){
-        mActivityRule.getActivity();
+    public void setUp() throws IOException {
+        context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
     }
 
-    //TODO
-    /* NO HEM TROBAT CAP MANERA QUE FES QUE L'ESPRESSO FUNCIONES AMB ELS TEXTINPUTLAYOUT PER A DETECTAR ELS ERRORS QUE SURTEN A SOTA
+
     @Test
-    public void test_termes(){
+    public void termsConditionDisplayedWhenClick(){
         Espresso.onView(ViewMatchers.withId(R.id.termes)).perform(ViewActions.click());
-        Espresso.onView(ViewMatchers.withText(R.string.termes_i_condicions_text));
+        Espresso.onView(ViewMatchers.withText(R.string.termes_i_condicions_text)).check(matches(isDisplayed()));
     }
 
-    @Test
-    public void test_error_nom_espai(){
-        Espresso.onView(ViewMatchers.withId(R.id.name_edit_text))
-                .perform(ViewActions.typeText("Ramon "));
-        Espresso.onView(Matchers.allOf(ViewMatchers.withId(R.id.name_textinputlayout)
-                , ViewMatchers.withText(R.string.error_nom_no_vàlid)));
+    public void nameInputDisplayErrorsWhenSpaceExists(){
 
+        onView(withId(R.id.name_edit_text))
+                .perform(typeText("Ramon "));
+
+        onView(withId(R.id.name_textinputlayout))
+                .check(matches(hasTextInputLayoutErrorText(
+                        context.getResources().getString(R.string.error_nom_no_vàlid))));
     }
 
+    /*
     @Test
     public void test_error_nom_numero(){
         Espresso.onView(ViewMatchers.withId(R.id.name_edit_text))
@@ -65,6 +80,7 @@ public class Registre_test {
         Espresso.onView(ViewMatchers.withId(R.id.name_textinputlayout))
             .check(matches(che)));
     }
+    */
 
     @Test
     public void test_error_cognom_espai(){
@@ -76,27 +92,51 @@ public class Registre_test {
 
 
 
-    Hem provat les principals solucions que hi ha a internet i no funciona cap
-    @Test
+    //@Test
+//    public void test_prova(){
+//        Espresso.onView(ViewMatchers.withId(R.id.name_edit_text))
+//                .perform(ViewActions.typeText("Ramon"));
+//
+//        Espresso.onView(ViewMatchers.withId(R.id.name_edit_text))
+//            .check(ViewAssertions.matches(ViewMatchers.withHint("Nom*")));
+//    }
+//
+//    @Test
+//    public void test_nom_incorrecte(){
+//        Espresso.onView(ViewMatchers.withId(R.id.name_edit_text))
+//                .perform(ViewActions.typeText("Ramon "));
+//
+//        Espresso.onView(ViewMatchers.withId(R.id.name_textinputlayout))
+//                .check(matches(hasTextInputLayoutHintText(mActivityRule.getActivity().getString(R.string.error_nom_no_vàlid))));
+//    }
 
-    public void test_prova(){
-        Espresso.onView(ViewMatchers.withId(R.id.name_edit_text))
-                .perform(ViewActions.typeText("Ramon"));
+    public static Matcher<View> hasTextInputLayoutErrorText(final String expectedErrorText) {
+        return new TypeSafeMatcher<View>() {
 
-        Espresso.onView(ViewMatchers.withId(R.id.name_edit_text))
-            .check(ViewAssertions.matches(ViewMatchers.withHint("Nom*")));
+            @Override
+            public void describeTo(Description description) {
+
+            }
+
+            @Override
+            public boolean matchesSafely(View view) {
+                if (!(view instanceof TextInputLayout)) {
+                    return false;
+                }
+
+                CharSequence error = ((TextInputLayout) view).getError();
+
+                if (error == null) {
+                    return false;
+                }
+
+                String err = error.toString();
+                return expectedErrorText.equals(err);
+            }
+
+        };
     }
 
-    @Test
-    public void test_nom_incorrecte(){
-        Espresso.onView(ViewMatchers.withId(R.id.name_edit_text))
-                .perform(ViewActions.typeText("Ramon "));
-
-        Espresso.onView(ViewMatchers.withId(R.id.name_textinputlayout))
-                .check(matches(hasTextInputLayoutHintText(mActivityRule.getActivity().getString(R.string.error_nom_no_vàlid))));
-    }
-
-    */
 
 
 }

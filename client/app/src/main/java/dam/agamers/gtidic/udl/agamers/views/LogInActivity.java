@@ -1,14 +1,15 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
-import androidx.appcompat.app.AppCompatActivity;
+import dam.agamers.gtidic.udl.agamers.CommonActivity;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 
+
 import dam.agamers.gtidic.udl.agamers.R;
 
-public class Inici_de_sessio extends AppCompatActivity {
+public class LogInActivity extends CommonActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +18,7 @@ public class Inici_de_sessio extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-
-
     public void obre_registre (View view){
-        Intent i = new Intent(Inici_de_sessio.this, Registre_1.class);
-        startActivity(i);
-        finish();
+        goTo(SignUpActivity.class);
     }
 }
