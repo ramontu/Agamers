@@ -29,6 +29,8 @@
 
     <string name="terms_button_acceptar">Accepto</string>
     <string name="terms_button_declinar">No accepto</string>
+
+    <!--TODO: Formatar amb el format html per a formatar-lo i que quedi bé-->
     <string name="termes_i_condicions_titol">End-User License Agreement (EULA) of AGamers</string>
     <string name="termes_i_condicions_text">This End-User License Agreement ("EULA") is a legal agreement between you and Anoia Gamers Corp.. Our EULA was created by EULA Template for AGamers.
 
@@ -66,6 +68,8 @@
 
         Governing Law
         This EULA agreement, and any dispute arising out of or in connection with this EULA agreement, shall be governed by and construed in accordance with the laws of es.</string>
+    <string name="fondo_agamers">Fondo Agamers</string>
+    <string name="lodo_agamers">Logo Agamers</string>
 
 
 </resources>

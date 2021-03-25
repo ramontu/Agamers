@@ -1,50 +1,68 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
-import com.google.android.material.slider.Slider;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import dam.agamers.gtidic.udl.agamers.R;
-import dam.agamers.gtidic.udl.agamers.user.Utils;
 
-public class Registre_1 extends AppCompatActivity {
+import dam.agamers.gtidic.udl.agamers.databinding.ActivitySignupBinding;
+import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
+import dam.agamers.gtidic.udl.agamers.viewmodels.Registre_1ViewModel;
 
+public class SignUpActivity extends AppCompatActivity {
+    final String TAG = "Registre";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registre_1);
+        setContentView(R.layout.activity_signup);
         getSupportActionBar().hide();
+        initView();
+        set_accio_tornar_enrere();
+    }
+
+    private void initView(){
+        Registre_1ViewModel registre1ViewModel = new ViewModelProvider(this).get(Registre_1ViewModel.class);
+
+        ActivitySignupBinding activitySignupBinding =
+                DataBindingUtil.setContentView(this,R.layout.activity_signup);
+        activitySignupBinding.setLifecycleOwner(this);
+        activitySignupBinding.setViewModel(registre1ViewModel);
+    }
+
+    private void set_accio_tornar_enrere(){
         //boto per a tornar a inici (el propi de android)
+        //En teoria no ens cal
+        /*
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Intent intent = new Intent(getApplicationContext(), Inici_de_sessio.class);
+                Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
                 startActivity(intent);
                 finish();
             }
         };
         this.getOnBackPressedDispatcher().addCallback(this,callback);
+
+         */
         comprovacions();
     }
+
+    //@Jordi -> poseu noms adients b_nom === isNameValid isPasswordValid -> sóc molt pesat amb
+    // punyetetes ho sento!
+    //TODO POSAR NOMS ADIENTS
 
     private boolean b_nom = false;
     private boolean b_cog = false;
@@ -70,7 +88,7 @@ public class Registre_1 extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Utils.comprovar_nom_o_cognom(s.toString())){
+                if (!AccountValidator.comprovar_nom_o_cognom(s.toString())){
                     nom.setError(getString(R.string.error_nom_no_vàlid));
                     b_nom = false;
                 }
@@ -93,7 +111,7 @@ public class Registre_1 extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Utils.comprovar_nom_o_cognom(s.toString())){
+                if (!AccountValidator.comprovar_nom_o_cognom(s.toString())){
                     cognom.setError(getString(R.string.error_cognom_no_vàlid));
                     b_cog = false;
                 }
@@ -117,15 +135,8 @@ public class Registre_1 extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Utils.comprovar_contrasenya(s.toString())){
-                    contra.setError(getString(R.string.error_contra_no_vàlida));
-                    b_contra = false;
-                }
-                else {
-                    contra.setError(null);
-                    b_contra = true;
-                }
-                tots_camps_valids();
+                b_contra = !AccountValidator.comprovar_contrasenya(s.toString());
+                updateForm(b_mail, contra, getString(R.string.error_contra_no_vàlida));
             }
         });
 
@@ -165,16 +176,8 @@ public class Registre_1 extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Utils.comprovar_mail(s.toString())){
-                    email.setError(getString(R.string.error_mail_no_vàlid));
-                    b_mail = false;
-                }
-                else {
-                    email.setError(null);
-                    b_mail = true;
-
-                }
-                tots_camps_valids();
+                b_mail = AccountValidator.comprovar_mail(s.toString());
+                updateForm(b_mail, email, getString(R.string.error_mail_no_vàlid));
             }
         });
 
@@ -186,6 +189,7 @@ public class Registre_1 extends AppCompatActivity {
 
     }
 
+    //TODO POSAR EN UNA CLASSE APART
     /**
      * Es l'encarregat de que al donar-li al CheckBox de termes i condicions aparegui un diàleg on s'informa a l'usuari dels termes i condicions de l'app
      * @param view Pantalla actual
@@ -237,8 +241,15 @@ public class Registre_1 extends AppCompatActivity {
     }
 
 
-
-
+    //TODO JAVADOC
+    private void updateForm(boolean isValid, TextInputLayout textInput, String error_msg) {
+        if (!isValid) {
+            textInput.setError(error_msg);
+        } else {
+            textInput.setError(null);
+        }
+        tots_camps_valids();
+    }
 
 
 
