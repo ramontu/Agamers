@@ -57,26 +57,26 @@ public class SignUpActivity extends AppCompatActivity {
         this.getOnBackPressedDispatcher().addCallback(this,callback);
 
          */
-        comprovacions();
+        checking();
     }
 
     //@Jordi -> poseu noms adients b_nom === isNameValid isPasswordValid -> sóc molt pesat amb
     // punyetetes ho sento!
     //TODO POSAR NOMS ADIENTS
 
-    private boolean b_nom = false;
-    private boolean b_cog = false;
-    private boolean b_contra = false;
-    private boolean b_con_contra = false;
-    private boolean b_mail = false;
-    private boolean b_terms = false;
+    private boolean isNameValid = false;
+    private boolean isSurnameValid = false;
+    private boolean isPasswordValid = false;
+    private boolean isSamePassword = false;
+    private boolean isMailValid = false;
+    private boolean isTermsValid = false;
 
 
     //TODO falta refactor
     /**
      * S'encarrega de fer totes les comprovacions necessaries per a que el registre es ralitzi de forma satisfactòria
      */
-    protected void comprovacions() {
+    protected void checking() {
         //Comprovació nom
         TextInputLayout nom = (TextInputLayout) findViewById(R.id.name_textinputlayout);
         nom.getEditText().addTextChangedListener(new TextWatcher() {
@@ -88,13 +88,13 @@ public class SignUpActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!AccountValidator.comprovar_nom_o_cognom(s.toString())){
+                if (!AccountValidator.check_nameOrSurnameValid(s.toString())){
                     nom.setError(getString(R.string.error_nom_no_vàlid));
-                    b_nom = false;
+                    isNameValid = false;
                 }
                 else {
                     nom.setError(null);
-                    b_nom = true;
+                    isNameValid = true;
                 }
                 tots_camps_valids();
             }
@@ -111,13 +111,13 @@ public class SignUpActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!AccountValidator.comprovar_nom_o_cognom(s.toString())){
+                if (!AccountValidator.check_nameOrSurnameValid(s.toString())){
                     cognom.setError(getString(R.string.error_cognom_no_vàlid));
-                    b_cog = false;
+                    isSurnameValid = false;
                 }
                 else {
                     cognom.setError(null);
-                    b_cog = true;
+                    isSurnameValid = true;
                 }
                 tots_camps_valids();
             }
@@ -135,8 +135,8 @@ public class SignUpActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                b_contra = !AccountValidator.comprovar_contrasenya(s.toString());
-                updateForm(b_mail, contra, getString(R.string.error_contra_no_vàlida));
+                isPasswordValid = !AccountValidator.check_passwordValid(s.toString());
+                updateForm(isMailValid, contra, getString(R.string.error_contra_no_vàlida));
             }
         });
 
@@ -154,11 +154,11 @@ public class SignUpActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().equals(String.valueOf(contra.getEditText().getText()))){
                     confi_contra.setError(getString(R.string.error_confirmar_contra));
-                    b_con_contra = false;
+                    isSamePassword = false;
                 }
                 else {
                     confi_contra.setError(null);
-                    b_con_contra = true;
+                    isSamePassword = true;
                 }
                 tots_camps_valids();
 
@@ -176,8 +176,8 @@ public class SignUpActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                b_mail = AccountValidator.comprovar_mail(s.toString());
-                updateForm(b_mail, email, getString(R.string.error_mail_no_vàlid));
+                isMailValid = AccountValidator.check_mailValid(s.toString());
+                updateForm(isMailValid, email, getString(R.string.error_mail_no_vàlid));
             }
         });
 
@@ -204,13 +204,13 @@ public class SignUpActivity extends AppCompatActivity {
             builder.setPositiveButton(getString(R.string.terms_button_acceptar), (dialog, id) -> {
                 CheckBox a = findViewById(R.id.termes);
                 a.setChecked(true);
-                b_terms = true;
+                isTermsValid = true;
                 tots_camps_valids();
             });
             builder.setNegativeButton(getString(R.string.terms_button_declinar), (dialog, id) -> {
                 CheckBox a = findViewById(R.id.termes);
                 a.setChecked(false);
-                b_terms = false;
+                isTermsValid = false;
                 tots_camps_valids();
             });
             AlertDialog dialog = builder.create();
@@ -225,7 +225,7 @@ public class SignUpActivity extends AppCompatActivity {
      */
     private void tots_camps_valids(){
         Button b =findViewById(R.id.boto_registrar);
-        b.setEnabled(b_nom&&b_cog&&b_contra&&b_con_contra&&b_mail&&b_terms);
+        b.setEnabled(isNameValid && isSurnameValid && isPasswordValid && isSamePassword && isMailValid && isTermsValid);
     }
 
     public void missatge_registrat(View view){

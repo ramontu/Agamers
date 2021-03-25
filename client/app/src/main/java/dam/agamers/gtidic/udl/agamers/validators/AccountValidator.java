@@ -11,20 +11,20 @@ public class AccountValidator {
     //TODO posar condicions de validació al javadoc
 
     /**
-     * Comprova que el username cumpleix ems els paràmetres establerts
+     * Comprova que el username contingui minuscules, no contingui majuscules i no contingui caracters especials esxcepte "_" i "."
      * @param username String: Nom d'usuari que es vol comprovar
      * @return És viable o no
      * TODO falta fer la comprovació amb el client per a veure si ja existeix l'usuari
      */
-    public static boolean comprovar_username(String username){
+    public static boolean check_usernameValid(String username){
         if (username.length() > 3 && username.length() < 21){
-            if (comprovar_patro(username, ".*[a-z].*")){
-                if (comprovar_patro(username,".*[A-Z].*")){
+            if (patternIsValid(username, ".*[a-z].*")){
+                if (patternIsValid(username,".*[A-Z].*")){
                     return false;
                 }
 
                 //Detecta maj caracteres especiales (excepte "_" i ".")
-                return !comprovar_patro(username, ".*[^a-z\\d:(?!_.)].*");
+                return !patternIsValid(username, ".*[^a-z\\d:(?!_.)].*");
             }
             return false;
         }
@@ -33,29 +33,29 @@ public class AccountValidator {
     }
 
     /**
-     * Comprova que la contrasenya sigui vàlida (ha de contenir per lo menos 3 coses (minus, majus, numeros, [!@#$%^&*]))
+     * Comprova que la contrasenya sigui vàlida (ha de contenir com a minim 3 coses (minus, majus, numeros, [!@#$%^&*]))
      * @param contrasenya String: Contrasenya que es vol comprovar
      * @return Retorna si es viable
      */
-    public static boolean comprovar_contrasenya(String contrasenya){
+    public static boolean check_passwordValid(String contrasenya){
         int comptador = 0;
 
         if ((contrasenya.length() >=8) && (contrasenya.length() < 21)){
 
             //conte numeros
-            if (comprovar_patro(contrasenya, ".*[0-9].*")){
+            if (patternIsValid(contrasenya, ".*[0-9].*")){
                 comptador++;
             }
             //conte minuscules
-            if (comprovar_patro(contrasenya, ".*[a-z].*")){
+            if (patternIsValid(contrasenya, ".*[a-z].*")){
                 comptador++;
             }
             //conte MAJUSCULES
-            if (comprovar_patro(contrasenya,".*[A-Z].*")){
+            if (patternIsValid(contrasenya,".*[A-Z].*")){
                 comptador++;
             }
             //conté caracters especials
-            if (comprovar_patro(contrasenya, ".*[!@#$%^&*].*")){
+            if (patternIsValid(contrasenya, ".*[!@#$%^&*].*")){
                 comptador++;
             }
         }
@@ -67,11 +67,11 @@ public class AccountValidator {
      * @param mail String: Mail que es vol comprovar
      * @return Retorna si es viable
      */
-    public static boolean comprovar_mail(String mail){
+    public static boolean check_mailValid(String mail){
         if (mail.length() > 40){
             return false;
         }
-        return comprovar_patro(mail, "^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)$");
+        return patternIsValid(mail, "^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)$");
     }
 
     /**
@@ -80,7 +80,7 @@ public class AccountValidator {
      * @param nom_cognom String: nom o cognom que es vol comprovar
      * @return Retorna si es viable o no
      */
-    public static boolean comprovar_nom_o_cognom(String nom_cognom){
+    public static boolean check_nameOrSurnameValid(String nom_cognom){
         int comptador = 0;
         //màxim 40 caràcters
         if (nom_cognom.length() > 40){
@@ -94,16 +94,16 @@ public class AccountValidator {
         }
          */
         //si tenim nums salta
-        if (comprovar_patro(nom_cognom, ".*[0-9].*")){
+        if (patternIsValid(nom_cognom, ".*[0-9].*")){
             return false;
         }
         //espais tabs etc al principi de linia no vàlids
-        if (comprovar_patro(nom_cognom, "^\\s+|\\s+$")){
+        if (patternIsValid(nom_cognom, "^\\s+|\\s+$")){
             return false;
         }
 
         //caracters especials
-        return !comprovar_patro(nom_cognom, "[^a-zA-Z\\d\\s:]");
+        return !patternIsValid(nom_cognom, "[^a-zA-Z\\d\\s:]");
     }
 
     /**
@@ -112,7 +112,7 @@ public class AccountValidator {
      * @param patro String: que conté el patró
      * @return Retorna si el patró es troba en la entrada o no
      */
-    private static boolean comprovar_patro(String entrada, String patro){
+    private static boolean patternIsValid(String entrada, String patro){
         Pattern pat = Pattern.compile(patro);
         Matcher mat = pat.matcher(entrada);
         return mat.find();
