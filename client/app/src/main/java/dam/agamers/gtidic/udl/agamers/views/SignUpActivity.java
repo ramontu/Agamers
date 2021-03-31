@@ -275,7 +275,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (!isValid) {
             textInput.setError(error_msg);
         } else {
-            textInput.setError(null);
+            textInput.setErrorEnabled(false);
         }
         tots_camps_valids();
     }
