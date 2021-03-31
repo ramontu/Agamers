@@ -70,6 +70,8 @@
         This EULA agreement, and any dispute arising out of or in connection with this EULA agreement, shall be governed by and construed in accordance with the laws of es.</string>
     <string name="fondo_agamers">Fondo Agamers</string>
     <string name="lodo_agamers">Logo Agamers</string>
+    <string name="singup_username">Username*</string>
+    <string name="data">Data de neixament (dd/mm/yyyy)</string>
 
 
 </resources>

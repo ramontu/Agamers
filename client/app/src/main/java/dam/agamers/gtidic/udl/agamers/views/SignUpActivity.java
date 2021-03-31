@@ -1,11 +1,13 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.time.Year;
+import java.util.Calendar;
 
 import dam.agamers.gtidic.udl.agamers.R;
 
@@ -42,21 +47,39 @@ public class SignUpActivity extends AppCompatActivity {
         activitySignupBinding.setViewModel(registre1ViewModel);
     }
 
-    private void set_accio_tornar_enrere(){
-        //boto per a tornar a inici (el propi de android)
-        //En teoria no ens cal
-        /*
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        };
-        this.getOnBackPressedDispatcher().addCallback(this,callback);
 
-         */
+    public void set_date(View v) throws InterruptedException {
+        TextInputLayout birth = findViewById(R.id.birthday);
+        Calendar calendar = Calendar.getInstance();
+
+        final int m_day = calendar.get(Calendar.DAY_OF_MONTH);
+        final int m_month = calendar.get(Calendar.MONTH);
+        final int m_year = calendar.get(Calendar.YEAR);
+        calendar.add(Calendar.YEAR, -12);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                calendar.set(year,month,dayOfMonth);
+                birth.getEditText().setText(calendar.get(Calendar.DAY_OF_MONTH)+"/"+new Integer(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR)); //OK
+            }
+        }, m_year, m_month, m_day);
+
+
+
+        //calendar.add(Calendar.YEAR, -12);
+        datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+
+
+        datePickerDialog.getDatePicker().getTouchables().get(0).performClick();
+
+
+        datePickerDialog.show();
+    }
+
+    private void set_accio_tornar_enrere(){
         checking();
     }
 
@@ -77,6 +100,7 @@ public class SignUpActivity extends AppCompatActivity {
      * S'encarrega de fer totes les comprovacions necessaries per a que el registre es ralitzi de forma satisfactòria
      */
     protected void checking() {
+        /*
         //Comprovació nom
         TextInputLayout nom = (TextInputLayout) findViewById(R.id.name_textinputlayout);
         nom.getEditText().addTextChangedListener(new TextWatcher() {
@@ -100,6 +124,9 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+         */
+
+        /*
         //Comprovació cognom
         TextInputLayout cognom = (TextInputLayout) findViewById(R.id.cognom_textinputlayout);
         cognom.getEditText().addTextChangedListener(new TextWatcher() {
@@ -123,6 +150,8 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+         */
+
 
         //comprovació contra
         TextInputLayout contra = (TextInputLayout) findViewById(R.id.contra_textinputlayout);
@@ -142,7 +171,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         //comprovació confirmar contra
-        TextInputLayout confi_contra = (TextInputLayout) findViewById(R.id.confirmar_contra_textinputlayout);
+        TextInputLayout confi_contra = (TextInputLayout) findViewById(R.id.contra_con);
         confi_contra.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
