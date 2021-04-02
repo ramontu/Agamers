@@ -45,14 +45,14 @@
             android:layout_height="19dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name_textinputlayout"
+            android:id="@+id/login_email_textinputlayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/inici_camp_user">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/name_edit_text"
+                android:id="@+id/login_email_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -97,14 +97,16 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/inici_button_iniciar" />
+            android:text="@string/inici_button_iniciar"
+            android:onClick="login"
+            />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inici_button_registre"
-            android:onClick="obre_registre"
+            android:onClick="open_SingUp"
             />
 
         <Space
