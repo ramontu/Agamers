@@ -22,12 +22,14 @@ public class LogInViewModel {
         byte[] data = auth_token.getBytes(StandardCharsets.UTF_8);
         auth_token = Base64.encodeToString(data, Base64.DEFAULT);
         //Authoritzation: YWRtaW46REFNQ291cmU=
-        auth_token = ("Authoritzation: " + auth_token).trim();
-        //System.err.println(auth_token);
+        auth_token = ("Autenthication " + auth_token).trim();
+        System.err.println(auth_token);
 
         PreferencesProvider.providePreferences().edit().putString("token", auth_token).apply();
 
         this.accountRepo.createUserToken();
+
+        System.err.println(getResponseLogin());
     }
 
     public MutableLiveData<String> getResponseLogin() {

@@ -13,6 +13,7 @@ import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.services.AccountService;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
+import dam.agamers.gtidic.udl.agamers.views.LogInActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,6 +64,7 @@ public class AccountRepo {
 
     }
 
+
     public void createUserToken() {
 
         account_service.createUserToken().enqueue(new Callback<ResponseBody>() {
@@ -71,7 +73,7 @@ public class AccountRepo {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 int code = response.code();
-                Log.d(TAG,  "createTokenUser() -> Backend sent:  " + code);
+                Log.d(TAG,  "create_user_token() -> Backend sent:  " + code);
 
                 if (code == 200 ){
                     try {

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import dam.agamers.gtidic.udl.agamers.R;
@@ -55,8 +56,20 @@ public class LogInActivity extends CommonActivity {
         //TODO validar i mostrar els errors pertinents
 
         logInViewModel.login(email,password);
+    }
 
+    public void mostrar_resposta(View view, String error){
+        Snackbar snackbar;
 
-
+        snackbar = Snackbar.make(view, error,5000);
+        /*
+        if (true){
+            snackbar = Snackbar.make(view, getString(R.string.registre_ok), 5000);
+        }
+        else {
+            snackbar = Snackbar.make(view, getString(R.string.registre_error), 10000);
+        }
+         */
+        snackbar.show();
     }
 }
