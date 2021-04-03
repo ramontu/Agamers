@@ -87,6 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
     // punyetetes ho sento!
     //TODO POSAR NOMS ADIENTS
 
+    private boolean isUsernameValid = false;
     private boolean isNameValid = false;
     private boolean isSurnameValid = false;
     private boolean isPasswordValid = false;
@@ -152,6 +153,21 @@ public class SignUpActivity extends AppCompatActivity {
 
          */
 
+        //comprovació username
+        TextInputLayout username = (TextInputLayout) findViewById(R.id.name_textinputlayout);
+        username.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                isUsernameValid = AccountValidator.check_usernameValid(s.toString());
+                updateForm(isUsernameValid, username, getString(R.string.error_username_no_vàlid));
+            }
+        });
 
         //comprovació contra
         TextInputLayout contra = (TextInputLayout) findViewById(R.id.contra_textinputlayout);
@@ -164,8 +180,8 @@ public class SignUpActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                isPasswordValid = !AccountValidator.check_passwordValid(s.toString());
-                updateForm(isMailValid, contra, getString(R.string.error_contra_no_vàlida));
+                isPasswordValid = AccountValidator.check_passwordValid(s.toString());
+                updateForm(isPasswordValid, contra, getString(R.string.error_contra_no_vàlida));
             }
         });
 
