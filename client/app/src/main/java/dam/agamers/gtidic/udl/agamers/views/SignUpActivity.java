@@ -17,17 +17,16 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.time.Year;
 import java.util.Calendar;
 
 import dam.agamers.gtidic.udl.agamers.R;
 
 import dam.agamers.gtidic.udl.agamers.databinding.ActivitySignupBinding;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
-import dam.agamers.gtidic.udl.agamers.viewmodels.Registre_1ViewModel;
+import dam.agamers.gtidic.udl.agamers.viewmodels.SignUpViewModel;
 
 public class SignUpActivity extends AppCompatActivity {
-    final String TAG = "Registre";
+    final String TAG = "SignUp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        Registre_1ViewModel registre1ViewModel = new ViewModelProvider(this).get(Registre_1ViewModel.class);
+        SignUpViewModel registre1ViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
         ActivitySignupBinding activitySignupBinding =
                 DataBindingUtil.setContentView(this,R.layout.activity_signup);
@@ -63,12 +62,13 @@ public class SignUpActivity extends AppCompatActivity {
 
                 calendar.set(year,month,dayOfMonth);
                 birth.getEditText().setText(calendar.get(Calendar.DAY_OF_MONTH)+"/"+new Integer(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR)); //OK
+
             }
         }, m_year, m_month, m_day);
 
 
 
-        //calendar.add(Calendar.YEAR, -12);
+
         datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
 
 
@@ -88,8 +88,9 @@ public class SignUpActivity extends AppCompatActivity {
     //TODO POSAR NOMS ADIENTS
 
     private boolean isUsernameValid = false;
-    private boolean isNameValid = false;
-    private boolean isSurnameValid = false;
+    //private boolean isNameValid = false;
+    //private boolean isSurnameValid = false;
+    private boolean isDateValid = false;
     private boolean isPasswordValid = false;
     private boolean isSamePassword = false;
     private boolean isMailValid = false;
@@ -225,6 +226,32 @@ public class SignUpActivity extends AppCompatActivity {
                 updateForm(isMailValid, email, getString(R.string.error_mail_no_vàlid));
             }
         });
+
+
+
+        /*
+        //Comprovació data
+        TextInputLayout date = (TextInputLayout) findViewById(R.id.birthday);
+        date.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                date.setError(getString(R.string.signup_date_error));
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                date.setErrorEnabled(false);
+                isDateValid = true;
+            }
+        });
+         */
+
+
+
     }
 
     //TODO POSAR EN UNA CLASSE APART
@@ -263,7 +290,7 @@ public class SignUpActivity extends AppCompatActivity {
      */
     private void tots_camps_valids(){
         Button b =findViewById(R.id.boto_registrar);
-        b.setEnabled(isNameValid && isSurnameValid && isPasswordValid && isSamePassword && isMailValid && isTermsValid);
+        b.setEnabled(isPasswordValid && isSamePassword && isMailValid && isTermsValid); //TODO mirar si la data es vàlida
     }
 
 

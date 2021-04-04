@@ -1,6 +1,9 @@
 package dam.agamers.gtidic.udl.agamers.models;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
+
 import dam.agamers.gtidic.udl.agamers.utils.Utils;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 
@@ -14,6 +17,11 @@ public class Account {
     private String name;
     @SerializedName("surname")
     private String surname;
+
+
+
+    @SerializedName("birthdate")
+    private String date;
     @SerializedName("password")
     private String password;
 
@@ -60,9 +68,18 @@ public class Account {
         this.password = Utils.encode(password,salt,29000);
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+
     @Override
     public String toString(){
-        return this.name + " " + this.surname  + " " + this.email + " " + this.password;
+        return this.name + " " + this.surname  + " " + this.username  + " " + this.date  + " " + this.email + " " + this.password;
     }
 
 

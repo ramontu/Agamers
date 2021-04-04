@@ -211,9 +211,9 @@ class User(SQLAlchemyBase, JSONModel):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, default=datetime.datetime.now, nullable=False)
+    created_at = Column(DateTime, default=datetime.datetime.now)
     username = Column(Unicode(50), nullable=False, unique=True)
-    account_type = Column(Enum(AccountTypeEnum), nullable=False)
+    account_type = Column(Enum(AccountTypeEnum))
     #following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #foros que segueixes TODO no funciona
     #banned_forums = relationship("Jocs") #foros dels que estas banejat TODO no funciona
     #banned_users = relationship("User") #usuaris bloquejats TODO no funciona
@@ -226,10 +226,10 @@ class User(SQLAlchemyBase, JSONModel):
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False)
     tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
-    name = Column(Unicode(50), nullable=False)
-    surname = Column(Unicode(50), nullable=False)
-    birthdate = Column(Date)
-    genere = Column(Enum(GenereEnum), nullable=False)
+    name = Column(Unicode(50))
+    surname = Column(Unicode(50))
+    birthdate = Column(Unicode(10),nullable=False)
+    genere = Column(Enum(GenereEnum))
     phone = Column(Unicode(50))
     photo = Column(Unicode(255)) #TODO mirar si funciona
 
