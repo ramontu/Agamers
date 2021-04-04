@@ -13,9 +13,10 @@
     <string name="registre_ok">T\'has registrat correctament!</string>
     <string name="registre_error">Hi ha algut algún error, torna-ho a intentar de nou o contacta amb nosaltres a anoiagamers@gmail.com</string>
 
+    <string name="error_username_no_vàlid">Ha de tenir entre 3-20 caràcters. Pot contenir minúscules, majúscules, numeros "." i "_"</string>
     <string name="error_nom_no_vàlid">El nom conté valors no vàlids. Revisa que no hi hagi cap numero o caràcter especial. Max 40 caràcters</string>
     <string name="error_cognom_no_vàlid">El cognom conté valors no vàlids. Revisa que no hi hagi cap numero o caràcter especial. Max 40 caràcters</string>
-    <string name="error_contra_no_vàlida">8-20 caràcters. Escull com a mínim 3: Majúscules, minúscules, numeros i/o caracters especials (!@#$%^&amp;*)</string>
+    <string name="error_contra_no_vàlida">Ha de tenir entre 8-20 caràcters. Ha de contenir majúscules, minúscules i numeros</string>
     <string name="error_confirmar_contra">La contrasenya que has introduït no es la mateixa que la de sobre. Revisa-ho</string>
     <string name="error_mail_no_vàlid">El correu no es vàlid. Torna a comprovar-ho</string>
 
