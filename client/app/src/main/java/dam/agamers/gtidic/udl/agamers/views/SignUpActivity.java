@@ -202,7 +202,7 @@ public class SignUpActivity extends AppCompatActivity {
                     isSamePassword = false;
                 }
                 else {
-                    confi_contra.setError(null);
+                    confi_contra.setErrorEnabled(false);
                     isSamePassword = true;
                 }
                 tots_camps_valids();
@@ -225,13 +225,6 @@ public class SignUpActivity extends AppCompatActivity {
                 updateForm(isMailValid, email, getString(R.string.error_mail_no_vàlid));
             }
         });
-
-
-
-
-
-
-
     }
 
     //TODO POSAR EN UNA CLASSE APART
@@ -273,6 +266,8 @@ public class SignUpActivity extends AppCompatActivity {
         b.setEnabled(isNameValid && isSurnameValid && isPasswordValid && isSamePassword && isMailValid && isTermsValid);
     }
 
+
+    //TODO: implementar
     public void missatge_registrat(View view){
 
         Snackbar snackbar;
