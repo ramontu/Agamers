@@ -30,7 +30,7 @@
     <string name="terms_button_acceptar">Accepto</string>
     <string name="terms_button_declinar">No accepto</string>
 
-    <string name="login_succes">Has iniciat sesió correctament</string>
+    <string name="login_succes">Has iniciat sesió correctament. Et redigirem en breus instants</string>
     <string name="login_error">Hi ha algut algun error, mira que tot estigui correcte i intenta-ho de nou</string>
 
     <!--TODO: Formatar amb el format html per a formatar-lo i que quedi bé-->
