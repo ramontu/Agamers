@@ -1,6 +1,8 @@
 package dam.agamers.gtidic.udl.agamers.models;
 
 import com.google.gson.annotations.SerializedName;
+import dam.agamers.gtidic.udl.agamers.utils.Utils;
+import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 
 public class Account {
 
@@ -54,17 +56,9 @@ public class Account {
     }
 
     public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-    /*
-    //TODO protegeix la contrasenya, cal acabar, clase22/3
-    public void setPassword(String password) {
         String salt = "16";
-        this.password = AccountValidator.encode(password,salt,29000);
+        this.password = Utils.encode(password,salt,29000);
     }
-    */
 
     @Override
     public String toString(){

@@ -8,7 +8,7 @@ public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
     private static final String BASE_URL = "http://192.168.43.31:8000";
-    private static OkHttpClient client = new OkHttpClient.Builder().build();
+    private static OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new ServiceInterceptor()).build();
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

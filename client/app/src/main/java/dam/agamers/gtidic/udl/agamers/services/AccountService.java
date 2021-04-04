@@ -7,9 +7,12 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
-public interface AccountServiceI {
+public interface AccountService {
     @POST("/users/register")
     Call<ResponseBody> register(@Body Account account);
+
+    @POST("/account/create_token")
+    Call<ResponseBody> createUserToken();
 
 
 }

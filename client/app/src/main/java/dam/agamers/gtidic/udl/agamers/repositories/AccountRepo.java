@@ -2,15 +2,22 @@ package dam.agamers.gtidic.udl.agamers.repositories;
 
 
 import android.util.Log;
+import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.io.IOException;
 
+
+import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
-import dam.agamers.gtidic.udl.agamers.services.AccountServiceI;
+import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
+import dam.agamers.gtidic.udl.agamers.services.AccountService;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
+import dam.agamers.gtidic.udl.agamers.views.LogInActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,12 +27,21 @@ public class AccountRepo {
 
     private final String TAG = "AccountRepo";
 
-    private final AccountServiceI accountService;
+    private final AccountService accountService;
     private final MutableLiveData<String> mResponseRegister;
+
+    private AccountService account_service;
+    private MutableLiveData<String> mResponseLogin;
+
+
 
     public AccountRepo() {
         this.accountService = new AccountServiceImpl();
         this.mResponseRegister = new MutableLiveData<>();
+
+        this.account_service = new AccountServiceImpl();
+        this.mResponseLogin = new MutableLiveData<>();
+
     }
 
     public void registerAccount(Account account){
@@ -55,6 +71,55 @@ public class AccountRepo {
 
     }
 
+
+    public void createUserToken() {
+
+        account_service.createUserToken().enqueue(new Callback<ResponseBody>() {
+
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                int code = response.code();
+                Log.d(TAG,  "create_user_token() -> Backend sent:  " + code);
+                if (code == 200 ){
+                    try {
+                        String authToken = response.body().string().split(":")[1];
+                        authToken=authToken.substring(2,authToken.length()-2);
+                        Log.d(TAG,  "createTokenUser() -> ha rebut el token:  " + authToken);
+                        mResponseLogin.setValue(authToken);
+                        PreferencesProvider.providePreferences().edit().
+                                putString("token", authToken).apply();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    try {
+                        String error_msg = "Error: " + response.errorBody().string();
+                        Log.d(TAG,  "createTokenUser() -> ha rebut l'error:  " + error_msg);
+                        PreferencesProvider.providePreferences().edit().remove("token").apply();
+                        mResponseLogin.setValue(error_msg);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "createTokenUser() onFailure() -> ha rebut el missatge:  " + error_msg);
+                PreferencesProvider.providePreferences().edit().remove("token").apply();
+                mResponseLogin.setValue(error_msg);
+
+            }
+
+        });
+    }
+
+    public MutableLiveData<String> getmResponseLogin() {
+        return mResponseLogin;
+    }
 }
 
 
