@@ -2,13 +2,17 @@ package dam.agamers.gtidic.udl.agamers.repositories;
 
 
 import android.util.Log;
+import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.io.IOException;
 
 
+import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.services.AccountService;
@@ -29,12 +33,15 @@ public class AccountRepo {
     private AccountService account_service;
     private MutableLiveData<String> mResponseLogin;
 
+
+
     public AccountRepo() {
         this.accountService = new AccountServiceImpl();
         this.mResponseRegister = new MutableLiveData<>();
 
         this.account_service = new AccountServiceImpl();
         this.mResponseLogin = new MutableLiveData<>();
+
     }
 
     public void registerAccount(Account account){
@@ -74,7 +81,6 @@ public class AccountRepo {
 
                 int code = response.code();
                 Log.d(TAG,  "create_user_token() -> Backend sent:  " + code);
-
                 if (code == 200 ){
                     try {
                         String authToken = response.body().string().split(":")[1];
@@ -105,6 +111,7 @@ public class AccountRepo {
                 Log.d(TAG,  "createTokenUser() onFailure() -> ha rebut el missatge:  " + error_msg);
                 PreferencesProvider.providePreferences().edit().remove("token").apply();
                 mResponseLogin.setValue(error_msg);
+
             }
 
         });
