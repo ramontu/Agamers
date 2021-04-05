@@ -43,8 +43,7 @@ class ResourceRegisterUser(DAMCoreResource):
             aux_user.username = req.media["username"]
             aux_user.password = req.media["password"]
             aux_user.email = req.media["email"]
-            aux_user.name = req.media["name"]
-            aux_user.surname = req.media["surname"]
+            aux_user.birthday = req.media["birthday"]
             
             self.db_session.add(aux_user)
 
@@ -54,7 +53,7 @@ class ResourceRegisterUser(DAMCoreResource):
                 raise falcon.HTTPBadRequest(description=messages.user_exists)
 
         except KeyError:
-            raise falcon.HTTPBadRequest(description="Algo falla a registre")
+            raise falcon.HTTPBadRequest(description="user_resources(): Parametres incorrectes")
 
         resp.status = falcon.HTTP_200
 

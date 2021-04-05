@@ -90,14 +90,14 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean isUsernameValid = false;
     //private boolean isNameValid = false;
     //private boolean isSurnameValid = false;
-    private boolean isDateValid = false;
+    //private boolean isDateValid = false;
     private boolean isPasswordValid = false;
     private boolean isSamePassword = false;
     private boolean isMailValid = false;
     private boolean isTermsValid = false;
 
 
-    //TODO falta refactor
+
     /**
      * S'encarrega de fer totes les comprovacions necessaries per a que el registre es ralitzi de forma satisfactòria
      */

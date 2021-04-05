@@ -20,7 +20,7 @@ public class SignUpViewModel extends ViewModel {
     public MutableLiveData<String> Username = new MutableLiveData<>();
     //public MutableLiveData<String> Name = new MutableLiveData<>();
     //public MutableLiveData<String> Surname = new MutableLiveData<>();
-    public MutableLiveData<String> Date = new MutableLiveData<>();
+    public MutableLiveData<String> Birthdate = new MutableLiveData<>();
     public MutableLiveData<String> Email = new MutableLiveData<>();
     public MutableLiveData<String> Password = new MutableLiveData<>();
 
@@ -36,12 +36,7 @@ public class SignUpViewModel extends ViewModel {
         account.setUsername(Username.getValue());
         account.setEmail(Email.getValue());
         account.setPassword(Password.getValue());
-        try {
-            account.setDate(Date.getValue());
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+        account.setDate(Birthdate.getValue());
         Log.d(TAG,account.toString());
         this.accountRepo.registerAccount(account);
 

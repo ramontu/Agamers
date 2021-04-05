@@ -15,9 +15,9 @@ SchemaRegisterUser = {
         "username": {"type": "string"},
         "password": {"type": "string"},
         "email": {"type": "string"},
-        "birthdate": {"type": "string"}
+        "birthday": {"type": "string"}
     },
-    "required": ["username", "password", "email", "birthdate"]
+    "required": ["username", "password", "email", "birthday"]
 }
 
 SchemaUpdateUser = {

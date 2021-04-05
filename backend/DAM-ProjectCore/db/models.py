@@ -228,7 +228,7 @@ class User(SQLAlchemyBase, JSONModel):
     tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
     name = Column(Unicode(50))
     surname = Column(Unicode(50))
-    birthdate = Column(Unicode(10),nullable=False)
+    birthday = Column(Unicode(10),nullable=False)
     genere = Column(Enum(GenereEnum))
     phone = Column(Unicode(50))
     photo = Column(Unicode(255)) #TODO mirar si funciona
@@ -317,7 +317,7 @@ class User(SQLAlchemyBase, JSONModel):
             "email": self.email,
             "name": self.name,
             "surname": self.surname,
-            "birthdate": self.birthdate.strftime(settings.DATE_DEFAULT_FORMAT) if self.birthdate is not None else self.birthdate,
+            "birthday": self.birthday,
             "genere": self.genere.value,
             "phone": self.phone,
             "photo": self.photo_url

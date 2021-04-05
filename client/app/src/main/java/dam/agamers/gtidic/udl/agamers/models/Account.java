@@ -17,11 +17,8 @@ public class Account {
     private String name;
     @SerializedName("surname")
     private String surname;
-
-
-
-    @SerializedName("birthdate")
-    private String date;
+    @SerializedName("birthday")
+    private String birthday;
     @SerializedName("password")
     private String password;
 
@@ -69,17 +66,17 @@ public class Account {
     }
 
     public String getDate() {
-        return date;
+        return birthday;
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.birthday = date;
     }
 
 
     @Override
     public String toString(){
-        return this.name + " " + this.surname  + " " + this.username  + " " + this.date  + " " + this.email + " " + this.password;
+        return this.name + " " + this.surname  + " " + this.username  + " " + this.birthday  + " " + this.email + " " + this.password;
     }
 
 
