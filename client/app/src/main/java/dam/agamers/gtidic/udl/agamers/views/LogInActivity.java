@@ -57,6 +57,7 @@ public class LogInActivity extends CommonActivity {
             }
             else {
                 mostrar_resposta(getCurrentFocus(), getString(R.string.login_succes));
+                goTo(FirstActivity.class);
             }
         });
 
