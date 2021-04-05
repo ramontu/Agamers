@@ -14,13 +14,10 @@ SchemaRegisterUser = {
     "properties": {
         "username": {"type": "string"},
         "password": {"type": "string"},
-        "account_type": {"type": "string"},
         "email": {"type": "string"},
-        "name": {"type": "string"},
-        "surname": {"type": "string"},
-        "genere": {"type": "string"}
+        "birthday": {"type": "string"}
     },
-    "required": ["username", "password", "account_type", "email", "name", "surname", "genere"]
+    "required": ["username", "password", "email", "birthday"]
 }
 
 SchemaUpdateUser = {

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="dam.agamers.gtidic.udl.agamers.viewmodels.Registre_1ViewModel"
+            type="dam.agamers.gtidic.udl.agamers.viewmodels.SignUpViewModel"
             />
     </data>
 
@@ -126,15 +126,16 @@
                 android:hint="@string/data"
 
 
+
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="date"
                     android:focusable="false"
                     android:onClick="set_date"
+                    android:text="@={viewModel.Birthdate}"
 
                     />
 

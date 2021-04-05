@@ -4,6 +4,7 @@ package dam.agamers.gtidic.udl.agamers.repositories;
 import android.util.Log;
 import android.view.View;
 
+
 import androidx.lifecycle.MutableLiveData;
 
 
@@ -51,13 +52,14 @@ public class AccountRepo {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 int return_code = response.code();  //200, 404, 401,...
-                Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  return_code);
+                Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.errorBody());
 
                 if (return_code == 200){
                     mResponseRegister.setValue("El registre s'ha fet correctament!!!!");
                 }else{
-                    String error_msg = "Error: " + response.errorBody();
-                    mResponseRegister.setValue(error_msg);
+
+                    Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.errorBody());
+                    mResponseRegister.setValue(TAG+"ERROR DESCONEGUT");
                 }
 
             }

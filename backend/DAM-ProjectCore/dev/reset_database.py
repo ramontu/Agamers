@@ -47,6 +47,7 @@ if __name__ == "__main__":
         email="admin@damcore.com",
         name="Administrator",
         surname="DamCore",
+        birthday="10/10/2010",
         genere=GenereEnum.male
     )
     user_admin.set_password("DAMCoure")

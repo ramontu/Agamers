@@ -34,6 +34,10 @@
     <string name="login_succes">Has iniciat sesió correctament. Et redigirem en breus instants</string>
     <string name="login_error">Hi ha algut algun error, mira que tot estigui correcte i intenta-ho de nou</string>
 
+    <string name="signup_date_error">Escull una data vàlida</string>
+
+
+
     <!--TODO: Formatar amb el format html per a formatar-lo i que quedi bé-->
     <string name="termes_i_condicions_titol">End-User License Agreement (EULA) of AGamers</string>
     <string name="termes_i_condicions_text">This End-User License Agreement ("EULA") is a legal agreement between you and Anoia Gamers Corp.. Our EULA was created by EULA Template for AGamers.
