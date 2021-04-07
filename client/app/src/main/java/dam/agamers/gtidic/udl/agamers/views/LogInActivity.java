@@ -63,6 +63,7 @@ public class LogInActivity extends CommonActivity {
 
     }
 
+
     public void open_SingUp(View view){
         goTo(SignUpActivity.class);
     }

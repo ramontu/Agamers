@@ -212,7 +212,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         //comprovació MAIL
-        TextInputLayout email = (TextInputLayout) findViewById(R.id.email_textinputlayout);
+        TextInputLayout email = (TextInputLayout) findViewById(R.id.username);
         email.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

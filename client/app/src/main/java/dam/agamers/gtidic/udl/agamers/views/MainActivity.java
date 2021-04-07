@@ -21,7 +21,7 @@ public class MainActivity extends CommonActivity {
 
         if (mainActivityViewModel.isCurrentLogIn()){
             Log.d(TAG, "onCreate() -> El usuari té un tocken, redirigint a pantalla principal");
-            //goTo();
+            goTo(FirstActivity.class);
         }
         else{
             goTo(LogInActivity.class);

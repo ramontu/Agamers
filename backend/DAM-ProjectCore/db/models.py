@@ -230,7 +230,7 @@ class User(SQLAlchemyBase, JSONModel):
     surname = Column(Unicode(50))
     birthday = Column(Unicode(10),nullable=False)
     genere = Column(Enum(GenereEnum))
-    phone = Column(Unicode(50))
+    #phone = Column(Unicode(50))
     photo = Column(Unicode(255)) #TODO mirar si funciona
 
 
@@ -319,7 +319,7 @@ class User(SQLAlchemyBase, JSONModel):
             "surname": self.surname,
             "birthday": self.birthday,
             "genere": self.genere.value,
-            "phone": self.phone,
+            #"phone": self.phone,
             "photo": self.photo_url
         }
 

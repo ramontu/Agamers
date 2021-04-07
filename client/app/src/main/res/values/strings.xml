@@ -81,4 +81,11 @@
     <string name="data">Data de neixament (dd/mm/yyyy)</string>
 
 
+    <string-array name="Genere">
+        <item>Home</item>
+        <item>Dona</item>
+        <item>No binari</item>
+        <item>Per defecte (sense especificar)</item>
+    </string-array>
+
 </resources>

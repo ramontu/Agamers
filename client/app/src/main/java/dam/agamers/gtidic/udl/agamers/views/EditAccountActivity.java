@@ -3,26 +3,21 @@ package dam.agamers.gtidic.udl.agamers.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
 
-public class FirstActivity extends CommonActivity {
+public class EditAccountActivity extends CommonActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first);
+        setContentView(R.layout.activity_edit_account);
         getSupportActionBar().hide();
     }
 
-    public void onBackPressed(){
-        goTo(LogInActivity.class);
-    }
-    
 
-    public void obrir_info_user(View view) {
-        goTo(UserInfoActivity.class);
+    protected void baixar_informació(){
+
     }
 }

@@ -122,6 +122,10 @@ public class AccountRepo {
     public MutableLiveData<String> getmResponseLogin() {
         return mResponseLogin;
     }
+
+    public void download_user_info(){
+
+    }
 }
 
 
