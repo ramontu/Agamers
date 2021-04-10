@@ -299,6 +299,7 @@ class User(SQLAlchemyBase, JSONModel):
     banned_users
     
     '''
+    #TODO cambiar birthday a data
     @hybrid_property
     def json_model(self):
         return {
@@ -314,6 +315,7 @@ class User(SQLAlchemyBase, JSONModel):
             "long_description": self.long_description,
             #"points": self.points,
             #"level": self.level,
+            "password": self.password,
             "email": self.email,
             "name": self.name,
             "surname": self.surname,

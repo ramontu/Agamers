@@ -5,11 +5,12 @@ import dam.agamers.gtidic.udl.agamers.models.Account;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface AccountService {
 
-    @POST("/account/profile")
+    @GET("/account/profile")
     Call<ResponseBody> download_user_info();
 
     @POST("/account/profile/update_profile_image")

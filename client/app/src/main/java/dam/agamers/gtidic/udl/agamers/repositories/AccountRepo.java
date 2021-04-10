@@ -1,6 +1,9 @@
 package dam.agamers.gtidic.udl.agamers.repositories;
 
 
+import android.content.SharedPreferences;
+import android.os.SharedMemory;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 
@@ -9,12 +12,19 @@ import androidx.lifecycle.MutableLiveData;
 
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.JsonParser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.sql.Date;
 
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
+import dam.agamers.gtidic.udl.agamers.models.enums.AccountTypeEnum;
+import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.services.AccountService;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
@@ -29,10 +39,10 @@ public class AccountRepo {
     private final String TAG = "AccountRepo";
 
     private final AccountService accountService;
-    private final MutableLiveData<String> mResponseRegister;
-
-    private AccountService account_service;
+    private MutableLiveData<String> mResponseRegister;
     private MutableLiveData<String> mResponseLogin;
+    private MutableLiveData<String> mResponse_download_user_info;
+    private MutableLiveData<Account> mAccountInfo;
 
 
 
@@ -40,8 +50,9 @@ public class AccountRepo {
         this.accountService = new AccountServiceImpl();
         this.mResponseRegister = new MutableLiveData<>();
 
-        this.account_service = new AccountServiceImpl();
         this.mResponseLogin = new MutableLiveData<>();
+        this.mResponse_download_user_info = new MutableLiveData<>();
+        this.mAccountInfo = new MutableLiveData<>();
 
     }
 
@@ -76,7 +87,7 @@ public class AccountRepo {
 
     public void createUserToken() {
 
-        account_service.createUserToken().enqueue(new Callback<ResponseBody>() {
+        accountService.createUserToken().enqueue(new Callback<ResponseBody>() {
 
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -124,7 +135,55 @@ public class AccountRepo {
     }
 
     public void download_user_info(){
+        Account account = new Account();
+        accountService.download_user_info().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                int code = response.code();
+                Log.d(TAG,  "download_user_info() -> Backend sent:  " + code);
+                if (code == 200 ){
 
+                    JsonParser jsonParser = new JsonParser();
+                    Object response_body = jsonParser.parse(response.body().toString());
+                    JSONObject jo = (JSONObject) response_body;
+                    try {
+                        //TODO possiblement es pot fer amb reflexió
+                        account.setCreated_at((Date) jo.get("created_at"));
+                        account.setUsername((String) jo.get("username"));
+                        account.setAccount_type((AccountTypeEnum) jo.get("account_type")); //TODO pasar a enum
+                        account.setShort_description((String) jo.get("short_description"));
+                        account.setLong_description((String) jo.get("long_description"));
+                        account.setPassword((String) jo.get("password"));
+                        account.setEmail("email");
+                        account.setName((String) jo.get("name"));
+                        account.setSurname((String) jo.get("surname"));
+                        account.setBirthday((String) jo.get("birthday"));
+                        account.setGenere((GenereEnum) jo.get("genere"));
+                        //account.setPhoto(); //TODO
+                        mAccountInfo.setValue(account);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "download_user_info() onFailure() -> ha rebut el missatge:  " + error_msg);
+                //PreferencesProvider.providePreferences().edit().remove("token").apply();
+                mResponseLogin.setValue(error_msg);
+            }
+        });
+
+    }
+
+    public MutableLiveData<Account> getmAccountInfo(){
+        return mAccountInfo;
     }
 }
 
