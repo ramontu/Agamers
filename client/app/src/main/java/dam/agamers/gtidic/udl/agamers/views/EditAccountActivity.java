@@ -29,7 +29,7 @@ public class EditAccountActivity extends CommonActivity {
        getSupportActionBar().hide();
         editAccountViewModel = new EditAccountViewModel();
         account = new Account();
-        //setVariables();
+
         setInformation();
     }
 
@@ -37,7 +37,7 @@ public class EditAccountActivity extends CommonActivity {
 
 
     private void setInformation(){
-        account = editAccountViewModel.getAccountInformation().getValue(); //baixa la info de la base
+        editAccountViewModel.setInfo();
     }
 
 }

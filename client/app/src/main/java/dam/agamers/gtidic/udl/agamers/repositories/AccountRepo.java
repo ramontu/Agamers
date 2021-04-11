@@ -12,10 +12,15 @@ import androidx.lifecycle.MutableLiveData;
 
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
 
 import java.io.IOException;
 import java.sql.Date;
@@ -33,6 +38,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class AccountRepo {
 
@@ -143,14 +149,27 @@ public class AccountRepo {
                 Log.d(TAG,  "download_user_info() -> Backend sent:  " + code);
                 if (code == 200 ){
 
-                    JsonParser jsonParser = new JsonParser();
-                    Object response_body = jsonParser.parse(response.body().toString());
-                    JSONObject jo = (JSONObject) response_body;
+                    String jsonstring = "";
+                    try {
+                        jsonstring = response.body().string().toString();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    JSONObject jo = null;
+                    try {
+                        jo = new JSONObject(jsonstring);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
                     try {
                         //TODO possiblement es pot fer amb reflexió
-                        account.setCreated_at((Date) jo.get("created_at"));
+                        //account.setCreated_at((Date) jo.get("created_at"));
                         account.setUsername((String) jo.get("username"));
-                        account.setAccount_type((AccountTypeEnum) jo.get("account_type")); //TODO pasar a enum
+
+                        //account.setAccount_type((AccountTypeEnum) jo.get("account_type")); //TODO pasar a enum
                         account.setShort_description((String) jo.get("short_description"));
                         account.setLong_description((String) jo.get("long_description"));
                         account.setPassword((String) jo.get("password"));
@@ -158,12 +177,15 @@ public class AccountRepo {
                         account.setName((String) jo.get("name"));
                         account.setSurname((String) jo.get("surname"));
                         account.setBirthday((String) jo.get("birthday"));
-                        account.setGenere((GenereEnum) jo.get("genere"));
+                        //account.setGenere((GenereEnum) jo.get("genere"));
                         //account.setPhoto(); //TODO
+
                         mAccountInfo.setValue(account);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+
+
 
 
                 }

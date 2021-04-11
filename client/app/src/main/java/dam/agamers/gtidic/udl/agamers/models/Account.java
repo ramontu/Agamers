@@ -38,8 +38,6 @@ public class Account {
     private String photo; //TODO modificar amb el de veritat
 
 
-
-
     public String getEmail() {
         return email;
     }
