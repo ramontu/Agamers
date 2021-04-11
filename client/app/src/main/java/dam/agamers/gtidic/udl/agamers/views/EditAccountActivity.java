@@ -18,7 +18,9 @@ import android.widget.SpinnerAdapter;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
@@ -73,21 +75,12 @@ public class EditAccountActivity extends CommonActivity {
     }
 
     private void setSpinnerGenere(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.genere_select_title);
-
-
-        builder.setItems(Integer.parseInt((Arrays.toString(GenereEnum.values()))), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
+        Spinner spinner = findViewById(R.id.edit_info_genere_spinner);
+        List<String> llista = new ArrayList<>();
+        for( int i = 0; i < GenereEnum.values().length; i++){
+            llista.add(GenereEnum.values()[i].toString(this));
+        }
+        spinner.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,llista) );
 
     }
 
