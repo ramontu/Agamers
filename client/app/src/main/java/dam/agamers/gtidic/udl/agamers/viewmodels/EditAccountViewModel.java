@@ -13,7 +13,7 @@ public class EditAccountViewModel {
     AccountRepo accountRepo;
 
 
-    public MutableLiveData<Account> accountMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<Account> accountMutableLiveData = new MutableLiveData<>();
 
     public MutableLiveData<String> username = new MutableLiveData<>();
     public MutableLiveData<String> account_type = new MutableLiveData<>(); //TODO passar a a Enum
@@ -33,15 +33,10 @@ public class EditAccountViewModel {
 
     }
 
-    public void setInfo(){
-        //descarrega la informació
+
+    public MutableLiveData<Account> getAccountMutableLiveData(){
         accountRepo.download_user_info();
-        accountMutableLiveData = accountRepo.getmAccountInfo();
-
-
-        username.setValue(prov.getUsername());
-        username.setValue(Objects.requireNonNull(accountRepo.getmAccountInfo().getValue()).getUsername().toString());
-        short_description.setValue(accountRepo.getmAccountInfo().getValue().getShort_description());
+        return accountRepo.getmAccountInfo();
     }
 
 }

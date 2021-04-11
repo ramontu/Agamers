@@ -50,6 +50,8 @@ public class AccountRepo {
     private MutableLiveData<String> mResponse_download_user_info;
     private MutableLiveData<Account> mAccountInfo;
 
+    Account account = new Account();
+
 
 
     public AccountRepo() {
@@ -141,7 +143,7 @@ public class AccountRepo {
     }
 
     public void download_user_info(){
-        Account account = new Account();
+
         accountService.download_user_info().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -156,38 +158,25 @@ public class AccountRepo {
                         e.printStackTrace();
                     }
 
-                    JSONObject jo = null;
+                    JSONObject jo;
                     try {
                         jo = new JSONObject(jsonstring);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-                    try {
-                        //TODO possiblement es pot fer amb reflexió
                         //account.setCreated_at((Date) jo.get("created_at"));
                         account.setUsername((String) jo.get("username"));
-
                         //account.setAccount_type((AccountTypeEnum) jo.get("account_type")); //TODO pasar a enum
                         account.setShort_description((String) jo.get("short_description"));
                         account.setLong_description((String) jo.get("long_description"));
-                        account.setPassword((String) jo.get("password"));
+                        //account.setPassword((String) jo.get("password")); TODO encara no el baixa
                         account.setEmail("email");
                         account.setName((String) jo.get("name"));
                         account.setSurname((String) jo.get("surname"));
                         account.setBirthday((String) jo.get("birthday"));
                         //account.setGenere((GenereEnum) jo.get("genere"));
                         //account.setPhoto(); //TODO
-
                         mAccountInfo.setValue(account);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
-
-
                 }
 
 
@@ -197,8 +186,8 @@ public class AccountRepo {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 String error_msg = "Error: " + t.getMessage();
                 Log.d(TAG,  "download_user_info() onFailure() -> ha rebut el missatge:  " + error_msg);
-                //PreferencesProvider.providePreferences().edit().remove("token").apply();
-                mResponseLogin.setValue(error_msg);
+
+                mResponse_download_user_info.setValue(error_msg);
             }
         });
 

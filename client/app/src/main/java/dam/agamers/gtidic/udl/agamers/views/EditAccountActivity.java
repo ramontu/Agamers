@@ -1,6 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
 
@@ -37,7 +38,13 @@ public class EditAccountActivity extends CommonActivity {
 
 
     private void setInformation(){
-        editAccountViewModel.setInfo();
+        editAccountViewModel.getAccountMutableLiveData().observe(this, new Observer<Account>() {
+            @Override
+            public void onChanged(Account account) {
+                TextInputLayout username = findViewById(R.id.edit_info_username);
+                username.getEditText().setText(account.getUsername());
+            }
+        });
     }
 
 }
