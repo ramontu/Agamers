@@ -14,6 +14,7 @@ public class UserInfoActivity extends CommonActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
+        getSupportActionBar().hide();
     }
 
 

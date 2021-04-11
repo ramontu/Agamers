@@ -167,7 +167,7 @@ public class AccountRepo {
                         account.setShort_description((String) jo.get("short_description"));
                         account.setLong_description((String) jo.get("long_description"));
                         //account.setPassword((String) jo.get("password")); TODO encara no el baixa
-                        account.setEmail("email");
+                        account.setEmail((String) jo.get("email"));
                         account.setName((String) jo.get("name"));
                         account.setSurname((String) jo.get("surname"));
                         account.setBirthday((String) jo.get("birthday"));

@@ -79,6 +79,8 @@
     <string name="lodo_agamers">Logo Agamers</string>
     <string name="singup_username">Username*</string>
     <string name="data">Data de neixament (dd/mm/yyyy)</string>
+    <string name="edit_account_guardar_i_sortir">Guardar i sortir</string>
+    <string name="edit_account_sortir_sense_guardar">Sortir sense guardar</string>
 
 
     <string-array name="Genere">
@@ -87,5 +89,14 @@
         <item>No binari</item>
         <item>Per defecte (sense especificar)</item>
     </string-array>
+    <string name="edit_account_message_data_not_saved">La informació que has editat no es guardarà</string>
+    <string name="option_cancell">Enrere</string>
+    <string name="option_ok">Ok</string>
+    <string name="edit_account_not_saved_title">Les dades no es guardaràn</string>
+    <string name="genere_male">Home</string>
+    <string name="genere_female">Dona</string>
+    <string name="genere_no_binari">No binari</string>
+    <string name="genere_sense_especificar">Sense especificar</string>
+    <string name="genere_select_title">Selecciona un genere</string>
 
 </resources>

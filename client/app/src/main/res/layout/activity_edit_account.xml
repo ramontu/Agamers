@@ -38,14 +38,16 @@
                     android:id="@+id/imageView7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/ic_launcher_logo" /> <!--TODO cambiar per imatge d'usuari-->
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/edit_info_username"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="username">
+                    android:hint="username"
+                    android:enabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_info_username_edit"
@@ -59,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="10dp" />
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/password_field"
+                    android:id="@+id/edit_info_password"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -78,16 +80,18 @@
                     android:layout_height="10dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/short_description"
+                    android:id="@+id/edit_info_short_description"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="short_descripion">
+                    android:hint="short_descripion"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="100">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/short_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:text="@={viewModel.short_description}" />
 
@@ -98,16 +102,18 @@
                     android:layout_height="10dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/long_description"
+                    android:id="@+id/edit_info_long_description"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="long_descripion">
+                    android:hint="long_descripion"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="2000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/long_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:text="@={viewModel.long_description}" />
 
@@ -205,14 +211,30 @@
                         android:text="Gènere:" />
 
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/edit_info_genere_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
                         />
 
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_edit_info_save_exit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_account_guardar_i_sortir"
+                    android:onClick="save_and_exit"/>
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_account_sortir_sense_guardar"
+                    android:onClick="exit_no_save"/>
+
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

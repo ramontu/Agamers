@@ -49,7 +49,7 @@ public class AccountValidator {
      * @return Retorna si es viable o no
      */
     public static boolean check_nameOrSurnameValid(String nom_cognom){
-        return patternIsValid(nom_cognom, "[A-Za-zÀ-Ÿà-ÿ]{3,18}(\\s){0,1}[A-Za-zÀ-Ÿà-ÿ]{0,18}$");
+        return patternIsValid(nom_cognom, "[A-Za-zÀ-Ÿà-ÿ]{3,18}(\\s){0,1}[A-Za-zÀ-Ÿà-ÿ]{0,18}$"); //TODO possiblement cambiar limit de caràcters
     }
 
     /**

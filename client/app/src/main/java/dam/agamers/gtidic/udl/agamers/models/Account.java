@@ -9,6 +9,9 @@ import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.utils.Utils;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 
+
+
+
 public class Account {
 
     @SerializedName("created_at")
@@ -147,6 +150,8 @@ public class Account {
     public String toString(){
         return this.name + " " + this.surname  + " " + this.username  + " " + this.birthday  + " " + this.email + " " + this.password;
     }
+
+
 
 
 

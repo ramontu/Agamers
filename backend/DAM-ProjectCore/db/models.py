@@ -53,6 +53,8 @@ def _generate_media_path(class_instance, class_attibute_name):
 class GenereEnum(enum.Enum):
     male = "M"
     female = "F"
+    no_binary = "NB"
+    not_specified = "N"
 
 #TODO implementar mes endavant: implementar amb els tornejos
 '''

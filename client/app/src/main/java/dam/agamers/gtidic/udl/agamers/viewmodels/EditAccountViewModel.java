@@ -1,5 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.viewmodels;
 
+import android.view.View;
+
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.Date;
@@ -38,5 +40,6 @@ public class EditAccountViewModel {
         accountRepo.download_user_info();
         return accountRepo.getmAccountInfo();
     }
+
 
 }
