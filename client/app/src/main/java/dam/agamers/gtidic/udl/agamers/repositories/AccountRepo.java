@@ -1,20 +1,10 @@
 package dam.agamers.gtidic.udl.agamers.repositories;
 
 
-import android.content.SharedPreferences;
-import android.os.SharedMemory;
-import android.util.JsonReader;
 import android.util.Log;
-import android.view.View;
 
 
 import androidx.lifecycle.MutableLiveData;
-
-
-import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
 
 import org.json.JSONException;
@@ -23,21 +13,20 @@ import org.json.JSONObject;
 
 
 import java.io.IOException;
-import java.sql.Date;
+import java.lang.annotation.Target;
 
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
-import dam.agamers.gtidic.udl.agamers.models.enums.AccountTypeEnum;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.services.AccountService;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
-import dam.agamers.gtidic.udl.agamers.views.LogInActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 public class AccountRepo {
@@ -49,6 +38,7 @@ public class AccountRepo {
     private MutableLiveData<String> mResponseLogin;
     private MutableLiveData<String> mResponse_download_user_info;
     private MutableLiveData<Account> mAccountInfo;
+    private MutableLiveData<Integer> mResponseDeleteAccount;
 
     Account account = new Account();
 
@@ -61,7 +51,7 @@ public class AccountRepo {
         this.mResponseLogin = new MutableLiveData<>();
         this.mResponse_download_user_info = new MutableLiveData<>();
         this.mAccountInfo = new MutableLiveData<>();
-
+        this.mResponseDeleteAccount = new MutableLiveData<>();
     }
 
     public void registerAccount(Account account){
@@ -160,6 +150,7 @@ public class AccountRepo {
 
                     JSONObject jo;
                     try {
+                        
                         jo = new JSONObject(jsonstring);
                         //account.setCreated_at((Date) jo.get("created_at"));
                         account.setUsername((String) jo.get("username"));
@@ -197,6 +188,36 @@ public class AccountRepo {
 
     public MutableLiveData<Account> getmAccountInfo(){
         return mAccountInfo;
+    }
+
+
+    public void delete_account(){
+        Log.d(TAG,"Entrant deleteaccount");
+        accountService.delete_account().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d(TAG,"delete account response"+response.code()+response.errorBody());
+                int code = response.code();
+                if (code == 200){
+                    mResponseDeleteAccount.setValue(R.string.delete_account_ok);
+                }
+                else{
+                    mResponseDeleteAccount.setValue(R.string.delete_account_error);
+                    Log.d(TAG, "delete account error"+response.code()+response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                mResponseDeleteAccount.setValue(R.string.delete_account_error);
+                Log.d(TAG, "delete account error"+t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public MutableLiveData<Integer> getmResponseDeleteAccount(){
+        return mResponseDeleteAccount;
     }
 }
 

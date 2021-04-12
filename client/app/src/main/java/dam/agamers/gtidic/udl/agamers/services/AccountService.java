@@ -5,25 +5,26 @@ import dam.agamers.gtidic.udl.agamers.models.Account;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface AccountService {
 
     @GET("/account/profile")
-    Call<ResponseBody> download_user_info();
+    Call<ResponseBody> download_user_info(); //FUNCIONA
 
     @POST("/account/profile/update_profile_image")
     Call<ResponseBody> update_porfile_image(); //TODO COMPROVAR
 
     @POST("/account/create_token")
-    Call<ResponseBody> createUserToken();
+    Call<ResponseBody> createUserToken(); //FUNCIONA
 
-    @POST("/account/delete_token")
+    @DELETE("/account/delete_token")
     Call<ResponseBody> deleteUserToken(); //TODO COMPROVAR
 
-    @POST("/account/delete_account")
-    Call<ResponseBody> delete_account(); //TODO COMPROVAR
+    @DELETE("/account/delete_account")
+    Call<ResponseBody> delete_account(); //TODO SEMBLA QUE FUNCIONA
 
     @POST("/account/update_account")
     Call<ResponseBody> update_account(@Body Account account); //TODO COMPROVAR

@@ -118,7 +118,8 @@
                 android:id="@+id/delete_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Esborrar compte" />
+                android:text="Esborrar compte"
+                android:onClick="delete_account"/>
 
         </LinearLayout>
     </ScrollView>
