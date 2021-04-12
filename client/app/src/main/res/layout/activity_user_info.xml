@@ -108,6 +108,13 @@
                 android:onClick="open_edit_info" />
 
             <Button
+                android:id="@+id/close_session"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_info_tancar_sessio"
+                android:onClick="close_session" />
+
+            <Button
                 android:id="@+id/delete_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

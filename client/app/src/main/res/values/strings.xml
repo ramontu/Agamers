@@ -98,5 +98,6 @@
     <string name="genere_no_binari">No binari</string>
     <string name="genere_sense_especificar">Sense especificar</string>
     <string name="genere_select_title">Selecciona un genere</string>
+    <string name="user_info_tancar_sessio">Tancar sessió</string>
 
 </resources>

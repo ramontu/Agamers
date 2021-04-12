@@ -84,7 +84,7 @@ public class EditAccountActivity extends CommonActivity {
         SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,llista);
         spinner.setAdapter(spinnerAdapter);
 
-        
+
         switch (genereEnum){
             case M:
                 spinner.setSelection(0);

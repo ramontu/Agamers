@@ -10,4 +10,5 @@
     <string name="genere_female">Dona</string>
     <string name="genere_no_binari">No binari</string>
     <string name="genere_sense_especificar">Sense especificar</string>
+    <string name="user_info_tancar_sessio">Tancar sessió</string>
 </resources>
