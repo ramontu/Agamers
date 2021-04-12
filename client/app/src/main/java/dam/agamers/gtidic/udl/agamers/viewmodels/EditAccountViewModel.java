@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
+import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
 public class EditAccountViewModel {
@@ -26,7 +27,7 @@ public class EditAccountViewModel {
     public MutableLiveData<String> name = new MutableLiveData<>();
     public MutableLiveData<String> surname = new MutableLiveData<>();
     public MutableLiveData<Date> birthday = new MutableLiveData<>();
-    public MutableLiveData<String> genere = new MutableLiveData<>(); //TODO passar a enum
+    public MutableLiveData<GenereEnum> genere = new MutableLiveData<>();
     public MutableLiveData<String> photo = new MutableLiveData<>(); //TODO COMPLETAR AMB LA PHOTO
 
 

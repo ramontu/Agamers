@@ -171,7 +171,9 @@ public class AccountRepo {
                         account.setName((String) jo.get("name"));
                         account.setSurname((String) jo.get("surname"));
                         account.setBirthday((String) jo.get("birthday"));
-                        //account.setGenere((GenereEnum) jo.get("genere"));
+                        GenereEnum genereEnum;
+                        genereEnum = GenereEnum.valueOf(jo.get("genere").toString());
+                        account.setGenere(genereEnum);
                         //account.setPhoto(); //TODO
                         mAccountInfo.setValue(account);
                     } catch (JSONException e) {

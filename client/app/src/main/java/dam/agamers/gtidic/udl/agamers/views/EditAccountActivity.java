@@ -48,6 +48,7 @@ public class EditAccountActivity extends CommonActivity {
     private boolean emailValid = false;
     private boolean nameValid = false;
     private boolean surnameValid =false;
+    private GenereEnum genereEnum;
 
 
 
@@ -80,7 +81,25 @@ public class EditAccountActivity extends CommonActivity {
         for( int i = 0; i < GenereEnum.values().length; i++){
             llista.add(GenereEnum.values()[i].toString(this));
         }
-        spinner.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,llista) );
+        SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,llista);
+        spinner.setAdapter(spinnerAdapter);
+
+        
+        switch (genereEnum){
+            case M:
+                spinner.setSelection(0);
+                break;
+            case F:
+                spinner.setSelection(1);
+                break;
+            case NB:
+                spinner.setSelection(2);
+                break;
+            default:
+                spinner.setSelection(3);
+                break;
+        }
+
 
     }
 
@@ -98,6 +117,7 @@ public class EditAccountActivity extends CommonActivity {
                 _email.getEditText().setText(account.getEmail());
                 _name.getEditText().setText(account.getName());
                 _surname.getEditText().setText(account.getSurname());
+                genereEnum = account.getGenere();
                 //TODO enxcara falten valors
             }
         });
