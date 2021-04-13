@@ -20,16 +20,12 @@ public class MainActivity extends CommonActivity {
         MainActivityViewModel mainActivityViewModel = new MainActivityViewModel();
 
         if (mainActivityViewModel.isCurrentLogIn()){
-            Log.d(TAG, "onCreate() -> El usuari té un tocken, redirigint a pantalla principal");
+            Log.d(TAG, "onCreate() -> El usuari té un token, redirigint a pantalla principal");
             goTo(FirstActivity.class);
         }
         else{
             goTo(LogInActivity.class);
         }
-
-
-        //TODO fer que es redireccioni a la principal o a login si te token o no
-
     }
 }
 

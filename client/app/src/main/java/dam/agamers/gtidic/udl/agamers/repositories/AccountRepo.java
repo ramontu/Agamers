@@ -7,11 +7,12 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-
+import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Target;
 
@@ -22,6 +23,9 @@ import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.services.AccountService;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +44,8 @@ public class AccountRepo {
     private MutableLiveData<Account> mAccountInfo;
     private MutableLiveData<Integer> mResponseDeleteAccount;
 
+    private MutableLiveData<String> mResponseUploadImage;
+
     Account account = new Account();
 
 
@@ -52,6 +58,7 @@ public class AccountRepo {
         this.mResponse_download_user_info = new MutableLiveData<>();
         this.mAccountInfo = new MutableLiveData<>();
         this.mResponseDeleteAccount = new MutableLiveData<>();
+        this.mResponseUploadImage = new MutableLiveData<>();
     }
 
     public void registerAccount(Account account){
@@ -218,6 +225,26 @@ public class AccountRepo {
 
     public MutableLiveData<Integer> getmResponseDeleteAccount(){
         return mResponseDeleteAccount;
+    }
+
+
+    public void uploadPhoto(File imageFile){
+        RequestBody reqBody = RequestBody.create(imageFile, MediaType.parse("image/*"));
+        MultipartBody.Part image = MultipartBody.Part.createFormData("image_file", imageFile.getName(), reqBody);
+        accountService.uploadImage(image).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NotNull Call<ResponseBody> call, @NotNull Response<ResponseBody> response) {
+                int return_code = response.code();  //200, 404, 401,...
+                Log.d(TAG,"uploadPhoto() -> ha rebut el codi: " +  return_code);
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,"uploadPhoto() -> ERROR: " +  error_msg);
+                mResponseUploadImage.setValue(error_msg);
+            }
+        });
     }
 }
 

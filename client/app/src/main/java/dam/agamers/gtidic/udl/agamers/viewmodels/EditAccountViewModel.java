@@ -1,9 +1,20 @@
 package dam.agamers.gtidic.udl.agamers.viewmodels;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.MutableLiveData;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Objects;
 
@@ -40,6 +51,11 @@ public class EditAccountViewModel {
     public MutableLiveData<Account> getAccountMutableLiveData(){
         accountRepo.download_user_info();
         return accountRepo.getmAccountInfo();
+    }
+
+    public void uploadAccountImage(File imageFile){
+        Log.d("VM", "uploading image... using repo");
+        this.accountRepo.uploadPhoto(imageFile);
     }
 
 

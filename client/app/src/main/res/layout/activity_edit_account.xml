@@ -35,10 +35,11 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/edit_info_imageView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_logo" /> <!--TODO cambiar per imatge d'usuari-->
+                    android:src="@drawable/ic_launcher_logo"
+                    android:onClick="checkExternalStoragePermission"/> <!--TODO cambiar per imatge d'usuari-->
 
 
                 <com.google.android.material.textfield.TextInputLayout
