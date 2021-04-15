@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
+import dam.agamers.gtidic.udl.agamers.models.enums.AccountTypeEnum;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
@@ -48,10 +49,20 @@ public class EditAccountViewModel {
     }
 
 
-    public MutableLiveData<Account> getAccountMutableLiveData(){
+    public void setParameters(){
         accountRepo.download_user_info();
-        return accountRepo.getmAccountInfo();
+        Account account = accountRepo.getmAccountInfo().getValue();
+        if (account != null){
+            username.setValue(account.getUsername());
+            account_type.setValue(AccountTypeEnum.valueOf(account.getAccount_type().toString()).toString());
+        }
+        else {
+            //TODO mostrar missatge d'error al mostrar la informació
+        }
+
+
     }
+
 
     public void uploadAccountImage(File imageFile){
         Log.d("VM", "uploading image... using repo");

@@ -96,6 +96,7 @@ public class EditAccountActivity extends CommonActivity {
 
     private void setSpinnerGenere(){
         Spinner spinner = findViewById(R.id.edit_info_genere_spinner);
+
         List<String> llista = new ArrayList<>();
         for( int i = 0; i < GenereEnum.values().length; i++){
             llista.add(GenereEnum.values()[i].toString(this));
@@ -103,30 +104,26 @@ public class EditAccountActivity extends CommonActivity {
         SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,llista);
         spinner.setAdapter(spinnerAdapter);
 
+        int position = 3;
         /*
-        switch (genereEnum){
-            case M:
-                spinner.setSelection(0);
-                break;
-            case F:
-                spinner.setSelection(1);
-                break;
-            case NB:
-                spinner.setSelection(2);
-                break;
-            default:
-                spinner.setSelection(3);
-                break;
+        if (genereEnum != null){
+
+            for (int i = 0; i < spinner.getCount(); i++){
+                if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase("Dona")){ //NO acaba de funcionar diu que genereenum es null
+                    position = i;
+                }
+            }
         }
 
          */
-
-
+        spinner.setSelection(position);
     }
 
 
 
     private void setInformation(){
+        editAccountViewModel.setParameters();
+        /*
         editAccountViewModel.getAccountMutableLiveData().observe(this, new Observer<Account>() {
             @Override
             public void onChanged(Account account) {
@@ -142,6 +139,8 @@ public class EditAccountActivity extends CommonActivity {
                 //TODO enxcara falten valors
             }
         });
+
+         */
     }
 
     private void init_validation(){

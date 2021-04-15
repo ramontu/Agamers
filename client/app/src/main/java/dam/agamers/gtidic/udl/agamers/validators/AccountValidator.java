@@ -43,13 +43,12 @@ public class AccountValidator {
     }
 
     /**
-     * TODO Falta posar limit de caràcters
      * Comprova que el nom o cognom siguin viables
      * @param nom_cognom String: nom o cognom que es vol comprovar
      * @return Retorna si es viable o no
      */
     public static boolean check_nameOrSurnameValid(String nom_cognom){
-        return patternIsValid(nom_cognom, "[A-Za-zÀ-Ÿà-ÿ]{3,18}(\\s){0,1}[A-Za-zÀ-Ÿà-ÿ]{0,18}$"); //TODO possiblement cambiar limit de caràcters
+        return patternIsValid(nom_cognom, "[A-Za-zÀ-Ÿà-ÿ]{3,18}(\\s){0,1}[A-Za-zÀ-Ÿà-ÿ]{0,18}$");
     }
 
     /**
