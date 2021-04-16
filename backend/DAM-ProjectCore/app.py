@@ -40,7 +40,8 @@ application.add_route("/account/delete_token", account_resources.ResourceDeleteU
 application.add_route("/account/delete_account", account_resources.ResourceAccountDelete())
 application.add_route("/account/update_account", account_resources.ResourceAccountUpdate())
 
-
+#Verificació recuperació
+application.add_route("/account/recovery", account_resources.ResourceAccountRecovery())
 
 application.add_route("/users/register", user_resources.ResourceRegisterUser())
 application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile())

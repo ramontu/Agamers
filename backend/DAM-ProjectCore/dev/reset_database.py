@@ -10,7 +10,7 @@ from sqlalchemy.sql import text
 
 import db
 import settings
-from db.models import SQLAlchemyBase, User, AccountTypeEnum, GenereEnum, UserToken
+from db.models import SQLAlchemyBase, User, AccountTypeEnum, GenereEnum
 from settings import DEFAULT_LANGUAGE
 
 # LOGGING
@@ -41,20 +41,18 @@ if __name__ == "__main__":
     # -------------------- CREATE USERS --------------------
     mylogger.info("Creating default users...")
     # noinspection PyArgumentList
-
     user_admin = User(
-        created_at=datetime.datetime.now(),
+        created_at=datetime.datetime(2020, 1, 1, 12, 00, 00, 000),
         username="admin",
         account_type=AccountTypeEnum.premium,
         email="admin@damcore.com",
         name="Administrator",
         surname="DamCore",
-        birthday=datetime.datetime(2020,1,2,3,4,5),
+        birthday=datetime.date(2020, 1, 1),
         genere=GenereEnum.not_specified
     )
     user_admin.set_password("DAMCoure")
     db_session.add(user_admin)
-
 
     '''
     user_1 = User(
@@ -160,4 +158,3 @@ if __name__ == "__main__":
     '''
     db_session.commit()
     db_session.close()
-

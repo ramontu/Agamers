@@ -2,16 +2,23 @@
 # -*- coding: utf-8 -*-
 
 import base64
-import datetime
+
 import logging
 import os
+import random
+import smtplib
+import string
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 import falcon
 from falcon.media.validators import jsonschema
+from sqlalchemy.orm.exc import NoResultFound
 
 import messages
 import settings
-from db.models import User, UserToken
+from db.models import User, UserToken, GenereEnum, AccountTypeEnum
 from hooks import requires_auth
 from resources import utils
 from resources.base_resources import DAMCoreResource
@@ -94,7 +101,6 @@ class ResourceAccountUpdateProfileImage(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceAccountUpdateProfileImage, self).on_post(req, resp, *args, **kwargs)
 
-
         # Get the user from the token
         current_user = req.context["auth_user"]
         resource_path = current_user.photo_path
@@ -111,6 +117,53 @@ class ResourceAccountUpdateProfileImage(DAMCoreResource):
         self.db_session.commit()
 
         resp.status = falcon.HTTP_200
+
+
+class ResourceAccountRecovery(DAMCoreResource):
+    def on_post(self, req, resp, *args, **kwargs):
+        super().on_post(req, resp, *args, **kwargs)
+
+        email = req.media["email"]
+        code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+        try:
+            aux_user = self.db_session.query(User).filter(User.email == email).one()
+            aux_user.recovery_code = code
+            self.db_session.add(aux_user)
+            self.db_session.commit()
+
+            # Enviar mail
+            smtp_server = "smtp.gmeil.com"
+            sender_email = "anoiagamers@gmail.com"
+            password = ""
+
+            html = """\
+            <html>
+            <head></head>
+            <body>
+                <p>Hi!<br>
+                Your requested code to recover your account is:<br>
+                """ + str(code) + """
+                </p>
+            </body>
+            </html>
+            """
+            message = MIMEMultipart('alternative')
+            message["Subject"]: "[MyApp] Recovery account instructions"
+            message["From"]: sender_email
+            message["To"]: email
+
+            message.attach(MIMEText(html, "html"))
+            try:
+                server = smtplib.SMTP_SSL(smtp_server, 465)
+                server.login(sender_email, password)
+                server.sendmail(sender_email, email, message.as_string())
+                server.quit()
+            except Exception as e:
+                print(e)
+        except NoResultFound:
+            resp.status = falcon.HTTP_200
+        resp.status = falcon.HTTP_200
+
 
 # update
 @falcon.before(requires_auth)
@@ -132,6 +185,7 @@ class ResourceAccountUpdate(DAMCoreResource):
         self.db_session.commit()
 
         resp.status = falcon.HTTP_200
+
 
 @falcon.before(requires_auth)
 class ResourceAccountDelete(DAMCoreResource):
