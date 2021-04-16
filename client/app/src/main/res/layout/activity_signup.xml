@@ -70,8 +70,7 @@
                     android:id="@+id/email_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.Email}"
-                    />
+                    android:text="@={viewModel.Email}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,16 +127,12 @@
 
 
                 >
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:onClick="set_date"
-                    android:text="@={viewModel.Birthdate}"
-
-                    />
+                    android:onClick="set_date"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

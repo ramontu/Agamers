@@ -34,7 +34,7 @@ public class Account {
     @SerializedName("surname")
     private String surname;
     @SerializedName("birthday")
-    private String birthday;
+    private Date birthday;
     @SerializedName("genere")
     private GenereEnum genere;
     @SerializedName("photo")
@@ -82,11 +82,11 @@ public class Account {
         this.password = Utils.encode(password,salt,29000);
     }
 
-    public String getDate() {
+    public Date getDate() {
         return birthday;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.birthday = date;
     }
 
@@ -122,11 +122,11 @@ public class Account {
         this.long_description = long_description;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -148,7 +148,7 @@ public class Account {
 
     @Override
     public String toString(){
-        return this.name + " " + this.surname  + " " + this.username  + " " + this.birthday  + " " + this.email + " " + this.password;
+        return this.name + " " + this.surname  + " " + this.username  + " Birthday:" + this.birthday  + " " + this.email + " " + this.password;
     }
 
 

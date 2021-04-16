@@ -19,7 +19,7 @@ public enum GenereEnum {
         valor = in;
     }
 
-    public String toString( Context context) {
+    public String toString(Context context) {
         Resources res = context.getResources();
         return res.getString(valor);
     }

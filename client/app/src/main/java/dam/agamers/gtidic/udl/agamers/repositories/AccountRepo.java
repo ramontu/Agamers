@@ -7,22 +7,15 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 
-import com.google.gson.Gson;
-
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Target;
 
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
-import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
-import dam.agamers.gtidic.udl.agamers.network.RetrofitClientInstance;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.services.AccountService;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
@@ -33,8 +26,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class AccountRepo {
@@ -72,13 +63,12 @@ public class AccountRepo {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 int return_code = response.code();  //200, 404, 401,...
-                Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.errorBody());
+                Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.code());
 
                 if (return_code == 200){
                     mResponseRegister.setValue("El registre s'ha fet correctament!!!!");
                 }else{
-
-                    Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.errorBody());
+                    Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.message());
                     mResponseRegister.setValue(TAG+"ERROR DESCONEGUT");
                 }
 
@@ -89,8 +79,8 @@ public class AccountRepo {
                 String error_msg = "Error: " + t.getMessage();
                 mResponseRegister.setValue(error_msg);
             }
-        });
 
+        });
     }
 
 
