@@ -132,9 +132,9 @@ class ResourceAccountRecovery(DAMCoreResource):
             self.db_session.commit()
 
             # Enviar mail
-            smtp_server = "smtp.gmeil.com"
+            smtp_server = "smtp.gmail.com"
             sender_email = "anoiagamers@gmail.com"
-            password = "qsjezuskztpkfdox"
+            password = "jukvkrilhryrzarj"
 
             html = """\
             <html>
