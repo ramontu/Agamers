@@ -213,7 +213,7 @@ class User(SQLAlchemyBase, JSONModel):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    created_at = Column(datetime.date, default=datetime.date.now)
+    created_at = Column(datetime.datetime, default=datetime.datetime.now)
     username = Column(Unicode(50), nullable=False, unique=True)
     account_type = Column(Enum(AccountTypeEnum),default=AccountTypeEnum.free)
     #following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #foros que segueixes TODO no funciona
@@ -230,7 +230,7 @@ class User(SQLAlchemyBase, JSONModel):
     tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
     name = Column(Unicode(50),default="")
     surname = Column(Unicode(50),default="")
-    birthday = Column(datetime.date,nullable=False)
+    birthday = Column(datetime.datetime,nullable=False)
     genere = Column(Enum(GenereEnum), default=GenereEnum.not_specified)
     #phone = Column(Unicode(50))
     photo = Column(Unicode(255), default="") #TODO mirar si funciona

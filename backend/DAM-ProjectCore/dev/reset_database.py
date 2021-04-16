@@ -43,13 +43,13 @@ if __name__ == "__main__":
     # noinspection PyArgumentList
 
     user_admin = User(
-        created_at=datetime.date.now,
+        created_at=datetime.datetime.now(),
         username="admin",
         account_type=AccountTypeEnum.premium,
         email="admin@damcore.com",
         name="Administrator",
         surname="DamCore",
-        birthday=datetime.date.now(),
+        birthday=datetime.datetime(2020,1,2,3,4,5),
         genere=GenereEnum.not_specified
     )
     user_admin.set_password("DAMCoure")
