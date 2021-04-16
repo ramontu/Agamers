@@ -15,11 +15,11 @@ import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 public class Account {
 
     @SerializedName("created_at")
-    private Date created_at;
+    private String created_at;
     @SerializedName("username")
     private String username;
     @SerializedName("account_type")
-    private AccountTypeEnum account_type; //TODO mirar de fer amb strings
+    private AccountTypeEnum account_type;
     @SerializedName("short_description")
     private String short_description;
     @SerializedName("long_description")
@@ -36,7 +36,7 @@ public class Account {
     @SerializedName("birthday")
     private String birthday;
     @SerializedName("genere")
-    private GenereEnum genere; //TODO mirar si s'ha de passar a enum
+    private GenereEnum genere;
     @SerializedName("photo")
     private String photo; //TODO modificar amb el de veritat
 
@@ -90,11 +90,11 @@ public class Account {
         this.birthday = date;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
@@ -148,7 +148,7 @@ public class Account {
 
     @Override
     public String toString(){
-        return this.name + " " + this.surname  + " " + this.username  + " " + this.birthday  + " " + this.email + " " + this.password;
+        return this.name + " " + this.surname  + " " + this.username  + " Birthday:" + this.birthday  + " " + this.email + " " + this.password;
     }
 
 

@@ -8,7 +8,6 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -16,7 +15,7 @@ import retrofit2.http.Part;
 public interface AccountService {
 
     @GET("/account/profile")
-    Call<ResponseBody> download_user_info(); //FUNCIONA
+    Call<Account> download_user_info();
 
     @POST("/account/profile/update_profile_image")
     Call<ResponseBody> update_porfile_image(); //TODO COMPROVAR

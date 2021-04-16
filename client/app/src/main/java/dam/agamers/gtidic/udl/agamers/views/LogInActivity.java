@@ -68,6 +68,7 @@ public class LogInActivity extends CommonActivity {
         goTo(SignUpActivity.class);
     }
 
+
     public void login(View view){
         Log.d(TAG, "Entering login()...");
 

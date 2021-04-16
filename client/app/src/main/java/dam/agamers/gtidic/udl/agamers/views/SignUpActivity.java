@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,6 +18,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import dam.agamers.gtidic.udl.agamers.R;
@@ -27,6 +31,7 @@ import dam.agamers.gtidic.udl.agamers.viewmodels.SignUpViewModel;
 
 public class SignUpActivity extends AppCompatActivity {
     final String TAG = "SignUp";
+    SignUpViewModel signUpViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +43,12 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        SignUpViewModel registre1ViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
+        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
         ActivitySignupBinding activitySignupBinding =
                 DataBindingUtil.setContentView(this,R.layout.activity_signup);
         activitySignupBinding.setLifecycleOwner(this);
-        activitySignupBinding.setViewModel(registre1ViewModel);
+        activitySignupBinding.setViewModel(signUpViewModel);
     }
 
 
@@ -59,10 +64,12 @@ public class SignUpActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
                 calendar.set(year,month,dayOfMonth);
-                birth.getEditText().setText(calendar.get(Calendar.DAY_OF_MONTH)+"/"+new Integer(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR)); //OK
+                String str = new SimpleDateFormat("yyyy-mm-dd").format(calendar.getTime());
+                Log.d("Date:",(str));
+                //birth.getEditText().setText(calendar.get(Calendar.DAY_OF_MONTH)+"/"+new Integer(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR)); //OK
 
+                signUpViewModel.Birthdate.setValue((Date) calendar.getTime());
             }
         }, m_year, m_month, m_day);
 

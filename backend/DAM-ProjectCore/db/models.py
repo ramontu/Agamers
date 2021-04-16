@@ -56,7 +56,8 @@ class GenereEnum(enum.Enum):
     no_binary = "NB"
     not_specified = "N"
 
-#TODO implementar mes endavant: implementar amb els tornejos
+
+# TODO implementar mes endavant: implementar amb els tornejos
 '''
 class EventTypeEnum(enum.Enum): #TODO modificar per adaptar a tornejos
     hackathon = "H"
@@ -64,12 +65,14 @@ class EventTypeEnum(enum.Enum): #TODO modificar per adaptar a tornejos
     livecoding = "LC"
 '''
 
-class AccountTypeEnum(enum.Enum): #TODO provar
+
+class AccountTypeEnum(enum.Enum):  # TODO provar
     store = "S"
     free = "F"
     premium = "P"
 
-class UserLevelEnum(enum.Enum): #TODO provar
+
+class UserLevelEnum(enum.Enum):  # TODO provar
     LV0 = 0
     LV1 = 1
     LV2 = 2
@@ -77,12 +80,14 @@ class UserLevelEnum(enum.Enum): #TODO provar
     LV4 = 4
     LV5 = 5
 
-class UserBanned(enum.Enum): #TODO provar
+
+class UserBanned(enum.Enum):  # TODO provar
     permanent = "Perma"
     provisional = "Provi"
     no = "No"
 
-#TODO implementar mes endavant: Implementar amb tornejos
+
+# TODO implementar mes endavant: Implementar amb tornejos
 '''
 class EventStatusEnum(enum.Enum): 
     open = "O"
@@ -90,7 +95,7 @@ class EventStatusEnum(enum.Enum):
     ongoing = "G"
     undefined = "U"
 '''
-#TODO: implementar mes endavant: implementar amb tornejos
+# TODO: implementar mes endavant: implementar amb tornejos
 '''
 EventParticipantsAssociation = Table("event_participants_association", SQLAlchemyBase.metadata,
                                      Column("event_id", Integer,
@@ -102,8 +107,7 @@ EventParticipantsAssociation = Table("event_participants_association", SQLAlchem
                                      )
 '''
 
-
-#TODO implementar mes endavant: implementar amb tornejos
+# TODO implementar mes endavant: implementar amb tornejos
 '''
 class Event(SQLAlchemyBase, JSONModel): #TODO modificar per als tornejos
     __tablename__ = "events"
@@ -173,6 +177,7 @@ class Event(SQLAlchemyBase, JSONModel): #TODO modificar per als tornejos
         }
 '''
 
+
 class UserToken(SQLAlchemyBase):
     __tablename__ = "users_tokens"
 
@@ -182,7 +187,7 @@ class UserToken(SQLAlchemyBase):
     user = relationship("User", back_populates="tokens")
 
 
-#Forums seguits TODO
+# Forums seguits TODO
 '''
 
 Following_Forums = Table("f_forums", SQLAlchemyBase.metadata,
@@ -206,37 +211,39 @@ Banned_Forums   = Table("b_forums", SQLAlchemyBase.metadata,
 
                                      )
 '''
-#TODO afegir si l'user esta bloquejat (no bloquejat, bloqueig temporal, bloqueig permanent)
-#TODO data en que la conta es desbloqueja
-#USERS
+
+
+# TODO afegir si l'user esta bloquejat (no bloquejat, bloqueig temporal, bloqueig permanent)
+# TODO data en que la conta es desbloqueja
+# USERS
 class User(SQLAlchemyBase, JSONModel):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, default=datetime.datetime.now)
+    created_at = Column(Unicode(50), nullable=False)
     username = Column(Unicode(50), nullable=False, unique=True)
-    account_type = Column(Enum(AccountTypeEnum),default=AccountTypeEnum.free)
-    #following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #foros que segueixes TODO no funciona
-    #banned_forums = relationship("Jocs") #foros dels que estas banejat TODO no funciona
-    #banned_users = relationship("User") #usuaris bloquejats TODO no funciona
-    #friends = relationship("User") #amics todo no funciona
-    #firends_request = relationship("User") #solicituds amics todo no funciona
-    short_description = Column(Unicode(100),default="") #OK
-    long_description = Column(UnicodeText,default="") #OK
-    #points = Column(Integer, default=int(0), nullable=False) #OK TODO mirar si es pot inserir sense posar res
-    #level = Column(Enum(UserLevelEnum), nullable=False) #OK TODO mirar si es pot inserir sense posar res
+    account_type = Column(Enum(AccountTypeEnum), default=AccountTypeEnum.free)
+    # following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #TODO no funciona
+    # banned_forums = relationship("Jocs") #foros dels que estas banejat TODO no funciona
+    # banned_users = relationship("User") #usuaris bloquejats TODO no funciona
+    # friends = relationship("User") #amics todo no funciona
+    # firends_request = relationship("User") #solicituds amics todo no funciona
+    short_description = Column(Unicode(100), default="")  # OK
+    long_description = Column(UnicodeText, default="")  # OK
+    # points = Column(Integer, default=int(0), nullable=False) #OK TODO mirar si es pot inserir sense posar res
+    # level = Column(Enum(UserLevelEnum), nullable=False) #OK TODO mirar si es pot inserir sense posar res
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False)
     tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
-    name = Column(Unicode(50),default="")
-    surname = Column(Unicode(50),default="")
-    birthday = Column(Unicode(10),nullable=False)
+    name = Column(Unicode(50), default="")
+    surname = Column(Unicode(50), default="")
+    birthday = Column(Unicode(10), nullable=False)
     genere = Column(Enum(GenereEnum), default=GenereEnum.not_specified)
-    #phone = Column(Unicode(50))
-    photo = Column(Unicode(255)) #TODO mirar si funciona
+    # phone = Column(Unicode(50))
+    photo = Column(Unicode(255), default="")  # TODO mirar si funciona
+    recovery_code = Column(Unicode(6), nullable=True, unique=True)
 
-
-    #TODO implementar mes endavant: desactivat fins a implementar tornejos
+    # TODO implementar mes endavant: desactivat fins a implementar tornejos
     '''
     events_owner = relationship("Event", back_populates="owner", cascade="all, delete-orphan")
     events_enrolled = relationship("Event", back_populates="registered")
@@ -245,7 +252,7 @@ class User(SQLAlchemyBase, JSONModel):
     @hybrid_property
     def public_profile(self):
         return {
-            "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
+            "created_at": self.created_at.strftime(settings.DATE_DEFAULT_FORMAT),
             "username": self.username,
             "account_type": self.account_type.value,
             "genere": self.genere.value,
@@ -267,13 +274,12 @@ class User(SQLAlchemyBase, JSONModel):
         else:  # 5000 < x
             return UserLevelEnum.LV5
 
-
-    #TODO mirar si funciona
+    # TODO mirar si funciona
     @hybrid_property
     def photo_url(self):
         return _generate_media_url(self, "photo")
 
-    #TODO mirar si funciona
+    # TODO mirar si funciona
     @hybrid_property
     def photo_path(self):
         return _generate_media_path(self, "photo")
@@ -295,39 +301,41 @@ class User(SQLAlchemyBase, JSONModel):
         else:
             raise falcon.HTTPBadRequest(title=messages.quota_exceded, description=messages.maximum_tokens_exceded)
 
-    #TODO: comprovar
+    # TODO: comprovar
     '''
     banned_forums
     banned_users
     
     '''
-    #TODO cambiar birthday a data
+
+    # TODO cambiar birthday a data
     @hybrid_property
     def json_model(self):
         return {
             "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
             "username": self.username,
             "account_type": self.account_type.value,
-            #"following_forums": [Jocs.name for _ in self.following_forums],
-            #"banned_forums": self.banned_forums,
-            #"banned_users": self.banned_users,
-            #"friends": self.friends,
-            #"friends_request": self.firends_request,
+            # "following_forums": [Jocs.name for _ in self.following_forums],
+            # "banned_forums": self.banned_forums,
+            # "banned_users": self.banned_users,
+            # "friends": self.friends,
+            # "friends_request": self.firends_request,
             "short_description": self.short_description,
             "long_description": self.long_description,
-            #"points": self.points,
-            #"level": self.level,
+            # "points": self.points,
+            # "level": self.level,
             "password": self.password,
             "email": self.email,
             "name": self.name,
             "surname": self.surname,
             "birthday": self.birthday,
             "genere": self.genere.value,
-            #"phone": self.phone,
+            # "phone": self.phone,
             "photo": self.photo_url
         }
 
-#TODO: implementar mes endavant: posts
+
+# TODO: implementar mes endavant: posts
 '''
 #POSTS
 class Posts(SQLAlchemyBase, JSONModel): #TODO: acabar
@@ -350,7 +358,7 @@ class Posts(SQLAlchemyBase, JSONModel): #TODO: acabar
         }
 '''
 
-#TODO implementar mes endavant: comments
+# TODO implementar mes endavant: comments
 '''
 #Comments
 class Comments(SQLAlchemyBase, JSONModel): #TODO: acabar
