@@ -134,7 +134,7 @@ class ResourceAccountRecovery(DAMCoreResource):
             # Enviar mail
             smtp_server = "smtp.gmeil.com"
             sender_email = "anoiagamers@gmail.com"
-            password = ""
+            password = "qsjezuskztpkfdox"
 
             html = """\
             <html>
