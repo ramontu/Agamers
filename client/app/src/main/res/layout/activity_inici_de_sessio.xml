@@ -118,7 +118,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inici_recuperar_contra"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:onClick=""/>
     </LinearLayout>
 
 
