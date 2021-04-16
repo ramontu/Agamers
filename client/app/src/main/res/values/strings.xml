@@ -101,5 +101,10 @@
     <string name="user_info_tancar_sessio">Tancar sessió</string>
     <string name="delete_account_ok">El compte s\'ha eliminat correctament</string>
     <string name="delete_account_error">Error: Hi ha agut algun error, torna-ho a intentar més tard</string>
+    <string name="account_parameter_email">Email</string>
+    <string name="buttons_recover_password">Recuperar contrasenya</string>
+    <string name="buttons_update_password">Actualitzar contrasenya</string>
+    <string name="recover_password_digits">Codi de 6 dígits</string>
+    <string name="recover_password_new_pass">Nova contrasenya</string>
 
 </resources>

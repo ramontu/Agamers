@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Agamers">
-        <activity android:name=".Recover_password"></activity>
+        <activity android:name=".RecoverPasswordActivity_2"></activity>
+        <activity android:name=".views.RecoverPasswordActivity_1" />
+        <activity android:name=".Recover_password" />
         <activity android:name=".views.EditAccountActivity" />
         <activity android:name=".views.UserInfoActivity" />
         <activity android:name=".views.FirstActivity" />
