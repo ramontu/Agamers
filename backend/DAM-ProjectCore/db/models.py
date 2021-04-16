@@ -230,7 +230,7 @@ class User(SQLAlchemyBase, JSONModel):
     tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
     name = Column(Unicode(50),default="")
     surname = Column(Unicode(50),default="")
-    birthday = Column(datetime,nullable=False)
+    birthday = Column(DateTime,nullable=False)
     genere = Column(Enum(GenereEnum), default=GenereEnum.not_specified)
     #phone = Column(Unicode(50))
     photo = Column(Unicode(255), default="") #TODO mirar si funciona

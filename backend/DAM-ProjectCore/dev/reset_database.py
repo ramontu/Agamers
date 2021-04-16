@@ -49,7 +49,7 @@ if __name__ == "__main__":
         name="Administrator",
         surname="DamCore",
         birthday=datetime.datetime(2020, 1, 1, 0, 1, 1),
-        genere=GenereEnum.male
+        genere=GenereEnum.not_specified
     )
     user_admin.set_password("DAMCoure")
     db_session.add(user_admin)
