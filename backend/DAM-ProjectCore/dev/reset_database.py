@@ -40,7 +40,7 @@ if __name__ == "__main__":
     # -------------------- CREATE USERS --------------------
     mylogger.info("Creating default users...")
     # noinspection PyArgumentList
-    '''
+
     user_admin = User(
         created_at=datetime.datetime(2020, 1, 1, 0, 1, 1),
         username="admin",
@@ -48,12 +48,12 @@ if __name__ == "__main__":
         email="admin@damcore.com",
         name="Administrator",
         surname="DamCore",
-        birthday=Date,
+        birthday=datetime.datetime(2020, 1, 1, 0, 1, 1),
         genere=GenereEnum.male
     )
     user_admin.set_password("DAMCoure")
     db_session.add(user_admin)
-    '''
+
 
     '''
     user_1 = User(
