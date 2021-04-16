@@ -106,5 +106,7 @@
     <string name="buttons_update_password">Actualitzar contrasenya</string>
     <string name="recover_password_digits">Codi de 6 dígits</string>
     <string name="recover_password_new_pass">Nova contrasenya</string>
+    <string name="recover_pass_1_ok">S\'ha enviat un correu al mail que has proporcionat</string>
+    <string name="recover_pass_1_error">Hi ha hagut algun error. Torna-ho a intentar</string>
 
 </resources>

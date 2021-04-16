@@ -68,6 +68,10 @@ public class LogInActivity extends CommonActivity {
         goTo(SignUpActivity.class);
     }
 
+    public void open_Recover(View view){
+        goTo(RecoverPasswordActivity_1.class);
+    }
+
 
     public void login(View view){
         Log.d(TAG, "Entering login()...");

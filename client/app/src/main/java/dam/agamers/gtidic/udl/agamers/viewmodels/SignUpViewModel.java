@@ -15,7 +15,7 @@ public class SignUpViewModel extends ViewModel {
     private final String TAG = "SignUpVM";
 
     public MutableLiveData<String> Username = new MutableLiveData<>();
-    public MutableLiveData<Date> Birthdate = new MutableLiveData<>();
+    public MutableLiveData<String> Birthdate = new MutableLiveData<>();
     public MutableLiveData<String> Email = new MutableLiveData<>();
     public MutableLiveData<String> Password = new MutableLiveData<>();
 

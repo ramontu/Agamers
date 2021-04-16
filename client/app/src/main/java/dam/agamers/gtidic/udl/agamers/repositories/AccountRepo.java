@@ -7,6 +7,8 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 
+import com.google.gson.Gson;
+
 import org.jetbrains.annotations.NotNull;
 
 
@@ -41,6 +43,8 @@ public class AccountRepo {
 
     private MutableLiveData<String> mResponseUploadImage;
 
+    private MutableLiveData<Boolean> mRecoverOk;
+
     Account account = new Account();
 
 
@@ -54,6 +58,7 @@ public class AccountRepo {
         this.mAccountInfo = new MutableLiveData<>();
         this.mResponseDeleteAccount = new MutableLiveData<>();
         this.mResponseUploadImage = new MutableLiveData<>();
+        this.mRecoverOk = new MutableLiveData<>();
     }
 
     public void registerAccount(Account account){
@@ -203,6 +208,40 @@ public class AccountRepo {
                 mResponseUploadImage.setValue(error_msg);
             }
         });
+    }
+
+    public void recover_pass(Account account){
+        Log.d(TAG, "recover pass email:" +account.getEmail()); //email es correcte
+        accountService.recoverPassword(account).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d("Enviat",call.request().body().toString());
+                if (response.code() == 200){
+                    mRecoverOk.setValue(true);
+                    Log.d(TAG, "recover_pass sent: "+response.code());
+                }
+                else {
+                    mRecoverOk.setValue(false);
+                    try {
+                        Log.d(TAG, "recover_pass sent: "+response.code() +response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                mRecoverOk.setValue(false);
+                Log.d(TAG, "recover_pass onFailure ");
+                t.printStackTrace();
+            }
+        });
+    }
+    public MutableLiveData<Boolean> getmRecoverOk(){
+        return mRecoverOk;
     }
 }
 

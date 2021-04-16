@@ -119,7 +119,7 @@
             android:layout_height="wrap_content"
             android:text="@string/inici_recuperar_contra"
             android:textAlignment="center"
-            android:onClick=""/>
+            android:onClick="open_Recover"/>
     </LinearLayout>
 
 
