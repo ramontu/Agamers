@@ -11,6 +11,7 @@ import retrofit2.internal.EverythingIsNonNull;
 public class ServiceInterceptor implements Interceptor {
     @EverythingIsNonNull
     @Override
+
     public Response intercept(Chain chain) throws IOException {
 
         Request request = chain.request();

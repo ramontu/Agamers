@@ -36,7 +36,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class AccountRepo {
 
     private final String TAG = "AccountRepo";
@@ -52,8 +51,6 @@ public class AccountRepo {
 
     Account account = new Account();
 
-
-
     public AccountRepo() {
         this.accountService = new AccountServiceImpl();
         this.mResponseRegister = new MutableLiveData<>();
@@ -65,6 +62,9 @@ public class AccountRepo {
         this.mResponseUploadImage = new MutableLiveData<>();
     }
 
+    /**
+     * @param account variable on guardar l'informació sobre el registre d'un compte
+     */
     public void registerAccount(Account account){
 
         accountService.register(account).enqueue(new Callback<ResponseBody>() {
@@ -81,7 +81,6 @@ public class AccountRepo {
                     Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.errorBody());
                     mResponseRegister.setValue(TAG+"ERROR DESCONEGUT");
                 }
-
             }
 
             @Override
@@ -90,9 +89,7 @@ public class AccountRepo {
                 mResponseRegister.setValue(error_msg);
             }
         });
-
     }
-
 
     public void createUserToken() {
 
@@ -133,12 +130,13 @@ public class AccountRepo {
                 Log.d(TAG,  "createTokenUser() onFailure() -> ha rebut el missatge:  " + error_msg);
                 PreferencesProvider.providePreferences().edit().remove("token").apply();
                 mResponseLogin.setValue(error_msg);
-
             }
-
         });
     }
 
+    /**
+     * @return retorna la resposta del login
+     */
     public MutableLiveData<String> getmResponseLogin() {
         return mResponseLogin;
     }
@@ -158,13 +156,14 @@ public class AccountRepo {
                 t.printStackTrace();
             }
         });
-
     }
 
+    /**
+     * @return retorna l'informació del compte
+     */
     public MutableLiveData<Account> getmAccountInfo(){
         return mAccountInfo;
     }
-
 
     public void delete_account(){
         Log.d(TAG,"Entrant deleteaccount");
@@ -191,6 +190,9 @@ public class AccountRepo {
         });
     }
 
+    /**
+     * @return retorna l'informació per borrar un compte
+     */
     public MutableLiveData<Integer> getmResponseDeleteAccount(){
         return mResponseDeleteAccount;
     }

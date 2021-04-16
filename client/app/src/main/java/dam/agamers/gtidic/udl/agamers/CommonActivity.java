@@ -15,6 +15,9 @@ public class CommonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * @param _class variable que permet fer la navegació entre classes i connectar-se
+     */
     public void goTo(Class _class){
         Log.d(TAG, "goTo() -> Navigate to " + _class.getSimpleName());
         Intent intent = new Intent(this, _class);

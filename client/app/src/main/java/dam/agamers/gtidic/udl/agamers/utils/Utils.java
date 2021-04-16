@@ -12,7 +12,6 @@ import org.bouncycastle.crypto.params.KeyParameter;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
-
 public class Utils {
 
     @RequiresApi(api = Build.VERSION_CODES.O)

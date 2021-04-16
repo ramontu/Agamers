@@ -81,7 +81,6 @@ public class Account {
         String salt = "16";
         this.password = Utils.encode(password,salt,29000);
     }
-
     public String getDate() {
         return birthday;
     }

@@ -7,6 +7,9 @@ public class MainActivityViewModel {
     public MainActivityViewModel() {
     }
 
+    /**
+     * @return retorna el token 
+     */
     public Boolean isCurrentLogIn(){
         String token = PreferencesProvider.providePreferences().getString("token", "");
         return !token.equals("");

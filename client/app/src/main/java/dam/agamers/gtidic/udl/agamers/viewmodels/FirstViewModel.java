@@ -5,9 +5,6 @@ import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
 public class FirstViewModel {
 
-
     public FirstViewModel(){
     }
-
-
 }

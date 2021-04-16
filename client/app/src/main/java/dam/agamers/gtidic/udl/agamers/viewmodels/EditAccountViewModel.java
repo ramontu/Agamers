@@ -43,13 +43,9 @@ public class EditAccountViewModel {
     public MutableLiveData<GenereEnum> genere = new MutableLiveData<>();
     public MutableLiveData<String> photo = new MutableLiveData<>(); //TODO COMPLETAR AMB LA PHOTO
 
-
-
     public EditAccountViewModel(){
         accountRepo = new AccountRepo();
-
     }
-
 
     public void setParameters(){
         accountRepo.download_user_info();
@@ -58,20 +54,17 @@ public class EditAccountViewModel {
             Log.d(TAG, "SetParameters");
             username.setValue(account.getUsername());
             account_type.setValue(AccountTypeEnum.valueOf(account.getAccount_type().toString()).toString());
-
         }
         else {
             //TODO mostrar missatge d'error al mostrar la informació
         }
-
-
     }
 
-
+    /**
+     * @param imageFile variable on es guardarà l'imatge pujada al compte del usuari.
+     */
     public void uploadAccountImage(File imageFile){
         Log.d("VM", "uploading image... using repo");
         this.accountRepo.uploadPhoto(imageFile);
     }
-
-
 }

@@ -35,8 +35,5 @@ public class SignUpViewModel extends ViewModel {
         account.setDate(Birthdate.getValue());
         Log.d(TAG,account.toString());
         this.accountRepo.registerAccount(account);
-
-
     }
-
 }
