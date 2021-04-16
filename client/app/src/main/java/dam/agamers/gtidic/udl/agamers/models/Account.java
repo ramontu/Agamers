@@ -19,7 +19,7 @@ public class Account {
     @SerializedName("username")
     private String username;
     @SerializedName("account_type")
-    private AccountTypeEnum account_type; //TODO mirar de fer amb strings
+    private AccountTypeEnum account_type;
     @SerializedName("short_description")
     private String short_description;
     @SerializedName("long_description")
@@ -36,7 +36,7 @@ public class Account {
     @SerializedName("birthday")
     private String birthday;
     @SerializedName("genere")
-    private GenereEnum genere; //TODO mirar si s'ha de passar a enum
+    private GenereEnum genere;
     @SerializedName("photo")
     private String photo; //TODO modificar amb el de veritat
 

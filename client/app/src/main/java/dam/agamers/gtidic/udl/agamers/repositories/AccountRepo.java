@@ -7,6 +7,8 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 
+import com.google.gson.Gson;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,6 +22,7 @@ import java.lang.annotation.Target;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
+import dam.agamers.gtidic.udl.agamers.network.RetrofitClientInstance;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.services.AccountService;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
@@ -31,6 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class AccountRepo {
@@ -141,53 +145,17 @@ public class AccountRepo {
 
     public void download_user_info(){
 
-        accountService.download_user_info().enqueue(new Callback<ResponseBody>() {
+        accountService.download_user_info().enqueue(new Callback<Account>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                int code = response.code();
-                Log.d(TAG,  "download_user_info() -> Backend sent:  " + code);
-                if (code == 200 ){
-
-                    String jsonstring = "";
-                    try {
-                        jsonstring = response.body().string().toString();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    JSONObject jo;
-                    try {
-                        
-                        jo = new JSONObject(jsonstring);
-                        //account.setCreated_at((Date) jo.get("created_at"));
-                        account.setUsername((String) jo.get("username"));
-                        //account.setAccount_type((AccountTypeEnum) jo.get("account_type")); //TODO pasar a enum
-                        account.setShort_description((String) jo.get("short_description"));
-                        account.setLong_description((String) jo.get("long_description"));
-                        //account.setPassword((String) jo.get("password")); TODO encara no el baixa
-                        account.setEmail((String) jo.get("email"));
-                        account.setName((String) jo.get("name"));
-                        account.setSurname((String) jo.get("surname"));
-                        account.setBirthday((String) jo.get("birthday"));
-                        GenereEnum genereEnum;
-                        genereEnum = GenereEnum.valueOf(jo.get("genere").toString());
-                        account.setGenere(genereEnum);
-                        //account.setPhoto(); //TODO
-                        mAccountInfo.setValue(account);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                account = response.body();
+                Log.d(TAG, "DownloadInfo() : "+ account.toString());
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                String error_msg = "Error: " + t.getMessage();
-                Log.d(TAG,  "download_user_info() onFailure() -> ha rebut el missatge:  " + error_msg);
-
-                mResponse_download_user_info.setValue(error_msg);
+            public void onFailure(Call<Account> call, Throwable t) {
+                Log.d(TAG, "DownloadInfo() : Error"+ t.getMessage());
+                t.printStackTrace();
             }
         });
 

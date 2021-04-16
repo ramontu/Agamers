@@ -58,6 +58,7 @@ public class EditAccountViewModel {
             Log.d(TAG, "SetParameters");
             username.setValue(account.getUsername());
             account_type.setValue(AccountTypeEnum.valueOf(account.getAccount_type().toString()).toString());
+
         }
         else {
             //TODO mostrar missatge d'error al mostrar la informació
