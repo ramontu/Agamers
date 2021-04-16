@@ -2,12 +2,16 @@ package dam.agamers.gtidic.udl.agamers.services;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface AccountService {
 
@@ -34,6 +38,11 @@ public interface AccountService {
 
     @POST("/users/show/{username}")
     Call<ResponseBody> getPorfile(); //TODO COMPROVAR
+
+    @Multipart
+    @POST("/account/profile/update_profile_image")
+    Call<ResponseBody> uploadImage(@Part MultipartBody.Part image);
+
 
 
 
