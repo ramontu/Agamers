@@ -328,7 +328,7 @@ class User(SQLAlchemyBase, JSONModel):
             "email": self.email,
             "name": self.name,
             "surname": self.surname,
-            "birthday": self.birthday,
+            #"birthday": self.birthday,
             "genere": self.genere.value,
             # "phone": self.phone,
             "photo": self.photo_url
