@@ -11,7 +11,7 @@ public class AccountValidator {
     //TODO posar condicions de validació al javadoc
 
     /**
-     * Comprova que el username contingui minuscules, no contingui majuscules i no contingui caracters especials esxcepte "_" i "."
+     * Comprova que el username pugui contenir minuscules, majuscules i numeros
      * @param username String: Nom d'usuari que es vol comprovar
      * @return És viable o no
      * TODO falta fer la comprovació amb el client per a veure si ja existeix l'usuari
@@ -43,12 +43,12 @@ public class AccountValidator {
     }
 
     /**
-     * Comprova que el nom o cognom siguin viables
+     * Comprova que el nom o cognom siguin viables (poden tenir minuscules, majuscules i accents i poden estar buides)
      * @param nom_cognom String: nom o cognom que es vol comprovar
      * @return Retorna si es viable o no
      */
     public static boolean check_nameOrSurnameValid(String nom_cognom){
-        return patternIsValid(nom_cognom, "[A-Za-zÀ-Ÿà-ÿ]{3,18}(\\s){0,1}[A-Za-zÀ-Ÿà-ÿ]{0,18}$");
+        return patternIsValid(nom_cognom, "[A-Za-zÀ-Ÿà-ÿ]{0,18}(\\s){0,1}[A-Za-zÀ-Ÿà-ÿ]{0,18}$");
     }
 
     /**
