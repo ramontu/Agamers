@@ -18,6 +18,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.Objects;
 
+import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.enums.AccountTypeEnum;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
@@ -26,7 +27,7 @@ import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 public class EditAccountViewModel {
 
     AccountRepo accountRepo;
-
+    String TAG = "EditAccountViewModel";
 
     private MutableLiveData<Account> accountMutableLiveData = new MutableLiveData<>();
 
@@ -43,6 +44,7 @@ public class EditAccountViewModel {
     public MutableLiveData<String> photo = new MutableLiveData<>(); //TODO COMPLETAR AMB LA PHOTO
 
 
+
     public EditAccountViewModel(){
         accountRepo = new AccountRepo();
 
@@ -53,6 +55,7 @@ public class EditAccountViewModel {
         accountRepo.download_user_info();
         Account account = accountRepo.getmAccountInfo().getValue();
         if (account != null){
+            Log.d(TAG, "SetParameters");
             username.setValue(account.getUsername());
             account_type.setValue(AccountTypeEnum.valueOf(account.getAccount_type().toString()).toString());
         }

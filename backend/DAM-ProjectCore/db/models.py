@@ -233,7 +233,7 @@ class User(SQLAlchemyBase, JSONModel):
     birthday = Column(Unicode(10),nullable=False)
     genere = Column(Enum(GenereEnum), default=GenereEnum.not_specified)
     #phone = Column(Unicode(50))
-    photo = Column(Unicode(255),default="") #TODO mirar si funciona
+    photo = Column(Unicode(255), default="") #TODO mirar si funciona
 
 
     #TODO implementar mes endavant: desactivat fins a implementar tornejos
