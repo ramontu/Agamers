@@ -274,7 +274,16 @@ public class EditAccountActivity extends CommonActivity {
 
     }
 
+
+    public void onBackPressed(){
+        exit_without_save_notification();
+    }
+
     public void exit_no_save(View view){
+        exit_without_save_notification();
+    }
+
+    private void exit_without_save_notification(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.edit_account_not_saved_title);
         alertDialogBuilder.setMessage(R.string.edit_account_message_data_not_saved);
@@ -286,7 +295,6 @@ public class EditAccountActivity extends CommonActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-
 
     public void checkExternalStoragePermission(View view){
         Dexter.withActivity(this)
