@@ -30,7 +30,7 @@ public class RecoverPasswordActivity_1 extends CommonActivity {
     }
 
 
-    public void recover(View view) {
+    public void recover1(View view) {
         this.view = view;
         TextInputLayout til = findViewById(R.id.recover_1_email_textinputlayout);
         Account account = new Account();
@@ -49,7 +49,7 @@ public class RecoverPasswordActivity_1 extends CommonActivity {
                 Snackbar snackbar;
                 if (accountRepo.getmRecover1Ok().getValue()){
                     snackbar = Snackbar.make(view,R.string.recover_pass_1_ok,10000);
-                    snackbar.show();
+                    snackbar.show(); //TODO no es mostra per alguna raó desconeguda
                     goTo(RecoverPasswordActivity_2.class);
                 }
                 else {

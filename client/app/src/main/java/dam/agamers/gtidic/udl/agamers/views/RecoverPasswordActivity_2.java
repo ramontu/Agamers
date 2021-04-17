@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -18,6 +19,7 @@ public class RecoverPasswordActivity_2 extends CommonActivity {
 
     AccountRepo accountRepo;
     View view;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +31,17 @@ public class RecoverPasswordActivity_2 extends CommonActivity {
 
     }
 
-    public void recover(View view){
+    public void recover2(View view){
         this.view = view;
         TextInputLayout mail = findViewById(R.id.recover_2_email_textinputlayout);
         TextInputLayout new_pass = findViewById(R.id.recover_2_new_pass_textinputlayout);
         TextInputLayout code = findViewById(R.id.recover_2_code_textinputlayout);
-        Account account = new Account();
+        account = new Account();
         account.setEmail(mail.getEditText().getText().toString());
         account.setPassword(new_pass.getEditText().getText().toString());
         account.setRecovery_code(code.getEditText().getText().toString());
-        accountRepo.recover2_newpass(account);
+        Log.d("recover2", account.getEmail()+ account.getPassword() + account.getRecovery_code()); //per alguna rao en comptes de code envia ramon
+        accountRepo.recover2_newpass(account); //fins au tot correcte
 
 
         //TODO cercle de carrega
@@ -54,11 +57,6 @@ public class RecoverPasswordActivity_2 extends CommonActivity {
                 if (accountRepo.getmRecover2Ok().getValue()){
                     snackbar = Snackbar.make(view,R.string.recover_pass_2_ok,10000);
                     snackbar.show();
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     goTo(LogInActivity.class);
                 }
                 else {

@@ -393,7 +393,7 @@ class ResourceAccountPasswordUpdate(DAMCoreResource):
         super().on_post(req, resp, *args, **kwargs)
         email = req.media['email']
         password = req.media['password']
-        code = req.media['code']
+        code = req.media['recovery_code']
 
         try:
             aux_user = self.db_session.query(User).filter(User.email == email, User.recovery_code == code).one()

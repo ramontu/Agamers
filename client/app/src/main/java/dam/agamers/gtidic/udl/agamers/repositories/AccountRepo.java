@@ -245,7 +245,7 @@ public class AccountRepo {
 
 
     public void recover2_newpass(Account account){
-        Log.d(TAG, "Recover2_newpass");
+        Log.d(TAG, "Recover2_newpass"+account.getEmail()+" "+account.getPassword()+" "+account.getRecovery_code()); //fins aqui ok
         accountService.setPassword(account).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
