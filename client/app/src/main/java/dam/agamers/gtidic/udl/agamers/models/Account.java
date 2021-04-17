@@ -15,7 +15,7 @@ import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 public class Account {
 
     @SerializedName("created_at")
-    private Date created_at;
+    private String created_at;
     @SerializedName("username")
     private String username;
     @SerializedName("account_type")
@@ -34,11 +34,13 @@ public class Account {
     @SerializedName("surname")
     private String surname;
     @SerializedName("birthday")
-    private Date birthday;
+    private String birthday;
     @SerializedName("genere")
     private GenereEnum genere;
     @SerializedName("photo")
     private String photo; //TODO modificar amb el de veritat
+    @SerializedName("recovery_code")
+    private String recovery_code;
 
 
     public String getEmail() {
@@ -82,19 +84,19 @@ public class Account {
         this.password = Utils.encode(password,salt,29000);
     }
 
-    public Date getDate() {
+    public String getDate() {
         return birthday;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.birthday = date;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
@@ -122,11 +124,11 @@ public class Account {
         this.long_description = long_description;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -144,6 +146,14 @@ public class Account {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getRecovery_code() {
+        return recovery_code;
+    }
+
+    public void setRecovery_code(String recovery_code) {
+        this.recovery_code = recovery_code;
     }
 
     @Override

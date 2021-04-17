@@ -1,8 +1,9 @@
-falcon
-passlib
+falcon~=3.0.0
+passlib~=1.7.4
 sqlalchemy==1.3.23
 sqlalchemy_i18n
 gunicorn
-pymysql
+pymysql~=1.0.2
 jsonschema
 falcon-multipart
+Jinja2~=2.11.3

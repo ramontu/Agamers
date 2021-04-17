@@ -42,7 +42,11 @@ public interface AccountService {
     @POST("/account/profile/update_profile_image")
     Call<ResponseBody> uploadImage(@Part MultipartBody.Part image);
 
+    @POST("/account/recovery")
+    Call<ResponseBody> recoverPassword(@Body Account account);
 
+    @POST("/account/password_update")
+    Call<ResponseBody> setPassword(@Body Account account);
 
 
 

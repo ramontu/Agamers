@@ -1,6 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.repositories;
 
 
+import android.nfc.Tag;
 import android.util.Log;
 
 
@@ -41,6 +42,9 @@ public class AccountRepo {
 
     private MutableLiveData<String> mResponseUploadImage;
 
+    private MutableLiveData<Boolean> mRecover1Ok;
+    private MutableLiveData<Boolean> mRecover2Ok;
+
     Account account = new Account();
 
 
@@ -54,6 +58,8 @@ public class AccountRepo {
         this.mAccountInfo = new MutableLiveData<>();
         this.mResponseDeleteAccount = new MutableLiveData<>();
         this.mResponseUploadImage = new MutableLiveData<>();
+        this.mRecover1Ok = new MutableLiveData<>();
+        this.mRecover2Ok = new MutableLiveData<>();
     }
 
     public void registerAccount(Account account){
@@ -203,6 +209,70 @@ public class AccountRepo {
                 mResponseUploadImage.setValue(error_msg);
             }
         });
+    }
+
+    public void recover1_pass(Account account){
+        Log.d(TAG, "recover1 pass email:" +account.getEmail()); //email es correcte
+        accountService.recoverPassword(account).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d("Enviat",call.request().body().toString());
+                if (response.code() == 200){
+                    mRecover1Ok.setValue(true);
+                    Log.d(TAG, "recover1_pass sent: "+response.code());
+                }
+                else {
+                    mRecover1Ok.setValue(false);
+                    try {
+                        Log.d(TAG, "recover1_pass sent: "+response.code() +response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                mRecover1Ok.setValue(false);
+                Log.d(TAG, "recover_pass onFailure ");
+                t.printStackTrace();
+            }
+        });
+    }
+    public MutableLiveData<Boolean> getmRecover1Ok(){
+        return mRecover1Ok;
+    }
+
+
+    public void recover2_newpass(Account account){
+        Log.d(TAG, "Recover2_newpass"+account.getEmail()+" "+account.getPassword()+" "+account.getRecovery_code()); //fins aqui ok
+        accountService.setPassword(account).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.code() == 200){
+                    mRecover2Ok.setValue(true);
+                    Log.d(TAG, "recover2_newpass sent: "+response.code());
+                }
+                else {
+                    mRecover2Ok.setValue(false);
+                    try {
+                        Log.d(TAG, "recover2_newpass sent: "+response.code() +response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                mRecover2Ok.setValue(false);
+                Log.d(TAG, "recover2_pass onFailure ");
+                t.printStackTrace();
+            }
+        });
+    }
+    public MutableLiveData<Boolean> getmRecover2Ok(){
+        return mRecover2Ok;
     }
 }
 

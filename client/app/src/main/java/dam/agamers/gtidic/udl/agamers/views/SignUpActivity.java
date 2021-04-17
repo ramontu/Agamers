@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.d("Date:",(str));
                 //birth.getEditText().setText(calendar.get(Calendar.DAY_OF_MONTH)+"/"+new Integer(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR)); //OK
 
-                signUpViewModel.Birthdate.setValue((Date) calendar.getTime());
+                signUpViewModel.Birthdate.setValue(calendar.getTime().toString());
             }
         }, m_year, m_month, m_day);
 
