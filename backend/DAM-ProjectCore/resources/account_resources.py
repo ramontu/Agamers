@@ -397,13 +397,18 @@ class ResourceAccountPasswordUpdate(DAMCoreResource):
 
         try:
             aux_user = self.db_session.query(User).filter(User.email == email, User.recovery_code == code).one()
-            aux_user.password = password
-            aux_user.recovery_code = None
-            self.db_session.add(aux_user)
-            self.db_session.commit()
+            if aux_user is None:
+                resp.status = falcon.HTTPBadRequest
+            else:
+                aux_user.password = password
+                aux_user.recovery_code = None
+                self.db_session.add(aux_user)
+                self.db_session.commit()
+                resp.status = falcon.HTTP_200
         except Exception as e:
+            resp.status = falcon.HTTPInternalServerError
             print(e)
-        resp.status = falcon.HTTP_200
+
 
 
 # update

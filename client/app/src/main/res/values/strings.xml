@@ -108,5 +108,7 @@
     <string name="recover_password_new_pass">Nova contrasenya</string>
     <string name="recover_pass_1_ok">S\'ha enviat un correu al mail que has proporcionat</string>
     <string name="recover_pass_1_error">Hi ha hagut algun error. Torna-ho a intentar</string>
+    <string name="recover_pass_2_ok">Contrasenya canviada correctament</string>
+    <string name="recover_pass_2_error">Hi ha hagut algun error, comprova que el codi sigui el correcte o que no t\'hagis equivocat a l\'introduir el correu al pas anterior.</string>
 
 </resources>

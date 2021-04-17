@@ -68,7 +68,10 @@ public class AccountServiceImpl implements AccountService {
         return refrotit.create(AccountService.class).recoverPassword(account);
     }
 
-
+    @Override
+    public Call<ResponseBody> setPassword(Account account) {
+        return refrotit.create(AccountService.class).setPassword(account);
+    }
 
 
 }

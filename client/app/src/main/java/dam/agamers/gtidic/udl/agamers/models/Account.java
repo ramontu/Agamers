@@ -39,6 +39,8 @@ public class Account {
     private GenereEnum genere;
     @SerializedName("photo")
     private String photo; //TODO modificar amb el de veritat
+    @SerializedName("recovery_code")
+    private String recovery_code;
 
 
     public String getEmail() {
@@ -144,6 +146,14 @@ public class Account {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getRecovery_code() {
+        return recovery_code;
+    }
+
+    public void setRecovery_code(String recovery_code) {
+        this.recovery_code = recovery_code;
     }
 
     @Override

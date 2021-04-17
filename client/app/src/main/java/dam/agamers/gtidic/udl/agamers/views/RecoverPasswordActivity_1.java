@@ -1,11 +1,8 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -38,23 +35,19 @@ public class RecoverPasswordActivity_1 extends CommonActivity {
         TextInputLayout til = findViewById(R.id.recover_1_email_textinputlayout);
         Account account = new Account();
         account.setEmail(Objects.requireNonNull(til.getEditText()).getText().toString());
-        accountRepo.recover_pass(account);
+        accountRepo.recover1_pass(account);
 
         //TODO possar cercle de carregant
-
-
-
-
 
     }
 
     private void watcher(){
-        accountRepo.getmRecoverOk().observe(this, new Observer<Boolean>() {
+        accountRepo.getmRecover1Ok().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 //TODO eliminar cercle carregant
                 Snackbar snackbar;
-                if (accountRepo.getmRecoverOk().getValue()){
+                if (accountRepo.getmRecover1Ok().getValue()){
                     snackbar = Snackbar.make(view,R.string.recover_pass_1_ok,10000);
                     snackbar.show();
                     goTo(RecoverPasswordActivity_2.class);

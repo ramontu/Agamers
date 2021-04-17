@@ -45,7 +45,8 @@ public interface AccountService {
     @POST("/account/recovery")
     Call<ResponseBody> recoverPassword(@Body Account account);
 
-
+    @POST("/account/password_update")
+    Call<ResponseBody> setPassword(@Body Account account);
 
 
 
