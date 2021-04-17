@@ -88,7 +88,9 @@ public class EditAccountActivity extends CommonActivity {
         _name = findViewById(R.id.edit_info_first_name);
         _surname = findViewById(R.id.edit_info_surname);
         _birthday = findViewById(R.id.edit_info_birthday);
-
+        _username.setEnabled(false);
+        _password.setEnabled(false);
+        _birthday.setEnabled(false);
 
         profileImage = findViewById(R.id.edit_info_imageView);
 
@@ -135,7 +137,6 @@ public class EditAccountActivity extends CommonActivity {
             @Override
             public void onChanged(Account account) {
                 _username.getEditText().setText(account.getUsername());
-                _username.setFocusable(false);
                 _password.getEditText().setText(R.string.implementations_edit_info_user_pass); //TODO demoment no tenim un decodificador
                 _short_description.getEditText().setText(account.getShort_description());
                 _long_description.getEditText().setText(account.getLong_description());
@@ -143,7 +144,6 @@ public class EditAccountActivity extends CommonActivity {
                 _name.getEditText().setText(account.getName());
                 _surname.getEditText().setText(account.getSurname());
                 _birthday.getEditText().setText(account.getBirthday());
-                _birthday.setFocusable(false);
                 GenereEnum geE = account.getGenere();
                 setSpinnerGenere(geE);
             }

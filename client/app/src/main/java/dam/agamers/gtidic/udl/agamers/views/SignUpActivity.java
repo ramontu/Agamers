@@ -61,27 +61,15 @@ public class SignUpActivity extends AppCompatActivity {
         final int m_year = calendar.get(Calendar.YEAR);
         calendar.add(Calendar.YEAR, -12);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpActivity.this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(year,month,dayOfMonth);
-                String str = calendar.get(Calendar.DAY_OF_MONTH)+"/"+Integer.valueOf(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR);
-                Log.d("Date:",(str));
-                birth.getEditText().setText(str); //OK
-                signUpViewModel.Birthdate.setValue(str);
-            }
+        DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpActivity.this, (view, year, month, dayOfMonth) -> {
+            calendar.set(year,month,dayOfMonth);
+            String str = calendar.get(Calendar.DAY_OF_MONTH)+"/"+Integer.valueOf(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR);
+            Log.d("Date:",(str));
+            birth.getEditText().setText(str); //OK
+            signUpViewModel.Birthdate.setValue(str);
         }, m_year, m_month, m_day);
-
-
-
-
         datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
-
-
-
         datePickerDialog.getDatePicker().getTouchables().get(0).performClick();
-
-
         datePickerDialog.show();
     }
 
