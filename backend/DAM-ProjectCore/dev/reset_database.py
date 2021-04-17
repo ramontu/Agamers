@@ -42,7 +42,7 @@ if __name__ == "__main__":
     mylogger.info("Creating default users...")
     # noinspection PyArgumentList
     user_admin = User(
-        created_at="hoy",
+        created_at=datetime.datetime(2020, 2, 2, 0, 1, 1),
         username="admin",
         account_type=AccountTypeEnum.premium,
         email="admin@damcore.com",

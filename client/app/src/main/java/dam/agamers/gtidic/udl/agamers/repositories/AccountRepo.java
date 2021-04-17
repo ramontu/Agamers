@@ -145,7 +145,7 @@ public class AccountRepo {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 account = response.body();
-                Log.d(TAG, "DownloadInfo() : "+ account.toString());
+                Log.d(TAG, "DownloadInfo() : "+response.code());
             }
 
             @Override
