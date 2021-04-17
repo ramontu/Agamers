@@ -410,7 +410,6 @@ class ResourceAccountPasswordUpdate(DAMCoreResource):
             print(e)
 
 
-
 # update
 @falcon.before(requires_auth)
 class ResourceAccountUpdate(DAMCoreResource):

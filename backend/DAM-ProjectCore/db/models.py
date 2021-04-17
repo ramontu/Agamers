@@ -220,7 +220,7 @@ class User(SQLAlchemyBase, JSONModel):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    created_at = Column(Unicode(50), nullable=False)
+    created_at = Column(Unicode(50), nullable=False, default="now")
     username = Column(Unicode(50), nullable=False, unique=True)
     account_type = Column(Enum(AccountTypeEnum), default=AccountTypeEnum.free)
     # following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #TODO no funciona
