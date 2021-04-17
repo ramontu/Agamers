@@ -29,14 +29,6 @@ public class LogInActivity extends CommonActivity {
     private LogInViewModel logInViewModel;
     private TextInputLayout comp_email_field;
     private TextInputLayout comp_password_field;
-    
-    private Button comp_login_button;
-
-    private String response_message;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
