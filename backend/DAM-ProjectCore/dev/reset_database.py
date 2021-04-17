@@ -42,13 +42,13 @@ if __name__ == "__main__":
     mylogger.info("Creating default users...")
     # noinspection PyArgumentList
     user_admin = User(
-        #created_at=datetime.datetime(2020, 1, 1, 12, 00, 00, 000),
+        created_at="hoy",
         username="admin",
         account_type=AccountTypeEnum.premium,
         email="admin@damcore.com",
         name="Administrator",
         surname="DamCore",
-        #birthday=datetime.date(2020, 1, 1),
+        birthday="hoy",
         genere=GenereEnum.not_specified
     )
     user_admin.set_password("DAMCoure")

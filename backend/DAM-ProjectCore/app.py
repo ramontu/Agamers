@@ -42,6 +42,7 @@ application.add_route("/account/update_account", account_resources.ResourceAccou
 
 # Verificació recuperació
 application.add_route("/account/recovery", account_resources.ResourceAccountRecovery())
+application.add_route("/account/password_update", account_resources.ResourceAccountPasswordUpdate())
 
 application.add_route("/users/register", user_resources.ResourceRegisterUser())
 application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile())
