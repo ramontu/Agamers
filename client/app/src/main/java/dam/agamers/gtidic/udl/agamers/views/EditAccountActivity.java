@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -290,7 +291,7 @@ public class EditAccountActivity extends CommonActivity {
         alertDialogBuilder.setNegativeButton(R.string.option_cancell, (dialog, which) -> {
 
         });
-        alertDialogBuilder.setPositiveButton(R.string.option_ok, (dialog, which) -> goTo(UserInfoActivity.class));
+        alertDialogBuilder.setPositiveButton(R.string.option_ok, (dialog, which) -> finish());
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();

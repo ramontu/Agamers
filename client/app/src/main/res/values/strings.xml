@@ -111,5 +111,7 @@
     <string name="recover_pass_2_ok">Contrasenya canviada correctament</string>
     <string name="recover_pass_2_error">Hi ha hagut algun error, comprova que el codi sigui el correcte o que no t\'hagis equivocat a l\'introduir el correu al pas anterior.</string>
     <string name="implementations_edit_info_user_pass">Clau encriptada</string>
+    <string name="alerts_exit_app_title">Vols sortir de l\'aplicació?</string>
+    <string name="alerts_exit_app_message">Aquesta acció farà que la app es tanqui</string>
 
 </resources>

@@ -17,14 +17,11 @@
         android:theme="@style/Theme.Agamers">
         <activity android:name=".views.RecoverPasswordActivity_2"></activity>
         <activity android:name=".views.RecoverPasswordActivity_1" />
-        <activity android:name=".Recover_password" />
         <activity android:name=".views.EditAccountActivity" />
         <activity android:name=".views.UserInfoActivity" />
         <activity android:name=".views.FirstActivity" />
         <activity android:name=".CommonActivity" />
-        <activity
-            android:name=".views.LogInActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".views.LogInActivity"/>
         <activity
             android:name=".views.MainActivity"
             android:screenOrientation="portrait"
