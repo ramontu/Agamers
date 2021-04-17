@@ -48,8 +48,7 @@ public class RecoverPasswordActivity_1 extends CommonActivity {
                 //TODO eliminar cercle carregant
                 Snackbar snackbar;
                 if (accountRepo.getmRecover1Ok().getValue()){
-                    snackbar = Snackbar.make(view,R.string.recover_pass_1_ok,10000);
-                    snackbar.show(); //TODO no es mostra per alguna raó desconeguda
+                    Snackbar.make(view,R.string.recover_pass_1_ok,10000).show();
                     goTo(RecoverPasswordActivity_2.class);
                 }
                 else {

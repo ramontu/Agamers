@@ -45,8 +45,6 @@ public class AccountRepo {
     private MutableLiveData<Boolean> mRecover1Ok;
     private MutableLiveData<Boolean> mRecover2Ok;
 
-    Account account = new Account();
-
 
 
     public AccountRepo() {
@@ -144,8 +142,8 @@ public class AccountRepo {
         accountService.download_user_info().enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
-                account = response.body();
-                Log.d(TAG, "DownloadInfo() : "+response.code());
+                mAccountInfo.setValue(response.body());
+                Log.d(TAG, "DownloadInfo() : "+response.code() +"user:"+response.body().toString());
             }
 
             @Override

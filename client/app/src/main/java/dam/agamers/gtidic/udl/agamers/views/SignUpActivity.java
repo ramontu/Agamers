@@ -65,11 +65,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 calendar.set(year,month,dayOfMonth);
-                String str = new SimpleDateFormat("yyyy-mm-dd").format(calendar.getTime());
+                String str = calendar.get(Calendar.DAY_OF_MONTH)+"/"+Integer.valueOf(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR);
                 Log.d("Date:",(str));
-                birth.getEditText().setText(calendar.get(Calendar.DAY_OF_MONTH)+"/"+new Integer(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR)); //OK
-
-                signUpViewModel.Birthdate.setValue(calendar.getTime().toString());
+                birth.getEditText().setText(str); //OK
+                signUpViewModel.Birthdate.setValue(str);
             }
         }, m_year, m_month, m_day);
 
@@ -109,58 +108,6 @@ public class SignUpActivity extends AppCompatActivity {
      * S'encarrega de fer totes les comprovacions necessaries per a que el registre es ralitzi de forma satisfactòria
      */
     protected void checking() {
-        /*
-        //Comprovació nom
-        TextInputLayout nom = (TextInputLayout) findViewById(R.id.name_textinputlayout);
-        nom.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!AccountValidator.check_nameOrSurnameValid(s.toString())){
-                    nom.setError(getString(R.string.error_nom_no_vàlid));
-                    isNameValid = false;
-                }
-                else {
-                    nom.setError(null);
-                    isNameValid = true;
-                }
-                tots_camps_valids();
-            }
-        });
-
-         */
-
-        /*
-        //Comprovació cognom
-        TextInputLayout cognom = (TextInputLayout) findViewById(R.id.cognom_textinputlayout);
-        cognom.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!AccountValidator.check_nameOrSurnameValid(s.toString())){
-                    cognom.setError(getString(R.string.error_cognom_no_vàlid));
-                    isSurnameValid = false;
-                }
-                else {
-                    cognom.setError(null);
-                    isSurnameValid = true;
-                }
-                tots_camps_valids();
-            }
-        });
-
-         */
-
         //comprovació username
         TextInputLayout username = (TextInputLayout) findViewById(R.id.name_textinputlayout);
         username.getEditText().addTextChangedListener(new TextWatcher() {

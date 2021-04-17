@@ -31,13 +31,16 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
+import dam.agamers.gtidic.udl.agamers.utils.Utils;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 import dam.agamers.gtidic.udl.agamers.viewmodels.EditAccountViewModel;
 
@@ -53,6 +56,7 @@ public class EditAccountActivity extends CommonActivity {
     private TextInputLayout _email;
     private TextInputLayout _name;
     private TextInputLayout _surname;
+    private TextInputLayout _birthday;
 
     private boolean passwordValid = true; //TODO modificar quan es descarregui la informació
     private boolean short_descriptionValid = false;
@@ -73,7 +77,6 @@ public class EditAccountActivity extends CommonActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
         getSupportActionBar().hide();
-
         editAccountViewModel = new EditAccountViewModel();
 
 
@@ -84,17 +87,19 @@ public class EditAccountActivity extends CommonActivity {
         _email = findViewById(R.id.edit_info_email);
         _name = findViewById(R.id.edit_info_first_name);
         _surname = findViewById(R.id.edit_info_surname);
+        _birthday = findViewById(R.id.edit_info_birthday);
 
 
         profileImage = findViewById(R.id.edit_info_imageView);
 
 
-        setInformation();
+
+
+        initValues();
         init_validation();
-        setSpinnerGenere();
     }
 
-    private void setSpinnerGenere(){
+    private void setSpinnerGenere(GenereEnum genere){
         Spinner spinner = findViewById(R.id.edit_info_genere_spinner);
 
         List<String> llista = new ArrayList<>();
@@ -104,44 +109,49 @@ public class EditAccountActivity extends CommonActivity {
         SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,llista);
         spinner.setAdapter(spinnerAdapter);
 
-        int position = 3;
-        /*
-        if (genereEnum != null){
-
-            for (int i = 0; i < spinner.getCount(); i++){
-                if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase("Dona")){ //NO acaba de funcionar diu que genereenum es null
-                    position = i;
-                }
-            }
+        int position = 0;
+        switch (genere) {
+            case M:
+                position = 0;
+                break;
+            case F:
+                position = 1;
+                break;
+            case NB:
+                position = 2;
+                break;
+            default:
+                position = 3;
+                break;
         }
-
-         */
         spinner.setSelection(position);
     }
 
 
 
-    private void setInformation(){
-        editAccountViewModel.setParameters();
-        /*
-        editAccountViewModel.getAccountMutableLiveData().observe(this, new Observer<Account>() {
+    private void initValues(){
+
+        editAccountViewModel.getmAccount().observe(this, new Observer<Account>() {
             @Override
             public void onChanged(Account account) {
                 _username.getEditText().setText(account.getUsername());
                 _username.setFocusable(false);
-                _password.getEditText().setText(account.getPassword());
+                _password.getEditText().setText(R.string.implementations_edit_info_user_pass); //TODO demoment no tenim un decodificador
                 _short_description.getEditText().setText(account.getShort_description());
                 _long_description.getEditText().setText(account.getLong_description());
                 _email.getEditText().setText(account.getEmail());
                 _name.getEditText().setText(account.getName());
                 _surname.getEditText().setText(account.getSurname());
-                genereEnum = account.getGenere();
-                //TODO enxcara falten valors
+                _birthday.getEditText().setText(account.getBirthday());
+                _birthday.setFocusable(false);
+                GenereEnum geE = account.getGenere();
+                setSpinnerGenere(geE);
             }
         });
 
-         */
+
     }
+
 
     private void init_validation(){
 
