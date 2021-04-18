@@ -29,6 +29,6 @@ SchemaUpdateUser = {
         "email": {"type": "string"},
         "name": {"type": "string"},
         "surname": {"type": "string"},
-        "genere": {"type": "Enum(GenereEnum)"}
+        "genere": {"type": "string"}
     }
 }
