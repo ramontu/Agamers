@@ -36,9 +36,6 @@ public class AccountValidator {
      * @return Retorna si es viable
      */
     public static boolean check_mailValid(String mail){
-        /*if (mail.length() > 40){
-            return false;
-        }*/
         return patternIsValid(mail, "^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)$");
     }
 
@@ -49,6 +46,10 @@ public class AccountValidator {
      */
     public static boolean check_nameOrSurnameValid(String nom_cognom){
         return patternIsValid(nom_cognom, "[A-Za-zÀ-Ÿà-ÿ]{0,18}(\\s){0,1}[A-Za-zÀ-Ÿà-ÿ]{0,18}$");
+    }
+
+    public static boolean check_recoverycodeValid(String code){
+        return patternIsValid(code, "[A-Za-z0-9]{6}");
     }
 
     /**

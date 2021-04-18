@@ -129,7 +129,7 @@ class ResourceAccountRecovery(DAMCoreResource):
         super().on_post(req, resp, *args, **kwargs)
 
         email = req.media["email"]
-        code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+        code = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=6))
         try:
             aux_user = self.db_session.query(User).filter(User.email == email).one()
             aux_user.recovery_code = code

@@ -113,5 +113,7 @@
     <string name="implementations_edit_info_user_pass">Clau encriptada</string>
     <string name="alerts_exit_app_title">Vols sortir de l\'aplicació?</string>
     <string name="alerts_exit_app_message">Aquesta acció farà que la app es tanqui</string>
+    <string name="error_recoverycode_no_vàlid">Codi en format incorrecte. Revisa-ho</string>
+    <string name="recover_pass_title">Recuperar contrasenya</string>
 
 </resources>
