@@ -44,6 +44,7 @@ public class AccountRepo {
 
     private MutableLiveData<Boolean> mRecover1Ok;
     private MutableLiveData<Boolean> mRecover2Ok;
+    private MutableLiveData<Boolean> mUpdateOk;
 
 
 
@@ -58,6 +59,7 @@ public class AccountRepo {
         this.mResponseUploadImage = new MutableLiveData<>();
         this.mRecover1Ok = new MutableLiveData<>();
         this.mRecover2Ok = new MutableLiveData<>();
+        this.mUpdateOk = new MutableLiveData<>();
     }
 
     public void registerAccount(Account account){
@@ -271,6 +273,37 @@ public class AccountRepo {
     }
     public MutableLiveData<Boolean> getmRecover2Ok(){
         return mRecover2Ok;
+    }
+
+    public void updateAccount(Account account){
+        Log.d(TAG,"update info");
+        accountService.update_account(account).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.code()==200){
+                    mUpdateOk.setValue(true);
+                    Log.d(TAG, "updateinfo code: "+response.code());
+                }
+                else {
+                    mUpdateOk.setValue(false);
+                    try {
+                        Log.d(TAG, "updateinfo code: "+response.code()+response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d(TAG, "updateinfo Onfaliure ");
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public MutableLiveData<Boolean> getmUpdateOk(){
+        return mUpdateOk;
     }
 }
 
