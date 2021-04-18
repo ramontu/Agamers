@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.karumi.dexter.Dexter;
@@ -59,7 +60,7 @@ public class EditAccountActivity extends CommonActivity {
     private TextInputLayout _surname;
     private TextInputLayout _birthday;
 
-    private boolean passwordValid = true; //TODO modificar quan es descarregui la informació
+    private boolean passwordValid = true;
     private boolean short_descriptionValid = false;
     private boolean long_descriptionValid = false;
     private boolean emailValid = false;
@@ -101,6 +102,7 @@ public class EditAccountActivity extends CommonActivity {
 
         initValues();
         init_validation();
+        show_message_save_and_exit();
     }
 
     private void setSpinnerGenere(GenereEnum genere){
@@ -252,11 +254,11 @@ public class EditAccountActivity extends CommonActivity {
     }
 
     /**
-     * Comprova que tots els camps del formaulari de registre són correctes, de ser així permetrà a l'usuari premer el botó de registre
+     * Comprova que tots els camps del formaulari de update account són correctes, de ser així permetrà a l'usuari premer el botó de guardar i sortir
      */
     private void tots_camps_valids(){
         Button b =findViewById(R.id.button_edit_info_save_exit);
-        b.setEnabled(passwordValid && short_descriptionValid &&long_descriptionValid && emailValid && nameValid && surnameValid); //TODO mirar si la data es vàlida
+        b.setEnabled(passwordValid && short_descriptionValid &&long_descriptionValid && emailValid && nameValid && surnameValid);
     }
 
 
@@ -284,6 +286,19 @@ public class EditAccountActivity extends CommonActivity {
         editAccountViewModel.update_info(account_total);
     }
 
+    private void show_message_save_and_exit(){
+        editAccountViewModel.responseUpdate.observe(this, aBoolean -> {
+            Toast toast;
+            if (aBoolean){
+                toast = Toast.makeText(getBaseContext(), R.string.update_account_ok,Toast.LENGTH_LONG);
+                finish();
+            }
+            else {
+                toast = Toast.makeText(getBaseContext(),R.string.update_account_error,Toast.LENGTH_LONG);
+            }
+            toast.show();
+        });
+    }
 
     public void onBackPressed(){
         exit_without_save_notification();
