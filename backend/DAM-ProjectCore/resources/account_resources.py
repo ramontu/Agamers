@@ -418,12 +418,23 @@ class ResourceAccountUpdate(DAMCoreResource):
         current_user = req.context["auth_user"]
 
         # bucle
+
         for i in req.media:
             valor = req.media[i]
+
             if i == "genere":
-                valor = GenereEnum(valor.upper)
+                if valor is "M":
+                    valor = GenereEnum.male
+                elif valor is "F":
+                    valor = GenereEnum.female
+                elif valor is "NB":
+                    valor = GenereEnum.no_binary
+                elif valor is "N":
+                    valor = GenereEnum.not_specified
+
             elif i == "account_type":
                 valor = AccountTypeEnum(valor.upper)
+
             setattr(current_user, i, valor)
 
         self.db_session.add(current_user)

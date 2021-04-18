@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.karumi.dexter.Dexter;
@@ -59,7 +60,7 @@ public class EditAccountActivity extends CommonActivity {
     private TextInputLayout _surname;
     private TextInputLayout _birthday;
 
-    private boolean passwordValid = true; //TODO modificar quan es descarregui la informació
+    private boolean passwordValid = true;
     private boolean short_descriptionValid = false;
     private boolean long_descriptionValid = false;
     private boolean emailValid = false;
@@ -70,7 +71,8 @@ public class EditAccountActivity extends CommonActivity {
     private final int PICK_IMAGE_REQUEST = 14;
     private final String TAG = "EditAccountActivity";
     private ImageView profileImage;
-
+    private Account account_total;
+    private Spinner spinner;
 
 
     @Override
@@ -100,10 +102,11 @@ public class EditAccountActivity extends CommonActivity {
 
         initValues();
         init_validation();
+        show_message_save_and_exit();
     }
 
     private void setSpinnerGenere(GenereEnum genere){
-        Spinner spinner = findViewById(R.id.edit_info_genere_spinner);
+        spinner = findViewById(R.id.edit_info_genere_spinner);
 
         List<String> llista = new ArrayList<>();
         for( int i = 0; i < GenereEnum.values().length; i++){
@@ -137,6 +140,7 @@ public class EditAccountActivity extends CommonActivity {
         editAccountViewModel.getmAccount().observe(this, new Observer<Account>() {
             @Override
             public void onChanged(Account account) {
+                account_total = account;
                 _username.getEditText().setText(account.getUsername());
                 _password.getEditText().setText(R.string.implementations_edit_info_user_pass); //TODO demoment no tenim un decodificador
                 _short_description.getEditText().setText(account.getShort_description());
@@ -250,31 +254,51 @@ public class EditAccountActivity extends CommonActivity {
     }
 
     /**
-     * Comprova que tots els camps del formaulari de registre són correctes, de ser així permetrà a l'usuari premer el botó de registre
+     * Comprova que tots els camps del formaulari de update account són correctes, de ser així permetrà a l'usuari premer el botó de guardar i sortir
      */
     private void tots_camps_valids(){
         Button b =findViewById(R.id.button_edit_info_save_exit);
-        b.setEnabled(passwordValid && short_descriptionValid &&long_descriptionValid && emailValid && nameValid && surnameValid); //TODO mirar si la data es vàlida
+        b.setEnabled(passwordValid && short_descriptionValid &&long_descriptionValid && emailValid && nameValid && surnameValid);
     }
 
 
     public void save_and_exit(View view){
-        Account account = new Account();
 
-        //TODO falten verificacions
-
-        account.setUsername(_username.getEditText().getText().toString());
-        account.setPassword(_password.getEditText().getText().toString());
-        account.setShort_description(_short_description.getEditText().getText().toString());
-        account.setLong_description(_long_description.getEditText().getText().toString());
-        account.setEmail(_email.getEditText().getText().toString());
-        account.setName(_name.getEditText().getText().toString());
-        account.setSurname(_surname.getEditText().getText().toString());
-
-
-
+        account_total.setShort_description(_short_description.getEditText().getText().toString());
+        account_total.setLong_description(_long_description.getEditText().getText().toString());
+        account_total.setEmail(_email.getEditText().getText().toString());
+        account_total.setName(_name.getEditText().getText().toString());
+        account_total.setSurname(_surname.getEditText().getText().toString());
+        switch (spinner.getSelectedItemPosition()){
+            case 0:
+                account_total.setGenere(GenereEnum.M);
+                break;
+            case 1:
+                account_total.setGenere(GenereEnum.F);
+                break;
+            case 2:
+                account_total.setGenere(GenereEnum.NB);
+                break;
+            case 3:
+                account_total.setGenere(GenereEnum.N);
+                break;
+        }
+        editAccountViewModel.update_info(account_total);
     }
 
+    private void show_message_save_and_exit(){
+        editAccountViewModel.responseUpdate.observe(this, aBoolean -> {
+            Toast toast;
+            if (aBoolean){
+                toast = Toast.makeText(getBaseContext(), R.string.update_account_ok,Toast.LENGTH_LONG);
+                finish();
+            }
+            else {
+                toast = Toast.makeText(getBaseContext(),R.string.update_account_error,Toast.LENGTH_LONG);
+            }
+            toast.show();
+        });
+    }
 
     public void onBackPressed(){
         exit_without_save_notification();
@@ -296,6 +320,7 @@ public class EditAccountActivity extends CommonActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
 
     public void checkExternalStoragePermission(View view){
         Dexter.withActivity(this)

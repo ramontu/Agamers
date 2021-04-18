@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -34,31 +35,13 @@ public class EditAccountViewModel {
 
     AccountRepo accountRepo;
     String TAG = "EditAccountViewModel";
-
-
-    //private MutableLiveData<Account> mAccount = new MutableLiveData<>();
-
-    /*
-    public MutableLiveData<String> mUsername = new MutableLiveData<>();
-    public MutableLiveData<AccountTypeEnum> mAccount_type = new MutableLiveData<>(); //TODO passar a a Enum
-    public MutableLiveData<String> short_description = new MutableLiveData<>();
-    public MutableLiveData<String> long_description = new MutableLiveData<>();
-    public MutableLiveData<String> password = new MutableLiveData<>();
-    public MutableLiveData<String> email = new MutableLiveData<>();
-    public MutableLiveData<String> name = new MutableLiveData<>();
-    public MutableLiveData<String> surname = new MutableLiveData<>();
-    public MutableLiveData<Date> birthday = new MutableLiveData<>();
-    public MutableLiveData<GenereEnum> genere = new MutableLiveData<>();
-    public MutableLiveData<String> photo = new MutableLiveData<>(); //TODO COMPLETAR AMB LA PHOTO
-
-     */
-
+    public MutableLiveData<Boolean> responseUpdate;
 
 
     public EditAccountViewModel(){
         accountRepo = new AccountRepo();
         accountRepo.download_user_info();
-
+        responseUpdate = new MutableLiveData<>();
     }
 
 
@@ -69,5 +52,11 @@ public class EditAccountViewModel {
     public void uploadAccountImage(File imageFile){
         Log.d("VM", "uploading image... using repo");
         this.accountRepo.uploadPhoto(imageFile);
+    }
+
+    public void update_info(Account account){
+        Log.d(TAG, "Update info");
+        accountRepo.updateAccount(account);
+        responseUpdate.setValue(accountRepo.getmUpdateOk().getValue());
     }
 }
