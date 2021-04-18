@@ -45,6 +45,7 @@ public class AccountRepo {
     private MutableLiveData<Boolean> mRecover1Ok;
     private MutableLiveData<Boolean> mRecover2Ok;
     private MutableLiveData<Boolean> mUpdateOk;
+    private MutableLiveData<Boolean> mSignUpOk;
 
 
 
@@ -60,6 +61,7 @@ public class AccountRepo {
         this.mRecover1Ok = new MutableLiveData<>();
         this.mRecover2Ok = new MutableLiveData<>();
         this.mUpdateOk = new MutableLiveData<>();
+        this.mSignUpOk = new MutableLiveData<>();
     }
 
     public void registerAccount(Account account){
@@ -69,24 +71,30 @@ public class AccountRepo {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 int return_code = response.code();  //200, 404, 401,...
-                Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.code());
+
 
                 if (return_code == 200){
-                    mResponseRegister.setValue("El registre s'ha fet correctament!!!!");
+                    mSignUpOk.setValue(true);
+                    Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.code());
                 }else{
                     Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.message());
-                    mResponseRegister.setValue(TAG+"ERROR DESCONEGUT");
+                    mSignUpOk.setValue(false);
                 }
 
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                String error_msg = "Error: " + t.getMessage();
-                mResponseRegister.setValue(error_msg);
+                Log.d(TAG, "registerAccount on failure");
+                t.printStackTrace();
+                mSignUpOk.setValue(false);
             }
 
         });
+    }
+
+    public MutableLiveData<Boolean> getmSignUpOk(){
+        return getmUpdateOk();
     }
 
 

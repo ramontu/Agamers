@@ -18,6 +18,7 @@ public class SignUpViewModel extends ViewModel {
     public MutableLiveData<String> Birthdate = new MutableLiveData<>();
     public MutableLiveData<String> Email = new MutableLiveData<>();
     public MutableLiveData<String> Password = new MutableLiveData<>();
+    public MutableLiveData<Boolean> mResponse = new MutableLiveData<>();
 
     public SignUpViewModel() {
         this.accountRepo = new AccountRepo();
@@ -33,8 +34,9 @@ public class SignUpViewModel extends ViewModel {
         account.setDate(Birthdate.getValue());
         Log.d(TAG,account.toString());
         this.accountRepo.registerAccount(account);
-
-
     }
 
+    public MutableLiveData<Boolean> getSignUpResponse(){
+        return accountRepo.getmSignUpOk();
+    }
 }
