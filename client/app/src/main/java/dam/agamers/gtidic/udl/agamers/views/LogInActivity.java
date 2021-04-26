@@ -3,12 +3,14 @@ package dam.agamers.gtidic.udl.agamers.views;
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -29,14 +31,6 @@ public class LogInActivity extends CommonActivity {
     private LogInViewModel logInViewModel;
     private TextInputLayout comp_email_field;
     private TextInputLayout comp_password_field;
-    
-    private Button comp_login_button;
-
-    private String response_message;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +51,39 @@ public class LogInActivity extends CommonActivity {
             }
             else {
                 mostrar_resposta(getCurrentFocus(), getString(R.string.login_succes));
+                goTo(FirstActivity.class);
             }
         });
 
     }
 
+
     public void open_SingUp(View view){
         goTo(SignUpActivity.class);
+    }
+
+    public void open_Recover(View view){
+        goTo(RecoverPasswordActivity_1.class);
+    }
+
+    public void onBackPressed(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle(R.string.alerts_exit_app_title);
+        alertDialogBuilder.setMessage(R.string.alerts_exit_app_message);
+        alertDialogBuilder.setNegativeButton(R.string.option_cancell, (dialog, which) -> {
+
+        });
+        alertDialogBuilder.setPositiveButton(R.string.option_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishAffinity();
+            }
+        });
+
+
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     public void login(View view){

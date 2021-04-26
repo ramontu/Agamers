@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Agamers</string>
+    <string name="edit_account_guardar_i_sortir">Guardar i sortir</string>
+    <string name="edit_account_sortir_sense_guardar">Sortir sense guardar</string>
+    <string name="edit_account_message_data_not_saved">La informació que has editat no es guardarà</string>
+    <string name="option_cancell">Enrere</string>
+    <string name="option_ok">Ok</string>
+    <string name="genere_male">Home</string>
+    <string name="genere_female">Dona</string>
+    <string name="genere_no_binari">No binari</string>
+    <string name="genere_sense_especificar">Sense especificar</string>
+    <string name="user_info_tancar_sessio">Tancar sessió</string>
+    <string name="delete_account_ok">El compte s\'ha eliminat correctament</string>
+    <string name="delete_account_error">Error: Hi ha agut algun error, torna-ho a intentar més tard</string>
+</resources>

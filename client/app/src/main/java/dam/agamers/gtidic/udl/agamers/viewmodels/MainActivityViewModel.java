@@ -11,5 +11,4 @@ public class MainActivityViewModel {
         String token = PreferencesProvider.providePreferences().getString("token", "");
         return !token.equals("");
     }
-
 }
