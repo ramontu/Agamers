@@ -119,5 +119,6 @@
     <string name="update_account_error">Sembla que hi ha hagut algun error i no s\'ha pogut modificar la informació</string>
     <string name="signup_ok">S\'ha registrat correctament!</string>
     <string name="signup_error">Hi ha hagut algun error. Potser aquest usuari ja existeix</string>
+    <string name="userinfo_titulopantalla">Perfil usuari</string>
 
 </resources>

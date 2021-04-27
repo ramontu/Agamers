@@ -24,16 +24,12 @@ public class UserInfoActivity extends CommonActivity {
         getSupportActionBar().hide();
     }
 
-
-
-
     public void open_edit_info(View view){
         goTo(EditAccountActivity.class);
     }
 
     public void close_session(View view){
         PreferencesProvider.providePreferences().edit().remove("token").apply();
-        //TODO eliminar tocken de la base de dades
         goTo(LogInActivity.class);
         finishAffinity();
     }
@@ -41,7 +37,7 @@ public class UserInfoActivity extends CommonActivity {
     public void delete_account (View view){
         userInfoViewModel.delete_account();
         String response = getString(userInfoViewModel.getmResponseDeleteAccount().getValue());
-        crear_snackbar(response,view); //TODO no falla aixo sino que la conexió amb la base de dades
+        crear_snackbar(response,view);
         if (!response.contains("Error:")){
             goTo(LogInActivity.class);
             finishAffinity();
@@ -51,7 +47,5 @@ public class UserInfoActivity extends CommonActivity {
     public void crear_snackbar(String in, View view){
         Snackbar snackbar = Snackbar.make(view,in,10000);
         snackbar.show();
-
-
     }
 }
