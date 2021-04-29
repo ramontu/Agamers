@@ -94,7 +94,7 @@ public class AccountRepo {
     }
 
     public MutableLiveData<Boolean> getmSignUpOk(){
-        return getmUpdateOk();
+        return mSignUpOk;
     }
 
 
