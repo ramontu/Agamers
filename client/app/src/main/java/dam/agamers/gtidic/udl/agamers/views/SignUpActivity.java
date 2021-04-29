@@ -209,6 +209,7 @@ public class SignUpActivity extends CommonActivity {
     public void missatge_registrat(){
         signUpViewModel.getSignUpResponse().observe(this, aBoolean -> {
             Toast toast;
+            Log.d("SignUpActivity", "El valor de aBoolean és: " + aBoolean);
             if(aBoolean){
                 toast = Toast.makeText(getBaseContext(),R.string.signup_ok,Toast.LENGTH_LONG);
                 toast.show();
