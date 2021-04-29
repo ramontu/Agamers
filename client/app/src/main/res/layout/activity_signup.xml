@@ -179,18 +179,17 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="92dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="81dp"
+        android:layout_height="69dp"
+        android:contentDescription="@string/lodo_agamers"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.899"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.906"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/logo_sense_lletres"
-        android:contentDescription="@string/lodo_agamers"  />
+        app:layout_constraintVertical_bias="0.666"
+        app:srcCompat="@drawable/logo_sense_lletres" />
 
     <TextView
         android:id="@+id/textView2"
@@ -200,7 +199,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="144dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="@font/roboto_mono_bold"
         android:text="@string/registre_titol_pantalla"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"

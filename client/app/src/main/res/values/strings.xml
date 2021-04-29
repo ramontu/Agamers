@@ -78,7 +78,7 @@
     <string name="fondo_agamers">Fondo Agamers</string>
     <string name="lodo_agamers">Logo Agamers</string>
     <string name="singup_username">Username*</string>
-    <string name="data">Data de neixament (dd/mm/yyyy)</string>
+    <string name="data">Data de neixament (dd/mm/yyyy)* </string>
     <string name="edit_account_guardar_i_sortir">Guardar i sortir</string>
     <string name="edit_account_sortir_sense_guardar">Sortir sense guardar</string>
 
