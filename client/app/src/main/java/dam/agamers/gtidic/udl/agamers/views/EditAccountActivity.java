@@ -80,7 +80,7 @@ public class EditAccountActivity extends CommonActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
         getSupportActionBar().hide();
-        editAccountViewModel = new EditAccountViewModel();
+        editAccountViewModel = new EditAccountViewModel(this);
 
 
         _username = findViewById(R.id.edit_info_username);
@@ -135,7 +135,7 @@ public class EditAccountActivity extends CommonActivity {
 
 
     private void initValues(){
-
+        /*
         editAccountViewModel.getmAccount().observe(this, new Observer<Account>() {
             @Override
             public void onChanged(Account account) {
@@ -152,6 +152,8 @@ public class EditAccountActivity extends CommonActivity {
                 setSpinnerGenere(geE);
             }
         });
+
+         */
 
 
     }
@@ -261,6 +263,7 @@ public class EditAccountActivity extends CommonActivity {
     }
 
 
+    /*
     public void save_and_exit(View view){
         GenereEnum g = GenereEnum.N;
         switch (spinner.getSelectedItemPosition()){
@@ -279,6 +282,8 @@ public class EditAccountActivity extends CommonActivity {
         }
         editAccountViewModel.update_info_to_db(g);
     }
+
+     */
 
     private void show_message_save_and_exit(){
         editAccountViewModel.responseUpdate.observe(this, aBoolean -> {

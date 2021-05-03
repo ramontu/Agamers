@@ -39,10 +39,18 @@ public class EditAccountViewModel {
     public MutableLiveData<Boolean> responseUpdate;
     public MutableLiveData<Account> m_Account;
 
+    public MutableLiveData<String> m_username;
+    public MutableLiveData<String> m_password;
+    public MutableLiveData<String> m_email;
+    public MutableLiveData<String> m_name;
+    public MutableLiveData<String> m_surname;
+    public MutableLiveData<String> m_birthday;
+    public MutableLiveData<String> m_shortDescription;
+    public MutableLiveData<String> m_longDescription;
+
     private EditAccountActivity parent;
     private Spinner spinner;
 
-    private 
 
 
     public EditAccountViewModel(EditAccountActivity p){
@@ -50,6 +58,7 @@ public class EditAccountViewModel {
         accountRepo.download_user_info();
         responseUpdate = new MutableLiveData<>();
         m_Account = new MutableLiveData<>();
+
         parent = p;
         spinner = p.findViewById(R.id.edit_info_genere_spinner);
     }

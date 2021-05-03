@@ -314,7 +314,7 @@ public class AccountRepo {
         return mUpdateOk;
     }
 
-    public boolean deleteToken() {
+    public void deleteToken() {
         MutableLiveData<Boolean> everythingOK = new MutableLiveData<>();
         accountService.deleteUserToken().enqueue(new Callback<ResponseBody>() {
             @Override
@@ -336,7 +336,7 @@ public class AccountRepo {
                 t.printStackTrace();
             }
         });
-        return everythingOK.getValue();
+        //return everythingOK.getValue();
     }
 }
 

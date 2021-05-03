@@ -67,7 +67,7 @@ class ResourceCreateUserToken(DAMCoreResource):
 @falcon.before(requires_auth)
 class ResourceDeleteUserToken(DAMCoreResource):
     @jsonschema.validate(SchemaUserToken)
-    def on_post(self, req, resp, *args, **kwargs):
+    def on_delete(self, req, resp, *args, **kwargs):
         super(ResourceDeleteUserToken, self).on_post(req, resp, *args, **kwargs)
 
         current_user = req.context["auth_user"]
