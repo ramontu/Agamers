@@ -233,7 +233,7 @@ class User(SQLAlchemyBase, JSONModel):
     # points = Column(Integer, default=int(0), nullable=False) #OK TODO mirar si es pot inserir sense posar res
     # level = Column(Enum(UserLevelEnum), nullable=False) #OK TODO mirar si es pot inserir sense posar res
     password = Column(UnicodeText, nullable=False)
-    email = Column(Unicode(255), nullable=False)
+    email = Column(Unicode(255), nullable=False, unique=True)
     tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")

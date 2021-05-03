@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -64,7 +64,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_info_username_edit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.m_Account.username}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +100,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.m_Account.email}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,7 +119,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/full_name_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.m_Account.name}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,7 +138,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/surname_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.m_Account.surname}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,7 +157,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/birthday_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.m_Account.birthday}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,7 +199,8 @@
                         android:id="@+id/short_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"/>
+                        android:inputType="textMultiLine"
+                        android:text="@={viewModel.m_Account.short_description}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -215,7 +221,8 @@
                         android:id="@+id/long_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        android:text="@={viewModel.m_Account.long_description}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -228,7 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/edit_account_guardar_i_sortir"
-                    android:onClick="save_and_exit"/>
+                    android:onClick="@{() -> viewModel.save_and_exit()}"/>
 
                 <Button
                     android:id="@+id/button4"

@@ -107,7 +107,6 @@ public class EditAccountActivity extends CommonActivity {
 
     private void setSpinnerGenere(GenereEnum genere){
         spinner = findViewById(R.id.edit_info_genere_spinner);
-
         List<String> llista = new ArrayList<>();
         for( int i = 0; i < GenereEnum.values().length; i++){
             llista.add(GenereEnum.values()[i].toString(this));
@@ -263,27 +262,22 @@ public class EditAccountActivity extends CommonActivity {
 
 
     public void save_and_exit(View view){
-
-        account_total.setShort_description(_short_description.getEditText().getText().toString());
-        account_total.setLong_description(_long_description.getEditText().getText().toString());
-        account_total.setEmail(_email.getEditText().getText().toString());
-        account_total.setName(_name.getEditText().getText().toString());
-        account_total.setSurname(_surname.getEditText().getText().toString());
+        GenereEnum g = GenereEnum.N;
         switch (spinner.getSelectedItemPosition()){
             case 0:
-                account_total.setGenere(GenereEnum.M);
+                g=GenereEnum.M;
                 break;
             case 1:
-                account_total.setGenere(GenereEnum.F);
+                g=GenereEnum.F;
                 break;
             case 2:
-                account_total.setGenere(GenereEnum.NB);
+                g=GenereEnum.NB;
                 break;
             case 3:
-                account_total.setGenere(GenereEnum.N);
+                g=GenereEnum.N;
                 break;
         }
-        editAccountViewModel.update_info(account_total);
+        editAccountViewModel.update_info_to_db(g);
     }
 
     private void show_message_save_and_exit(){

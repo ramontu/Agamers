@@ -1,5 +1,6 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
+import dam.agamers.gtidic.udl.agamers.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.R;
 
 import dam.agamers.gtidic.udl.agamers.databinding.ActivitySignupBinding;
@@ -206,17 +208,17 @@ public class SignUpActivity extends CommonActivity {
 
 
 
+    @SuppressLint("ResourceType")
     public void missatge_registrat(){
         signUpViewModel.getSignUpResponse().observe(this, aBoolean -> {
-            Toast toast;
+
+            Log.d("SignUpActivity", "El valor de aBoolean és: " + aBoolean);
             if(aBoolean){
-                toast = Toast.makeText(getBaseContext(),R.string.signup_ok,Toast.LENGTH_LONG);
-                toast.show();
+                showInfoUser(getCurrentFocus(), getText(R.string.signup_ok).toString());
                 finish();
             }
             else {
-                toast = Toast.makeText(getBaseContext(),R.string.signup_error,Toast.LENGTH_LONG);
-                toast.show();
+                showInfoUser(getCurrentFocus(), getText(R.string.signup_error).toString());
             }
         });
     }

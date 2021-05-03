@@ -94,7 +94,7 @@ public class AccountRepo {
     }
 
     public MutableLiveData<Boolean> getmSignUpOk(){
-        return getmUpdateOk();
+        return mSignUpOk;
     }
 
 
@@ -312,6 +312,31 @@ public class AccountRepo {
 
     public MutableLiveData<Boolean> getmUpdateOk(){
         return mUpdateOk;
+    }
+
+    public boolean deleteToken() {
+        MutableLiveData<Boolean> everythingOK = new MutableLiveData<>();
+        accountService.deleteUserToken().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.code() == 200) {
+                    everythingOK.setValue(true);
+                    Log.d(TAG, "deleteToken OK");
+                }
+                else {
+                    everythingOK.setValue(false);
+                    Log.d(TAG, "deleteToken WRONG"+response.code()+response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                everythingOK.setValue(false);
+                Log.d(TAG, "deleteToken onFailure"+t.getMessage());
+                t.printStackTrace();
+            }
+        });
+        return everythingOK.getValue();
     }
 }
 
