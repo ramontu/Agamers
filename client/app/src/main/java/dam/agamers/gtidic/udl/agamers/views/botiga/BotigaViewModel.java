@@ -10,7 +10,7 @@ public class BotigaViewModel extends ViewModel {
 
     public BotigaViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is inici fragment");
+        mText.setValue("This is botiga fragment");
     }
 
     public LiveData<String> getText() {

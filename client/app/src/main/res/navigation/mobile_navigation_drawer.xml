@@ -34,27 +34,28 @@
         tools:layout="@layout/fragment_jocs" />
     <fragment
         android:id="@+id/nav_botiga"
-        android:name="dam.agamers.gtidic.udl."
+        android:name="dam.agamers.gtidic.udl.agamers.views.botiga.BotigaFragment"
         android:label="@string/menu_botiga"
         tools:layout="@layout/fragment_botiga" />
     <fragment
         android:id="@+id/nav_tornejos"
-        android:name="dam.agamers.gtidic.udl."
+        android:name="dam.agamers.gtidic.udl.agamers.views.tornejos.TornejosFragment"
         android:label="@string/menu_tornejos"
         tools:layout="@layout/fragment_tornejos" />
     <fragment
         android:id="@+id/nav_compte"
-        android:name="dam.agamers.gtidic.udl."
+        android:name="dam.agamers.gtidic.udl.agamers.views.compte.CompteFragment"
         android:label="@string/menu_el_meu_compte"
         tools:layout="@layout/fragment_compte" />
     <fragment
         android:id="@+id/nav_configuracio"
-        android:name="dam.agamers.gtidic.udl."
+        android:name="dam.agamers.gtidic.udl.agamers.views.configuracio.ConfiguracioFragment"
         android:label="@string/menu_configuracio"
         tools:layout="@layout/fragment_configuracio" />
     <fragment
         android:id="@+id/nav_tancarsessio"
-        android:name="dam.agamers.gtidic.udl."
+        android:name="dam.agamers.gtidic.udl.agamers.views.tancarsessio.TancarsessioFragment"
         android:label="@string/menu_tancarsessio"
         tools:layout="@layout/fragment_tancarsessio" />
 
+</navigation>

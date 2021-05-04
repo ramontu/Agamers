@@ -10,7 +10,7 @@ public class FavoritsViewModel extends ViewModel {
 
     public FavoritsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is forum fragment");
+        mText.setValue("This is favorits fragment");
     }
 
     public LiveData<String> getText() {
