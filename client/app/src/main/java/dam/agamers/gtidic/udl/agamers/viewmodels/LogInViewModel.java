@@ -2,16 +2,12 @@ package dam.agamers.gtidic.udl.agamers.viewmodels;
 
 import android.util.Base64;
 
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import java.nio.charset.StandardCharsets;
 
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
-import dam.agamers.gtidic.udl.agamers.views.LogInActivity;
 
 public class LogInViewModel {
 

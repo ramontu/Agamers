@@ -1,16 +1,9 @@
 package dam.agamers.gtidic.udl.agamers.models;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
-
 import dam.agamers.gtidic.udl.agamers.models.enums.AccountTypeEnum;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.utils.Utils;
-import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
-
-
-
 
 public class Account {
 
@@ -41,132 +34,72 @@ public class Account {
     private String photo; //TODO modificar amb el de veritat
     @SerializedName("recovery_code")
     private String recovery_code;
+    @SerializedName("location")
+    private String location;
+    @SerializedName("common_games")
+    private String common_games;
+    @SerializedName("level")
+    private String level;
 
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-    public String getUsername() {
-        return username;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public String getSurname() { return surname; }
+    public void setSurname(String surname) { this.surname = surname; }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
+    public String getPassword() { return password; }
     public void setPassword(String password) {
         String salt = "16";
         this.password = Utils.encode(password,salt,29000);
     }
 
-    public String getDate() {
-        return birthday;
-    }
+    public String getDate() { return birthday; }
+    public void setDate(String date) { this.birthday = date; }
 
-    public void setDate(String date) {
-        this.birthday = date;
-    }
+    public String getCreated_at() { return created_at; }
+    public void setCreated_at(String created_at) { this.created_at = created_at; }
 
-    public String getCreated_at() {
-        return created_at;
-    }
+    public AccountTypeEnum getAccount_type() { return account_type; }
+    public void setAccount_type(AccountTypeEnum account_type) { this.account_type = account_type; }
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
+    public String getShort_description() { return short_description; }
+    public void setShort_description(String short_description) { this.short_description = short_description; }
 
-    public AccountTypeEnum getAccount_type() {
-        return account_type;
-    }
+    public String getLong_description() { return long_description; }
+    public void setLong_description(String long_description) { this.long_description = long_description; }
 
-    public void setAccount_type(AccountTypeEnum account_type) {
-        this.account_type = account_type;
-    }
+    public String getBirthday() { return birthday; }
+    public void setBirthday(String birthday) { this.birthday = birthday; }
 
-    public String getShort_description() {
-        return short_description;
-    }
+    public GenereEnum getGenere() { return genere; }
+    public void setGenere(GenereEnum genere) { this.genere = genere; }
 
-    public void setShort_description(String short_description) {
-        this.short_description = short_description;
-    }
+    public String getPhoto() { return photo; }
+    public void setPhoto(String photo) { this.photo = photo; }
 
-    public String getLong_description() {
-        return long_description;
-    }
+    public String getRecovery_code() { return recovery_code; }
+    public void setRecovery_code(String recovery_code) { this.recovery_code = recovery_code; }
 
-    public void setLong_description(String long_description) {
-        this.long_description = long_description;
-    }
+    public String getCommon_games() { return common_games; }
+    public void setCommon_games(String common_games) { this.common_games = common_games; }
 
-    public String getBirthday() {
-        return birthday;
-    }
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
+    public String getLevel() { return level; }
+    public void setLevel(String level) { this.level = level; }
 
-    public GenereEnum getGenere() {
-        return genere;
-    }
-
-    public void setGenere(GenereEnum genere) {
-        this.genere = genere;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getRecovery_code() {
-        return recovery_code;
-    }
-
-    public void setRecovery_code(String recovery_code) {
-        this.recovery_code = recovery_code;
-    }
 
     @Override
     public String toString(){
         return this.name + " " + this.surname  + " " + this.username  + " Birthday:" + this.birthday  + " " + this.email + " " + this.password;
     }
-
-
-
-
-
-
-
-
 
 }

@@ -8,6 +8,7 @@ import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.viewmodels.MainActivityViewModel;
+import dam.agamers.gtidic.udl.agamers.views.activitatsuser.LogInActivity;
 
 public class MainActivity extends CommonActivity {
 

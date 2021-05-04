@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers.views;
+package dam.agamers.gtidic.udl.agamers.views.activitatsuser;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 
@@ -7,23 +7,17 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.Objects;
-
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.viewmodels.LogInViewModel;
+import dam.agamers.gtidic.udl.agamers.views.FirstActivity;
+import dam.agamers.gtidic.udl.agamers.views.recovery.RecoverPasswordActivity_1;
 
 public class LogInActivity extends CommonActivity {
 

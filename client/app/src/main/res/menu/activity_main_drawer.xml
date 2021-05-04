@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inici"
+            android:icon="@drawable/home"
+            android:title="@string/menu_inici" />
+        <item
+            android:id="@+id/nav_notificacions"
+            android:icon="@drawable/notification"
+            android:title="@string/menu_notificacions" />
+        <item
+            android:id="@+id/nav_peticions"
+            android:icon="@drawable/peticions_amistat"
+            android:title="@string/menu_peticions" />
+        <item
+            android:id="@+id/nav_favorits"
+            android:icon="@drawable/cor"
+            android:title="@string/menu_favortis" />
+        <item
+            android:id="@+id/nav_jocs"
+            android:icon="@drawable/joc_icon"
+            android:title="@string/menu_jocs" />
+        <item
+            android:id="@+id/nav_botiga"
+            android:icon="@drawable/shop_icon"
+            android:title="@string/menu_botiga" />
+        <item
+            android:id="@+id/nav_tornejos"
+            android:icon="@drawable/tournaments_icon"
+            android:title="@string/menu_tornejos" />
+        <item
+            android:id="@+id/nav_compte"
+            android:icon="@drawable/question"
+            android:title="@string/menu_el_meu_compte" />
+        <item
+            android:id="@+id/nav_configuracio"
+            android:icon="@drawable/configuration"
+            android:title="@string/menu_configuracio" />
+        <item
+            android:id="@+id/nav_tancarsessio"
+            android:icon="@drawable/logout"
+            android:title="@string/menu_tancarsessio" />
+    </group>
+</menu>

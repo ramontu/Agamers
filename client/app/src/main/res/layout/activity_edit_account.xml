@@ -14,7 +14,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".views.EditAccountActivity">
+    tools:context=".views.activitatsuser.EditAccountActivity">
 
     <ScrollView
         android:layout_width="match_parent"

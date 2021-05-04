@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers.views;
+package dam.agamers.gtidic.udl.agamers.views.activitatsuser;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;

@@ -1,8 +1,5 @@
-package dam.agamers.gtidic.udl.agamers.views;
+package dam.agamers.gtidic.udl.agamers.views.activitatsuser;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 

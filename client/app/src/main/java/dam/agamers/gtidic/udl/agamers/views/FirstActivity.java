@@ -12,6 +12,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
+import dam.agamers.gtidic.udl.agamers.views.activitatsuser.LogInActivity;
+import dam.agamers.gtidic.udl.agamers.views.activitatsuser.UserInfoActivity;
 
 public class FirstActivity extends CommonActivity {
 

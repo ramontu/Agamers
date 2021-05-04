@@ -1,9 +1,5 @@
-package dam.agamers.gtidic.udl.agamers.views;
+package dam.agamers.gtidic.udl.agamers.views.recovery;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-
-import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,16 +9,14 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.Objects;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
+import dam.agamers.gtidic.udl.agamers.views.activitatsuser.LogInActivity;
 
 public class RecoverPasswordActivity_2 extends CommonActivity {
 

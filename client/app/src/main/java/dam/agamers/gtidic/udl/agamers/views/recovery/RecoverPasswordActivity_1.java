@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers.views;
+package dam.agamers.gtidic.udl.agamers.views.recovery;
 
 import android.os.Bundle;
 import android.text.Editable;
