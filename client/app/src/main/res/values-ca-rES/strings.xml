@@ -14,4 +14,9 @@
     <string name="delete_account_ok">El compte s\'ha eliminat correctament</string>
     <string name="delete_account_error">Error: Hi ha agut algun error, torna-ho a intentar més tard</string>
     <string name="userinfo_titulopantalla">Perfil usuari</string>
+    <string name="titol_xats">Chats</string>
+    <string name="titol_match">Match</string>
+    <string name="titol_jocs">Jocs</string>
+    <string name="titol_forums">Forums</string>
+    <string name="titol_ofertes">Ofertes</string>
 </resources>

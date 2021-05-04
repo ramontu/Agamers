@@ -121,4 +121,11 @@
     <string name="signup_error">Hi ha hagut algun error. Potser aquest usuari ja existeix</string>
     <string name="userinfo_titulopantalla">Perfil usuari</string>
 
+
+    //SAM
+    <string name="titol_xats">Chats</string>
+    <string name="titol_match">Match</string>
+    <string name="titol_jocs">Jocs</string>
+    <string name="titol_forums">Forums</string>
+    <string name="titol_ofertes">Ofertes</string>
 </resources>

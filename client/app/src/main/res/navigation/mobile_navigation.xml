@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    android:label="@string/titol_match"
+    app:startDestination="@+id/navegacio_match">
+
+    <fragment
+        android:id="@+id/navegacio_forums"
+        android:name="dam.agamers.gtidic.udl.agamers.views.forums.ForumsFragment"
+        android:label="@string/titol_forums"
+        tools:layout="@layout/fragment_forums" />
+    <fragment
+        android:id="@+id/navegacio_xats"
+        android:name="dam.agamers.gtidic.udl.agamers.views.xats.XatsFragment"
+        android:label="@string/titol_xats"
+        tools:layout="@layout/fragment_xats" />
+
+    <fragment
+        android:id="@+id/navegacio_match"
+        android:name="dam.agamers.gtidic.udl.agamers.views.match.MatchFragment"
+        android:label="@string/titol_match"
+        tools:layout="@layout/fragment_match" />
+
+</navigation>

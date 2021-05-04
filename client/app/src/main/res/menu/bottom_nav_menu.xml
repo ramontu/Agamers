@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navegacio_xats"
+        android:icon="@drawable/chat_icon"
+        android:title="@string/titol_xats" />
+    <item
+        android:id="@+id/navegacio_match"
+        android:icon="@drawable/ic_meet"
+        android:title="@string/titol_match" />
+    <item
+        android:id="@+id/navegacio_forums"
+        android:icon="@drawable/list_icon"
+        android:title="@string/titol_forums" />
+
+</menu>
