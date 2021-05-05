@@ -19,7 +19,8 @@
         <activity android:name=".views.recovery.RecoverPasswordActivity_1" />
         <activity android:name=".views.activitatsuser.EditAccountActivity" />
         <activity android:name=".views.activitatsuser.UserInfoActivity" />
-        <activity android:name=".views.FirstActivity" />
+        <activity android:name=".views.FirstActivity"
+                  android:theme="@style/Theme.Agamers.NoActionBar" />
         <activity android:name=".CommonActivity" />
         <activity android:name=".views.activitatsuser.LogInActivity"/>
         <activity

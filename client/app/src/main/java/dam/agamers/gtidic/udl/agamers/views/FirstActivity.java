@@ -31,37 +31,30 @@ public class FirstActivity extends CommonActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navegacio_xats, R.id.navegacio_match, R.id.navegacio_forums)
-                .build();
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar); //això és perquè utilitzo la meva toolbar costumitzada
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        //Navegació inferior "bottom navigation"
+        BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navegacio_xats, R.id.navegacio_match, R.id.navegacio_forums, R.id.nav_inici, R.id.nav_notificacions, R.id.nav_peticions, R.id.nav_favorits, R.id.nav_jocs, R.id.nav_botiga, R.id.nav_tornejos, R.id.nav_compte, R.id.nav_configuracio, R.id.nav_tancarsessio)
+                .build();
+        NavController bottomNavigationController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, bottomNavigationController, appBarConfiguration);
+        NavigationUI.setupWithNavController(bottomNavView, bottomNavigationController);
 
-        NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(),R.layout.nav_header_main, navigationView, true);
+        //Navegació lateral "drawer navigation"
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView leftNavView = findViewById(R.id.left_nav);
+        NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(),R.layout.nav_header_main, leftNavView, true);
         navHeaderMainBinding.setAccount(new Account());
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_inici, R.id.nav_notificacions, R.id.nav_peticions, R.id.nav_favorits, R.id.nav_jocs, R.id.nav_botiga, R.id.nav_tornejos, R.id.nav_compte, R.id.nav_configuracio, R.id.nav_tancarsessio)
+                R.id.navegacio_xats, R.id.navegacio_match, R.id.navegacio_forums, R.id.nav_inici, R.id.nav_notificacions, R.id.nav_peticions, R.id.nav_favorits, R.id.nav_jocs, R.id.nav_botiga, R.id.nav_tornejos, R.id.nav_compte, R.id.nav_configuracio, R.id.nav_tancarsessio)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+        NavController leftNavigationController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, leftNavigationController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(leftNavView, leftNavigationController);
     }
 
     public void onBackPressed(){
