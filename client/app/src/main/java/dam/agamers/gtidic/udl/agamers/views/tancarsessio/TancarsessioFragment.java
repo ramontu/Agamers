@@ -31,5 +31,7 @@ public class TancarsessioFragment extends Fragment {
             }
         });
         return root;
+
+        //inflar un dialeg de confirmació de tancar sessió
     }
 }

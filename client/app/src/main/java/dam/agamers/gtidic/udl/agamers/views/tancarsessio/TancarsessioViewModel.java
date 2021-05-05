@@ -11,6 +11,9 @@ public class TancarsessioViewModel extends ViewModel {
     public TancarsessioViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is tancar sessió fragment");
+
+
+        //funcionalitat de tancar sessió
     }
 
     public LiveData<String> getText() {
