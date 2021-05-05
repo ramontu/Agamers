@@ -2,6 +2,7 @@ package dam.agamers.gtidic.udl.agamers.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
 import java.util.Date;
 
 import dam.agamers.gtidic.udl.agamers.models.enums.AccountTypeEnum;
@@ -42,6 +43,17 @@ public class Account {
     @SerializedName("recovery_code")
     private String recovery_code;
 
+
+
+    private File imatge;
+
+    public File getImatge() {
+        return imatge;
+    }
+
+    public void setImatge(File imatge) {
+        this.imatge = imatge;
+    }
 
     public String getEmail() {
         return email;

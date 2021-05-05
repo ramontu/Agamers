@@ -59,13 +59,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="username">
+                    android:hint="@string/account_username">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_info_username_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModel.m_username}"/>
+                        android:text="@{viewModel.m_Account.username}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,13 +77,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="password">
+                    android:hint="@string/account_password">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModel.m_password}"/>
+                        android:text="@string/encrypted_password"/> <!--viewModel.m_Account.password-->
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,13 +96,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="email">
+                    android:hint="@string/account_email">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModel.m_email}"/>
+                        android:text="@={viewModel.m_Account.email}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,13 +115,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Real_name">
+                    android:hint="@string/account_name">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/full_name_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModel.m_name}"/>
+                        android:text="@={viewModel.m_Account.name}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,13 +134,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Real_surname">
+                    android:hint="@string/account_surname">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/surname_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModel.m_surname}"/>
+                        android:text="@={viewModel.m_Account.surname}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,13 +153,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="birthday">
+                    android:hint="@string/account_birthday">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/birthday_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{viewModel.m_birthday}"/>
+                        android:text="@{viewModel.m_Account.birthday}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,13 +176,12 @@
                         android:id="@+id/textView5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Gènere:" />
+                        android:text="@string/account_genere" />
 
                     <Spinner
                         android:id="@+id/edit_info_genere_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         />
 
                 </LinearLayout>
@@ -192,7 +191,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="short_descripion"
+                    android:hint="@string/account_short_description"
                     app:counterEnabled="true"
                     app:counterMaxLength="100">
 
@@ -214,7 +213,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="long_descripion"
+                    android:hint="@string/account_long_description"
                     app:counterEnabled="true"
                     app:counterMaxLength="2000">
 

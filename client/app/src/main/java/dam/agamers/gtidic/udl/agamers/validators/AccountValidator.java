@@ -19,7 +19,7 @@ public class AccountValidator {
      * TODO falta fer la comprovació amb el client per a veure si ja existeix l'usuari
      */
     public static boolean check_usernameValid(String username){
-        return patternIsValid(username, "^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){1,20}[a-zA-Z0-9]$");
+        return patternIsValid(username, "^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){7,20}[a-zA-Z0-9]$");
 
     }
 

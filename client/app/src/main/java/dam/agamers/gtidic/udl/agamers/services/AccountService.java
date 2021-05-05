@@ -2,15 +2,19 @@ package dam.agamers.gtidic.udl.agamers.services;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
 
+import dam.agamers.gtidic.udl.agamers.models.Token;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface AccountService {
 
@@ -23,8 +27,8 @@ public interface AccountService {
     @POST("/account/create_token")
     Call<ResponseBody> createUserToken(); //FUNCIONA
 
-    @DELETE("/account/delete_token")
-    Call<ResponseBody> deleteUserToken(); //TODO COMPROVAR
+    @HTTP(method = "DELETE", path = "/account/delete_token", hasBody = true)
+    Call<ResponseBody> deleteUserToken(@Body Token token); //TODO FALTA QUE PASSI PEL BODY TOKEN:XXXXXXXXXXX
 
     @DELETE("/account/delete_account")
     Call<ResponseBody> delete_account(); //TODO SEMBLA QUE FUNCIONA

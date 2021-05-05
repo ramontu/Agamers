@@ -1,7 +1,6 @@
 package dam.agamers.gtidic.udl.agamers.repositories;
 
 
-import android.nfc.Tag;
 import android.util.Log;
 
 
@@ -17,6 +16,7 @@ import java.io.IOException;
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
+import dam.agamers.gtidic.udl.agamers.models.Token;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.services.AccountService;
 import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
@@ -65,7 +65,6 @@ public class AccountRepo {
     }
 
     public void registerAccount(Account account){
-
         accountService.register(account).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -147,7 +146,7 @@ public class AccountRepo {
         return mResponseLogin;
     }
 
-    public void download_user_info(){
+    private void download_user_info(){
 
         accountService.download_user_info().enqueue(new Callback<Account>() {
             @Override
@@ -166,6 +165,7 @@ public class AccountRepo {
     }
 
     public MutableLiveData<Account> getmAccountInfo(){
+        download_user_info();
         return mAccountInfo;
     }
 
@@ -316,9 +316,10 @@ public class AccountRepo {
 
     public void deleteToken() {
         MutableLiveData<Boolean> everythingOK = new MutableLiveData<>();
-        accountService.deleteUserToken().enqueue(new Callback<ResponseBody>() {
+        accountService.deleteUserToken(new Token(PreferencesProvider.providePreferences().getString("token",""))).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
                 if (response.code() == 200) {
                     everythingOK.setValue(true);
                     Log.d(TAG, "deleteToken OK");
@@ -338,6 +339,9 @@ public class AccountRepo {
         });
         //return everythingOK.getValue();
     }
+
+
+    public void
 }
 
 

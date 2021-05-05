@@ -1,8 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.services;
 
-import android.util.Log;
-
 import dam.agamers.gtidic.udl.agamers.models.Account;
+import dam.agamers.gtidic.udl.agamers.models.Token;
 import dam.agamers.gtidic.udl.agamers.network.RetrofitClientInstance;
 
 import okhttp3.MultipartBody;
@@ -33,8 +32,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Call<ResponseBody> deleteUserToken() {
-        return refrotit.create(AccountService.class).deleteUserToken();
+    public Call<ResponseBody> deleteUserToken(Token token) {
+        return refrotit.create(AccountService.class).deleteUserToken(token);
     }
 
     @Override

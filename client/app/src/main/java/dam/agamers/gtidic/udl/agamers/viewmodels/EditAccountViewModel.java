@@ -22,6 +22,7 @@ import androidx.lifecycle.Observer;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.Objects;
 
@@ -39,28 +40,10 @@ public class EditAccountViewModel {
     public MutableLiveData<Boolean> responseUpdate;
     public MutableLiveData<Account> m_Account;
 
-    public MutableLiveData<String> m_username;
-    public MutableLiveData<String> m_password;
-    public MutableLiveData<String> m_email;
-    public MutableLiveData<String> m_name;
-    public MutableLiveData<String> m_surname;
-    public MutableLiveData<String> m_birthday;
-    public MutableLiveData<String> m_shortDescription;
-    public MutableLiveData<String> m_longDescription;
-
-    private EditAccountActivity parent;
-    private Spinner spinner;
-
-
-
-    public EditAccountViewModel(EditAccountActivity p){
+    public EditAccountViewModel(){
         accountRepo = new AccountRepo();
-        accountRepo.download_user_info();
-        responseUpdate = new MutableLiveData<>();
         m_Account = new MutableLiveData<>();
-
-        parent = p;
-        spinner = p.findViewById(R.id.edit_info_genere_spinner);
+        m_Account = accountRepo.getmAccountInfo();
     }
 
     public void uploadAccountImage(File imageFile){
@@ -70,8 +53,9 @@ public class EditAccountViewModel {
 
     public void save_and_exit(){
         Log.d(TAG, "save_and_exit");
-        Account account =m_Account.getValue();
+        //Account account =m_Account.getValue();
         GenereEnum g = GenereEnum.N;
+        /*
         switch (spinner.getSelectedItemPosition()){
             case 0:
                 g=GenereEnum.M;
@@ -86,13 +70,22 @@ public class EditAccountViewModel {
                 g=GenereEnum.N;
                 break;
         }
+
+         */
+        /*
         account.setGenere(g);
         accountRepo.updateAccount(account);
+
+         */
         //responseUpdate.setValue(accountRepo.getmUpdateOk().getValue());
     }
 
     public void update_info_from_db(){
         Log.d(TAG, "Update info from db");
-        m_Account.setValue(accountRepo.getmAccountInfo().getValue());
+        //m_Account.setValue(accountRepo.getmAccountInfo().getValue());
+    }
+
+    public MutableLiveData<Account> getm_Account(){
+        return accountRepo.getmAccountInfo();
     }
 }
