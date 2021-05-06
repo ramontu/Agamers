@@ -1,6 +1,10 @@
 package dam.agamers.gtidic.udl.agamers.models;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.io.File;
+import java.util.Date;
+
 import dam.agamers.gtidic.udl.agamers.models.enums.AccountTypeEnum;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.utils.Utils;
@@ -42,8 +46,20 @@ public class Account {
     private String level;
 
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+
+    private File imatge;
+
+    public File getImatge() {
+        return imatge;
+    }
+
+    public void setImatge(File imatge) {
+        this.imatge = imatge;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }

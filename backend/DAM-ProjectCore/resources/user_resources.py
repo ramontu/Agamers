@@ -8,6 +8,7 @@ from falcon.media.validators import jsonschema
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
+from resources import utils
 import messages
 from db.models import User, GenereEnum, AccountTypeEnum
 from hooks import requires_auth
@@ -44,7 +45,7 @@ class ResourceRegisterUser(DAMCoreResource):
             aux_user.password = req.media["password"]
             aux_user.email = req.media["email"]
             aux_user.birthday = req.media["birthday"]
-            
+
             self.db_session.add(aux_user)
 
             try:
@@ -57,3 +58,16 @@ class ResourceRegisterUser(DAMCoreResource):
 
         resp.status = falcon.HTTP_200
 
+
+# TODO comprovar que funciona
+@falcon.before(requires_auth)
+class DownloadUserImage(DAMCoreResource):
+    def on_get(self, req, resp, *args, **kwargs):
+        super(DownloadUserImage, self).on_get(req, resp, *args, **kwargs)
+        # Get the user from the token
+        current_user = req.context["auth_user"]
+
+        # Run the common part for reading
+        file = utils.get_static_media_file(current_user.photo_path)
+        resp.media = file
+        resp.status = falcon.HTTP_200

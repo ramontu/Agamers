@@ -1,6 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.viewmodels;
 
 import android.util.Base64;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -11,15 +12,22 @@ import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
 public class LogInViewModel {
 
-    AccountRepo accountRepo;
+    private static final String TAG = "LogInVM";
+    private final AccountRepo accountRepo;
+    public MutableLiveData<String> username;
+    public MutableLiveData<String> password;
 
     public LogInViewModel() {
         accountRepo = new AccountRepo();
+        username = new MutableLiveData<>();
+        password = new MutableLiveData<>();
 
     }
 
-    public void login(String email, String password) {
-        String auth_token = email + ":" + password;
+    public void onLogin() {
+        // @TODO: Revisar que username i password siguin valids
+        Log.d(TAG,username.getValue() + ":" + password.getValue());
+        String auth_token = username.getValue() + ":" + password.getValue();
         byte[] data = auth_token.getBytes(StandardCharsets.UTF_8);
         auth_token = Base64.encodeToString(data, Base64.DEFAULT);
         auth_token = ("Autenthication " + auth_token).trim();
