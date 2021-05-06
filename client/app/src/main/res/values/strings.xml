@@ -11,13 +11,13 @@
     <string name="registre_termes_i_condicions">Termes i condicions</string>
     <string name="registrar_button">Registrar</string>
     <string name="registre_ok">T\'has registrat correctament!</string>
-    <string name="registre_error">Hi ha algut algún error, torna-ho a intentar de nou o contacta amb nosaltres a anoiagamers@gmail.com</string>
+    <string name="registre_error">Hi ha un error, torna-ho a intentar de nou o contacta amb nosaltres a anoiagamers@gmail.com</string>
 
     <string name="error_username_no_vàlid">Ha de tenir entre 3-20 caràcters. Pot contenir minúscules, majúscules, numeros "." i "_"</string>
     <string name="error_nom_no_vàlid">El nom conté valors no vàlids. Revisa que no hi hagi cap numero o caràcter especial. Max 40 caràcters</string>
     <string name="error_cognom_no_vàlid">El cognom conté valors no vàlids. Revisa que no hi hagi cap numero o caràcter especial. Max 40 caràcters</string>
     <string name="error_contra_no_vàlida">Ha de tenir entre 8-20 caràcters. Ha de contenir majúscules, minúscules i numeros</string>
-    <string name="error_confirmar_contra">La contrasenya que has introduït no es la mateixa que la de sobre. Revisa-ho</string>
+    <string name="error_confirmar_contra">La contrasenya que has introduït no coincideix. Revisa-ho</string>
     <string name="error_mail_no_vàlid">El correu no es vàlid. Torna a comprovar-ho</string>
 
     <string name="inici_recuperar_contra">Recuperar contrasenya</string>
@@ -38,8 +38,8 @@
 
 
     <!--TODO: Formatar amb el format html per a formatar-lo i que quedi bé-->
-    <string name="termes_i_condicions_titol">End-User License Agreement (EULA) of AGamers</string>
-    <string name="termes_i_condicions_text">This End-User License Agreement ("EULA") is a legal agreement between you and Anoia Gamers Corp.. Our EULA was created by EULA Template for AGamers.
+    <string name="termes_i_condicions_titol" translatable="false">End-User License Agreement (EULA) of AGamers</string>
+    <string name="termes_i_condicions_text" translatable="false">This End-User License Agreement ("EULA") is a legal agreement between you and Anoia Gamers Corp.. Our EULA was created by EULA Template for AGamers.
 
         This EULA agreement governs your acquisition and use of our AGamers software ("Software") directly from Anoia Gamers Corp. or indirectly through a Anoia Gamers Corp. authorized reseller or distributor (a "Reseller"). Our Privacy Policy was created by the Privacy Policy Generator.
 
@@ -75,8 +75,8 @@
 
         Governing Law
         This EULA agreement, and any dispute arising out of or in connection with this EULA agreement, shall be governed by and construed in accordance with the laws of es.</string>
-    <string name="fondo_agamers">Fondo Agamers</string>
-    <string name="lodo_agamers">Logo Agamers</string>
+    <string name="fondo_agamers" translatable="false">Fondo Agamers</string>
+    <string name="lodo_agamers" translatable="false">Logo Agamers</string>
     <string name="singup_username">Username*</string>
     <string name="data">Data de neixament (dd/mm/yyyy)* </string>
     <string name="edit_account_guardar_i_sortir">Guardar i sortir</string>
@@ -97,7 +97,7 @@
     <string name="genere_female">Dona</string>
     <string name="genere_no_binari">No binari</string>
     <string name="genere_sense_especificar">Sense especificar</string>
-    <string name="genere_select_title">Selecciona un genere</string>
+    <string name="genere_select_title">Selecciona un gènere</string>
     <string name="user_info_tancar_sessio">Tancar sessió</string>
     <string name="delete_account_ok">El compte s\'ha eliminat correctament</string>
     <string name="delete_account_error">Error: Hi ha agut algun error, torna-ho a intentar més tard</string>
@@ -123,12 +123,12 @@
 
 
     //SAM
-    <string name="titol_xats">Chats</string>
-    <string name="titol_match">Match</string>
+    <string name="titol_xats">Xats</string>
+    <string name="titol_match" translatable="false">Match</string>
     <string name="titol_jocs">Jocs</string>
     <string name="titol_forums">Forums</string>
-    <string name="x">X</string>
-    <string name="v">V</string>
+    <string name="x" translatable="false">X</string>
+    <string name="v" translatable="false">V</string>
     <string name="imatge_del_usuari">Imatge del usuari</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -148,6 +148,6 @@
     <string name="menu_configuracio">Configuració</string>
     <string name="menu_tancarsessio">Tancar sessió</string>
     <string name="menu_tornejos">Tornejos</string>
-    <string name="menu_missatges">menu_missatges</string>
+    <string name="menu_missatges">Missatges</string>
 
 </resources>
