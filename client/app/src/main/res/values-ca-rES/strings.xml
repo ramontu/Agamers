@@ -88,6 +88,8 @@
     <string name="signup_error">Hi ha hagut algun error. Potser aquest usuari ja existeix</string>
     <string name="navigation_drawer_open">"Obre el panell de navegació "</string>
     <string name="navigation_drawer_close">Tenca el panell de navegació</string>
+    <string name="delete_jocs_ok">S\'ha eliminat un joc</string>
+    <string name="delete_jocs_error">Error en eliminiar un joc</string>
 
 
 </resources>

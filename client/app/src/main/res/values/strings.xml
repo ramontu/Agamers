@@ -162,5 +162,7 @@
     <string name="menu_tancarsessio">Tancar sessió</string>
     <string name="menu_tornejos">Tornejos</string>
     <string name="menu_missatges">Missatges</string>
+    <string name="delete_jocs_ok">S\'ha eliminat un joc</string>
+    <string name="delete_jocs_error">Error en eliminiar un joc</string>
 
 </resources>

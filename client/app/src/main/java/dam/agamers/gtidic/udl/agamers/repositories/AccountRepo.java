@@ -3,16 +3,12 @@ package dam.agamers.gtidic.udl.agamers.repositories;
 
 import android.util.Log;
 
-
 import androidx.lifecycle.MutableLiveData;
-
 
 import org.jetbrains.annotations.NotNull;
 
-
 import java.io.File;
 import java.io.IOException;
-
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
@@ -39,9 +35,7 @@ public class AccountRepo {
     private MutableLiveData<String> mResponse_download_user_info;
     private MutableLiveData<Account> mAccountInfo;
     private MutableLiveData<Integer> mResponseDeleteAccount;
-
     private MutableLiveData<String> mResponseUploadImage;
-
     private MutableLiveData<Boolean> mRecover1Ok;
     private MutableLiveData<Boolean> mRecover2Ok;
     private MutableLiveData<Boolean> mUpdateOk;
@@ -52,7 +46,6 @@ public class AccountRepo {
     public AccountRepo() {
         this.accountService = new AccountServiceImpl();
         this.mResponseRegister = new MutableLiveData<>();
-
         this.mResponseLogin = new MutableLiveData<>();
         this.mResponse_download_user_info = new MutableLiveData<>();
         this.mAccountInfo = new MutableLiveData<>();
