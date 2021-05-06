@@ -2,6 +2,7 @@ package dam.agamers.gtidic.udl.agamers.views;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
 import android.Manifest;
@@ -40,11 +41,14 @@ import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
+import dam.agamers.gtidic.udl.agamers.databinding.ActivityEditAccountBinding;
+import dam.agamers.gtidic.udl.agamers.databinding.ActivityIniciDeSessioBinding;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.utils.Utils;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 import dam.agamers.gtidic.udl.agamers.viewmodels.EditAccountViewModel;
+import dam.agamers.gtidic.udl.agamers.viewmodels.LogInViewModel;
 
 public class EditAccountActivity extends CommonActivity {
 
@@ -81,6 +85,8 @@ public class EditAccountActivity extends CommonActivity {
         setContentView(R.layout.activity_edit_account);
         getSupportActionBar().hide();
         editAccountViewModel = new EditAccountViewModel();
+        InitView();
+
 
 
         _username = findViewById(R.id.edit_info_username);
@@ -96,18 +102,24 @@ public class EditAccountActivity extends CommonActivity {
         _birthday.setEnabled(false);
 
         profileImage = findViewById(R.id.edit_info_imageView);
-
-
-
-
-        initValues();
         init_validation();
-        show_message_save_and_exit();
     }
+
+    public void InitView(){
+        EditAccountViewModel editAccountViewModel = new EditAccountViewModel();
+        ActivityEditAccountBinding activityEditAccountBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_edit_account);
+        activityEditAccountBinding.setLifecycleOwner(this);
+        activityEditAccountBinding.setViewModel(editAccountViewModel);
+
+        editAccountViewModel.getm_Account().observe(this, account -> {
+            showInfoUser(getCurrentFocus(), "error");
+        });
+    }
+
 
     private void setSpinnerGenere(GenereEnum genere){
         spinner = findViewById(R.id.edit_info_genere_spinner);
-
         List<String> llista = new ArrayList<>();
         for( int i = 0; i < GenereEnum.values().length; i++){
             llista.add(GenereEnum.values()[i].toString(this));
@@ -135,27 +147,6 @@ public class EditAccountActivity extends CommonActivity {
 
 
 
-    private void initValues(){
-
-        editAccountViewModel.getmAccount().observe(this, new Observer<Account>() {
-            @Override
-            public void onChanged(Account account) {
-                account_total = account;
-                _username.getEditText().setText(account.getUsername());
-                _password.getEditText().setText(R.string.implementations_edit_info_user_pass); //TODO demoment no tenim un decodificador
-                _short_description.getEditText().setText(account.getShort_description());
-                _long_description.getEditText().setText(account.getLong_description());
-                _email.getEditText().setText(account.getEmail());
-                _name.getEditText().setText(account.getName());
-                _surname.getEditText().setText(account.getSurname());
-                _birthday.getEditText().setText(account.getBirthday());
-                GenereEnum geE = account.getGenere();
-                setSpinnerGenere(geE);
-            }
-        });
-
-
-    }
 
 
     private void init_validation(){
@@ -262,43 +253,28 @@ public class EditAccountActivity extends CommonActivity {
     }
 
 
+    /*
     public void save_and_exit(View view){
-
-        account_total.setShort_description(_short_description.getEditText().getText().toString());
-        account_total.setLong_description(_long_description.getEditText().getText().toString());
-        account_total.setEmail(_email.getEditText().getText().toString());
-        account_total.setName(_name.getEditText().getText().toString());
-        account_total.setSurname(_surname.getEditText().getText().toString());
+        GenereEnum g = GenereEnum.N;
         switch (spinner.getSelectedItemPosition()){
             case 0:
-                account_total.setGenere(GenereEnum.M);
+                g=GenereEnum.M;
                 break;
             case 1:
-                account_total.setGenere(GenereEnum.F);
+                g=GenereEnum.F;
                 break;
             case 2:
-                account_total.setGenere(GenereEnum.NB);
+                g=GenereEnum.NB;
                 break;
             case 3:
-                account_total.setGenere(GenereEnum.N);
+                g=GenereEnum.N;
                 break;
         }
-        editAccountViewModel.update_info(account_total);
+        editAccountViewModel.update_info_to_db(g);
     }
 
-    private void show_message_save_and_exit(){
-        editAccountViewModel.responseUpdate.observe(this, aBoolean -> {
-            Toast toast;
-            if (aBoolean){
-                toast = Toast.makeText(getBaseContext(), R.string.update_account_ok,Toast.LENGTH_LONG);
-                finish();
-            }
-            else {
-                toast = Toast.makeText(getBaseContext(),R.string.update_account_error,Toast.LENGTH_LONG);
-            }
-            toast.show();
-        });
-    }
+     */
+
 
     public void onBackPressed(){
         exit_without_save_notification();
@@ -316,7 +292,6 @@ public class EditAccountActivity extends CommonActivity {
 
         });
         alertDialogBuilder.setPositiveButton(R.string.option_ok, (dialog, which) -> finish());
-
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }

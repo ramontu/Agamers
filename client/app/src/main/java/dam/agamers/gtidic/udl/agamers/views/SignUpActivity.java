@@ -1,7 +1,9 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -26,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
+import dam.agamers.gtidic.udl.agamers.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.R;
 
 import dam.agamers.gtidic.udl.agamers.databinding.ActivitySignupBinding;
@@ -56,14 +59,14 @@ public class SignUpActivity extends CommonActivity {
     }
 
 
-    public void set_date(View v) throws InterruptedException {
+    public void set_date(View v) {
         TextInputLayout birth = findViewById(R.id.birthday);
         Calendar calendar = Calendar.getInstance();
 
         final int m_day = calendar.get(Calendar.DAY_OF_MONTH);
         final int m_month = calendar.get(Calendar.MONTH);
         final int m_year = calendar.get(Calendar.YEAR);
-        calendar.add(Calendar.YEAR, -12);
+
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpActivity.this, (view, year, month, dayOfMonth) -> {
             calendar.set(year,month,dayOfMonth);
@@ -72,7 +75,15 @@ public class SignUpActivity extends CommonActivity {
             birth.getEditText().setText(str); //OK
             signUpViewModel.Birthdate.setValue(str);
         }, m_year, m_month, m_day);
-        datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+        Calendar max = Calendar.getInstance();
+        max.add(Calendar.YEAR, -12);
+        Calendar min = Calendar.getInstance();
+        min.add(Calendar.YEAR, -80);
+
+        datePickerDialog.getDatePicker().setMinDate(min.getTimeInMillis());
+        datePickerDialog.getDatePicker().setMaxDate(max.getTimeInMillis());
+        //
         datePickerDialog.getDatePicker().getTouchables().get(0).performClick();
         datePickerDialog.show();
     }
@@ -206,17 +217,18 @@ public class SignUpActivity extends CommonActivity {
 
 
 
+    @SuppressLint("ResourceType")
     public void missatge_registrat(){
         signUpViewModel.getSignUpResponse().observe(this, aBoolean -> {
-            Toast toast;
+
+            Log.d("SignUpActivity", "El valor de aBoolean és: " + aBoolean);
             if(aBoolean){
-                toast = Toast.makeText(getBaseContext(),R.string.signup_ok,Toast.LENGTH_LONG);
-                toast.show();
                 finish();
+                showInfoUser(getCurrentFocus(), getText(R.string.signup_ok).toString());
+
             }
             else {
-                toast = Toast.makeText(getBaseContext(),R.string.signup_error,Toast.LENGTH_LONG);
-                toast.show();
+                showInfoUser(getCurrentFocus(), getText(R.string.signup_error).toString());
             }
         });
     }

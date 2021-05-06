@@ -29,7 +29,8 @@ public class UserInfoActivity extends CommonActivity {
     }
 
     public void close_session(View view){
-        PreferencesProvider.providePreferences().edit().remove("token").apply();
+        userInfoViewModel.close_session();
+        finish();
         goTo(LogInActivity.class);
         finishAffinity();
     }

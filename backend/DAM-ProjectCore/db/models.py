@@ -13,7 +13,7 @@ from urllib.parse import urljoin
 import falcon
 from passlib.hash import pbkdf2_sha256
 from sqlalchemy import Column, Date, DateTime, Enum, ForeignKey, Integer, Unicode, \
-    UnicodeText, Table, type_coerce, case
+    UnicodeText, Table, type_coerce, case, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import relationship
@@ -72,13 +72,13 @@ class AccountTypeEnum(enum.Enum):  # TODO provar
     premium = "P"
 
 
-class UserLevelEnum(enum.Enum):  # TODO provar
-    LV0 = 0
-    LV1 = 1
-    LV2 = 2
-    LV3 = 3
-    LV4 = 4
-    LV5 = 5
+class UserTypeEnum(enum.Enum):  # TODO provar i acabar
+    competitive = "Comp"
+    casual = "Casu"
+
+
+class CategoriesEnum(enum.Enum):  # TODO afegir valors al enum
+    prova_categoria = "Default"
 
 
 class UserBanned(enum.Enum):  # TODO provar
@@ -230,10 +230,9 @@ class User(SQLAlchemyBase, JSONModel):
     # firends_request = relationship("User") #solicituds amics todo no funciona
     short_description = Column(Unicode(100), default="")  # OK
     long_description = Column(UnicodeText, default="")  # OK
-    # points = Column(Integer, default=int(0), nullable=False) #OK TODO mirar si es pot inserir sense posar res
-    # level = Column(Enum(UserLevelEnum), nullable=False) #OK TODO mirar si es pot inserir sense posar res
+    points = Column(Integer, default=0, nullable=True)  # OK
     password = Column(UnicodeText, nullable=False)
-    email = Column(Unicode(255), nullable=False)
+    email = Column(Unicode(255), nullable=False, unique=True)
     tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
@@ -242,6 +241,8 @@ class User(SQLAlchemyBase, JSONModel):
     # phone = Column(Unicode(50))
     photo = Column(Unicode(255), default="")  # TODO mirar si funciona
     recovery_code = Column(Unicode(6), nullable=True, unique=True)
+    location = Column(Unicode(30), default="", nullable=True)  # OK
+    tipo_de_jugador = Column(Enum(UserTypeEnum), default=UserTypeEnum.casual, nullable=True)
 
     # TODO implementar mes endavant: desactivat fins a implementar tornejos
     '''
@@ -258,21 +259,6 @@ class User(SQLAlchemyBase, JSONModel):
             "genere": self.genere.value,
             "photo": self.photo,
         }
-
-    @hybrid_property
-    def level_user(self):
-        if self.points < 1000:  # x < 1000
-            return UserLevelEnum.LV0
-        elif self.points < 2000:  # 1000 < x < 2000
-            return UserLevelEnum.LV1
-        elif self.points < 3000:  # 2000 < x < 3000
-            return UserLevelEnum.LV2
-        elif self.punts_user < 4000:  # 3000 < x < 4000
-            return UserLevelEnum.LV3
-        elif self.punts_user < 5000:  # 4000 < x < 5000
-            return UserLevelEnum.LV4
-        else:  # 5000 < x
-            return UserLevelEnum.LV5
 
     # TODO mirar si funciona
     @hybrid_property
@@ -322,16 +308,16 @@ class User(SQLAlchemyBase, JSONModel):
             # "friends_request": self.firends_request,
             "short_description": self.short_description,
             "long_description": self.long_description,
-            # "points": self.points,
-            # "level": self.level,
+            "points": self.points,
             "password": self.password,
             "email": self.email,
             "name": self.name,
             "surname": self.surname,
             "birthday": self.birthday,
             "genere": self.genere.value,
-            # "phone": self.phone,
-            "photo": self.photo_url
+            "photo": self.photo_url,
+            "location": self.location,
+            "tipo_jugador": self.tipo_de_jugador
         }
 
 
@@ -368,33 +354,73 @@ class Comments(SQLAlchemyBase, JSONModel): #TODO: acabar
     points = Column(Float, default=0 ,nullable=False)
     comment = Comments(UnicodeText)
 '''
-'''
-#Base de dades dels jocs
-class Jocs(SQLAlchemyBase, JSONModel): #TODO: acabar
-    __tablename__ = "jocs"
+
+
+# Base de dades dels publicadors de videjocs #TODO: acabar
+class Platforms(SQLAlchemyBase, JSONModel):
+    __tablename__ = "Platforms"
 
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(100), unique=True, nullable=False)
-    published = Column(Date, nullable=False)
+    manufacturer = Column(Unicode(100), nullable=False)
+
+    def json_model(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "manufacturer": self.manufacturer
+
+        }
+
+
+# Base de dades dels jocs
+class Jocs(SQLAlchemyBase, JSONModel):  # TODO: acabar
+    __tablename__ = "jocs"
+
+    Categories_game = Table("cat-game", SQLAlchemyBase.metadata,
+                            Column("game_id", Integer,
+                                   ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
+                                   nullable=False),
+                            Column("categories", Enum(CategoriesEnum),
+                                   nullable=False),
+
+                            )
+
+    id = Column(Integer, primary_key=True)
+    name = Column(Unicode(100), unique=True, nullable=False)
+    categories = relationship("Categories", secondary=CategoriesEnum, back_populates="Categories-games")
+    # TODO provar
+    min_players = Column(Integer, default=1, nullable=False)
+    max_players = Column(Integer, default=1, nullable=False)
+    online_mode = Column(Boolean, default=False, nullable=False)
+    published = Column(Unicode(10), nullable=False)
     studio = Column(Unicode(100), nullable=False)
+    image = Column(Unicode(255), default="")
+    platforms = relationship("Platforms", secondary=Categories_game, back_populates="Games-Platforms")  # TODO provar
+    description = Column(UnicodeText, default="")
+    pegi = Column(Integer, default=18)  # Edat recomanada
+    aproved = Column(Boolean, default=False, nullable=False)
 
     @hybrid_property
     def json_model(self):
         return {
             "id": self.id,
             "name": self.name,
+            "categories": self.categories,
+            "min_players": self.min_players,
+            "max_players": self.max_players,
+            "online_mode": self.online_mode,
             "published": self.published,
-            "studio": self.studio
+            "studio": self.studio,
+            "image": self.image,
+            "platforms": self.platforms,
+            "description": self.description,
+            "pegi": self.pegi,
+            "aproved": self.aproved
         }
 
-#Base de dades dels publicadors de videjocs #TODO: acabar
-class Studios(SQLAlchemyBase, JSONModel):
-    __tablename__ = "studios"
-    id = Column(Integer, primary_key=True)
-    name = Column(Unicode(100), unique=True, nullable=False)
-    foundation_date = Column(Date)
 
-
+'''
 #Base de dades dels modes de joc    #TODO: acabar
 class Modesjocs(SQLAlchemyBase, JSONModel):
     __tablename__ = "modes_de_joc"
@@ -402,8 +428,7 @@ class Modesjocs(SQLAlchemyBase, JSONModel):
     nom_mode = Column(Unicode(100))
     joc_pare = relationship #todo
     nom_complert = Column(Unicode(210), unique=True, nullable=False)
-
-
-#TODO implementar mes endavant: crear model per a les tendes
-#Base de dades per a les tendes
 '''
+
+# TODO implementar mes endavant: crear model per a les tendes
+# Base de dades per a les tendes

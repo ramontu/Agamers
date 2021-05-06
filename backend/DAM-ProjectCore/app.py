@@ -46,6 +46,7 @@ application.add_route("/account/password_update", account_resources.ResourceAcco
 
 application.add_route("/users/register", user_resources.ResourceRegisterUser())
 application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile())
+application.add_route("/users/getuserimage", user_resources.DownloadUserImage())  # TODO comprovar
 
 '''
 application.add_route("/events", event_resources.ResourceGetEvents())
