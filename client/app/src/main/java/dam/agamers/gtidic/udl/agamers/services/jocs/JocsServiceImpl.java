@@ -1,16 +1,15 @@
-package dam.agamers.gtidic.udl.agamers.services;
+package dam.agamers.gtidic.udl.agamers.services.jocs;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
-import dam.agamers.gtidic.udl.agamers.models.Token;
 import dam.agamers.gtidic.udl.agamers.network.RetrofitClientInstance;
-
+import dam.agamers.gtidic.udl.agamers.services.account.AccountService;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
 
-public class AccountServiceImpl implements AccountService {
+public class JocsServiceImpl implements AccountService {
 
     private Retrofit refrotit = RetrofitClientInstance.getRetrofitInstance();
 
@@ -32,8 +31,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Call<ResponseBody> deleteUserToken(Token token) {
-        return refrotit.create(AccountService.class).deleteUserToken(token);
+    public Call<ResponseBody> deleteUserToken() {
+        return refrotit.create(AccountService.class).deleteUserToken();
     }
 
     @Override

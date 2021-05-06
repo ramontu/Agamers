@@ -33,6 +33,7 @@ public class FirstActivity extends CommonActivity {
         setContentView(R.layout.activity_first);
         Toolbar toolbar = findViewById(R.id.toolbar); //això és perquè utilitzo la meva toolbar costumitzada
         setSupportActionBar(toolbar);
+
         //Navegació inferior "bottom navigation"
         BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(

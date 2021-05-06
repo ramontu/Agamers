@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers.services;
+package dam.agamers.gtidic.udl.agamers.services.account;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
 
