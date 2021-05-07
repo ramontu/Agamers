@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
+import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
 public class EditAccountViewModel {
