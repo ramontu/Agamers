@@ -18,7 +18,6 @@ from resources.schemas import SchemaRegisterUser
 mylogger = logging.getLogger(__name__)
 
 
-@falcon.before(requires_auth)
 class ResourceGetUserProfile(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
         super(ResourceGetUserProfile, self).on_get(req, resp, *args, **kwargs)

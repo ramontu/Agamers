@@ -8,7 +8,7 @@ import falcon
 import messages
 import middlewares
 from falcon_multipart.middleware import MultipartMiddleware
-from resources import account_resources, common_resources, user_resources
+from resources import account_resources, common_resources, user_resources, games_resources
 from settings import configure_logging
 
 # LOGGING
@@ -47,6 +47,11 @@ application.add_route("/account/password_update", account_resources.ResourceAcco
 application.add_route("/users/register", user_resources.ResourceRegisterUser())
 application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile())
 application.add_route("/users/getuserimage", user_resources.DownloadUserImage())  # TODO comprovar
+
+# Jocs
+application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame())
+application.add_route("/jocs/update_jocs", games_resources.ResourceUpdateGame())
+application.add_route("/jocs/delete_jocs", games_resources.ResourceDeleteGame())
 
 '''
 application.add_route("/events", event_resources.ResourceGetEvents())

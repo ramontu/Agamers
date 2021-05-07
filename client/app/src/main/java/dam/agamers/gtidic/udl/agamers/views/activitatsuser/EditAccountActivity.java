@@ -3,12 +3,10 @@ package dam.agamers.gtidic.udl.agamers.views.activitatsuser;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -23,7 +21,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.karumi.dexter.Dexter;
@@ -34,21 +31,16 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.databinding.ActivityEditAccountBinding;
-import dam.agamers.gtidic.udl.agamers.databinding.ActivityIniciDeSessioBinding;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
-import dam.agamers.gtidic.udl.agamers.utils.Utils;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 import dam.agamers.gtidic.udl.agamers.viewmodels.EditAccountViewModel;
-import dam.agamers.gtidic.udl.agamers.viewmodels.LogInViewModel;
 
 public class EditAccountActivity extends CommonActivity {
 
@@ -89,7 +81,7 @@ public class EditAccountActivity extends CommonActivity {
 
 
 
-        _username = findViewById(R.id.edit_info_username);
+        _username = findViewById(R.id.nom_joc);
         _password = findViewById(R.id.edit_info_password);
         _short_description = findViewById(R.id.edit_info_short_description);
         _long_description = findViewById(R.id.edit_info_long_description);

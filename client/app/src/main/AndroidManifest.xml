@@ -15,14 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Agamers">
-        <activity android:name=".views.recovery.RecoverPasswordActivity_2"></activity>
+        <activity android:name=".views.jocs.AddGame"></activity>
+        <activity android:name=".views.recovery.RecoverPasswordActivity_2" />
         <activity android:name=".views.recovery.RecoverPasswordActivity_1" />
         <activity android:name=".views.activitatsuser.EditAccountActivity" />
         <activity android:name=".views.activitatsuser.UserInfoActivity" />
-        <activity android:name=".views.FirstActivity"
-                  android:theme="@style/Theme.Agamers.NoActionBar" />
+        <activity
+            android:name=".views.FirstActivity"
+            android:theme="@style/Theme.Agamers.NoActionBar" />
         <activity android:name=".CommonActivity" />
-        <activity android:name=".views.activitatsuser.LogInActivity"/>
+        <activity android:name=".views.activitatsuser.LogInActivity" />
         <activity
             android:name=".views.MainActivity"
             android:screenOrientation="portrait"

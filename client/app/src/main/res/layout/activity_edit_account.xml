@@ -55,14 +55,14 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edit_info_username"
+                    android:id="@+id/nom_joc"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/account_username">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_info_username_edit"
+                        android:id="@+id/nom_joc_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{viewModel.m_Account.username}"/>

@@ -7,6 +7,8 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 
+import com.google.gson.Gson;
+
 import org.jetbrains.annotations.NotNull;
 
 
@@ -70,8 +72,6 @@ public class AccountRepo {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 int return_code = response.code();  //200, 404, 401,...
-
-
                 if (return_code == 200){
                     mSignUpOk.setValue(true);
                     Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.code());
@@ -79,7 +79,6 @@ public class AccountRepo {
                     Log.d(TAG,"registerAccount() -> ha rebut el codi: " +  response.message());
                     mSignUpOk.setValue(false);
                 }
-
             }
 
             @Override
@@ -316,7 +315,10 @@ public class AccountRepo {
 
     public void deleteToken() {
         MutableLiveData<Boolean> everythingOK = new MutableLiveData<>();
-        accountService.deleteUserToken(new Token(PreferencesProvider.providePreferences().getString("token",""))).enqueue(new Callback<ResponseBody>() {
+        Token token = new Token(PreferencesProvider.providePreferences().getString("token",""));
+        Gson gson = new Gson();
+        gson.toJson(token);
+        accountService.deleteUserToken(gson).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
