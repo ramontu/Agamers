@@ -60,6 +60,8 @@ public class Account {
     public String getEmail() {
         return email;
     }
+    public void setEmail(String value) {
+    }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
@@ -117,5 +119,6 @@ public class Account {
     public String toString(){
         return this.name + " " + this.surname  + " " + this.username  + " Birthday:" + this.birthday  + " " + this.email + " " + this.password;
     }
+
 
 }
