@@ -1,7 +1,6 @@
 package dam.agamers.gtidic.udl.agamers.repositories;
 
 import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 
 import java.io.IOException;

@@ -90,6 +90,17 @@
     <string name="navigation_drawer_close">Tenca el panell de navegació</string>
     <string name="delete_jocs_ok">S\'ha eliminat un joc</string>
     <string name="delete_jocs_error">Error en eliminiar un joc</string>
+    <string name="wait_fragment">Un moment...</string>
+    <string name="encrypted_password">Contrasenya encriptada</string>
+    <string name="account_username">Nom usuari</string>
+    <string name="account_password">Contrasenya</string>
+    <string name="account_email">Email</string>
+    <string name="account_name">Nom</string>
+    <string name="account_surname">Cognom</string>
+    <string name="account_birthday">Aniversari</string>
+    <string name="account_genere">Gènere</string>
+    <string name="account_short_description">Descripció curta</string>
+    <string name="account_long_description">Descripció llarga</string>
 
 
 </resources>
