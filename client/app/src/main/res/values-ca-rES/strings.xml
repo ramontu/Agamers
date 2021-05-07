@@ -101,6 +101,7 @@
     <string name="account_genere">Gènere</string>
     <string name="account_short_description">Descripció curta</string>
     <string name="account_long_description">Descripció llarga</string>
+    <string name="compartir">Compartir</string>
 
 
 </resources>
