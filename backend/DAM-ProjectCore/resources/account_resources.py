@@ -2,27 +2,33 @@
 # -*- coding: utf-8 -*-
 
 import base64
+
 import logging
 import os
 import random
 import smtplib
 import string
-from email import encoders
-from email.mime.base import MIMEBase
+
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.base import MIMEBase
+from email import encoders
+
+from jinja2 import Environment
 
 import falcon
 from falcon.media.validators import jsonschema
-from jinja2 import Environment
 from sqlalchemy.orm.exc import NoResultFound
 
 import messages
+import settings
 from db.models import User, UserToken, GenereEnum, AccountTypeEnum
 from hooks import requires_auth
 from resources import utils
 from resources.base_resources import DAMCoreResource
 from resources.schemas import SchemaUserToken
+from settings import STATIC_DIRECTORY
 
 mylogger = logging.getLogger(__name__)
 
@@ -61,7 +67,7 @@ class ResourceCreateUserToken(DAMCoreResource):
 @falcon.before(requires_auth)
 class ResourceDeleteUserToken(DAMCoreResource):
     @jsonschema.validate(SchemaUserToken)
-    def on_delete(self, req, resp, *args, **kwargs):
+    def on_post(self, req, resp, *args, **kwargs):
         super(ResourceDeleteUserToken, self).on_post(req, resp, *args, **kwargs)
 
         current_user = req.context["auth_user"]

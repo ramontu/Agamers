@@ -1,22 +1,25 @@
 package dam.agamers.gtidic.udl.agamers.repositories;
 
 
+import android.nfc.Tag;
 import android.util.Log;
+
 
 import androidx.lifecycle.MutableLiveData;
 
+
 import org.jetbrains.annotations.NotNull;
-import com.google.gson.Gson;
+
 
 import java.io.File;
 import java.io.IOException;
 
+
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
-import dam.agamers.gtidic.udl.agamers.models.Token;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
-import dam.agamers.gtidic.udl.agamers.services.account.AccountService;
-import dam.agamers.gtidic.udl.agamers.services.account.AccountServiceImpl;
+import dam.agamers.gtidic.udl.agamers.services.AccountService;
+import dam.agamers.gtidic.udl.agamers.services.AccountServiceImpl;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -36,7 +39,9 @@ public class AccountRepo {
     private MutableLiveData<String> mResponse_download_user_info;
     private MutableLiveData<Account> mAccountInfo;
     private MutableLiveData<Integer> mResponseDeleteAccount;
+
     private MutableLiveData<String> mResponseUploadImage;
+
     private MutableLiveData<Boolean> mRecover1Ok;
     private MutableLiveData<Boolean> mRecover2Ok;
     private MutableLiveData<Boolean> mUpdateOk;
@@ -47,6 +52,7 @@ public class AccountRepo {
     public AccountRepo() {
         this.accountService = new AccountServiceImpl();
         this.mResponseRegister = new MutableLiveData<>();
+
         this.mResponseLogin = new MutableLiveData<>();
         this.mResponse_download_user_info = new MutableLiveData<>();
         this.mAccountInfo = new MutableLiveData<>();
@@ -59,6 +65,7 @@ public class AccountRepo {
     }
 
     public void registerAccount(Account account){
+
         accountService.register(account).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -87,7 +94,7 @@ public class AccountRepo {
     }
 
     public MutableLiveData<Boolean> getmSignUpOk(){
-        return mSignUpOk;
+        return getmUpdateOk();
     }
 
 
@@ -140,7 +147,7 @@ public class AccountRepo {
         return mResponseLogin;
     }
 
-    private void download_user_info(){
+    public void download_user_info(){
 
         accountService.download_user_info().enqueue(new Callback<Account>() {
             @Override
@@ -159,7 +166,6 @@ public class AccountRepo {
     }
 
     public MutableLiveData<Account> getmAccountInfo(){
-        download_user_info();
         return mAccountInfo;
     }
 
@@ -307,36 +313,6 @@ public class AccountRepo {
     public MutableLiveData<Boolean> getmUpdateOk(){
         return mUpdateOk;
     }
-
-    public void deleteToken() {
-        MutableLiveData<Boolean> everythingOK = new MutableLiveData<>();
-        Token token = new Token(PreferencesProvider.providePreferences().getString("token",""));
-        Gson gson = new Gson();
-        gson.toJson(token);
-        accountService.deleteUserToken(gson).enqueue(new Callback<ResponseBody>() {
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if (response.code() == 200) {
-                    everythingOK.setValue(true);
-                    Log.d(TAG, "deleteToken OK");
-                }
-                else {
-                    everythingOK.setValue(false);
-                    Log.d(TAG, "deleteToken WRONG"+response.code()+response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                everythingOK.setValue(false);
-                Log.d(TAG, "deleteToken onFailure"+t.getMessage());
-                t.printStackTrace();
-            }
-        });
-        //return everythingOK.getValue();
-    }
-
-
 }
 
 

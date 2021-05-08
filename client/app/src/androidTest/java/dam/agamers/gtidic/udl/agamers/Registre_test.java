@@ -1,12 +1,14 @@
 package dam.agamers.gtidic.udl.agamers;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 
-import dam.agamers.gtidic.udl.agamers.views.activitatsuser.SignUpActivity;
+import dam.agamers.gtidic.udl.agamers.views.SignUpActivity;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Rule;
@@ -18,6 +20,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -25,11 +28,14 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
 
+import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.supportsInputMethods;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;

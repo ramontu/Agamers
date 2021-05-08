@@ -3,8 +3,6 @@ package dam.agamers.gtidic.udl.agamers.validators;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import dam.agamers.gtidic.udl.agamers.models.Account;
-
 /**
  * @version 1.0
  */
@@ -19,7 +17,7 @@ public class AccountValidator {
      * TODO falta fer la comprovació amb el client per a veure si ja existeix l'usuari
      */
     public static boolean check_usernameValid(String username){
-        return patternIsValid(username, "^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){7,20}[a-zA-Z0-9]$");
+        return patternIsValid(username, "^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){1,20}[a-zA-Z0-9]$");
 
     }
 
@@ -54,10 +52,6 @@ public class AccountValidator {
         return patternIsValid(code, "[A-Za-z0-9]{6}");
     }
 
-    public static boolean check_longDescriptionValid(String long_description){
-        return long_description.length() <=1000;
-    }
-
     /**
      * Comprova que el parametre regex es trobia a entrada
      * @param entrada String a la que volem comprovar el patró
@@ -67,17 +61,6 @@ public class AccountValidator {
     private static boolean patternIsValid(String entrada, String patro){
         return Pattern.matches(patro,entrada);
     }
-
-    /*
-    public static boolean check_account(Account account){
-        return check_usernameValid(account.getUsername()) &&
-                check_mailValid(account.getEmail()) &&
-                check_nameOrSurnameValid(account.getName()) &&
-                check_nameOrSurnameValid(account.getSurname()) &&
-                ch
-    }
-
-     */
 
 
 }

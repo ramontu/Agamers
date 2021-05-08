@@ -3,6 +3,7 @@ import os
 
 
 def save_static_media_file(incoming_file, resource_path):
+
     # Generate and id with the currrent timestamp
     imgId = str(int(datetime.datetime.now().timestamp() * 1000))
 
@@ -25,11 +26,3 @@ def save_static_media_file(incoming_file, resource_path):
     os.rename(temp_file_path, file_path)
 
     return filename
-
-
-def get_static_media_file(resource_path):
-    if os.path.exists(resource_path):
-        with open(resource_path, "r") as f:
-            return f.read()
-    else:
-        return None
