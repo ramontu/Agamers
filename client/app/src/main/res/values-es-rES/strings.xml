@@ -86,4 +86,6 @@
     <string name="menu_tornejos">Torneos</string>
     <string name="menu_missatges">Mensajes</string>
     <string name="compartir">Compartir</string>
+
+    <string name="sobre_usuari_x">Sobre el usuario</string>
 </resources>
