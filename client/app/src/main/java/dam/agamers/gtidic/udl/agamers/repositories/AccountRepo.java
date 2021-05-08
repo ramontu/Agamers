@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import org.jetbrains.annotations.NotNull;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -309,8 +310,10 @@ public class AccountRepo {
 
     public void deleteToken() {
         MutableLiveData<Boolean> everythingOK = new MutableLiveData<>();
-        accountService.deleteUserToken(new Token(PreferencesProvider.providePreferences().getString("token",""))).enqueue(new Callback<ResponseBody>() {
-            @Override
+        Token token = new Token(PreferencesProvider.providePreferences().getString("token",""));
+        Gson gson = new Gson();
+        gson.toJson(token);
+        accountService.deleteUserToken(gson).enqueue(new Callback<ResponseBody>() {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if (response.code() == 200) {

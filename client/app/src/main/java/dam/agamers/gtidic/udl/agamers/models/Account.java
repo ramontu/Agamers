@@ -61,6 +61,7 @@ public class Account {
         return email;
     }
     public void setEmail(String value) {
+        this.email = value;
     }
 
     public String getUsername() { return username; }

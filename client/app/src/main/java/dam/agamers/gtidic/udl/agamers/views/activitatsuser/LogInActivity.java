@@ -2,15 +2,10 @@ package dam.agamers.gtidic.udl.agamers.views.activitatsuser;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
-
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;

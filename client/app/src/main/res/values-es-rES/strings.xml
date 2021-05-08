@@ -85,17 +85,5 @@
     <string name="menu_tancarsessio">Cerrar sesión</string>
     <string name="menu_tornejos">Torneos</string>
     <string name="menu_missatges">Mensajes</string>
-    <string name="delete_jocs_ok">Se ha eliminado un juego</string>
-    <string name="delete_jocs_error">Error en eliminar un juego</string>
-    <string name="wait_fragment">Un momento...</string>
-    <string name="encrypted_password">Contraseña encriptada</string>
-    <string name="account_username">Nombre usuario</string>
-    <string name="account_password">Contraseña</string>
-    <string name="account_email">Email</string>
-    <string name="account_name">Nombre</string>
-    <string name="account_surname">Apellido</string>
-    <string name="account_birthday">Cumpleaños</string>
-    <string name="account_genere">Género</string>
-    <string name="account_short_description">Descripción corta</string>
-    <string name="account_long_description">Descripción larga</string>
+    <string name="compartir">Compartir</string>
 </resources>

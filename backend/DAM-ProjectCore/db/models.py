@@ -77,10 +77,6 @@ class UserTypeEnum(enum.Enum):  # TODO provar i acabar
     casual = "Casu"
 
 
-class CategoriesEnum(enum.Enum):  # TODO afegir valors al enum
-    prova_categoria = "Default"
-
-
 class UserBanned(enum.Enum):  # TODO provar
     permanent = "Perma"
     provisional = "Provi"
@@ -184,7 +180,6 @@ class UserToken(SQLAlchemyBase):
     id = Column(Integer, primary_key=True)
     token = Column(Unicode(50), nullable=False, unique=True)
     user_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
-    user = relationship("User", back_populates="tokens")
 
 
 # Forums seguits TODO
@@ -255,9 +250,10 @@ class User(SQLAlchemyBase, JSONModel):
         return {
             "created_at": self.created_at.strftime(settings.DATE_DEFAULT_FORMAT),
             "username": self.username,
-            "account_type": self.account_type.value,
-            "genere": self.genere.value,
-            "photo": self.photo,
+            "longdesc": self.long_description,
+            "shortdesc": self.short_description,
+            "image": self.photo,
+            "location": self.location,
         }
 
     # TODO mirar si funciona
@@ -356,9 +352,9 @@ class Comments(SQLAlchemyBase, JSONModel): #TODO: acabar
 '''
 
 
-# Base de dades dels publicadors de videjocs #TODO: acabar
+# Base de dades deles plataformes de videjocs #TODO: comprovar
 class Platforms(SQLAlchemyBase, JSONModel):
-    __tablename__ = "Platforms"
+    __tablename__ = "platforms"
 
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(100), unique=True, nullable=False)
@@ -373,30 +369,52 @@ class Platforms(SQLAlchemyBase, JSONModel):
         }
 
 
+# Base de dades de les categories que hi ha
+class Categories(SQLAlchemyBase, JSONModel):
+    __tablename__ = "categories"
+    id = Column(Integer, primary_key=True)
+    name = Column(Unicode(30), unique=True, nullable=False)
+
+    def json_model(self):
+        return {
+            "id": self.id,
+            "name": self.name
+        }
+
+
 # Base de dades dels jocs
-class Jocs(SQLAlchemyBase, JSONModel):  # TODO: acabar
+class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
     __tablename__ = "jocs"
 
-    Categories_game = Table("cat-game", SQLAlchemyBase.metadata,
-                            Column("game_id", Integer,
+    Categories_game = Table("cat_game", SQLAlchemyBase.metadata,
+                            Column("game_id_cat_game", Integer,
                                    ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
                                    nullable=False),
-                            Column("categories", Enum(CategoriesEnum),
+                            Column("categories_cat_game", Integer,
+                                   ForeignKey("categories.id", onupdate="CASCADE", ondelete="CASCADE"),
                                    nullable=False),
 
                             )
 
+    Platforms_game = Table("plat-game", SQLAlchemyBase.metadata,
+                           Column("game_id_plat_game", Integer,
+                                  ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
+                                  nullable=False),
+                           Column("platform_plat_game", Integer,
+                                  ForeignKey("platforms.id", onupdate="CASCADE", ondelete="CASCADE"),
+                                  nullable=False),
+                           )
+
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(100), unique=True, nullable=False)
-    categories = relationship("Categories", secondary=CategoriesEnum, back_populates="Categories-games")
-    # TODO provar
+    categories = relationship("Categories", secondary=Categories_game)
     min_players = Column(Integer, default=1, nullable=False)
     max_players = Column(Integer, default=1, nullable=False)
     online_mode = Column(Boolean, default=False, nullable=False)
     published = Column(Unicode(10), nullable=False)
     studio = Column(Unicode(100), nullable=False)
     image = Column(Unicode(255), default="")
-    platforms = relationship("Platforms", secondary=Categories_game, back_populates="Games-Platforms")  # TODO provar
+    platforms = relationship("Platforms", secondary=Platforms_game)
     description = Column(UnicodeText, default="")
     pegi = Column(Integer, default=18)  # Edat recomanada
     aproved = Column(Boolean, default=False, nullable=False)

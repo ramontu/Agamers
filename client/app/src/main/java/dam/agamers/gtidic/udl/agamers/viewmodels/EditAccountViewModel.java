@@ -1,16 +1,10 @@
 package dam.agamers.gtidic.udl.agamers.viewmodels;
 
 import android.util.Log;
-import android.view.View;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.util.Date;
-import java.util.Objects;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;

@@ -1,5 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.services.account;
 
+import com.google.gson.Gson;
+
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.Token;
 import dam.agamers.gtidic.udl.agamers.network.RetrofitClientInstance;
@@ -32,7 +34,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Call<ResponseBody> deleteUserToken(Token token) {
+    public Call<ResponseBody> deleteUserToken(Gson token) {
         return retrofit.create(AccountService.class).deleteUserToken(token);
     }
 
