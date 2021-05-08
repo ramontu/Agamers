@@ -4,29 +4,37 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
 
 import dam.agamers.gtidic.udl.agamers.databinding.ActivitySignupBinding;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 import dam.agamers.gtidic.udl.agamers.viewmodels.SignUpViewModel;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends CommonActivity {
     final String TAG = "SignUp";
+    SignUpViewModel signUpViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +42,17 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         getSupportActionBar().hide();
         initView();
-        set_accio_tornar_enrere();
+        checking();
+        missatge_registrat();
     }
 
     private void initView(){
-        SignUpViewModel registre1ViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
+        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
         ActivitySignupBinding activitySignupBinding =
                 DataBindingUtil.setContentView(this,R.layout.activity_signup);
         activitySignupBinding.setLifecycleOwner(this);
-        activitySignupBinding.setViewModel(registre1ViewModel);
+        activitySignupBinding.setViewModel(signUpViewModel);
     }
 
 
@@ -56,41 +65,20 @@ public class SignUpActivity extends AppCompatActivity {
         final int m_year = calendar.get(Calendar.YEAR);
         calendar.add(Calendar.YEAR, -12);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpActivity.this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                calendar.set(year,month,dayOfMonth);
-                birth.getEditText().setText(calendar.get(Calendar.DAY_OF_MONTH)+"/"+new Integer(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR)); //OK
-
-            }
+        DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpActivity.this, (view, year, month, dayOfMonth) -> {
+            calendar.set(year,month,dayOfMonth);
+            String str = calendar.get(Calendar.DAY_OF_MONTH)+"/"+Integer.valueOf(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR);
+            Log.d("Date:",(str));
+            birth.getEditText().setText(str); //OK
+            signUpViewModel.Birthdate.setValue(str);
         }, m_year, m_month, m_day);
-
-
-
-
         datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
-
-
-
         datePickerDialog.getDatePicker().getTouchables().get(0).performClick();
-
-
         datePickerDialog.show();
     }
 
-    private void set_accio_tornar_enrere(){
-        checking();
-    }
-
-    //@Jordi -> poseu noms adients b_nom === isNameValid isPasswordValid -> sóc molt pesat amb
-    // punyetetes ho sento!
-    //TODO POSAR NOMS ADIENTS
 
     private boolean isUsernameValid = false;
-    //private boolean isNameValid = false;
-    //private boolean isSurnameValid = false;
-    //private boolean isDateValid = false;
     private boolean isPasswordValid = false;
     private boolean isSamePassword = false;
     private boolean isMailValid = false;
@@ -102,60 +90,8 @@ public class SignUpActivity extends AppCompatActivity {
      * S'encarrega de fer totes les comprovacions necessaries per a que el registre es ralitzi de forma satisfactòria
      */
     protected void checking() {
-        /*
-        //Comprovació nom
-        TextInputLayout nom = (TextInputLayout) findViewById(R.id.name_textinputlayout);
-        nom.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!AccountValidator.check_nameOrSurnameValid(s.toString())){
-                    nom.setError(getString(R.string.error_nom_no_vàlid));
-                    isNameValid = false;
-                }
-                else {
-                    nom.setError(null);
-                    isNameValid = true;
-                }
-                tots_camps_valids();
-            }
-        });
-
-         */
-
-        /*
-        //Comprovació cognom
-        TextInputLayout cognom = (TextInputLayout) findViewById(R.id.cognom_textinputlayout);
-        cognom.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!AccountValidator.check_nameOrSurnameValid(s.toString())){
-                    cognom.setError(getString(R.string.error_cognom_no_vàlid));
-                    isSurnameValid = false;
-                }
-                else {
-                    cognom.setError(null);
-                    isSurnameValid = true;
-                }
-                tots_camps_valids();
-            }
-        });
-
-         */
-
         //comprovació username
-        TextInputLayout username = (TextInputLayout) findViewById(R.id.name_textinputlayout);
+        TextInputLayout username = findViewById(R.id.name_textinputlayout);
         username.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -171,7 +107,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         //comprovació contra
-        TextInputLayout contra = (TextInputLayout) findViewById(R.id.contra_textinputlayout);
+        TextInputLayout contra = findViewById(R.id.contra_textinputlayout);
         contra.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -188,7 +124,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         //comprovació confirmar contra
-        TextInputLayout confi_contra = (TextInputLayout) findViewById(R.id.contra_con);
+        TextInputLayout confi_contra = findViewById(R.id.contra_con);
         confi_contra.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -212,7 +148,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         //comprovació MAIL
-        TextInputLayout email = (TextInputLayout) findViewById(R.id.username);
+        TextInputLayout email = findViewById(R.id.username);
         email.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -226,31 +162,6 @@ public class SignUpActivity extends AppCompatActivity {
                 updateForm(isMailValid, email, getString(R.string.error_mail_no_vàlid));
             }
         });
-
-
-
-        /*
-        //Comprovació data
-        TextInputLayout date = (TextInputLayout) findViewById(R.id.birthday);
-        date.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                date.setError(getString(R.string.signup_date_error));
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                date.setErrorEnabled(false);
-                isDateValid = true;
-            }
-        });
-         */
-
-
 
     }
 
@@ -294,17 +205,20 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    //TODO: implementar
-    public void missatge_registrat(View view){
 
-        Snackbar snackbar;
-        if (true){
-            snackbar = Snackbar.make(view, getString(R.string.registre_ok), 5000);
-        }
-        else {
-            snackbar = Snackbar.make(view, getString(R.string.registre_error), 10000);
-        }
-        snackbar.show();
+    public void missatge_registrat(){
+        signUpViewModel.getSignUpResponse().observe(this, aBoolean -> {
+            Toast toast;
+            if(aBoolean){
+                toast = Toast.makeText(getBaseContext(),R.string.signup_ok,Toast.LENGTH_LONG);
+                toast.show();
+                finish();
+            }
+            else {
+                toast = Toast.makeText(getBaseContext(),R.string.signup_error,Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
     }
 
 

@@ -59,14 +59,12 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="username"
-                    android:enabled="false">
+                    android:hint="username">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_info_username_edit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={viewModel.username}" />
+                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,52 +81,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password_edit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={viewModel.password}" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edit_info_short_description"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="short_descripion"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="100">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/short_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
-                        android:text="@={viewModel.short_description}" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edit_info_long_description"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="long_descripion"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="2000">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/long_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
-                        android:text="@={viewModel.long_description}" />
+                        android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -146,8 +99,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={viewModel.email}" />
+                        android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -165,8 +117,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/full_name_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={viewModel.name}" />
+                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -184,8 +135,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/surname_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={viewModel.surname}" />
+                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -198,13 +148,12 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="birthday"> <!--TODO modificar com el de registre, mirar si es vol deixar la opció de modificar la edat o no-->
+                    android:hint="birthday">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/birthday_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="" /> <!--TODO posar model-->
+                        android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -231,6 +180,48 @@
                         />
 
                 </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edit_info_short_description"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="short_descripion"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="100">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/short_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edit_info_long_description"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="long_descripion"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="2000">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/long_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
                 <Button
                     android:id="@+id/button_edit_info_save_exit"

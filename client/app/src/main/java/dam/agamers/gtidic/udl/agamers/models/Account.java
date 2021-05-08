@@ -15,7 +15,7 @@ import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 public class Account {
 
     @SerializedName("created_at")
-    private Date created_at;
+    private String created_at;
     @SerializedName("username")
     private String username;
     @SerializedName("account_type")
@@ -39,6 +39,8 @@ public class Account {
     private GenereEnum genere;
     @SerializedName("photo")
     private String photo; //TODO modificar amb el de veritat
+    @SerializedName("recovery_code")
+    private String recovery_code;
 
 
     public String getEmail() {
@@ -90,11 +92,11 @@ public class Account {
         this.birthday = date;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
@@ -146,9 +148,17 @@ public class Account {
         this.photo = photo;
     }
 
+    public String getRecovery_code() {
+        return recovery_code;
+    }
+
+    public void setRecovery_code(String recovery_code) {
+        this.recovery_code = recovery_code;
+    }
+
     @Override
     public String toString(){
-        return this.name + " " + this.surname  + " " + this.username  + " " + this.birthday  + " " + this.email + " " + this.password;
+        return this.name + " " + this.surname  + " " + this.username  + " Birthday:" + this.birthday  + " " + this.email + " " + this.password;
     }
 
 

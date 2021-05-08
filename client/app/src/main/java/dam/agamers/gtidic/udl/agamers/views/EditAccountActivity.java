@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.karumi.dexter.Dexter;
@@ -31,13 +33,16 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
+import dam.agamers.gtidic.udl.agamers.utils.Utils;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 import dam.agamers.gtidic.udl.agamers.viewmodels.EditAccountViewModel;
 
@@ -53,8 +58,9 @@ public class EditAccountActivity extends CommonActivity {
     private TextInputLayout _email;
     private TextInputLayout _name;
     private TextInputLayout _surname;
+    private TextInputLayout _birthday;
 
-    private boolean passwordValid = true; //TODO modificar quan es descarregui la informació
+    private boolean passwordValid = true;
     private boolean short_descriptionValid = false;
     private boolean long_descriptionValid = false;
     private boolean emailValid = false;
@@ -65,7 +71,8 @@ public class EditAccountActivity extends CommonActivity {
     private final int PICK_IMAGE_REQUEST = 14;
     private final String TAG = "EditAccountActivity";
     private ImageView profileImage;
-
+    private Account account_total;
+    private Spinner spinner;
 
 
     @Override
@@ -73,7 +80,6 @@ public class EditAccountActivity extends CommonActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
         getSupportActionBar().hide();
-
         editAccountViewModel = new EditAccountViewModel();
 
 
@@ -84,18 +90,23 @@ public class EditAccountActivity extends CommonActivity {
         _email = findViewById(R.id.edit_info_email);
         _name = findViewById(R.id.edit_info_first_name);
         _surname = findViewById(R.id.edit_info_surname);
-
+        _birthday = findViewById(R.id.edit_info_birthday);
+        _username.setEnabled(false);
+        _password.setEnabled(false);
+        _birthday.setEnabled(false);
 
         profileImage = findViewById(R.id.edit_info_imageView);
 
 
-        setInformation();
+
+
+        initValues();
         init_validation();
-        setSpinnerGenere();
+        show_message_save_and_exit();
     }
 
-    private void setSpinnerGenere(){
-        Spinner spinner = findViewById(R.id.edit_info_genere_spinner);
+    private void setSpinnerGenere(GenereEnum genere){
+        spinner = findViewById(R.id.edit_info_genere_spinner);
 
         List<String> llista = new ArrayList<>();
         for( int i = 0; i < GenereEnum.values().length; i++){
@@ -104,44 +115,48 @@ public class EditAccountActivity extends CommonActivity {
         SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,llista);
         spinner.setAdapter(spinnerAdapter);
 
-        int position = 3;
-        /*
-        if (genereEnum != null){
-
-            for (int i = 0; i < spinner.getCount(); i++){
-                if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase("Dona")){ //NO acaba de funcionar diu que genereenum es null
-                    position = i;
-                }
-            }
+        int position = 0;
+        switch (genere) {
+            case M:
+                position = 0;
+                break;
+            case F:
+                position = 1;
+                break;
+            case NB:
+                position = 2;
+                break;
+            default:
+                position = 3;
+                break;
         }
-
-         */
         spinner.setSelection(position);
     }
 
 
 
-    private void setInformation(){
-        editAccountViewModel.setParameters();
-        /*
-        editAccountViewModel.getAccountMutableLiveData().observe(this, new Observer<Account>() {
+    private void initValues(){
+
+        editAccountViewModel.getmAccount().observe(this, new Observer<Account>() {
             @Override
             public void onChanged(Account account) {
+                account_total = account;
                 _username.getEditText().setText(account.getUsername());
-                _username.setFocusable(false);
-                _password.getEditText().setText(account.getPassword());
+                _password.getEditText().setText(R.string.implementations_edit_info_user_pass); //TODO demoment no tenim un decodificador
                 _short_description.getEditText().setText(account.getShort_description());
                 _long_description.getEditText().setText(account.getLong_description());
                 _email.getEditText().setText(account.getEmail());
                 _name.getEditText().setText(account.getName());
                 _surname.getEditText().setText(account.getSurname());
-                genereEnum = account.getGenere();
-                //TODO enxcara falten valors
+                _birthday.getEditText().setText(account.getBirthday());
+                GenereEnum geE = account.getGenere();
+                setSpinnerGenere(geE);
             }
         });
 
-         */
+
     }
+
 
     private void init_validation(){
 
@@ -239,39 +254,68 @@ public class EditAccountActivity extends CommonActivity {
     }
 
     /**
-     * Comprova que tots els camps del formaulari de registre són correctes, de ser així permetrà a l'usuari premer el botó de registre
+     * Comprova que tots els camps del formaulari de update account són correctes, de ser així permetrà a l'usuari premer el botó de guardar i sortir
      */
     private void tots_camps_valids(){
         Button b =findViewById(R.id.button_edit_info_save_exit);
-        b.setEnabled(passwordValid && short_descriptionValid &&long_descriptionValid && emailValid && nameValid && surnameValid); //TODO mirar si la data es vàlida
+        b.setEnabled(passwordValid && short_descriptionValid &&long_descriptionValid && emailValid && nameValid && surnameValid);
     }
 
 
     public void save_and_exit(View view){
-        Account account = new Account();
 
-        //TODO falten verificacions
+        account_total.setShort_description(_short_description.getEditText().getText().toString());
+        account_total.setLong_description(_long_description.getEditText().getText().toString());
+        account_total.setEmail(_email.getEditText().getText().toString());
+        account_total.setName(_name.getEditText().getText().toString());
+        account_total.setSurname(_surname.getEditText().getText().toString());
+        switch (spinner.getSelectedItemPosition()){
+            case 0:
+                account_total.setGenere(GenereEnum.M);
+                break;
+            case 1:
+                account_total.setGenere(GenereEnum.F);
+                break;
+            case 2:
+                account_total.setGenere(GenereEnum.NB);
+                break;
+            case 3:
+                account_total.setGenere(GenereEnum.N);
+                break;
+        }
+        editAccountViewModel.update_info(account_total);
+    }
 
-        account.setUsername(_username.getEditText().getText().toString());
-        account.setPassword(_password.getEditText().getText().toString());
-        account.setShort_description(_short_description.getEditText().getText().toString());
-        account.setLong_description(_long_description.getEditText().getText().toString());
-        account.setEmail(_email.getEditText().getText().toString());
-        account.setName(_name.getEditText().getText().toString());
-        account.setSurname(_surname.getEditText().getText().toString());
+    private void show_message_save_and_exit(){
+        editAccountViewModel.responseUpdate.observe(this, aBoolean -> {
+            Toast toast;
+            if (aBoolean){
+                toast = Toast.makeText(getBaseContext(), R.string.update_account_ok,Toast.LENGTH_LONG);
+                finish();
+            }
+            else {
+                toast = Toast.makeText(getBaseContext(),R.string.update_account_error,Toast.LENGTH_LONG);
+            }
+            toast.show();
+        });
+    }
 
-
-
+    public void onBackPressed(){
+        exit_without_save_notification();
     }
 
     public void exit_no_save(View view){
+        exit_without_save_notification();
+    }
+
+    private void exit_without_save_notification(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.edit_account_not_saved_title);
         alertDialogBuilder.setMessage(R.string.edit_account_message_data_not_saved);
         alertDialogBuilder.setNegativeButton(R.string.option_cancell, (dialog, which) -> {
 
         });
-        alertDialogBuilder.setPositiveButton(R.string.option_ok, (dialog, which) -> goTo(UserInfoActivity.class));
+        alertDialogBuilder.setPositiveButton(R.string.option_ok, (dialog, which) -> finish());
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();

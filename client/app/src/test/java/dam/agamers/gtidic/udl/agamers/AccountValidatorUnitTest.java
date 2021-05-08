@@ -42,7 +42,7 @@ public class AccountValidatorUnitTest {
 
     @Test
     public void username_test1_7(){
-        assertFalse(AccountValidator.check_usernameValid("aGAMERS"));
+        assertTrue(AccountValidator.check_usernameValid("aGAMERS"));
     }
 
     //TEST CONTRASSENYA
@@ -79,7 +79,7 @@ public class AccountValidatorUnitTest {
     public void contra_test2_10() { assertTrue(AccountValidator.check_passwordValid("aCb123456@"));}
 
     @Test
-    public void contra_test2_11() { assertTrue(AccountValidator.check_passwordValid("aCbhgahgjhik@"));}
+    public void contra_test2_11() { assertFalse(AccountValidator.check_passwordValid("aCbhgahgjhik@"));}
 
 
     //TEST MAIL
@@ -121,6 +121,12 @@ public class AccountValidatorUnitTest {
 
     @Test
     public void nom_cog_test_5() { assertFalse(AccountValidator.check_nameOrSurnameValid("Ramondavidsamanthaoriolramondavidsamanthaoriolramondavidsamanthaoriol"));}
+
+    @Test
+    public void nom_cog_test_6() { assertTrue(AccountValidator.check_nameOrSurnameValid(""));}
+
+    @Test
+    public void nom_cog_test_7() { assertTrue(AccountValidator.check_nameOrSurnameValid("Ramón"));}
 
 
 

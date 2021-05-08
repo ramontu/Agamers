@@ -26,6 +26,8 @@ SchemaUpdateUser = {
         "username": {"type": "string"},
         "password": {"type": "string"},
         "account_type": {"type": "string"},
+        "short_description": {"type": "string"},
+        "long_description": {"type": "string"},
         "email": {"type": "string"},
         "name": {"type": "string"},
         "surname": {"type": "string"},

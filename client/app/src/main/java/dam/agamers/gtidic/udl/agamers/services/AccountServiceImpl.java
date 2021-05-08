@@ -1,5 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.services;
 
+import android.util.Log;
+
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.network.RetrofitClientInstance;
 
@@ -61,7 +63,15 @@ public class AccountServiceImpl implements AccountService {
         return refrotit.create(AccountService.class).uploadImage(image);
     }
 
+    @Override
+    public Call<ResponseBody> recoverPassword(Account account) {
+        return refrotit.create(AccountService.class).recoverPassword(account);
+    }
 
+    @Override
+    public Call<ResponseBody> setPassword(Account account) {
+        return refrotit.create(AccountService.class).setPassword(account);
+    }
 
 
 }
