@@ -131,4 +131,14 @@
     <string name="abc3">abc</string>
     <string name="abc4">abc</string>
 
+    <string name="Text_bio" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="nom_usuari" translatable="false">nom</string>
+    <string name="perfil_d_usuari" translatable="false">Perfil d'usuari</string>
+    <string name="sobre_usuari_x">Sobre l'usuari</string>
+    <string name="assoliments_recents">Assoliments recents</string>
+    <string name="abc">abc</string>
+    <string name="abc2">abc</string>
+    <string name="abc3">abc</string>
+    <string name="abc4">abc</string>
+
 </resources>
