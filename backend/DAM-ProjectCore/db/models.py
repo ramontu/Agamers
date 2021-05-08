@@ -180,7 +180,6 @@ class UserToken(SQLAlchemyBase):
     id = Column(Integer, primary_key=True)
     token = Column(Unicode(50), nullable=False, unique=True)
     user_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
-    user = relationship("User", back_populates="tokens")
 
 
 # Forums seguits TODO
