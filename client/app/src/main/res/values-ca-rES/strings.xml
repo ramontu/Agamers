@@ -89,7 +89,4 @@
     <string name="navigation_drawer_open">"Obre el panell de navegació "</string>
     <string name="navigation_drawer_close">Tenca el panell de navegació</string>
 
-    <string name="sobre_usuari_x">Sobre l\'usuari</string>
-    <string name="assoliments_recents">Assoliments recents</string>
-
 </resources>
