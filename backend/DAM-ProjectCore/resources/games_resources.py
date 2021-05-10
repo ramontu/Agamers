@@ -1,6 +1,7 @@
 import falcon
 from falcon.media.validators import jsonschema
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm.exc import NoResultFound
 
 import messages
 from db.models import Jocs
@@ -11,7 +12,7 @@ from resources.schemas import SchemaNewGame, SchemaUpdateGame
 
 class ResourceNewGame(DAMCoreResource):
     @jsonschema.validate(SchemaNewGame)
-    def on_get(self, req, resp, *args, **kwargs):
+    def on_post(self, req, resp, *args, **kwargs):
         super(ResourceNewGame, self).on_post(req, resp, *args, **kwargs)
 
         aux_game = Jocs()
@@ -71,3 +72,17 @@ class ResourceDeleteGame(object):
         except Exception as e:
             mylogger.critical("{}:{}".format(messages.error_removing_game, e))
             raise falcon.HTTPInternalServerError()
+
+
+@falcon.before(requires_game_id)
+class ResourceGetGame(object):
+    def on_get(self, req, resp, *args, **kwargs):
+        super(ResourceGetGame, self).on_get(req, resp, *args, **kwargs)
+        if "id" in kwargs:
+            try:
+                aux_game = self.db_session.query(Jocs).filter(Jocs.id == kwargs["id"]).one()
+
+                resp.media = aux_game
+                resp.status = falcon.HTTP_200
+            except NoResultFound:
+                raise falcon.HTTPBadRequest(description=messages.game_not_found)

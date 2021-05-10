@@ -71,3 +71,20 @@ SchemaUpdateGame = {
         "aproved": {"type": "Boolean"}
     }
 }
+
+SchemaNewPlatform = {
+    "type": "object",
+    "properties": {
+        "name": {"type": "string"},
+        "manufacturer": {"type": "string"}
+    },
+    "required": ["name"]
+}
+
+SchemaNewCategory = {
+    "type": "object",
+    "properties": {
+        "name": {"type": "string"}
+    },
+    "required": ["name"]
+}

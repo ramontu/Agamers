@@ -18,8 +18,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
+import dam.agamers.gtidic.udl.agamers.databinding.FragmentTancarsessioBinding;
 import dam.agamers.gtidic.udl.agamers.databinding.NavHeaderMainBinding;
 import dam.agamers.gtidic.udl.agamers.models.Account;
+import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 import dam.agamers.gtidic.udl.agamers.views.activitatsuser.LogInActivity;
 import dam.agamers.gtidic.udl.agamers.views.activitatsuser.UserInfoActivity;
 
@@ -76,6 +78,18 @@ public class FirstActivity extends CommonActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public void closse_session(){
+
+        AccountRepo accountRepo = new AccountRepo();
+        accountRepo.deleteToken();
+        if (accountRepo.getmDeleteTokenOk().getValue()){
+            goTo(LogInActivity.class);
+            finish();
+        }
+        showInfoUser(getCurrentFocus(), "Error al tancar la sesió");
+    }
+
 
 
 }

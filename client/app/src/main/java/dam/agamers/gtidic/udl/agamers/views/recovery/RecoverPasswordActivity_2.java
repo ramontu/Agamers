@@ -21,8 +21,6 @@ import dam.agamers.gtidic.udl.agamers.views.activitatsuser.LogInActivity;
 public class RecoverPasswordActivity_2 extends CommonActivity {
 
     AccountRepo accountRepo;
-    View view;
-    private Account account;
     ProgressBar progressBar;
     TextInputLayout _mail;
     TextInputLayout _recoverycode;
@@ -47,22 +45,6 @@ public class RecoverPasswordActivity_2 extends CommonActivity {
         button = findViewById(R.id.recovery_2_button);
         button.setEnabled(false);
         validator();
-    }
-
-    public void recover2(View view){
-        this.view = view;
-
-        progressBar.setIndeterminate(true);
-        progressBar.bringToFront();
-        progressBar.setVisibility(View.VISIBLE);
-
-        account = new Account();
-        account.setEmail(_mail.getEditText().getText().toString());
-        account.setPassword(_newpass.getEditText().getText().toString());
-        account.setRecovery_code(_recoverycode.getEditText().getText().toString());
-        Log.d("recover2", account.getEmail()+ account.getPassword() + account.getRecovery_code());
-        accountRepo.recover2_newpass(account);
-
     }
 
     public void show_response(){

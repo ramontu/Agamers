@@ -228,7 +228,7 @@ class User(SQLAlchemyBase, JSONModel):
     points = Column(Integer, default=0, nullable=True)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
-    tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
+    # tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan") #Si s'activa aixo surt error ja que user no es res
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -396,7 +396,7 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
 
                             )
 
-    Platforms_game = Table("plat-game", SQLAlchemyBase.metadata,
+    Platforms_game = Table("plat_game", SQLAlchemyBase.metadata,
                            Column("game_id_plat_game", Integer,
                                   ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
                                   nullable=False),

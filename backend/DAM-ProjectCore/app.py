@@ -9,6 +9,7 @@ import messages
 import middlewares
 from falcon_multipart.middleware import MultipartMiddleware
 from resources import account_resources, common_resources, user_resources, games_resources
+from resources.categories import categories_resources
 from settings import configure_logging
 
 # LOGGING
@@ -53,6 +54,11 @@ application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame())
 application.add_route("/jocs/update_jocs", games_resources.ResourceUpdateGame())
 application.add_route("/jocs/delete_jocs", games_resources.ResourceDeleteGame())
 
+# Plataforma
+
+# Categories
+application.add_route("/category/create", categories_resources.ResourceNewCategory())  # TODO provar
+application.add_route("/category/create", categories_resources.ResourceDeleteCategory())  # TODO provar
 '''
 application.add_route("/events", event_resources.ResourceGetEvents())
 application.add_route("/events/show/{id:int}", event_resources.ResourceGetEvent())

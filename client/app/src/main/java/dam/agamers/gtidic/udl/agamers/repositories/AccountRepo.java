@@ -41,6 +41,7 @@ public class AccountRepo {
     private MutableLiveData<Boolean> mRecover2Ok;
     private MutableLiveData<Boolean> mUpdateOk;
     private MutableLiveData<Boolean> mSignUpOk;
+    private MutableLiveData<Boolean> mDeleteTokenOk;
 
 
 
@@ -56,6 +57,7 @@ public class AccountRepo {
         this.mRecover2Ok = new MutableLiveData<>();
         this.mUpdateOk = new MutableLiveData<>();
         this.mSignUpOk = new MutableLiveData<>();
+        this.mDeleteTokenOk = new MutableLiveData<>();
     }
 
     public void registerAccount(Account account){
@@ -309,7 +311,6 @@ public class AccountRepo {
     }
 
     public void deleteToken() {
-        MutableLiveData<Boolean> everythingOK = new MutableLiveData<>();
         Token token = new Token(PreferencesProvider.providePreferences().getString("token",""));
         Gson gson = new Gson();
         gson.toJson(token);
@@ -317,26 +318,26 @@ public class AccountRepo {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if (response.code() == 200) {
-                    everythingOK.setValue(true);
+                    mDeleteTokenOk.setValue(true);
                     Log.d(TAG, "deleteToken OK");
                 }
                 else {
-                    everythingOK.setValue(false);
+                    mDeleteTokenOk.setValue(false);
                     Log.d(TAG, "deleteToken WRONG"+response.code()+response.message());
                 }
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                everythingOK.setValue(false);
+                mDeleteTokenOk.setValue(false);
                 Log.d(TAG, "deleteToken onFailure"+t.getMessage());
                 t.printStackTrace();
             }
         });
-        //return everythingOK.getValue();
     }
 
-
+    public MutableLiveData<Boolean> getmDeleteTokenOk() {
+        return mDeleteTokenOk;
+    }
 }
 
 

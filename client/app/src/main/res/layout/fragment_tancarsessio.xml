@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+    <variable
+        name="viewModel"
+        type="dam.agamers.gtidic.udl.agamers.views.tancarsessio.TancarsessioViewModel"
+        />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,4 +30,16 @@
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center_horizontal" />
 
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_info_tancar_sessio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/text_tancarsessio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="@{() -> viewModel.close_session()}"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
