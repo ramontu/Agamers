@@ -7,3 +7,4 @@ pymysql~=1.0.2
 jsonschema
 falcon-multipart
 Jinja2~=2.11.3
+kwargs~=1.0.1

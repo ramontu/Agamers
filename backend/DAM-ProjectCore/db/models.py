@@ -411,7 +411,7 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
     min_players = Column(Integer, default=1, nullable=False)
     max_players = Column(Integer, default=1, nullable=False)
     online_mode = Column(Boolean, default=False, nullable=False)
-    published = Column(Unicode(10), nullable=False)
+    published = Column(Unicode(10), default="", nullable=False)
     studio = Column(Unicode(100), nullable=False)
     image = Column(Unicode(255), default="")
     platforms = relationship("Platforms", secondary=Platforms_game)

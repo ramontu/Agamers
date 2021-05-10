@@ -139,7 +139,7 @@ if __name__ == "__main__":
         finish_date=datetime.datetime.now() + (day_period * 5),
         owner_id=0,
         poster="logo.png",
-        registered=[user_1]
+        registered=[user_1] #TODO aixi es com es passa un array
     )
 
     db_session.add(event_hackatoon)

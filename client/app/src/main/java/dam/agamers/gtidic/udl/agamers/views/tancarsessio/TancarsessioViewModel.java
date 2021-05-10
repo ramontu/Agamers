@@ -9,15 +9,14 @@ import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 import dam.agamers.gtidic.udl.agamers.views.FirstActivity;
 
 public class TancarsessioViewModel extends ViewModel {
-
+    AccountRepo accountRepo;
 
     public TancarsessioViewModel() {
-
+        accountRepo = new AccountRepo();
     }
 
 
     public MutableLiveData<Boolean> close_session(){
-        AccountRepo accountRepo = new AccountRepo();
         accountRepo.deleteToken();
         return accountRepo.getmDeleteTokenOk();
     }

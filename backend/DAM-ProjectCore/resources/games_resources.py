@@ -39,7 +39,7 @@ class ResourceUpdateGame(DAMCoreResource):
     @jsonschema.validate(SchemaUpdateGame)
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceUpdateGame, self).on_post(req, resp, *args, **kwargs)
-        current_game = req.context["game_id"]
+        current_game = req.context["game"]
         try:
             for i in req.media:  # ToDO es possible que falli amb més d'una categoria
                 valor = req.media[i]
@@ -62,7 +62,7 @@ class ResourceUpdateGame(DAMCoreResource):
 class ResourceDeleteGame(object):
     def on_delete(self, req, resp, *args, **kwargs):
         super(ResourceDeleteGame, self).on_delete(req, resp, *args, **kwargs)
-        current_game = req.context["game_id"]
+        current_game = req.context["game"]
 
         try:
             self.db_session.delete(current_game)
@@ -78,11 +78,11 @@ class ResourceDeleteGame(object):
 class ResourceGetGame(object):
     def on_get(self, req, resp, *args, **kwargs):
         super(ResourceGetGame, self).on_get(req, resp, *args, **kwargs)
-        if "id" in kwargs:
-            try:
-                aux_game = self.db_session.query(Jocs).filter(Jocs.id == kwargs["id"]).one()
+        current_game = req.context["game"]
 
-                resp.media = aux_game
+        if current_game is not None:
+            try:
+                resp.media = current_game
                 resp.status = falcon.HTTP_200
             except NoResultFound:
                 raise falcon.HTTPBadRequest(description=messages.game_not_found)

@@ -79,7 +79,7 @@ public class FirstActivity extends CommonActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void closse_session(){
+    public void close_session(View view){
 
         AccountRepo accountRepo = new AccountRepo();
         accountRepo.deleteToken();
