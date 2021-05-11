@@ -88,5 +88,6 @@
     <string name="signup_error">Hi ha hagut algun error. Potser aquest usuari ja existeix</string>
     <string name="navigation_drawer_open">"Obre el panell de navegació "</string>
     <string name="navigation_drawer_close">Tenca el panell de navegació</string>
+    <string name="numero_de_jugadors">Numero de jugadors:</string>
 
 </resources>

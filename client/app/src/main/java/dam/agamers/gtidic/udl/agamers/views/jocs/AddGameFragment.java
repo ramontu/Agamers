@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import dam.agamers.gtidic.udl.agamers.R;
 
-public class AddGame extends AppCompatActivity {
+public class AddGameFragment extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
