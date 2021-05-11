@@ -59,8 +59,6 @@ class ResourceRegisterUser(DAMCoreResource):
 
 
 # TODO comprovar que funciona
-# Sera substituida per una altra fuciona a common resources
-
 @falcon.before(requires_auth)
 class DownloadUserImage(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
