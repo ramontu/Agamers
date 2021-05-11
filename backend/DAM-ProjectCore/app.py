@@ -50,15 +50,20 @@ application.add_route("/users/show/{username}", user_resources.ResourceGetUserPr
 application.add_route("/users/getuserimage", user_resources.DownloadUserImage())  # TODO comprovar
 
 # Jocs
-application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame()) #utilitzar rutes tipo {id:int}", event_resources.ResourceGetEvent()
+application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame())  # utilitzar rutes tipo {id:int}"
 application.add_route("/jocs/update_jocs/{id:int}", games_resources.ResourceUpdateGame())
 application.add_route("/jocs/delete_jocs/{id:int}", games_resources.ResourceDeleteGame())
+application.add_route("/jocs", games_resources.ResourceGetGames())
 
 # Plataforma
 
+
 # Categories
 application.add_route("/category/create", categories_resources.ResourceNewCategory())  # TODO provar
-application.add_route("/category/create", categories_resources.ResourceDeleteCategory())  # TODO provar
+application.add_route("/category/delete", categories_resources.ResourceDeleteCategory())  # TODO provar
+
+# General
+application.add_route("/image/download", common_resources.ResourceDownloadImage())  # TODO provar
 '''
 application.add_route("/events", event_resources.ResourceGetEvents())
 application.add_route("/events/show/{id:int}", event_resources.ResourceGetEvent())

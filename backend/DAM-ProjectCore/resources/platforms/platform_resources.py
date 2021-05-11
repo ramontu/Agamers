@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import falcon
 from falcon.media.validators import jsonschema
 from sqlalchemy.exc import IntegrityError

@@ -39,14 +39,14 @@ SchemaNewGame = {
     "type": "object",
     "properties": {
         "name": {"type": "string"},
-        "categories": {"type": "string"},  # TODO possiblement fallarà amb més de una passar SOL: amb un array
+        "categories": {"type": "array"},  # TODO possiblement fallarà amb més de una passar SOL: amb un array
         "min_players": {"type": "integer"},
         "max_players": {"type": "integer"},
         "online_mode": {"type": "boolean"},
         "published": {"type": "string"},
         "studio": {"type": "string"},
         "image": {"type": "string"},
-        "platforms": {"type": "string"},  # TODO possiblement fallarà amb més de una SOL: amb un array
+        "platforms": {"type": "array"},  # TODO possiblement fallarà amb més de una SOL: amb un array
         "description": {"type": "string"},
         "pegi": {"type": "integer"},
         "aproved": {"type": "boolean"}
@@ -58,14 +58,14 @@ SchemaUpdateGame = {
     "type": "object",
     "properties": {
         "name": {"type": "string"},
-        "categories": {"type": "string"},  # TODO possiblement fallarà amb més de una passar SOL: amb un array
+        "categories": {"type": "array"},  # TODO possiblement fallarà amb més de una passar SOL: amb un array
         "min_players": {"type": "integer"},
         "max_players": {"type": "integer"},
         "online_mode": {"type": "boolean"},
         "published": {"type": "string"},
         "studio": {"type": "string"},
         "image": {"type": "string"},
-        "platforms": {"type": "string"},  # TODO possiblement fallarà amb més de una SOL: amb un array
+        "platforms": {"type": "array"},  # TODO possiblement fallarà amb més de una SOL: amb un array
         "description": {"type": "string"},
         "pegi": {"type": "integer"},
         "aproved": {"type": "boolean"}

@@ -1,10 +1,12 @@
 import falcon
 from falcon.media.validators import jsonschema
+from sqlalchemy import and_
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.testing import in_
 
 import messages
-from db.models import Jocs
+from db.models import Jocs, Categories, Platforms
 from hooks import requires_game_id
 from resources.base_resources import DAMCoreResource, mylogger
 from resources.schemas import SchemaNewGame, SchemaUpdateGame
@@ -42,8 +44,17 @@ class ResourceUpdateGame(DAMCoreResource):
         current_game = req.context["game"]
         try:
             for i in req.media:  # ToDO es possible que falli amb més d'una categoria
+
                 valor = req.media[i]
-                setattr(current_game, i, valor)
+                if i == "categories":  # TODO fer el mateix amb les plataformes
+                    current_game.categories = []
+                    for k in valor:
+                        aux = self.db_session.query(Categories).filter(Categories.name == k).one_or_none()
+                        if aux is not None:
+                            current_game.categories.append(aux)
+
+                else:
+                    setattr(current_game, i, valor)
 
             self.db_session.add(current_game)
 
@@ -75,14 +86,45 @@ class ResourceDeleteGame(object):
 
 
 @falcon.before(requires_game_id)
-class ResourceGetGame(object):
+class ResourceGetGame(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
         super(ResourceGetGame, self).on_get(req, resp, *args, **kwargs)
         current_game = req.context["game"]
 
         if current_game is not None:
             try:
-                resp.media = current_game
+                resp.media = current_game.json_model
                 resp.status = falcon.HTTP_200
             except NoResultFound:
                 raise falcon.HTTPBadRequest(description=messages.game_not_found)
+
+#TODO selecciona si compleix una de les dos condicions, cal arreglar-ho per a que faci un join
+class ResourceGetGames(DAMCoreResource):
+    def on_get(self, req, resp, *args, **kwargs):
+        super(ResourceGetGames, self).on_get(req, resp, *args, **kwargs)
+
+        query = self.db_session.query(Jocs)
+
+        plat_buscar = req.get_param("platforms")
+        cat_buscar = req.get_param("categories")
+        if (plat_buscar is not None) and (cat_buscar is not None):
+            query = query.join(Jocs.Platforms_game, Platforms).filter(
+                Categories.id.in_(cat_buscar)).and_.join(Jocs.Categories_game, Categories).filter(
+                Categories.id.in_(cat_buscar))
+            #query = query.join(Jocs.Categories_game, Categories).filter(
+             #   Categories.id.in_(cat_buscar))
+
+        '''
+        cat_buscar = req.get_param("categories")
+        if cat_buscar is not None:
+            query = query.join(Jocs.Categories_game, Categories).filter(
+                Categories.id.in_(cat_buscar))  # TODO fer aixo també amb plataformes
+        '''
+        print(query)
+        results = query.all()
+        games = []
+        if results is not None:
+            for i in results:
+                games.append(i.json_model)
+        resp.media = games
+        resp.status = falcon.HTTP_200

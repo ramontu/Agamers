@@ -360,6 +360,7 @@ class Platforms(SQLAlchemyBase, JSONModel):
     name = Column(Unicode(100), unique=True, nullable=False)
     manufacturer = Column(Unicode(100), nullable=False)
 
+    @hybrid_property
     def json_model(self):
         return {
             "id": self.id,
@@ -375,6 +376,7 @@ class Categories(SQLAlchemyBase, JSONModel):
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(30), unique=True, nullable=False)
 
+    @hybrid_property
     def json_model(self):
         return {
             "id": self.id,
@@ -424,14 +426,14 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
         return {
             "id": self.id,
             "name": self.name,
-            "categories": self.categories,
+            "categories": [categories.name for categories in self.categories], #Implementar aixo als altres
             "min_players": self.min_players,
             "max_players": self.max_players,
             "online_mode": self.online_mode,
             "published": self.published,
             "studio": self.studio,
             "image": self.image,
-            "platforms": self.platforms,
+            "platforms": [platforms.name for platforms in self.platforms],
             "description": self.description,
             "pegi": self.pegi,
             "aproved": self.aproved
