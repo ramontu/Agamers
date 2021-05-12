@@ -55,7 +55,7 @@ public class JocsRepo {
 
     public void update_jocs(Jocs jocs){
         Log.d(TAG,"update info");
-        jocsService.update_jocs(jocs).enqueue(new Callback<ResponseBody>() {
+        jocsService.update_jocs(jocs, jocs.getId()).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code()==200){
