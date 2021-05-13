@@ -26,7 +26,6 @@ public interface JocsService {
     @POST("/jocs/create_jocs")
     Call<ResponseBody> create_jocs(@Body Jocs jocs);
 
-
     Call<ResponseBody> create_jocs();
     Call<ResponseBody> update_jocs();
 }
