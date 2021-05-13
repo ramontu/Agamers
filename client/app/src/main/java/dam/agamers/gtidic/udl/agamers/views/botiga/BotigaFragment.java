@@ -21,7 +21,7 @@ public class BotigaFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         botigaViewModel = new ViewModelProvider(this).get(BotigaViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_inici, container, false);
+        View root = inflater.inflate(R.layout.fragment_botiga, container, false);
         final TextView textView = root.findViewById(R.id.text_botiga);
         botigaViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

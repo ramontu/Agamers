@@ -39,7 +39,7 @@ public class FirstActivity extends CommonActivity {
         //Navegació inferior "bottom navigation"
         BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navegacio_xats, R.id.navegacio_match, R.id.navegacio_forums, R.id.nav_inici, R.id.nav_notificacions, R.id.nav_peticions, R.id.nav_favorits, R.id.nav_jocs, R.id.nav_botiga, R.id.nav_tornejos, R.id.nav_compte, R.id.nav_configuracio, R.id.nav_tancarsessio)
+                R.id.navegacio_xats, R.id.navegacio_match, R.id.navegacio_forums, R.id.nav_inici, R.id.nav_notificacions, R.id.nav_peticions, R.id.nav_favorits, R.id.nav_jocs, R.id.nav_botiga, R.id.nav_tornejos, R.id.nav_compte, R.id.nav_configuracio, R.id.nav_tancarsessio, R.id.fragmentaddgame)
                 .build();
         NavController bottomNavigationController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, bottomNavigationController, appBarConfiguration);
@@ -52,7 +52,7 @@ public class FirstActivity extends CommonActivity {
         NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(),R.layout.nav_header_main, leftNavView, true);
         navHeaderMainBinding.setAccount(new Account());
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navegacio_xats, R.id.navegacio_match, R.id.navegacio_forums, R.id.nav_inici, R.id.nav_notificacions, R.id.nav_peticions, R.id.nav_favorits, R.id.nav_jocs, R.id.nav_botiga, R.id.nav_tornejos, R.id.nav_compte, R.id.nav_configuracio, R.id.nav_tancarsessio)
+                R.id.navegacio_xats, R.id.navegacio_match, R.id.navegacio_forums, R.id.nav_inici, R.id.nav_notificacions, R.id.nav_peticions, R.id.nav_favorits, R.id.nav_jocs, R.id.nav_botiga, R.id.nav_tornejos, R.id.nav_compte, R.id.nav_configuracio, R.id.nav_tancarsessio, R.id.fragmentaddgame)
                 .setDrawerLayout(drawer)
                 .build();
         NavController leftNavigationController = Navigation.findNavController(this, R.id.nav_host_fragment);
