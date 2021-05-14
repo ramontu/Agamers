@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -25,29 +26,28 @@ public class AddGameFragment extends Fragment {
     private View root;
 
     public void initView(){
-        nomjoc_edit = root.findViewById(R.id.nom_joc);
+        nomjoc_edit = root.findViewById(R.id.nom_joc_edit);
     }
 
-    public void updateJoc(){
-        addGameViewModel.m_Jocs.observe(getViewLifecycleOwner(), new Observer<Jocs>() {
-            @Override
-            public void onChanged(Jocs jocs) {
-                nomjoc_edit.setText(jocs.getName());
-            }
-        });
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle saveInstanceState) {
-        addGameViewModel = new AddGameViewModel();
+
+        addGameViewModel = new ViewModelProvider(this).get(AddGameViewModel.class);
         root = inflater.inflate(R.layout.fragment_addgame, container, false);
-        final TextView textView = root.findViewById(R.id.text_jocs);
         return root;
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
-        updateJoc();
+    }
+
+    //Linkar con button en el layout
+    public void createJocOnClick(View view){
+        Jocs j = new Jocs();
+        j.setName(nomjoc_edit.getText().toString());
+        //per cada text fer un j. 
+        addGameViewModel.createJoc();
     }
 
     public void onBackPressed(){

@@ -252,8 +252,9 @@
                 android:id="@+id/crear_joc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="createJocOnClick"
                 android:text="@string/crear_joc"
-                tools:showIn="@layout/fragment_addgame"/>
+                tools:showIn="@layout/fragment_addgame" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout></layout>
