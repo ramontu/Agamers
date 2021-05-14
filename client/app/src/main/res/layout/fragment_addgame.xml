@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<data>
-<variable
-    name= "views"
-    type= "dam.agamers.gtidic.udl.agamers.views.jocs.AddGameViewModel"
-    />
-</data>
-
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -54,7 +47,7 @@
                     android:id="@+id/nom_joc_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{views.m_Jocs.name}" />
+                    android:text="TODO" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +72,7 @@
                         android:id="@+id/buscar_cate_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{}" />
+                        android:text="TODO" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,7 +107,7 @@
                         android:id="@+id/max_players_edit"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="@{views.m_Jocs.max_players}" />
+                        android:text="TODO" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,7 +126,7 @@
                         android:id="@+id/min_players_edit"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="@{views.m_Jocs.min_players}" />
+                        android:text="TODO" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -163,7 +156,7 @@
                     android:id="@+id/studio_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{views.m_Jocs.studio}" />
+                    android:text="TODO" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -188,7 +181,7 @@
                         android:id="@+id/buscar_plat_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{}" />
+                        android:text="TODO" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -210,7 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
-                    android:text="@{}" />
+                    android:text="TODO" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -230,7 +223,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="@{views.m_Jocs.pegi}" />
+                    android:text="TODO" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -251,7 +244,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="@{views.m_Jocs.published}" />
+                    android:text="TODO" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

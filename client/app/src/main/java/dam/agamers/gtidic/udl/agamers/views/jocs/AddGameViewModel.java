@@ -24,12 +24,11 @@ public class AddGameViewModel extends ViewModel {
     String TAG = "AddGameViewModel";
     public MutableLiveData<Boolean> responseUpdate;
     public MutableLiveData<Jocs> m_Jocs;
-    AddGameFragment addGameFragment;
 
-    public AddGameViewModel(AddGameFragment addGameFragment) {
+
+    public AddGameViewModel() {
         jocsRepo = new JocsRepo();
         m_Jocs = new MutableLiveData<>();
-        this.addGameFragment = addGameFragment;
     }
 
    /* public void uploadJocImage(File imageFile){
@@ -44,7 +43,7 @@ public class AddGameViewModel extends ViewModel {
 
     public MutableLiveData<Jocs> getm_Jocs(){return jocsRepo.getmJocsInfo(); }
 
-    public void set_date(View v) {
+    /*public void set_date(View v) {
         TextInputLayout publicaciotil = addGameFragment.getActivity().findViewById(R.id.data_publicaciotil);
         Calendar calendar = Calendar.getInstance();
 
@@ -66,5 +65,5 @@ public class AddGameViewModel extends ViewModel {
         datePickerDialog.getDatePicker().setMinDate(min.getTimeInMillis());
         datePickerDialog.getDatePicker().getTouchables().get(0).performClick();
         datePickerDialog.show();
-    }
+    }*/
 }
