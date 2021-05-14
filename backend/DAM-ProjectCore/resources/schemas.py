@@ -58,14 +58,14 @@ SchemaUpdateGame = {
     "type": "object",
     "properties": {
         "name": {"type": "string"},
-        "categories": {"type": "array"},
-        "min_players": {"type": "integer"},
-        "max_players": {"type": "integer"},
-        "online_mode": {"type": "boolean"},
+        "categories": {"type": "string"},  # TODO possiblement fallarà amb més de una
+        "min_players": {"type": "Integer"},
+        "max_players": {"type": "Integer"},
+        "online_mode": {"type": "Boolean"},
         "published": {"type": "string"},
         "studio": {"type": "string"},
         "image": {"type": "string"},
-        "platforms": {"type": "array"},
+        "platforms": {"type": "string"},  # TODO possiblement fallarà amb més de una
         "description": {"type": "string"},
         "pegi": {"type": "integer"},
         "aproved": {"type": "boolean"}
