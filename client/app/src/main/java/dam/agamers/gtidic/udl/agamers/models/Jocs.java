@@ -7,7 +7,7 @@ import java.util.List;
 public class Jocs {
 
     @SerializedName("id")
-    private String id;
+    private Integer id;
     @SerializedName("name")
     private String name;
     @SerializedName("categories")
@@ -29,11 +29,11 @@ public class Jocs {
     @SerializedName("aproved")
     private Boolean aproved;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

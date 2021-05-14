@@ -1,12 +1,9 @@
 import falcon
 from falcon.media.validators import jsonschema
-from sqlalchemy import and_
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy.orm.exc import NoResultFound
-from sqlalchemy.testing import in_
 
 import messages
-from db.models import Jocs, Categories, Platforms
+from db.models import Jocs
 from hooks import requires_game_id
 from resources.base_resources import DAMCoreResource, mylogger
 from resources.schemas import SchemaNewGame, SchemaUpdateGame
@@ -14,7 +11,7 @@ from resources.schemas import SchemaNewGame, SchemaUpdateGame
 
 class ResourceNewGame(DAMCoreResource):
     @jsonschema.validate(SchemaNewGame)
-    def on_post(self, req, resp, *args, **kwargs):
+    def on_get(self, req, resp, *args, **kwargs):
         super(ResourceNewGame, self).on_post(req, resp, *args, **kwargs)
         aux_game = Jocs()
         try:
@@ -57,10 +54,11 @@ class ResourceUpdateGame(DAMCoreResource):
     @jsonschema.validate(SchemaUpdateGame)
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceUpdateGame, self).on_post(req, resp, *args, **kwargs)
-        current_game = req.context["game"]
+        current_game = req.context["game_id"]
         try:
             for i in req.media:  # ToDO es possible que falli amb més d'una categoria
                 valor = req.media[i]
+
                 if i == "categories":  # TODO fer el mateix amb les plataformes
                     current_game.categories = []
                     for k in valor:
@@ -94,7 +92,7 @@ class ResourceUpdateGame(DAMCoreResource):
 class ResourceDeleteGame(object):
     def on_delete(self, req, resp, *args, **kwargs):
         super(ResourceDeleteGame, self).on_delete(req, resp, *args, **kwargs)
-        current_game = req.context["game"]
+        current_game = req.context["game_id"]
 
         try:
             self.db_session.delete(current_game)
@@ -104,7 +102,6 @@ class ResourceDeleteGame(object):
         except Exception as e:
             mylogger.critical("{}:{}".format(messages.error_removing_game, e))
             raise falcon.HTTPInternalServerError()
-
 
 @falcon.before(requires_game_id)
 class ResourceGetGame(DAMCoreResource):

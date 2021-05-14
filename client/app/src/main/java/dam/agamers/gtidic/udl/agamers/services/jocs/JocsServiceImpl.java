@@ -5,6 +5,8 @@ import dam.agamers.gtidic.udl.agamers.network.RetrofitClientInstance;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
 
 
 public class JocsServiceImpl implements JocsService {
@@ -28,8 +30,8 @@ public class JocsServiceImpl implements JocsService {
     }
 
     @Override
-    public Call<ResponseBody> update_jocs(Jocs jocs) {
-        return null;
+    public Call<ResponseBody> update_jocs(@Body Jocs jocs, @Path("id") Integer id) {
+        return retrofit.create(JocsService.class).update_jocs(jocs, id);
     }
 
     @Override

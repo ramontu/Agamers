@@ -165,5 +165,19 @@
     <string name="delete_jocs_ok">S\'ha eliminat un joc</string>
     <string name="delete_jocs_error">Error en eliminiar un joc</string>
     <string name="compartir">Compartir</string>
+    <string name="numero_de_jugadors">Numero de jugadors:</string>
+    <string name="imatge_joc">Imatge Joc</string>
+    <string name="nom_joc">Nom Joc</string>
+    <string name="max_players">Jugadors maxims</string>
+    <string name="min_players">Jugadros mínims</string>
+    <string name="studio">Companyia</string>
+    <string name="plataforma">Plataforma</string>
+    <string name="descripcio_joc">Descripció del joc</string>
+    <string name="pegi_joc">Edat recomanada</string>
+    <string name="data_publicacio">Data publicació </string>
+    <string name="crear_joc">Crear joc</string>
+    <string name="fragment_jocs">Fragment de jocs</string>
+    <string name="fragment_addgame">Fragment d\'afegir joc</string>
+
 
 </resources>

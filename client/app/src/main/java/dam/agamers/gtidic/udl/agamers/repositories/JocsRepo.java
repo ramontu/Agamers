@@ -3,11 +3,14 @@ package dam.agamers.gtidic.udl.agamers.repositories;
 import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
+import java.io.File;
 import java.io.IOException;
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import dam.agamers.gtidic.udl.agamers.services.jocs.JocsService;
+import dam.agamers.gtidic.udl.agamers.services.jocs.JocsServiceImpl;
+import dam.agamers.gtidic.udl.agamers.views.jocs.AddGameViewModel;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,8 +26,8 @@ public class JocsRepo {
     private MutableLiveData<Integer> mResponseDeleteJocs;
     private MutableLiveData<Boolean> mCreateOk;
 
-    public JocsRepo(JocsService jocsService){
-        this.jocsService = jocsService;
+    public JocsRepo(){
+        this.jocsService = new JocsServiceImpl();
         this.mJocsInfo = new MutableLiveData<>();
         this.mUpdateOk = new MutableLiveData<>();
         this.mResponseDeleteJocs = new MutableLiveData<>();
@@ -55,7 +58,7 @@ public class JocsRepo {
 
     public void update_jocs(Jocs jocs){
         Log.d(TAG,"update info");
-        jocsService.update_jocs(jocs).enqueue(new Callback<ResponseBody>() {
+        jocsService.update_jocs(jocs, jocs.getId()).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code()==200){
@@ -143,4 +146,6 @@ public class JocsRepo {
         return mCreateOk;
     }
 
+    //public AddGameViewModel uploadPhoto(File imageFile) {
+  //  }
 }

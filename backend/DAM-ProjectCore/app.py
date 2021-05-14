@@ -9,7 +9,6 @@ import messages
 import middlewares
 from falcon_multipart.middleware import MultipartMiddleware
 from resources import account_resources, common_resources, user_resources, games_resources
-from resources.categories import categories_resources
 from settings import configure_logging
 
 # LOGGING
@@ -50,10 +49,9 @@ application.add_route("/users/show/{username}", user_resources.ResourceGetUserPr
 application.add_route("/users/getuserimage", user_resources.DownloadUserImage())  # TODO comprovar
 
 # Jocs
-application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame())  # utilitzar rutes tipo {id:int}"
-application.add_route("/jocs/update_jocs/{id:int}", games_resources.ResourceUpdateGame())
-application.add_route("/jocs/delete_jocs/{id:int}", games_resources.ResourceDeleteGame())
-application.add_route("/jocs", games_resources.ResourceGetGames())
+application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame())
+application.add_route("/jocs/update_jocs", games_resources.ResourceUpdateGame())
+application.add_route("/jocs/delete_jocs", games_resources.ResourceDeleteGame())
 
 # Plataforma
 #application.add_route() #Afegir el de cerear, eliminar i editar
@@ -64,6 +62,7 @@ application.add_route("/category/delete", categories_resources.ResourceDeleteCat
 
 # General
 application.add_route("/image/download", common_resources.ResourceDownloadImage())  # TODO provar
+
 '''
 application.add_route("/events", event_resources.ResourceGetEvents())
 application.add_route("/events/show/{id:int}", event_resources.ResourceGetEvent())
