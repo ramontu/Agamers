@@ -88,13 +88,5 @@
     <string name="signup_error">Hi ha hagut algun error. Potser aquest usuari ja existeix</string>
     <string name="navigation_drawer_open">"Obre el panell de navegació "</string>
     <string name="navigation_drawer_close">Tenca el panell de navegació</string>
-    <string name="numero_de_jugadors">Numero de jugadors:</string>
-    <string name="min_players">Jugadros mínims</string>
-    <string name="studio">Companyia</string>
-    <string name="descripcio_joc">Descripció del joc</string>
-    <string name="pegi_joc">Edat recomanada</string>
-    <string name="data_publicacio">"Data publicació "</string>
-    <string name="crear_joc">Crear joc</string>
-    <string name="fragment_jocs">Fragment de jocs</string>
 
 </resources>

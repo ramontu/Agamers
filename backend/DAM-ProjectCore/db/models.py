@@ -228,7 +228,7 @@ class User(SQLAlchemyBase, JSONModel):
     points = Column(Integer, default=0, nullable=True)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
-    tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
+    # tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan") #Si s'activa aixo surt error ja que user no es res
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -360,6 +360,7 @@ class Platforms(SQLAlchemyBase, JSONModel):
     name = Column(Unicode(100), unique=True, nullable=False)
     manufacturer = Column(Unicode(100), nullable=False)
 
+    @hybrid_property
     def json_model(self):
         return {
             "id": self.id,
@@ -375,6 +376,7 @@ class Categories(SQLAlchemyBase, JSONModel):
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(30), unique=True, nullable=False)
 
+    @hybrid_property
     def json_model(self):
         return {
             "id": self.id,
@@ -396,7 +398,7 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
 
                             )
 
-    Platforms_game = Table("plat-game", SQLAlchemyBase.metadata,
+    Platforms_game = Table("plat_game", SQLAlchemyBase.metadata,
                            Column("game_id_plat_game", Integer,
                                   ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
                                   nullable=False),
@@ -411,7 +413,7 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
     min_players = Column(Integer, default=1, nullable=False)
     max_players = Column(Integer, default=1, nullable=False)
     online_mode = Column(Boolean, default=False, nullable=False)
-    published = Column(Unicode(10), nullable=False)
+    published = Column(Unicode(10), default="", nullable=False)
     studio = Column(Unicode(100), nullable=False)
     image = Column(Unicode(255), default="")
     platforms = relationship("Platforms", secondary=Platforms_game)
@@ -431,7 +433,7 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
             "published": self.published,
             "studio": self.studio,
             "image": self.image,
-            "platforms": self.platforms,
+            "platforms": [platforms.name for platforms in self.platforms],
             "description": self.description,
             "pegi": self.pegi,
             "aproved": self.aproved

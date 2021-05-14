@@ -3,11 +3,9 @@ package dam.agamers.gtidic.udl.agamers.services.jocs;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 
 public interface JocsService {
 
@@ -20,12 +18,14 @@ public interface JocsService {
     @DELETE("/jocs/delete_jocs")
     Call<ResponseBody> delete_jocs();
 
-    @POST("/jocs/update_jocs/{id}")
-    Call<ResponseBody> update_jocs(@Body Jocs jocs, @Path("id") Integer id);
+    @POST("/jocs/update_jocs")
+    Call<ResponseBody> update_jocs(Jocs jocs);
 
     @POST("/jocs/create_jocs")
-    Call<ResponseBody> create_jocs(@Body Jocs jocs);
+    Call<ResponseBody> create_jocs(Jocs jocs);
+
 
     Call<ResponseBody> create_jocs();
+
     Call<ResponseBody> update_jocs();
 }

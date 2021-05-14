@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
 
 import dam.agamers.gtidic.udl.agamers.R;
 
@@ -32,18 +31,4 @@ public class JocsFragment extends Fragment {
         });
         return root;
     }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        getActivity().findViewById(R.id.floatingActionButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(JocsFragment.this)
-                        .navigate(R.id.action_fragmentjocs_to_fragmentaddgame);
-            }
-        });
-    }
-
-
 }

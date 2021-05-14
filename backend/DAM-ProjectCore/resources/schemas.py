@@ -39,17 +39,17 @@ SchemaNewGame = {
     "type": "object",
     "properties": {
         "name": {"type": "string"},
-        "categories": {"type": "string"},  # TODO possiblement fallarà amb més de una
-        "min_players": {"type": "Integer"},
-        "max_players": {"type": "Integer"},
-        "online_mode": {"type": "Boolean"},
+        "categories": {"type": "array"},  # TODO possiblement fallarà amb més de una passar SOL: amb un array
+        "min_players": {"type": "integer"},
+        "max_players": {"type": "integer"},
+        "online_mode": {"type": "boolean"},
         "published": {"type": "string"},
         "studio": {"type": "string"},
         "image": {"type": "string"},
-        "platforms": {"type": "string"},  # TODO possiblement fallarà amb més de una
+        "platforms": {"type": "array"},  # TODO possiblement fallarà amb més de una SOL: amb un array
         "description": {"type": "string"},
-        "pegi": {"type": "Integer"},
-        "aproved": {"type": "Boolean"}
+        "pegi": {"type": "integer"},
+        "aproved": {"type": "boolean"}
     },
     "required": ["name", "studio"]
 }
@@ -67,7 +67,24 @@ SchemaUpdateGame = {
         "image": {"type": "string"},
         "platforms": {"type": "array"},
         "description": {"type": "string"},
-        "pegi": {"type": "Integer"},
-        "aproved": {"type": "Boolean"}
+        "pegi": {"type": "integer"},
+        "aproved": {"type": "boolean"}
     }
+}
+
+SchemaNewPlatform = {
+    "type": "object",
+    "properties": {
+        "name": {"type": "string"},
+        "manufacturer": {"type": "string"}
+    },
+    "required": ["name"]
+}
+
+SchemaNewCategory = {
+    "type": "object",
+    "properties": {
+        "name": {"type": "string"}
+    },
+    "required": ["name"]
 }
