@@ -16,17 +16,20 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.util.Collections;
+
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 
 public class AddGameFragment extends Fragment {
 
     private AddGameViewModel addGameViewModel;
-    private EditText nomjoc_edit;
+    private EditText nomjoc_edit, buscarcate_edit;
     private View root;
 
     public void initView(){
         nomjoc_edit = root.findViewById(R.id.nom_joc_edit);
+        buscarcate_edit = root.findViewById(R.id.buscar_cate);
     }
 
 
@@ -46,6 +49,8 @@ public class AddGameFragment extends Fragment {
     public void createJocOnClick(View view){
         Jocs j = new Jocs();
         j.setName(nomjoc_edit.getText().toString());
+        j.setCategories(Collections.singletonList(buscarcate_edit.getText().toString()));
+
         //per cada text fer un j. 
         addGameViewModel.createJoc();
     }
