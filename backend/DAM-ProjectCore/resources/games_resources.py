@@ -16,15 +16,31 @@ class ResourceNewGame(DAMCoreResource):
     @jsonschema.validate(SchemaNewGame)
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceNewGame, self).on_post(req, resp, *args, **kwargs)
-
         aux_game = Jocs()
         try:
             for i in req.media:  # ToDO es possible que falli amb més d'una categoria
+                print("passo per " + i)
                 valor = req.media[i]
-                setattr(aux_game, i, valor)
+                if i == "categories":  # TODO fer el mateix amb les plataformes
+                    aux_game.categories = []
+                    for k in valor:
+                        aux = self.db_session.query(Categories).filter(Categories.id == k).one_or_none()
+                        if aux is not None:
+                            print("Categoria trobada" + aux.name)
+                            aux_game.categories.append(aux)
+
+                if i == "platforms":
+                    aux_game.platforms = []
+                    for k in valor:
+                        aux = self.db_session.query(Platforms).filter(Platforms.id == k).one_or_none()
+                        if aux is not None:
+                            print("Plataforma trobada" + aux.name)
+                            aux_game.platforms.append(aux)
+
+                else:
+                    setattr(aux_game, i, valor)
 
             self.db_session.add(aux_game)
-
             try:
                 self.db_session.commit()
             except IntegrityError:
@@ -44,7 +60,6 @@ class ResourceUpdateGame(DAMCoreResource):
         current_game = req.context["game"]
         try:
             for i in req.media:  # ToDO es possible que falli amb més d'una categoria
-
                 valor = req.media[i]
                 if i == "categories":  # TODO fer el mateix amb les plataformes
                     current_game.categories = []
@@ -53,6 +68,12 @@ class ResourceUpdateGame(DAMCoreResource):
                         if aux is not None:
                             current_game.categories.append(aux)
 
+                if i == "platforms":
+                    current_game.platforms = []
+                    for k in valor:
+                        aux = self.db_session.query(Platforms).filter(Platforms.name == k).one_or_none()
+                        if aux is not None:
+                            current_game.platforms.append(aux)
                 else:
                     setattr(current_game, i, valor)
 
@@ -98,7 +119,8 @@ class ResourceGetGame(DAMCoreResource):
             except NoResultFound:
                 raise falcon.HTTPBadRequest(description=messages.game_not_found)
 
-#TODO selecciona si compleix una de les dos condicions, cal arreglar-ho per a que faci un join
+
+# FUNCIONA
 class ResourceGetGames(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
         super(ResourceGetGames, self).on_get(req, resp, *args, **kwargs)
@@ -107,19 +129,12 @@ class ResourceGetGames(DAMCoreResource):
 
         plat_buscar = req.get_param("platforms")
         cat_buscar = req.get_param("categories")
-        if (plat_buscar is not None) and (cat_buscar is not None):
-            query = query.join(Jocs.Platforms_game, Platforms).filter(
-                Categories.id.in_(cat_buscar)).and_.join(Jocs.Categories_game, Categories).filter(
-                Categories.id.in_(cat_buscar))
-            #query = query.join(Jocs.Categories_game, Categories).filter(
-             #   Categories.id.in_(cat_buscar))
-
-        '''
-        cat_buscar = req.get_param("categories")
-        if cat_buscar is not None:
-            query = query.join(Jocs.Categories_game, Categories).filter(
-                Categories.id.in_(cat_buscar))  # TODO fer aixo també amb plataformes
-        '''
+        if (plat_buscar is not None) or (cat_buscar is not None):
+            print("Entro")
+            if plat_buscar is not None:
+                query = query.join(Jocs.Platforms_game, Platforms).filter(Platforms.id.in_(plat_buscar))
+            if cat_buscar is not None:
+                query = query.join(Jocs.Categories_game, Categories).filter(Categories.id.in_(cat_buscar))
         print(query)
         results = query.all()
         games = []

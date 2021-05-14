@@ -56,7 +56,7 @@ application.add_route("/jocs/delete_jocs/{id:int}", games_resources.ResourceDele
 application.add_route("/jocs", games_resources.ResourceGetGames())
 
 # Plataforma
-
+#application.add_route() #Afegir el de cerear, eliminar i editar
 
 # Categories
 application.add_route("/category/create", categories_resources.ResourceNewCategory())  # TODO provar
