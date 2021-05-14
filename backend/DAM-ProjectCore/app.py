@@ -53,6 +53,16 @@ application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame())
 application.add_route("/jocs/update_jocs", games_resources.ResourceUpdateGame())
 application.add_route("/jocs/delete_jocs", games_resources.ResourceDeleteGame())
 
+# Plataforma
+#application.add_route() #Afegir el de cerear, eliminar i editar
+
+# Categories
+application.add_route("/category/create", categories_resources.ResourceNewCategory())  # TODO provar
+application.add_route("/category/delete", categories_resources.ResourceDeleteCategory())  # TODO provar
+
+# General
+application.add_route("/image/download", common_resources.ResourceDownloadImage())  # TODO provar
+
 '''
 application.add_route("/events", event_resources.ResourceGetEvents())
 application.add_route("/events/show/{id:int}", event_resources.ResourceGetEvent())
