@@ -45,11 +45,6 @@
         android:label="@string/menu_favortis"
         tools:layout="@layout/fragment_favorits" />
     <fragment
-        android:id="@+id/nav_jocs"
-        android:name="dam.agamers.gtidic.udl.agamers.views.jocs.JocsFragment"
-        android:label="@string/menu_jocs"
-        tools:layout="@layout/fragment_jocs" />
-    <fragment
         android:id="@+id/nav_botiga"
         android:name="dam.agamers.gtidic.udl.agamers.views.botiga.BotigaFragment"
         android:label="@string/menu_botiga"
@@ -75,16 +70,6 @@
         android:label="@string/menu_tancarsessio"
         tools:layout="@layout/fragment_tancarsessio" />
     <fragment
-        android:id="@+id/fragmentjocs"
-        android:name="dam.agamers.gtidic.udl.agamers.views.jocs.JocsFragment"
-        android:label="@string/fragment_jocs"
-        tools:layout="@layout/fragment_jocs">
-        <action
-            android:id="@+id/action_fragmentjocs_to_fragmentaddgame"
-            app:destination="@id/fragmentaddgame"
-            />
-    </fragment>
-    <fragment
         android:id="@+id/fragmentaddgame"
         android:name="dam.agamers.gtidic.udl.agamers.views.jocs.AddGameFragment"
         android:label="@string/fragment_addgame"
@@ -92,7 +77,17 @@
 
         <action
             android:id="@+id/action_fragmentaddgame_to_fragmentjocs"
-            app:destination="@id/fragmentjocs" />
+            app:destination="@id/nav_jocs" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_jocs"
+        android:name="dam.agamers.gtidic.udl.agamers.views.jocs.JocsFragment"
+        android:label="@string/menu_jocs"
+        tools:layout="@layout/fragment_jocs">
+        <action
+            android:id="@+id/action_fragmentjocs_to_fragmentaddgame"
+            app:destination="@id/fragmentaddgame" />
     </fragment>
 
 </navigation>
