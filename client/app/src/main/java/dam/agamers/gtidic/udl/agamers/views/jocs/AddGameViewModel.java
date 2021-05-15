@@ -1,6 +1,8 @@
 package dam.agamers.gtidic.udl.agamers.views.jocs;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -9,6 +11,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
 import java.util.Calendar;
@@ -18,13 +26,16 @@ import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import dam.agamers.gtidic.udl.agamers.repositories.JocsRepo;
 import dam.agamers.gtidic.udl.agamers.views.activitatsuser.SignUpActivity;
 
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+
 public class AddGameViewModel extends ViewModel {
 
+    private static final int PICK_IMAGE_REQUEST = 14;
     JocsRepo jocsRepo;
     String TAG = "AddGameViewModel";
     public MutableLiveData<Boolean> responseUpdate;
     public MutableLiveData<Jocs> m_Jocs;
-
+    View view;
 
     public AddGameViewModel() {
         jocsRepo = new JocsRepo();
