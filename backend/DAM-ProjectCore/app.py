@@ -9,6 +9,7 @@ import messages
 import middlewares
 from falcon_multipart.middleware import MultipartMiddleware
 from resources import account_resources, common_resources, user_resources, games_resources
+from resources.categories import categories_resources
 from settings import configure_logging
 
 # LOGGING
@@ -50,9 +51,11 @@ application.add_route("/users/getuserimage", user_resources.DownloadUserImage())
 
 # Jocs
 application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame())  # utilitzar rutes tipo {id:int}"
-application.add_route("/jocs/update_jocs/{id:int}", games_resources.ResourceUpdateGame())
-application.add_route("/jocs/delete_jocs/{id:int}", games_resources.ResourceDeleteGame())
-application.add_route("/jocs", games_resources.ResourceGetGames())
+application.add_route("/jocs/update_jocs/{id:int}", games_resources.ResourceUpdateGame())  # TODO provar
+application.add_route("/jocs/delete_jocs/{id:int}", games_resources.ResourceDeleteGame())  # TODO provar
+application.add_route("/jocs", games_resources.ResourceGetGames())  # OK
+application.add_route("/jocs/update_profile_image", games_resources.ResourceJocsUpdateImage()) #TODO provar
+
 
 
 # Plataforma

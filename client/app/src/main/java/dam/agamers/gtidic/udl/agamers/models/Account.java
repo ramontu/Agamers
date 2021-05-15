@@ -25,7 +25,6 @@ public class Account {
     private String password;
     @SerializedName("email")
     private String email;
-    //TODO potser incorporar tokens per si els vol borrar?
     @SerializedName("name")
     private String name;
     @SerializedName("surname")
@@ -35,7 +34,7 @@ public class Account {
     @SerializedName("genere")
     private GenereEnum genere;
     @SerializedName("photo")
-    private String photo; //TODO modificar amb el de veritat
+    private String photo;
     @SerializedName("recovery_code")
     private String recovery_code;
     @SerializedName("location")

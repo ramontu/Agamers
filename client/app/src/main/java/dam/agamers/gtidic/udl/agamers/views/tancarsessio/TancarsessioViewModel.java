@@ -24,6 +24,4 @@ public class TancarsessioViewModel extends ViewModel {
         PreferencesProvider.providePreferences().edit().remove("token").commit();
         return accountRepo.getmDeleteTokenOk();
     }
-
-
 }
