@@ -228,7 +228,7 @@ class User(SQLAlchemyBase, JSONModel):
     points = Column(Integer, default=0, nullable=True)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
-    tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
+    tokens = relationship("UserToken", cascade="all, delete-orphan")
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -278,7 +278,7 @@ class User(SQLAlchemyBase, JSONModel):
     def create_token(self):
         if len(self.tokens) < settings.MAX_USER_TOKENS:
             token_string = binascii.hexlify(os.urandom(25)).decode("utf-8")
-            aux_token = UserToken(token=token_string, user=self)
+            aux_token = UserToken(token=token_string, user_id=self.id)
             return aux_token
         else:
             raise falcon.HTTPBadRequest(title=messages.quota_exceded, description=messages.maximum_tokens_exceded)

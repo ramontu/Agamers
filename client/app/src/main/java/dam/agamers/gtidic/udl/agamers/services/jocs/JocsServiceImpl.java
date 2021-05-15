@@ -2,6 +2,8 @@ package dam.agamers.gtidic.udl.agamers.services.jocs;
 
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import dam.agamers.gtidic.udl.agamers.network.RetrofitClientInstance;
+import dam.agamers.gtidic.udl.agamers.services.account.AccountService;
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -34,6 +36,7 @@ public class JocsServiceImpl implements JocsService {
         return retrofit.create(JocsService.class).update_jocs(jocs, id);
     }
 
+    //TODO FUNCIONA?
     @Override
     public Call<ResponseBody> create_jocs(Jocs jocs) {
         return null;
@@ -47,5 +50,10 @@ public class JocsServiceImpl implements JocsService {
     @Override
     public Call<ResponseBody> create_jocs() {
         return retrofit.create(JocsService.class).create_jocs();
+    }
+
+    @Override
+    public Call<ResponseBody> uploadImage(MultipartBody.Part image) {
+        return retrofit.create(JocsService.class).uploadImage(image);
     }
 }

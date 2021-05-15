@@ -9,10 +9,15 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+
 import com.google.android.material.textfield.TextInputLayout;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
+import dam.agamers.gtidic.udl.agamers.databinding.ActivityIniciDeSessioBinding;
+import dam.agamers.gtidic.udl.agamers.databinding.ActivityRecoverPassword2Binding;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
@@ -25,26 +30,64 @@ public class RecoverPasswordActivity_2 extends CommonActivity {
     TextInputLayout _mail;
     TextInputLayout _recoverycode;
     TextInputLayout _newpass;
+    TextInputLayout _newpasssame;
     Button button;
     Boolean mailValid = false;
     Boolean codeValid = false;
     Boolean newpassValid = false;
+    Boolean newpass_same = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recover_password_2);
         getSupportActionBar().hide();
+
+        _mail = findViewById(R.id.recover_2_email_textinputlayout);
+        _recoverycode = findViewById(R.id.recover_2_code_textinputlayout);
+        _newpass = findViewById(R.id.recover_2_new_pass_textinputlayout);
+        _newpasssame = findViewById(R.id.recover_2_new_pass_rev_textinputlayout);
+
         accountRepo = new AccountRepo();
         show_response();
         progressBar = findViewById(R.id.recover_2_progressBar);
         progressBar.setVisibility(View.INVISIBLE);
-        _mail = findViewById(R.id.recover_2_email_textinputlayout);
-        _recoverycode = findViewById(R.id.recover_2_code_textinputlayout);
-        _newpass = findViewById(R.id.recover_2_new_pass_textinputlayout);
-        button = findViewById(R.id.recovery_2_button);
-        button.setEnabled(false);
-        validator();
+        RecoverPasswordViewModel_2 recoverPasswordViewModel_2 = new RecoverPasswordViewModel_2();
+         ActivityRecoverPassword2Binding recoverPassword2Binding =
+                DataBindingUtil.setContentView(this, R.layout.activity_recover_password_2);
+        recoverPassword2Binding.setLifecycleOwner(this);
+        recoverPassword2Binding.setViewModel(recoverPasswordViewModel_2);
+        observe_result(recoverPasswordViewModel_2);
+    }
+
+    public void observe_result(RecoverPasswordViewModel_2 recoverPasswordViewModel_2){
+        recoverPasswordViewModel_2.email.observe(this,
+                s -> {
+                    mailValid = AccountValidator.check_mailValid(s);
+                    updateForm(mailValid,_mail,
+                            getString(R.string.error_mail_no_vàlid));
+                });
+
+        recoverPasswordViewModel_2.recovery_code.observe(this,
+                s -> {
+                    codeValid = AccountValidator.check_recoverycodeValid(s);
+                    updateForm(codeValid, _recoverycode,
+                            getString(R.string.error_recoverycode_no_vàlid));
+                });
+
+        recoverPasswordViewModel_2.new_pass.observe(this, s -> {
+            newpassValid = AccountValidator.check_passwordValid(s);
+            updateForm(newpassValid,_newpass,
+                    getString(R.string.error_contra_no_vàlida));
+        });
+
+        recoverPasswordViewModel_2.new_pass_2.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                newpass_same = (recoverPasswordViewModel_2.new_pass == recoverPasswordViewModel_2.new_pass_2);
+                updateForm(newpass_same,_newpasssame, getString(R.string.error_confirmar_contra));
+            }
+        });
     }
 
     public void show_response(){
@@ -64,59 +107,8 @@ public class RecoverPasswordActivity_2 extends CommonActivity {
         });
     }
 
-
-    public void validator(){
-       _mail.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                mailValid = AccountValidator.check_mailValid(s.toString());
-                updateForm(mailValid,_mail,getString(R.string.error_mail_no_vàlid));
-            }
-        });
-
-        _recoverycode.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                codeValid = AccountValidator.check_recoverycodeValid(s.toString());
-                updateForm(codeValid, _recoverycode, getString(R.string.error_recoverycode_no_vàlid));
-            }
-        });
-
-        _newpass.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                newpassValid = AccountValidator.check_passwordValid(s.toString());
-                updateForm(newpassValid,_newpass,getString(R.string.error_contra_no_vàlida));
-            }
-        });
-    }
-
     public void tots_camps_valids(){
-        if (mailValid && codeValid && newpassValid){
+        if (mailValid && codeValid && newpassValid && newpass_same){
             button.setEnabled(true);
         }
     }

@@ -2,10 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <data>
+        <variable
+            name="viewModel"
+            type="dam.agamers.gtidic.udl.agamers.views.jocs.AddGameViewModel"
+            />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,12 +27,22 @@
             android:orientation="vertical">
 
 
-            <ImageView
-                android:id="@+id/imageView2"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription= "@string/imatge_joc" />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:contentDescription="@string/imatge_joc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/addimage"
+                    tools:srcCompat="@drawable/addimage" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Space
                 android:layout_width="match_parent"
@@ -88,52 +100,46 @@
                 android:layout_height="wrap_content"
                 android:text="@string/numero_de_jugadors" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/max_minJugadors"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/max_players"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/max_players"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/max_players_edit"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="TODO" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/min_players"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/min_players"
-                    app:layout_constraintEnd_toStartOf="@+id/max_players"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">>
+                    android:hint="@string/min_players">>
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/min_players_edit"
-                        android:layout_width="150dp"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:text="TODO" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="1dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/max_players"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/max_players">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/max_players_edit"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:text="TODO" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <RadioButton
                 android:id="@+id/te_multijugador_radioButton"
@@ -255,6 +261,12 @@
                 android:onClick="createJocOnClick"
                 android:text="@string/crear_joc"
                 tools:showIn="@layout/fragment_addgame" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="75dp" />
+
         </LinearLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout></layout>
+
+</layout>

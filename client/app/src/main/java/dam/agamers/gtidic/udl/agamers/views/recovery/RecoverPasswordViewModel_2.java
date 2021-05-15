@@ -1,6 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.views.recovery;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
@@ -8,10 +9,10 @@ import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 public class RecoverPasswordViewModel_2 {
 
     private AccountRepo accountRepo;
-    private MutableLiveData<String> email;
-    private MutableLiveData<String> recovery_code;
-    private MutableLiveData<String> new_pass;
-    private MutableLiveData<String> new_pass_2;
+    public MutableLiveData<String> email;
+    public MutableLiveData<String> recovery_code;
+    public MutableLiveData<String> new_pass;
+    public MutableLiveData<String> new_pass_2;
 
     public RecoverPasswordViewModel_2(){
         accountRepo = new AccountRepo();
@@ -28,6 +29,5 @@ public class RecoverPasswordViewModel_2 {
         account.setRecovery_code(recovery_code.getValue());
         accountRepo.recover2_newpass(account);
     }
-
 
 }

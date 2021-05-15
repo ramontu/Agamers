@@ -6,6 +6,7 @@ from sqlalchemy.orm.exc import NoResultFound
 import messages
 from db.models import Jocs, Categories, Platforms
 from hooks import requires_game_id
+from resources import utils
 from resources.base_resources import DAMCoreResource, mylogger
 from resources.schemas import SchemaNewGame, SchemaUpdateGame
 
@@ -141,4 +142,29 @@ class ResourceGetGames(DAMCoreResource):
             for i in results:
                 games.append(i.json_model)
         resp.media = games
+        resp.status = falcon.HTTP_200
+
+
+# TODO queda provar
+@falcon.before(requires_game_id)
+class ResourceJocsUpdateImage(DAMCoreResource):
+    def on_post(self, req, resp, *args, **kwargs):
+        super(ResourceJocsUpdateImage, self).on_post(req, resp, *args, **kwargs)
+
+        # Get the user from the token
+        current_game = req.context["game"]
+        resource_path = current_game.image
+
+        # Get the file from form
+        incoming_file = req.get_param("image_file")
+
+        # Run the common part for storing
+        filename = utils.save_static_media_file(incoming_file, resource_path)
+
+        # Update db model
+        current_game.image = filename
+
+        self.db_session.add(current_game)
+        self.db_session.commit()
+
         resp.status = falcon.HTTP_200
