@@ -416,7 +416,7 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
     image = Column(Unicode(255), default="")
     platforms = relationship("Platforms", secondary=Platforms_game)
     description = Column(UnicodeText, default="")
-    pegi = Column(Integer, default=18)  # Edat recomanada
+    pegi = Column(Integer, default=18, nullable=False)  # Edat recomanada
     aproved = Column(Boolean, default=False, nullable=False)
 
     @hybrid_property
@@ -424,14 +424,14 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
         return {
             "id": self.id,
             "name": self.name,
-            "categories": self.categories,
+            "categories": [categories.name for categories in self.categories],
             "min_players": self.min_players,
             "max_players": self.max_players,
             "online_mode": self.online_mode,
             "published": self.published,
             "studio": self.studio,
             "image": self.image,
-            "platforms": self.platforms,
+            "platforms": [platform.name for platform in self.platforms],
             "description": self.description,
             "pegi": self.pegi,
             "aproved": self.aproved

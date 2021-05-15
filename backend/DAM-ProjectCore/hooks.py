@@ -25,14 +25,14 @@ def requires_auth(req, resp, resource, params):
         raise falcon.HTTPUnauthorized(description=messages.token_required)
 
 
+#TODO falta comprovar
 def requires_game_id(req, resp, resource, params):
-    game_id = req.get_header("GameId")
-    if game_id is not None:
-        current_game_id = resource.db_session.query(Jocs).filter(Jocs.id == game_id).one_or_none()
-        if current_game_id is not None:
-            req.context["game_id"] = current_game_id
+    if "id" in params:
+        game = resource.db_session.query(Jocs).filter(Jocs.id == params["id"]).one()
+        if game is not None:
+            req.context["game"] = game
         else:
-            raise falcon.HTTPUnauthorized(description=messages.game_id_invalid)
+            raise falcon.HTTPUnauthorized(description=messages.game_not_found)
     else:
         raise falcon.HTTPUnauthorized(description=messages.game_id_required)
 
