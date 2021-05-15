@@ -278,7 +278,7 @@ class User(SQLAlchemyBase, JSONModel):
     def create_token(self):
         if len(self.tokens) < settings.MAX_USER_TOKENS:
             token_string = binascii.hexlify(os.urandom(25)).decode("utf-8")
-            aux_token = UserToken(token=token_string, user=self)
+            aux_token = UserToken(token=token_string, user_id=self.id)
             return aux_token
         else:
             raise falcon.HTTPBadRequest(title=messages.quota_exceded, description=messages.maximum_tokens_exceded)
