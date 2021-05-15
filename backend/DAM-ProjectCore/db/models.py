@@ -228,7 +228,7 @@ class User(SQLAlchemyBase, JSONModel):
     points = Column(Integer, default=0, nullable=True)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
-    tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
+    tokens = relationship("UserToken", cascade="all, delete-orphan")
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
