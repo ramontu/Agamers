@@ -29,7 +29,6 @@ public class AddGameFragment extends Fragment {
 
     public void initView(){
         nomjoc_edit = root.findViewById(R.id.nom_joc_edit);
-        buscarcate_edit = root.findViewById(R.id.buscar_cate);
     }
 
 
