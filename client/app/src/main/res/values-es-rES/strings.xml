@@ -114,4 +114,5 @@
     <string name="fragment_addgame">Añade un juego</string>
     <string name="error_clossing_session">Error en la hora de cerrar sesión. El token no se ha eliminado de la base de datos a causa de un error.</string>
     <string name="succes_clossing_session">Se ha cerrado la sesión correctamente</string>
+    <string name="studio">Compañía</string>
 </resources>
