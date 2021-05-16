@@ -60,7 +60,7 @@
                     android:id="@+id/nom_joc_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TODO" />
+                    android:text="@={viewModel.m_Jocs.name}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,13 +79,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="TODO">
+                    android:hint="TODO categories">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/buscar_cate_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TODO" />
+                        android:text="TODO categories" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,13 +112,14 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/min_players">>
+                    android:hint="@string/min_players">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/min_players_edit"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:text="TODO" />
+                        android:inputType="number"
+                        android:text="@={viewModel.m_Jocs.min_players_string}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -137,7 +138,7 @@
                         android:id="@+id/max_players_edit"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:text="TODO" />
+                        android:text="@={viewModel.m_Jocs.max_players_string}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -163,7 +164,7 @@
                     android:id="@+id/studio_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TODO" />
+                    android:text="@={viewModel.m_Jocs.studio}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -188,7 +189,7 @@
                         android:id="@+id/buscar_plat_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TODO" />
+                        android:text="TODO plataforma" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -210,7 +211,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
-                    android:text="TODO" />
+                    android:text="@={viewModel.m_Jocs.description}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -230,7 +231,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="TODO" />
+                    android:text="@={viewModel.m_Jocs.pegi_string}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -251,7 +252,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="TODO" />
+                    android:text="@={viewModel.m_Jocs.published}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -34,6 +34,7 @@ public class AddGameViewModel extends ViewModel {
     JocsRepo jocsRepo;
     String TAG = "AddGameViewModel";
     public MutableLiveData<Boolean> responseUpdate;
+    //TODO abans d'enviar el joc s'ha de agafar si te mode online del radiobutton
     public MutableLiveData<Jocs> m_Jocs;
     View view;
 

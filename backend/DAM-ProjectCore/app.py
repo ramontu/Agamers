@@ -64,6 +64,7 @@ application.add_route("/jocs/update_profile_image", games_resources.ResourceJocs
 # Categories
 application.add_route("/category/create", categories_resources.ResourceNewCategory())  # TODO provar
 application.add_route("/category/delete", categories_resources.ResourceDeleteCategory())  # TODO provar
+application.add_route("/categories", categories_resources.ResourceAllCategories())  # OK
 
 # General
 application.add_route("/image/download", common_resources.ResourceDownloadImage())  # TODO provar
