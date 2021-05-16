@@ -34,7 +34,7 @@ class ResourceNewCategory(DAMCoreResource):
 class ResourceDeleteCategory(DAMCoreResource):
 
     def on_delete(self, req, resp, *args, **kwargs):
-        super(ResourceDeleteCategory, self).on_delete(self, req, resp, *args, **kwargs)
+        super(ResourceDeleteCategory, self).on_delete(req, resp, *args, **kwargs)
 
         selected_category_string = req.media["name"]
         selected_category = self.db_session.query(Categories).filter(
@@ -51,3 +51,15 @@ class ResourceDeleteCategory(DAMCoreResource):
                 raise falcon.HTTPInternalServerError()
         else:
             raise falcon.HTTPUnauthorized(description=messages.category_not_found)
+
+
+class ResourceAllCategories(DAMCoreResource):
+    def on_get(self, req, resp, *args, **kwargs):
+        super(ResourceAllCategories, self).on_get(req, resp, *args, **kwargs)
+
+        categories = self.db_session.query(Categories)
+        resultat = []
+        for i in categories:
+            resultat.append(i.json_model)
+        resp.media = resultat
+        resp.status = falcon.HTTP_200

@@ -14,6 +14,7 @@ public class Jocs {
     private List<String> categories;
     @SerializedName("min_players")
     private Integer min_players;
+    private String min_players_string;
     @SerializedName("max_players")
     private Integer max_players;
     @SerializedName("online_mode")
@@ -24,6 +25,8 @@ public class Jocs {
     private String studio;
     @SerializedName("image")
     private String image;
+    @SerializedName("descrition")
+    private String description;
     @SerializedName("pegi")
     private Integer pegi;
     @SerializedName("aproved")
@@ -61,12 +64,30 @@ public class Jocs {
         this.min_players = min_players;
     }
 
+    //Mètode per a fragment
+    public void setMin_players_string(String min_players) {
+        this.min_players = Integer.parseInt(min_players);
+    }
+    //Mètode pel fragment
+    public String getMin_players_string() {
+        return String.valueOf(min_players);
+    }
+
     public Integer getMax_players() {
         return max_players;
     }
 
     public void setMax_players(Integer max_players) {
         this.max_players = max_players;
+    }
+
+    //Mètode per a fragment
+    public void setMax_players_string(String max_players) {
+        this.max_players = Integer.parseInt(max_players);
+    }
+    //Mètode pel fragment
+    public String getMax_players_string() {
+        return String.valueOf(max_players);
     }
 
     public Boolean getOnline__mode() {
@@ -108,6 +129,14 @@ public class Jocs {
     public void setPegi(Integer pegi) {
         this.pegi = pegi;
     }
+    //mètode pel fragment
+    public String getPegi_string(){
+        return String.valueOf(pegi);
+    }
+    //mètode pel fragment
+    public void setPegi_string(String pegi){
+        this.pegi = Integer.valueOf(pegi);
+    }
 
     public Boolean getAproved() {
         return aproved;
@@ -115,5 +144,13 @@ public class Jocs {
 
     public void setAproved(Boolean aproved) {
         this.aproved = aproved;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
