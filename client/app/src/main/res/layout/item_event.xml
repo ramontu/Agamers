@@ -45,9 +45,10 @@
 
         app:layout_constraintTop_toTopOf="parent"
 
-        app:srcCompat="@drawable/logo"
+        app:srcCompat="@drawable/user_imagen"
 
-        android:contentDescription="IMAGE" />
+        android:contentDescription="@string/user_image"
+        android:layout_marginRight="4dp" />
 
 
 
@@ -105,13 +106,14 @@
 
         android:layout_marginTop="8dp"
 
-        android:contentDescription="Poster info"
+        android:contentDescription="@string/user_image"
 
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
 
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/user_imagen"
+        android:layout_marginLeft="24dp" />
 
 
 
@@ -131,7 +133,8 @@
 
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/eventPosterInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/eventPosterInfo"
+        android:layout_marginRight="4dp" />
 
 
 
@@ -145,7 +148,7 @@
 
         android:layout_marginEnd="1dp"
 
-        android:text=""
+        android:text="hola"
 
         app:layout_constraintEnd_toStartOf="@+id/eventDistanceToInfo"
 
@@ -155,6 +158,7 @@
 
         app:layout_constraintTop_toBottomOf="@+id/eventPosterInfo"
 
-        tools:text="Status" />
+        tools:text="Status"
+        android:layout_marginRight="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

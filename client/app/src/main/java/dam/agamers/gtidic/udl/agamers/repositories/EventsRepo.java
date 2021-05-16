@@ -15,23 +15,30 @@ import retrofit2.Response;
 
 public class EventsRepo {
     private final EventService eventService;
-
     private final MutableLiveData<List<Event>> mResponseEvents;
 
-    public EventsRepo() {
+    public EventsRepo () {
         this.eventService = new EventServiceImpl();
-        this.mResponseEvents = new MutableLiveData<>();
+        this.mResponseEvents = new MutableLiveData <> ();
     }
 
-    public void getEvents(){
+    public MutableLiveData<List<Event>> getmResponseEvents() {
+        return mResponseEvents;
+    }
+
+    public void getEvents () {
         this.eventService.getEvents().enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                int code =response.code();
-                        if(code == 200){
-                            Log.d("EventsRepo", "Ha rebut el codi 200");
-                            List<Event> events = response.body();
-                        }
+                int code = response.code();
+
+                if (code == 200) {
+                    Log.d("EventsRepo", "getEvents() -> ha rebut el codi: " + code);
+                    List<Event> events = response.body();
+                    mResponseEvents.setValue(events);
+                } else {
+                    Log.d("EventsRepo", "getEvents() -> ha rebut el codi: " + code);
+                }
             }
 
             @Override
@@ -40,4 +47,5 @@ public class EventsRepo {
             }
         });
     }
+
 }

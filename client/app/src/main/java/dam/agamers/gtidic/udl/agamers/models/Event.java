@@ -1,63 +1,109 @@
 package dam.agamers.gtidic.udl.agamers.models;
 import com.google.gson.annotations.SerializedName;
-import dam.agamers.gtidic.udl.agamers.models.enums.EventStatus;
-import dam.agamers.gtidic.udl.agamers.models.enums.EventType;
 
 public class Event {
 
     @SerializedName("id")
+
     private String id;
+
     @SerializedName("name")
+
     private String name;
+
     @SerializedName("description")
+
     private String description;
+
     @SerializedName("latitude")
+
     private double latitude;
+
     @SerializedName("longitude")
+
     private double longitude;
+
     @SerializedName("poster_url")
+
     private String poster_url;
+
     @SerializedName("start_date")
+
     private String start_date;
+
     @SerializedName("finish_date")
+
     private String finish_date;
+
     @SerializedName("type")
+
     private EventType type;
+
     @SerializedName("status")
+
     private EventStatus status;
 
-
-
     public Event() {
+
     }
+
+
 
     public String getId() {
+
         return id;
+
     }
+
+
 
     public void setId(String id) {
+
         this.id = id;
+
     }
+
+
 
     public String getName() {
+
         return name;
+
     }
+
+
 
     public void setName(String name) {
+
         this.name = name;
+
     }
+
+
 
     public String getDescription() {
+
         return description;
+
     }
+
+
 
     public void setDescription(String description) {
+
         this.description = description;
+
     }
 
+
+
     public double getLatitude() {
+
         return latitude;
+
     }
+
+
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
@@ -103,6 +149,8 @@ public class Event {
         this.type = type;
     }
 
+
+
     public EventStatus getStatus() {
         return status;
     }
@@ -119,8 +167,8 @@ public class Event {
             return true;
         }
 
-        /* Check if o is an instance of Complex or not
-          "null instanceof [type]" also returns false */
+       /* Check if o is an instance of Complex or not
+         "null instanceof [type]" also returns false */
         if (!(o instanceof Event)) {
             return false;
         }
@@ -145,8 +193,4 @@ public class Event {
         return "Type (id) " + this.type.id + " | Type (name) " + this.type.name +"\n"
                 + "Status (id) " + this.status.id + " | Status (name) " + this.status.name;
     }
-
 }
-
-
-
