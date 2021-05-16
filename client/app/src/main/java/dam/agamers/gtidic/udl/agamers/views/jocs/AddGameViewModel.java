@@ -35,6 +35,7 @@ public class AddGameViewModel extends ViewModel {
     String TAG = "AddGameViewModel";
     public MutableLiveData<Boolean> responseUpdate;
     //TODO abans d'enviar el joc s'ha de agafar si te mode online del radiobutton
+    //TODO s'ha de fer una llista amb totes les categories i plataformes per a que surtin a la llista de selecció
     public MutableLiveData<Jocs> m_Jocs;
     View view;
 
