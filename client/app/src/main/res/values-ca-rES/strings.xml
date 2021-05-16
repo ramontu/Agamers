@@ -95,6 +95,28 @@
     <string name="pegi_joc">Edat recomanada</string>
     <string name="data_publicacio">"Data publicació "</string>
     <string name="crear_joc">Crear joc</string>
-    <string name="fragment_jocs">Fragment de jocs</string>
+    <string name="fragment_jocs">Jocs</string>
+    <string name="wait_fragment">Un moment...</string>
+    <string name="encrypted_password">Contrasenya encriptada</string>
+    <string name="account_username">Nom usuari</string>
+    <string name="account_password">Contrasenya</string>
+    <string name="account_email">Email</string>
+    <string name="account_name">Nom</string>
+    <string name="account_surname">Cognom</string>
+    <string name="account_birthday">Aniversari</string>
+    <string name="account_genere">Gènere</string>
+    <string name="account_short_description">Descripció curta</string>
+    <string name="account_long_description">Descripció llarga</string>
+    <string name="delete_jocs_ok">S\'ha eliminat un joc</string>
+    <string name="delete_jocs_error">Error en eliminiar un joc</string>
+    <string name="compartir">Compartir</string>
+    <string name="imatge_joc">Imatge Joc</string>
+    <string name="nom_joc">Nom Joc</string>
+    <string name="max_players">Jugadors màxims</string>
+    <string name="estudio">Companyia</string>
+    <string name="plataforma">Plataforma</string>
+    <string name="fragment_addgame">Afegeix un joc</string>
+    <string name="error_clossing_session">Error a l\'hora de tancar sessió. El token no s\'ha eliminat de la base de dades a causa d\'un error.</string>
+    <string name="succes_clossing_session">S\'ha tancat la sessió correctament</string>
 
 </resources>

@@ -168,18 +168,19 @@
     <string name="numero_de_jugadors">Numero de jugadors:</string>
     <string name="imatge_joc">Imatge Joc</string>
     <string name="nom_joc">Nom Joc</string>
-    <string name="max_players">Jugadors maxims</string>
+    <string name="max_players">Jugadors màxims</string>
     <string name="min_players">Jugadros mínims</string>
-    <string name="studio">Companyia</string>
+    <string name="estudio">Companyia</string>
     <string name="plataforma">Plataforma</string>
     <string name="descripcio_joc">Descripció del joc</string>
     <string name="pegi_joc">Edat recomanada</string>
     <string name="data_publicacio">Data publicació </string>
     <string name="crear_joc">Crear joc</string>
-    <string name="fragment_jocs">Fragment de jocs</string>
-    <string name="fragment_addgame">Fragment d\'afegir joc</string>
-    <string name="error_clossing_session">Error a l\'hora de tancar sessió. El token no s\'ha eliminat de la base de dades degut a un error.</string>
+    <string name="fragment_jocs">Jocs</string>
+    <string name="fragment_addgame">Afegeix un joc</string>
+    <string name="error_clossing_session">Error a l\'hora de tancar sessió. El token no s\'ha eliminat de la base de dades a causa d\'un error.</string>
     <string name="succes_clossing_session">S\'ha tancat la sessió correctament</string>
+    <string name="studio">Estudio</string>
 
 
 </resources>
