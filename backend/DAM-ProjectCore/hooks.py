@@ -6,7 +6,7 @@ import logging
 import falcon
 
 import messages
-from db.models import UserToken, Jocs
+from db.models import UserToken, Jocs, Platforms
 
 mylogger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ def requires_auth(req, resp, resource, params):
         raise falcon.HTTPUnauthorized(description=messages.token_required)
 
 
-#TODO falta comprovar
+#  TODO falta comprovar
 def requires_game_id(req, resp, resource, params):
     if "id" in params:
         game = resource.db_session.query(Jocs).filter(Jocs.id == params["id"]).one()
@@ -36,3 +36,14 @@ def requires_game_id(req, resp, resource, params):
     else:
         raise falcon.HTTPUnauthorized(description=messages.game_id_required)
 
+
+#  TODO falta comprovar
+def requires_platform_id(req, resp, resource, params):
+    if "id" in params:
+        platform = resource.db_session.query(Platforms).filter(Platforms.id == params["id"]).one()
+        if platform is not None:
+            req.context["platform"] = platform
+        else:
+            raise falcon.HTTP_404
+    else:
+        raise falcon.HTTPBadRequest(description=messages.platform_id_required)
