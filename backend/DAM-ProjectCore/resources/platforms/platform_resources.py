@@ -17,7 +17,6 @@ class ResourceNewPlatform(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceNewPlatform, self).on_post(req, resp, *args, **kwargs)
         aux_platform = Platforms()
-
         try:
             for i in req.media:
                 valor = req.media[i]
@@ -38,7 +37,7 @@ class ResourceNewPlatform(DAMCoreResource):
 @falcon.before(requires_platform_id)
 class ResourceDeletePlatform(DAMCoreResource):
     def on_delete(self, req, resp, *args, **kwargs):
-        super(ResourceDeletePlatform, self).on_post(req, resp, *args, **kwargs)
+        super(ResourceDeletePlatform, self).on_delete(self, req, resp, *args, **kwargs)
         current_platform = req.context["platform"]
 
         try:
@@ -56,7 +55,19 @@ class ResourceGetPlatforms(DAMCoreResource):
         super(ResourceGetPlatforms, self).on_get(req, resp, *args, **kwargs)
         platforms = self.db_session.query(Platforms)
         response = []
-        for i in platforms:
-            response.append(i.json_model)
+
+        if 'id' in req.media:
+            platforms = platforms.filter(Platforms.id == req.media["id"]).one()
+            response = platforms.json_model
+        elif 'name' in req.media:
+            platforms = platforms.filter(Platforms.name == req.media["name"]).one()
+            response = platforms.json_model
+        elif 'manufacturer' in req.media:
+            platforms = platforms.filter(Platforms.manufacturer == req.media["manufacturer"])
+            for i in platforms:
+                response.append(i.json_model)
+        else:
+            for i in platforms:
+                response.append(i.json_model)
         resp.media = response
         resp.status = falcon.HTTP_200

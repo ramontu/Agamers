@@ -58,13 +58,13 @@ application.add_route("/jocs", games_resources.ResourceGetGames())  # OK
 application.add_route("/jocs/update_profile_image", games_resources.ResourceJocsUpdateImage())  # TODO provar
 
 # Plataforma
-application.add_route("/platform/create", platform_resources.ResourceNewPlatform())  # TODO provar
+application.add_route("/platform/create", platform_resources.ResourceNewPlatform())  # OK
 application.add_route("/platform/delete/{id:int}", platform_resources.ResourceDeletePlatform())  # TODO provar
-application.add_route("/platforms", platform_resources.ResourceGetPlatforms())  # TODO provar
+application.add_route("/platforms", platform_resources.ResourceGetPlatforms())  # OK
 
 # Categories
-application.add_route("/category/create", categories_resources.ResourceNewCategory())  # TODO provar
-application.add_route("/category/delete/{id:int}", categories_resources.ResourceDeleteCategory())  # TODO provar
+application.add_route("/category/create", categories_resources.ResourceNewCategory())  # OK
+application.add_route('/category/delete/{id:int}', categories_resources.ResourceDeleteCategory())  # TODO provar
 application.add_route("/categories", categories_resources.ResourceGetCategories())  # OK
 
 # General

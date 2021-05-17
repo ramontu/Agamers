@@ -39,11 +39,13 @@ def requires_game_id(req, resp, resource, params):
 
 #  TODO falta comprovar
 def requires_platform_id(req, resp, resource, params):
+    print(params)
     if "id" in params:
+        print("hola")
         platform = resource.db_session.query(Platforms).filter(Platforms.id == params["id"]).one()
         if platform is not None:
             req.context["platform"] = platform
         else:
-            raise falcon.HTTP_404
+            raise falcon.HTTP_NOT_FOUND(description="Platform")
     else:
         raise falcon.HTTPBadRequest(description=messages.platform_id_required)

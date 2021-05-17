@@ -19,7 +19,7 @@ class ResourceNewCategory(DAMCoreResource):
         super(ResourceNewCategory, self).on_post(req, resp, *args, **kwargs)
         aux_category = Categories()
         try:
-            aux_category.name = kwargs["name"]
+            aux_category.name = req.media["name"]
             self.db_session.add(aux_category)
             try:
                 self.db_session.commit()
@@ -32,7 +32,6 @@ class ResourceNewCategory(DAMCoreResource):
 
 
 class ResourceDeleteCategory(DAMCoreResource):
-
     def on_delete(self, req, resp, *args, **kwargs):
         super(ResourceDeleteCategory, self).on_delete(req, resp, *args, **kwargs)
 
@@ -51,6 +50,7 @@ class ResourceDeleteCategory(DAMCoreResource):
                 raise falcon.HTTPInternalServerError()
         else:
             raise falcon.HTTPUnauthorized(description=messages.category_not_found)
+
 
 # FUNCIONA
 class ResourceGetCategories(DAMCoreResource):
