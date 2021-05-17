@@ -228,7 +228,7 @@ class User(SQLAlchemyBase, JSONModel):
     points = Column(Integer, default=0, nullable=True)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
-    tokens = relationship("UserToken", back_populates="user", cascade="all, delete-orphan")
+    tokens = relationship("UserToken", cascade="all, delete-orphan")
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -278,7 +278,7 @@ class User(SQLAlchemyBase, JSONModel):
     def create_token(self):
         if len(self.tokens) < settings.MAX_USER_TOKENS:
             token_string = binascii.hexlify(os.urandom(25)).decode("utf-8")
-            aux_token = UserToken(token=token_string, user=self)
+            aux_token = UserToken(token=token_string, user_id=self.id)
             return aux_token
         else:
             raise falcon.HTTPBadRequest(title=messages.quota_exceded, description=messages.maximum_tokens_exceded)
@@ -375,6 +375,7 @@ class Categories(SQLAlchemyBase, JSONModel):
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(30), unique=True, nullable=False)
 
+    @hybrid_property
     def json_model(self):
         return {
             "id": self.id,
@@ -411,12 +412,12 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
     min_players = Column(Integer, default=1, nullable=False)
     max_players = Column(Integer, default=1, nullable=False)
     online_mode = Column(Boolean, default=False, nullable=False)
-    published = Column(Unicode(10), nullable=False)
+    published = Column(Unicode(10), default="", nullable=False)
     studio = Column(Unicode(100), nullable=False)
     image = Column(Unicode(255), default="")
     platforms = relationship("Platforms", secondary=Platforms_game)
     description = Column(UnicodeText, default="")
-    pegi = Column(Integer, default=18)  # Edat recomanada
+    pegi = Column(Integer, default=18, nullable=False)  # Edat recomanada
     aproved = Column(Boolean, default=False, nullable=False)
 
     @hybrid_property
@@ -424,14 +425,14 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
         return {
             "id": self.id,
             "name": self.name,
-            "categories": self.categories,
+            "categories": [categories.name for categories in self.categories],
             "min_players": self.min_players,
             "max_players": self.max_players,
             "online_mode": self.online_mode,
             "published": self.published,
             "studio": self.studio,
             "image": self.image,
-            "platforms": self.platforms,
+            "platforms": [platform.name for platform in self.platforms],
             "description": self.description,
             "pegi": self.pegi,
             "aproved": self.aproved

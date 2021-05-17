@@ -21,7 +21,6 @@ public class LogInViewModel {
         accountRepo = new AccountRepo();
         username = new MutableLiveData<>();
         password = new MutableLiveData<>();
-
     }
 
     public void onLogin() {

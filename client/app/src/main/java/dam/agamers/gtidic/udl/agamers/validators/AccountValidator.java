@@ -13,14 +13,13 @@ public class AccountValidator {
     //TODO posar condicions de validació al javadoc
 
     /**
-     * Comprova que el username pugui contenir minuscules, majuscules i numeros
+     * Comprova que el username pugui contenir minuscules, majuscules, numeros i "." i "_"
      * @param username String: Nom d'usuari que es vol comprovar
      * @return És viable o no
      * TODO falta fer la comprovació amb el client per a veure si ja existeix l'usuari
      */
     public static boolean check_usernameValid(String username){
-        return patternIsValid(username, "^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){7,20}[a-zA-Z0-9]$");
-
+        return patternIsValid(username, "^[a-zA-Z0-9._]{3,20}");
     }
 
     /**

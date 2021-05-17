@@ -6,11 +6,13 @@ import datetime
 import logging
 import os
 
+import random as rand
+
 from sqlalchemy.sql import text
 
 import db
 import settings
-from db.models import SQLAlchemyBase, User, AccountTypeEnum, GenereEnum
+from db.models import SQLAlchemyBase, User, AccountTypeEnum, GenereEnum, Jocs, Platforms, Categories
 from settings import DEFAULT_LANGUAGE
 
 # LOGGING
@@ -156,5 +158,84 @@ if __name__ == "__main__":
     )
     db_session.add(event_livecoding)
     '''
+
+    mylogger.info("Creating default categories...")
+
+    categories = []
+
+    for u in range(1, 10):
+        cat = Categories(
+
+            id=u,
+
+            name="Categoria " + str(u)
+
+        )
+
+        categories.append(cat)
+
+        db_session.add(cat)
+
+    mylogger.info("Creating default games...")
+
+    jocs = []
+
+    mylogger.info("Creating default platforms...")
+    platforms = []
+    p1 = Platforms(
+
+        id=1,
+
+        name="PS4",
+
+        manufacturer="Sony"
+
+    )
+    platforms.append(p1)
+    db_session.add(p1)
+
+    p2 = Platforms(
+
+        id=2,
+
+        name="Xbox One",
+
+        manufacturer="Microsoft"
+
+    )
+    platforms.append(p2)
+    db_session.add(p2)
+
+    p2 = Platforms(
+
+        id=3,
+
+        name="PS5",
+
+        manufacturer="Sony"
+
+    )
+    platforms.append(p2)
+    db_session.add(p2)
+
+    for u in range(1, 5):
+        joc = Jocs(
+
+            id=u,
+
+            name="Joc " + str(u),
+
+            studio="",
+
+            categories=rand.sample(categories, 3),
+
+            platforms=rand.sample(platforms, 2)
+
+        )
+
+        jocs.append(joc)
+
+        db_session.add(joc)
+
     db_session.commit()
     db_session.close()
