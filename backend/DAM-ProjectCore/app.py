@@ -46,9 +46,12 @@ application.add_route("/account/update_account", account_resources.ResourceAccou
 application.add_route("/account/recovery", account_resources.ResourceAccountRecovery())
 application.add_route("/account/password_update", account_resources.ResourceAccountPasswordUpdate())
 
+#USER
 application.add_route("/users/register", user_resources.ResourceRegisterUser())
 application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile())
 application.add_route("/users/getuserimage", user_resources.DownloadUserImage())  # TODO comprovar
+application.add_route("/users/send_request/{sender}/{reciver}", user_resources)  # TODO FER
+application.add_route("/user/download_menu_items", user_resources.DownloadMenuInfo())  # TODO comprovar
 
 # Jocs
 application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame())
@@ -69,6 +72,7 @@ application.add_route("/categories", categories_resources.ResourceGetCategories(
 
 # General
 application.add_route("/image/download", common_resources.ResourceDownloadImage())  # TODO provar
+
 
 '''
 application.add_route("/events", event_resources.ResourceGetEvents())

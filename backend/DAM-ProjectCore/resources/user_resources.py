@@ -71,3 +71,14 @@ class DownloadUserImage(DAMCoreResource):
         file = utils.get_static_media_file(current_user.photo_path)
         resp.media = file
         resp.status = falcon.HTTP_200
+
+
+@falcon.before(requires_auth)
+class DownloadMenuInfo(DAMCoreResource):
+    def on_get(self, req, resp, *args, **kwargs):
+        super(DownloadMenuInfo, self).on_get(req, resp, *args, **kwargs)
+        current_user = req.context["auth_user"]
+
+        file = utils.get_static_media_file(current_user.photo_path)
+        resp.media = [file, current_user.username]
+        resp.status = falcon.HTTP_200
