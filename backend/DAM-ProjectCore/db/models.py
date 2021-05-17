@@ -360,6 +360,7 @@ class Platforms(SQLAlchemyBase, JSONModel):
     name = Column(Unicode(100), unique=True, nullable=False)
     manufacturer = Column(Unicode(100), nullable=False)
 
+    @hybrid_property
     def json_model(self):
         return {
             "id": self.id,

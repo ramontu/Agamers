@@ -31,6 +31,7 @@ public class JocsFragment extends Fragment {
         jocsViewModel = new ViewModelProvider(this).get(JocsViewModel.class);
         root = inflater.inflate(R.layout.fragment_jocs, container, false);
 
+
         recyclerView = root.findViewById(R.id.jocsRecyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -38,6 +39,7 @@ public class JocsFragment extends Fragment {
         jocAdapter = new JocAdapter(new JocDiffCallBack());
         recyclerView.setAdapter (jocAdapter);
         initView();
+
         return root;
     }
 

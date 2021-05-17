@@ -16,10 +16,10 @@ from resources.schemas import SchemaNewCategory
 class ResourceNewCategory(DAMCoreResource):
     @jsonschema.validate(SchemaNewCategory)
     def on_post(self, req, resp, *args, **kwargs):
-        super(ResourceNewCategory, self).on_post(self, req, resp, *args, **kwargs)
+        super(ResourceNewCategory, self).on_post(req, resp, *args, **kwargs)
         aux_category = Categories()
         try:
-            aux_category.name = kwargs["name"]
+            aux_category.name = req.media["name"]
             self.db_session.add(aux_category)
             try:
                 self.db_session.commit()
@@ -32,7 +32,6 @@ class ResourceNewCategory(DAMCoreResource):
 
 
 class ResourceDeleteCategory(DAMCoreResource):
-
     def on_delete(self, req, resp, *args, **kwargs):
         super(ResourceDeleteCategory, self).on_delete(req, resp, *args, **kwargs)
 
@@ -53,13 +52,22 @@ class ResourceDeleteCategory(DAMCoreResource):
             raise falcon.HTTPUnauthorized(description=messages.category_not_found)
 
 
-class ResourceAllCategories(DAMCoreResource):
+# FUNCIONA
+class ResourceGetCategories(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
-        super(ResourceAllCategories, self).on_get(req, resp, *args, **kwargs)
-
+        super(ResourceGetCategories, self).on_get(req, resp, *args, **kwargs)
+        # Pot buscar per nom o per id
         categories = self.db_session.query(Categories)
         resultat = []
-        for i in categories:
-            resultat.append(i.json_model)
+        if 'id' in req.media:
+            categories = categories.filter(Categories.id == req.media["id"]).one()
+            resultat = categories.json_model
+        elif 'name' in req.media:
+            categories = categories.filter(Categories.name == req.media["name"]).one()
+            resultat = categories.json_model
+        else:
+            for i in categories:
+                resultat.append(i.json_model)
+
         resp.media = resultat
         resp.status = falcon.HTTP_200
