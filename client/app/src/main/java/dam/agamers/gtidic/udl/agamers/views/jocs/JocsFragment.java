@@ -26,13 +26,6 @@ public class JocsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         jocsViewModel = new ViewModelProvider(this).get(JocsViewModel.class);
         root = inflater.inflate(R.layout.fragment_jocs, container, false);
-        final TextView textView = root.findViewById(R.id.text_jocs);
-        jocsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 

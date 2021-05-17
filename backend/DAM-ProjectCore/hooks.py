@@ -41,7 +41,6 @@ def requires_game_id(req, resp, resource, params):
 def requires_platform_id(req, resp, resource, params):
     print(params)
     if "id" in params:
-        print("hola")
         platform = resource.db_session.query(Platforms).filter(Platforms.id == params["id"]).one()
         if platform is not None:
             req.context["platform"] = platform
