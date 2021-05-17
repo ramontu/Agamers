@@ -149,8 +149,6 @@ public class Event {
         this.type = type;
     }
 
-
-
     public EventStatus getStatus() {
         return status;
     }

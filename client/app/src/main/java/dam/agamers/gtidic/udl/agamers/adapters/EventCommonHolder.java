@@ -31,9 +31,9 @@ public class EventCommonHolder {
         eventName = itemView.findViewById(R.id.eventNameInfo);
         eventDescription = itemView.findViewById(R.id.eventDescriptionInfo);
         eventPoster = itemView.findViewById(R.id.eventPosterInfo);
-        eventStatus = itemView.findViewById(R.id.eventStatusInfo);
+        eventStatus = itemView.findViewById(R.id.jocItemName);
         eventStatusColor = itemView.findViewById(R.id.eventStatusColourInfo);
-        eventType = itemView.findViewById(R.id.eventTypeIconInfo);
+        eventType = itemView.findViewById(R.id.jocItemPoster);
         distanceToEvent = itemView.findViewById(R.id.eventDistanceToInfo);
     }
 

@@ -1,5 +1,8 @@
 package dam.agamers.gtidic.udl.agamers.services.jocs;
 
+import java.util.List;
+
+import dam.agamers.gtidic.udl.agamers.models.Event;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -29,10 +32,10 @@ public interface JocsService {
     @POST("/jocs/create_jocs")
     Call<ResponseBody> create_jocs(@Body Jocs jocs);
 
-    Call<ResponseBody> create_jocs();
-    Call<ResponseBody> update_jocs();
-
     @Multipart
     @POST("/jocs/update_profile_image")
     Call<ResponseBody> uploadImage(@Part MultipartBody.Part image);
+
+    @GET("jocs")
+    Call<List<Jocs>> getJocs();
 }
