@@ -214,6 +214,20 @@ Banned_Forums   = Table("b_forums", SQLAlchemyBase.metadata,
 class User(SQLAlchemyBase, JSONModel):
     __tablename__ = "users"
 
+    '''Column("sended on", DateTime,
+                                        default=datetime.datetime.now(),
+                                        nullable=False),'''
+
+    '''
+    Peticionsamistat = Table("peticions", SQLAlchemyBase.metadata,
+                             Column("sender_id", Integer,
+                                    ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
+                                    nullable=False),
+                             Column("reciver_id", Integer,
+                                    ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
+                                    nullable=False),
+                             )
+    '''
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.datetime.now)
     username = Column(Unicode(50), nullable=False, unique=True)
@@ -222,7 +236,7 @@ class User(SQLAlchemyBase, JSONModel):
     # banned_forums = relationship("Jocs") #foros dels que estas banejat TODO no funciona
     # banned_users = relationship("User") #usuaris bloquejats TODO no funciona
     # friends = relationship("User") #amics todo no funciona
-    # firends_request = relationship("User") #solicituds amics todo no funciona
+    # firends_request = relationship("User", secondary=Peticionsamistat)  # solicituds amics todo no funciona
     short_description = Column(Unicode(100), default="")  # OK
     long_description = Column(UnicodeText, default="")  # OK
     points = Column(Integer, default=0, nullable=True)  # OK
@@ -385,7 +399,7 @@ class Categories(SQLAlchemyBase, JSONModel):
 
 
 # Base de dades dels jocs
-class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
+class Jocs(SQLAlchemyBase, JSONModel):  # OK
     __tablename__ = "jocs"
 
     Categories_game = Table("cat_game", SQLAlchemyBase.metadata,
@@ -416,7 +430,6 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
     published = Column(Unicode(10), default="", nullable=False)
     studio = Column(Unicode(100), nullable=False)
     image = Column(Unicode(255), default="")
-
 
     platforms = relationship("Platforms", secondary=Platforms_game)
     description = Column(UnicodeText, default="")
@@ -463,3 +476,21 @@ class Modesjocs(SQLAlchemyBase, JSONModel):
 
 # TODO implementar mes endavant: crear model per a les tendes
 # Base de dades per a les tendes
+
+
+class Peticionsamistat(SQLAlchemyBase, JSONModel):
+    __tablename__ = "peticions_amistat"
+
+    id = Column(Integer, primary_key=True)
+    sender = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    reciver = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    sended_on = Column(DateTime, nullable=False, default=datetime.datetime.now)
+
+    @hybrid_property
+    def json_model(self):
+        return {
+            "sender": self.sender,
+            "reciver": self.reciver,
+            "sended_on": self.sended_on
+        }
+
