@@ -1,32 +1,13 @@
 package dam.agamers.gtidic.udl.agamers.views.jocs;
 
-import android.Manifest;
-import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.android.material.textfield.TextInputLayout;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
-
-import java.io.File;
-import java.util.Calendar;
-
-import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import dam.agamers.gtidic.udl.agamers.repositories.JocsRepo;
-import dam.agamers.gtidic.udl.agamers.views.activitatsuser.SignUpActivity;
-
-import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class AddGameViewModel extends ViewModel {
 
@@ -49,9 +30,13 @@ public class AddGameViewModel extends ViewModel {
         this.jocsRepo.uploadPhoto(imageFile);
     }*/
 
-    public void createJoc(){
+    public void createJoc(Jocs jocs){
         Log.d(TAG, "Create new game");
-        this.jocsRepo.create_jocs(m_Jocs.getValue());
+        this.jocsRepo.create_jocs(jocs);
+    }
+
+    public MutableLiveData<Boolean> jocIsCreated(){
+        return this.jocsRepo.getmCreateOkOk();
     }
 
     public MutableLiveData<Jocs> getm_Jocs(){return jocsRepo.getmJocsInfo(); }

@@ -415,6 +415,8 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
     published = Column(Unicode(10), default="", nullable=False)
     studio = Column(Unicode(100), nullable=False)
     image = Column(Unicode(255), default="")
+
+
     platforms = relationship("Platforms", secondary=Platforms_game)
     description = Column(UnicodeText, default="")
     pegi = Column(Integer, default=18, nullable=False)  # Edat recomanada
@@ -431,12 +433,21 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
             "online_mode": self.online_mode,
             "published": self.published,
             "studio": self.studio,
-            "image": self.image,
+            "image": self.image_url,
             "platforms": [platform.name for platform in self.platforms],
             "description": self.description,
             "pegi": self.pegi,
             "aproved": self.aproved
         }
+
+    @hybrid_property
+    def image_url(self):
+        return _generate_media_url(self, "image")
+
+    # TODO mirar si funciona
+    @hybrid_property
+    def image_path(self):
+        return _generate_media_path(self, "image")
 
 
 '''

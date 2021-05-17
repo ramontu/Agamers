@@ -31,7 +31,7 @@
 
     <ImageView
 
-        android:id="@+id/eventTypeIconInfo"
+        android:id="@+id/jocItemPoster"
 
         android:layout_width="48dp"
 
@@ -64,7 +64,7 @@
 
         android:textSize="24sp"
 
-        app:layout_constraintEnd_toStartOf="@+id/eventTypeIconInfo"
+        app:layout_constraintEnd_toStartOf="@+id/jocItemPoster"
 
         app:layout_constraintHorizontal_bias="0.428"
 
@@ -84,7 +84,7 @@
 
         android:text=""
 
-        app:layout_constraintEnd_toStartOf="@+id/eventTypeIconInfo"
+        app:layout_constraintEnd_toStartOf="@+id/jocItemPoster"
 
         app:layout_constraintHorizontal_bias="0.428"
 
@@ -140,7 +140,7 @@
 
     <TextView
 
-        android:id="@+id/eventStatusInfo"
+        android:id="@+id/jocItemName"
 
         android:layout_width="223dp"
 

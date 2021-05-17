@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.R;
+import dam.agamers.gtidic.udl.agamers.models.Event;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import dam.agamers.gtidic.udl.agamers.services.jocs.JocsService;
 import dam.agamers.gtidic.udl.agamers.services.jocs.JocsServiceImpl;
@@ -25,6 +27,7 @@ public class JocsRepo {
     private MutableLiveData<Boolean> mUpdateOk;
     private MutableLiveData<Integer> mResponseDeleteJocs;
     private MutableLiveData<Boolean> mCreateOk;
+    private MutableLiveData<List<Jocs>> mResponseJocs;
 
     public JocsRepo(){
         this.jocsService = new JocsServiceImpl();
@@ -32,6 +35,7 @@ public class JocsRepo {
         this.mUpdateOk = new MutableLiveData<>();
         this.mResponseDeleteJocs = new MutableLiveData<>();
         this.mCreateOk = new MutableLiveData<>();
+        this.mResponseJocs = new MutableLiveData<>();
     }
 
     private void download_jocs_info(){
@@ -146,6 +150,31 @@ public class JocsRepo {
         return mCreateOk;
     }
 
+    public void getJocs () {
+        this.jocsService.getJocs().enqueue(new Callback<List<Jocs>>() {
+            @Override
+            public void onResponse(Call<List<Jocs>> call, Response<List<Jocs>> response) {
+                int code = response.code();
+
+                if (code == 200) {
+                    Log.d("JocsRepo", "getJocs() -> ha rebut el codi: " + code);
+                    List<Jocs> jocs = response.body();
+                    mResponseJocs.setValue(jocs);
+                } else {
+                    Log.d("JocsRepo", "getJocs() -> ha rebut el codi: " + code);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Jocs>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public MutableLiveData<List<Jocs>> getmResponseJocs() {
+        return mResponseJocs;
+    }
     //public AddGameViewModel uploadPhoto(File imageFile) {
   //  }
 }

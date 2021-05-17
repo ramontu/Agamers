@@ -138,7 +138,7 @@
                         android:id="@+id/max_players_edit"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModel.m_Jocs.max_players_string}" />
+                        android:text="" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -260,7 +260,6 @@
                 android:id="@+id/crear_joc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="createJocOnClick"
                 android:text="@string/crear_joc"
                 tools:showIn="@layout/fragment_addgame" />
 
