@@ -180,7 +180,7 @@ class UserToken(SQLAlchemyBase):
     id = Column(Integer, primary_key=True)
     token = Column(Unicode(50), nullable=False, unique=True)
     user_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
-
+    user = relationship("User", back_populates="tokens")
 
 # Forums seguits TODO
 '''
@@ -218,16 +218,7 @@ class User(SQLAlchemyBase, JSONModel):
                                         default=datetime.datetime.now(),
                                         nullable=False),'''
 
-    '''
-    Peticionsamistat = Table("peticions", SQLAlchemyBase.metadata,
-                             Column("sender_id", Integer,
-                                    ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
-                                    nullable=False),
-                             Column("reciver_id", Integer,
-                                    ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
-                                    nullable=False),
-                             )
-    '''
+
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.datetime.now)
     username = Column(Unicode(50), nullable=False, unique=True)
@@ -242,7 +233,7 @@ class User(SQLAlchemyBase, JSONModel):
     points = Column(Integer, default=0, nullable=True)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
-    tokens = relationship("UserToken", cascade="all, delete-orphan")
+    tokens = relationship("UserToken", back_populates="user_id", cascade="all, delete-orphan")
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
