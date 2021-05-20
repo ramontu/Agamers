@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -15,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
@@ -30,11 +28,11 @@ public class AddGameFragment extends Fragment {
     private Button crearJocButton;
     private final int PICK_IMAGE_REQUEST = 14;
 
-
     //@TODO: Validació dels camps.
-    //@TODO: Mostra toast de info al usuari al rebre el 200
+    //@TODO: Mostra toast de info al usuari al rebre el 200 (esto esta en first activity)
     //@TODO: Torna a la pantalla de la llista de jocs
-    //@TODO: Spinners de categories i plataformes
+    //@TODO: Spinners de categories i plataformes (en edit info hay algo parecido)
+
     public void initView(){
         nomjoc_edit = root.findViewById(R.id.nom_joc_edit);
         maxplayer_edit = root.findViewById(R.id.max_players_edit);
