@@ -118,8 +118,7 @@
                         android:id="@+id/min_players_edit"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:text="@={viewModel.m_Jocs.min_players_string}" />
+                        android:inputType="number"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,7 +137,8 @@
                         android:id="@+id/max_players_edit"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:text="" />
+                        android:inputType="number"
+                        />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>

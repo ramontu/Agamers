@@ -1,6 +1,7 @@
 package dam.agamers.gtidic.udl.agamers.views.jocs;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,17 +18,18 @@ import java.util.ArrayList;
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
+import dam.agamers.gtidic.udl.agamers.views.FirstActivity;
 
 public class AddGameFragment extends Fragment {
 
     private final static String TAG="AddGameFragment";
 
     private AddGameViewModel addGameViewModel;
-    private EditText nomjoc_edit, buscarcate_edit, maxplayer_edit, minplayer_edit, descripciojoc_edit, edatrecomanada_edit, datapublicacio_edit, plataformes_edit, estudio_edit;
+    private EditText nomjoc_edit,maxplayer_edit, minplayer_edit, descripciojoc_edit, edatrecomanada_edit, datapublicacio_edit, plataformes_edit, estudio_edit;
     private View root;
     private Button crearJocButton;
     private final int PICK_IMAGE_REQUEST = 14;
-    
+
     //@TODO: Mostra toast de info al usuari al rebre el 200 (esto esta en first activity)
     //@TODO: Torna a la pantalla de la llista de jocs
     //@TODO: Spinners de categories i plataformes (en edit info hay algo parecido)
@@ -45,11 +47,22 @@ public class AddGameFragment extends Fragment {
         addGameViewModel.jocIsCreated().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if (aBoolean){
-                    // Levantar el toast para informar que se ha creado correctamente
-                }
+                    FirstActivity firstActivity = (FirstActivity) getActivity();
+                    if (aBoolean){
+                        firstActivity.showInfoUser(getView(),getString(R.string.succes_clossing_session));
+                    }//cambiar el valor de las strings
+                    else {
+                        firstActivity.showInfoUser(getView(),getString(R.string.error_clossing_session));
+                    }
+                    //Al cap de 2000 milisegons crida al metode change_to_login que canvia la pantalla
+                    (new Handler()).postDelayed(this::navegacioJoc, 2000);
+            }
+
+            private void navegacioJoc() {
+                onBackPressed();
             }
         });
+
         crearJocButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +99,4 @@ public class AddGameFragment extends Fragment {
     public void onBackPressed(){
         NavHostFragment.findNavController((AddGameFragment.this)).navigate(R.id.action_fragmentaddgame_to_fragmentjocs);
     }
-
-
 }
