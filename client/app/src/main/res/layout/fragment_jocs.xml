@@ -10,8 +10,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jocsRecyclerView"
-        android:layout_width="412dp"
-        android:layout_height="727dp"
+        android:layout_width="411dp"
+        android:layout_height="532dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -31,7 +31,7 @@
 
         android:layout_height="17dp"
 
-        android:text="hola"
+        android:text="@string/nom_joc"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
