@@ -10,8 +10,6 @@ import dam.agamers.gtidic.udl.agamers.models.Account;
  */
 public class AccountValidator {
 
-    //TODO posar condicions de validació al javadoc
-
     /**
      * Comprova que el username pugui contenir minuscules, majuscules, numeros i "." i "_"
      * @param username String: Nom d'usuari que es vol comprovar

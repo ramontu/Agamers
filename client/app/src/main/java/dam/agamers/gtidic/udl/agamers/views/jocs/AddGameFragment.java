@@ -27,8 +27,7 @@ public class AddGameFragment extends Fragment {
     private View root;
     private Button crearJocButton;
     private final int PICK_IMAGE_REQUEST = 14;
-
-    //@TODO: Validació dels camps.
+    
     //@TODO: Mostra toast de info al usuari al rebre el 200 (esto esta en first activity)
     //@TODO: Torna a la pantalla de la llista de jocs
     //@TODO: Spinners de categories i plataformes (en edit info hay algo parecido)
@@ -56,7 +55,6 @@ public class AddGameFragment extends Fragment {
             public void onClick(View v) {
                 Jocs j = new Jocs();
                 j.setName(nomjoc_edit.getText().toString());
-                //j.setCategories(Collections.singletonList(buscarcate_edit.getText().toString()));
                 j.setMax_players(Integer.parseInt(maxplayer_edit.getText().toString()));
                 j.setMin_players(Integer.parseInt(minplayer_edit.getText().toString()));
                 j.setDescription(descripciojoc_edit.getText().toString());
@@ -67,12 +65,9 @@ public class AddGameFragment extends Fragment {
                 j.setPlatforms(new ArrayList<String>());
 
                 Log.d(TAG, j.toString());
-
-                //per cada text fer un j.
                 addGameViewModel.createJoc(j);
             }
         });
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -87,7 +82,6 @@ public class AddGameFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView();
     }
-
 
     public void onBackPressed(){
         NavHostFragment.findNavController((AddGameFragment.this)).navigate(R.id.action_fragmentaddgame_to_fragmentjocs);
