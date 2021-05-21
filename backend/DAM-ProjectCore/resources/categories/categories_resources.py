@@ -56,18 +56,12 @@ class ResourceDeleteCategory(DAMCoreResource):
 class ResourceGetCategories(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
         super(ResourceGetCategories, self).on_get(req, resp, *args, **kwargs)
-        # Pot buscar per nom o per id
-        categories = self.db_session.query(Categories)
-        resultat = []
-        if 'id' in req.media:
-            categories = categories.filter(Categories.id == req.media["id"]).one()
-            resultat = categories.json_model
-        elif 'name' in req.media:
-            categories = categories.filter(Categories.name == req.media["name"]).one()
-            resultat = categories.json_model
-        else:
-            for i in categories.all():
-                resultat.append(i.json_model)
 
-        resp.media = resultat
+        cursor = self.db_session.query(Categories)
+        categories = list()
+
+        for i in cursor.all():
+                categories.append(i.json_model)
+
+        resp.media = categories
         resp.status = falcon.HTTP_200

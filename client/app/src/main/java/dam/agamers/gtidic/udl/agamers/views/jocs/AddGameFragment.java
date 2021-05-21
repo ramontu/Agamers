@@ -37,7 +37,10 @@ public class AddGameFragment extends Fragment {
     private final int PICK_IMAGE_REQUEST = 14;
     private Spinner categories_spinner;
 
-    //@TODO: Spinners de categories i plataformes (en edit info hay algo parecido)
+    //@TODO: Mirar de que quan l'usuari seleccioni una categoria es guardi
+    //@TODO: la seva opció al donar click al botó de crearjoc
+    //@TODO: Mirar que l'usuari pugui crear una nova categoria
+    //@TODO: Spinners plataformes
 
     public void initView(){
         nomjoc_edit = root.findViewById(R.id.nom_joc_edit);
@@ -55,13 +58,14 @@ public class AddGameFragment extends Fragment {
         jocsViewModel.returnCategories().observe(getViewLifecycleOwner(), new Observer<List<Categories>>() {
             @Override
             public void onChanged(List<Categories> categories) {
+                Log.d(TAG, "Categories" +categories);
                 List<String> categories_names = new ArrayList<>(categories.size());
                 for (Categories category : categories) {
                     categories_names.add(category.getName());
                 }
-                // Create an ArrayAdapter using the string array and a default spinner layout
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
-                        categories_names, android.R.layout.simple_spinner_item);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_spinner_item,
+                        categories_names);
                 // Specify the layout to use when the list of choices appears
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 // Apply the adapter to the spinner
