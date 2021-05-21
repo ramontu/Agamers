@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -29,6 +32,7 @@ public class AddGameFragment extends Fragment {
     private View root;
     private Button crearJocButton;
     private final int PICK_IMAGE_REQUEST = 14;
+    private Spinner categories_spinner;
 
     //@TODO: Mostra toast de info al usuari al rebre el 200 (esto esta en first activity)
     //@TODO: Torna a la pantalla de la llista de jocs
@@ -43,25 +47,37 @@ public class AddGameFragment extends Fragment {
         datapublicacio_edit= root.findViewById(R.id.data_publicacio);
         estudio_edit = root.findViewById(R.id.studio_edit);
         crearJocButton = root.findViewById(R.id.crear_joc);
+        categories_spinner = (Spinner) root.findViewById(R.id.categories);
 
-        addGameViewModel.jocIsCreated().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                    FirstActivity firstActivity = (FirstActivity) getActivity();
-                    if (aBoolean){
-                        firstActivity.showInfoUser(getView(),getString(R.string.succes_clossing_session));
-                    }//cambiar el valor de las strings
-                    else {
-                        firstActivity.showInfoUser(getView(),getString(R.string.error_clossing_session));
+        addGameViewModel.jocIsCreated().observe(getViewLifecycleOwner(),
+                new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean aBoolean) {
+                        FirstActivity firstActivity = (FirstActivity) getActivity();
+                        if (aBoolean){
+                            firstActivity.showInfoUser(getView(),getString(R.string.succes_clossing_session));
+                        }//cambiar el valor de las strings
+                        else {
+                            firstActivity.showInfoUser(getView(),getString(R.string.error_clossing_session));
+                        }
+                        //Al cap de 2000 milisegons crida al metode change_to_login que canvia la pantalla
+                        (new Handler()).postDelayed(this::navegacioJoc, 2000);
                     }
-                    //Al cap de 2000 milisegons crida al metode change_to_login que canvia la pantalla
-                    (new Handler()).postDelayed(this::navegacioJoc, 2000);
-            }
 
-            private void navegacioJoc() {
-                onBackPressed();
-            }
-        });
+                    private void navegacioJoc() {
+                        NavHostFragment.findNavController((AddGameFragment.this)).navigate(R.id.action_fragmentaddgame_to_fragmentjocs);
+                    }
+
+
+                    // Create an ArrayAdapter using the string array and a default spinner layout
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                            R.array.categories, android.R.layout.simple_spinner_item);
+                    // Specify the layout to use when the list of choices appears
+                    adapter.
+                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    // Apply the adapter to the spinner
+                    categories_spinner.setAdapter(adapter);
+                });
 
         crearJocButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,8 +111,5 @@ public class AddGameFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView();
     }
-
-    public void onBackPressed(){
-        NavHostFragment.findNavController((AddGameFragment.this)).navigate(R.id.action_fragmentaddgame_to_fragmentjocs);
-    }
+    
 }

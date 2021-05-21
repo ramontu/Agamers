@@ -183,5 +183,15 @@
     <string name="studio">Estudio</string>
     <string name="user_image">Imatge usuari</string>
 
+    <string-array name="categories">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 
 </resources>

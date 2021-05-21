@@ -68,28 +68,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp" />
 
-            <LinearLayout
-                android:id="@+id/Categories_layout"
+            <Spinner
+                android:id="@+id/categories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/buscar_cate"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="TODO categories">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/buscar_cate_edit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TODO categories" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
+                />
 
             <Space
                 android:layout_width="match_parent"

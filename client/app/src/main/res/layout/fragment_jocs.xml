@@ -10,15 +10,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jocsRecyclerView"
-        android:layout_width="411dp"
-        android:layout_height="532dp"
+        android:layout_width="421dp"
+        android:layout_height="555dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59"
         tools:listitem="@layout/item_jocs" />
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
