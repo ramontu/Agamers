@@ -49,7 +49,7 @@ public class AddGameFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean){
-                    // Levantar el toast para informar que se ha creado correctamente
+
                 }
             }
         });

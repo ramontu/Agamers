@@ -53,7 +53,7 @@ if __name__ == "__main__":
         birthday="hoy",
         genere=GenereEnum.not_specified
     )
-    user_admin.set_password("DAMCoure")
+    user_admin.set_password("admin")
     db_session.add(user_admin)
 
     '''

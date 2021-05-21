@@ -68,6 +68,7 @@ public class FirstActivity extends CommonActivity {
         NavController leftNavigationController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, leftNavigationController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(leftNavView, leftNavigationController);
+
     }
 
     public void onBackPressed(){
