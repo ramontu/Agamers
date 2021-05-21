@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.models.Categories;
-import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import dam.agamers.gtidic.udl.agamers.services.categories.CategoriesService;
 import dam.agamers.gtidic.udl.agamers.services.categories.CategoriesServiceImpl;
 import okhttp3.ResponseBody;

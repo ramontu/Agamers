@@ -155,28 +155,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp" />
 
-            <LinearLayout
-                android:id="@+id/Plataformes_layout"
+            <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+                android:id="@+id/multipleItemSelectionSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/buscar_plat"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/plataforma">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/buscar_plat_edit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TODO List Buscar plataforma" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:hintText="Multi Item Selection" />
 
             <Space
                 android:layout_width="match_parent"

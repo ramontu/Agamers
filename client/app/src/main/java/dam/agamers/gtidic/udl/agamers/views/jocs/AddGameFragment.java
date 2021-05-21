@@ -54,7 +54,6 @@ public class AddGameFragment extends Fragment {
         categories_spinner = (Spinner) root.findViewById(R.id.categories);
 
         jocsViewModel.getCategories();
-
         jocsViewModel.returnCategories().observe(getViewLifecycleOwner(), new Observer<List<Categories>>() {
             @Override
             public void onChanged(List<Categories> categories) {
@@ -106,7 +105,10 @@ public class AddGameFragment extends Fragment {
                 j.setPegi(Integer.parseInt(edatrecomanada_edit.getText().toString()));
                 j.setPublished(datapublicacio_edit.getText().toString());
                 j.setStudio(estudio_edit.getText().toString());
-                j.setCategories(new ArrayList<String>());
+                String category = categories_spinner.getSelectedItem().toString();
+                ArrayList<String> categories = new ArrayList<>(); //com espero una llista, agafo la llista
+                categories.add(category); //aquí li passo l'string i el fico a la llista category
+                j.setCategories(categories);
                 j.setPlatforms(new ArrayList<String>());
 
                 Log.d(TAG, j.toString());
