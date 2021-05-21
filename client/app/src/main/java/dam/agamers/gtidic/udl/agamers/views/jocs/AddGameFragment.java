@@ -18,8 +18,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.R;
+import dam.agamers.gtidic.udl.agamers.models.Categories;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import dam.agamers.gtidic.udl.agamers.views.FirstActivity;
 
@@ -28,14 +30,13 @@ public class AddGameFragment extends Fragment {
     private final static String TAG="AddGameFragment";
 
     private AddGameViewModel addGameViewModel;
+    private JocsViewModel jocsViewModel;
     private EditText nomjoc_edit,maxplayer_edit, minplayer_edit, descripciojoc_edit, edatrecomanada_edit, datapublicacio_edit, plataformes_edit, estudio_edit;
     private View root;
     private Button crearJocButton;
     private final int PICK_IMAGE_REQUEST = 14;
     private Spinner categories_spinner;
 
-    //@TODO: Mostra toast de info al usuari al rebre el 200 (esto esta en first activity)
-    //@TODO: Torna a la pantalla de la llista de jocs
     //@TODO: Spinners de categories i plataformes (en edit info hay algo parecido)
 
     public void initView(){
@@ -48,6 +49,26 @@ public class AddGameFragment extends Fragment {
         estudio_edit = root.findViewById(R.id.studio_edit);
         crearJocButton = root.findViewById(R.id.crear_joc);
         categories_spinner = (Spinner) root.findViewById(R.id.categories);
+
+        jocsViewModel.getCategories();
+
+        jocsViewModel.returnCategories().observe(getViewLifecycleOwner(), new Observer<List<Categories>>() {
+            @Override
+            public void onChanged(List<Categories> categories) {
+                List<String> categories_names = new ArrayList<>(categories.size());
+                for (Categories category : categories) {
+                    categories_names.add(category.getName());
+                }
+                // Create an ArrayAdapter using the string array and a default spinner layout
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                        categories_names, android.R.layout.simple_spinner_item);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                // Apply the adapter to the spinner
+                categories_spinner.setAdapter(adapter);
+
+            }
+        });
 
         addGameViewModel.jocIsCreated().observe(getViewLifecycleOwner(),
                 new Observer<Boolean>() {
@@ -68,15 +89,6 @@ public class AddGameFragment extends Fragment {
                         NavHostFragment.findNavController((AddGameFragment.this)).navigate(R.id.action_fragmentaddgame_to_fragmentjocs);
                     }
 
-
-                    // Create an ArrayAdapter using the string array and a default spinner layout
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
-                            R.array.categories, android.R.layout.simple_spinner_item);
-                    // Specify the layout to use when the list of choices appears
-                    adapter.
-                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    // Apply the adapter to the spinner
-                    categories_spinner.setAdapter(adapter);
                 });
 
         crearJocButton.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +115,7 @@ public class AddGameFragment extends Fragment {
                              ViewGroup container, Bundle saveInstanceState) {
 
         addGameViewModel = new ViewModelProvider(this).get(AddGameViewModel.class);
+        jocsViewModel = new ViewModelProvider(this).get(JocsViewModel.class);
         root = inflater.inflate(R.layout.fragment_addgame, container, false);
         return root;
     }

@@ -66,7 +66,7 @@ class ResourceGetCategories(DAMCoreResource):
             categories = categories.filter(Categories.name == req.media["name"]).one()
             resultat = categories.json_model
         else:
-            for i in categories:
+            for i in categories.all():
                 resultat.append(i.json_model)
 
         resp.media = resultat
