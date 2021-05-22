@@ -51,7 +51,7 @@ if __name__ == "__main__":
         name="Administrator",
         surname="DamCore",
         birthday="hoy",
-        genere=GenereEnum.not_specified
+        genere=GenereEnum.male,
     )
     user_admin.set_password("admin")
     db_session.add(user_admin)

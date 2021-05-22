@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="dam.agamers.gtidic.udl.agamers.XatViewModel"
+            type="dam.agamers.gtidic.udl.agamers.MessageFragmentViewModel"
             />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

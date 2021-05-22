@@ -182,6 +182,22 @@ class UserToken(SQLAlchemyBase):
     user_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
     user = relationship("User", back_populates="tokens")
 
+
+class Xats(SQLAlchemyBase):
+    __tablename__ = "xats"
+    id = Column(Integer, primary_key=True)
+    created_at = Column(DateTime, nullable=False, default=datetime.datetime.now)
+    firebase_chat_id = Column(UnicodeText, nullable=False)
+
+    @hybrid_property
+    def json_model(self):
+        return {
+            "id": self.id,
+            "created_at": self.created_at,
+            "firebase_chat_id": self.firebase_chat_id,
+        }
+
+
 # Forums seguits TODO
 '''
 
@@ -214,13 +230,17 @@ Banned_Forums   = Table("b_forums", SQLAlchemyBase.metadata,
 class User(SQLAlchemyBase, JSONModel):
     __tablename__ = "users"
 
-    '''Column("sended on", DateTime,
-                                        default=datetime.datetime.now(),
-                                        nullable=False),'''
-
+    Chats_User = Table("chats_user", SQLAlchemyBase.metadata,
+                       Column("user_id", Integer,
+                              ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
+                              nullable=False),
+                       Column("xats_id", Integer,
+                              ForeignKey("xats.id", onupdate="CASCADE", ondelete="CASCADE"),
+                              nullable=False),
+                       )
 
     id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, nullable=False, default=datetime.datetime.now)
+    created_at = Column(DateTime, default=datetime.datetime.now, nullable=False,)
     username = Column(Unicode(50), nullable=False, unique=True)
     account_type = Column(Enum(AccountTypeEnum), default=AccountTypeEnum.free)
     # following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #TODO no funciona
@@ -233,15 +253,16 @@ class User(SQLAlchemyBase, JSONModel):
     points = Column(Integer, default=0, nullable=True)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
-    tokens = relationship("UserToken", back_populates="user_id", cascade="all, delete-orphan")
+    tokens = relationship("UserToken", cascade="all, delete-orphan")
+    xats = relationship("User", secondary=Chats_User)  # TODO provar
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
     genere = Column(Enum(GenereEnum), default=GenereEnum.not_specified)
     # phone = Column(Unicode(50))
-    photo = Column(Unicode(255), default="")  # TODO mirar si funciona
+    photo = Column(Unicode(255), default="")
     recovery_code = Column(Unicode(6), nullable=True, unique=True)
-    location = Column(Unicode(30), default="", nullable=True)  # OK
+    location = Column(Unicode(30), nullable=True)  # OK
     tipo_de_jugador = Column(Enum(UserTypeEnum), default=UserTypeEnum.casual, nullable=True)
 
     # TODO implementar mes endavant: desactivat fins a implementar tornejos
@@ -465,6 +486,7 @@ class Modesjocs(SQLAlchemyBase, JSONModel):
     nom_complert = Column(Unicode(210), unique=True, nullable=False)
 '''
 
+
 # TODO implementar mes endavant: crear model per a les tendes
 # Base de dades per a les tendes
 
@@ -484,4 +506,3 @@ class Peticionsamistat(SQLAlchemyBase, JSONModel):
             "reciver": self.reciver,
             "sended_on": self.sended_on
         }
-
