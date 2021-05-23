@@ -23,7 +23,12 @@ public class AllXatsViewModel extends ViewModel {
     private AtomicInteger vegades_intentat = new AtomicInteger(0);
     private FirebaseAuth firebaseAuth = null;
 
+    private Integer open_chats = 0;
+
+    private
+
     public AllXatsViewModel(){
+
     }
 
 

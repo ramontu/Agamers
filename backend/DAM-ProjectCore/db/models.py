@@ -254,7 +254,7 @@ class User(SQLAlchemyBase, JSONModel):
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
     tokens = relationship("UserToken", cascade="all, delete-orphan")
-    xats = relationship("User", secondary=Chats_User)  # TODO provar
+    xats = relationship("Xats", secondary=Chats_User)  # TODO provar
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -333,6 +333,7 @@ class User(SQLAlchemyBase, JSONModel):
             "points": self.points,
             "password": self.password,
             "email": self.email,
+            "xats": [Xats.id for _ in self.xats],
             "name": self.name,
             "surname": self.surname,
             "birthday": self.birthday,

@@ -23,8 +23,4 @@ public interface XatsService {
     @POST("xats/add_user_to_chat/{chat_id}/{user_id}")
     Call<ResponseBody> create_new_xat(@Path("chat_id") String chat_id, @Path("user_id") Integer user_id);
 
-    @POST("xats/save_new_chat/{id}")
-    Call<ResponseBody> save_new_chat(@Path("id") Integer id);
-
-    
 }
