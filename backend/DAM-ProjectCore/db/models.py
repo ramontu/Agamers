@@ -8,12 +8,14 @@ import logging
 import os
 from _operator import and_
 from builtins import getattr
+from collections import Set
 from urllib.parse import urljoin
 
 import falcon
 from passlib.hash import pbkdf2_sha256
 from sqlalchemy import Column, Date, DateTime, Enum, ForeignKey, Integer, Unicode, \
-    UnicodeText, Table, type_coerce, case, Boolean
+    UnicodeText, Table, type_coerce, case, Boolean, String
+from sqlalchemy.dialects.postgresql import array
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import relationship
@@ -240,6 +242,19 @@ class User(SQLAlchemyBase, JSONModel):
                               nullable=False),
                        )
 
+    Games_User = Table("games_user", SQLAlchemyBase.metadata,
+                       Column("user_id", Integer,
+                              ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
+                              nullable=False),
+                       Column("game_id", Integer,
+                              ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
+                              nullable=False),
+                       Column("common_games", array,), #Fer amb un relationship en una classe
+                       Column("age_diference", Integer, ),
+                       Column("distance", Integer, ),  # TODO pel futur
+                       )
+
+
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, default=datetime.datetime.now, nullable=False,)
     username = Column(Unicode(50), nullable=False, unique=True)
@@ -255,7 +270,8 @@ class User(SQLAlchemyBase, JSONModel):
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
     tokens = relationship("UserToken", cascade="all, delete-orphan")
-    xats = relationship("Xats", secondary=Chats_User)  # TODO provar
+    xats = relationship("Xats", secondary=Chats_User)  # OK
+    games_played = relationship("Jocs", secondary=Games_User)
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -335,6 +351,7 @@ class User(SQLAlchemyBase, JSONModel):
             "password": self.password,
             "email": self.email,
             "xats": [xats.id for xats in self.xats],
+            "games": [jocs.id for jocs in self.games_played],
             "name": self.name,
             "surname": self.surname,
             "birthday": self.birthday,
