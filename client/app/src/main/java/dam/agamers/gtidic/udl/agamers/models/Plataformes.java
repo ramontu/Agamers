@@ -2,6 +2,8 @@ package dam.agamers.gtidic.udl.agamers.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Plataformes {
 
     @SerializedName("id")
@@ -28,5 +30,10 @@ public class Plataformes {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @NotNull
+    public String toString(){
+        return "name" + name;
     }
 }

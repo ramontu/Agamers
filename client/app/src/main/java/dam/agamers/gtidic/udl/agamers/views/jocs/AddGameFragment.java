@@ -25,6 +25,7 @@ import java.util.List;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Categories;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
+import dam.agamers.gtidic.udl.agamers.models.Plataformes;
 import dam.agamers.gtidic.udl.agamers.views.FirstActivity;
 
 public class AddGameFragment extends Fragment {
@@ -75,6 +76,23 @@ public class AddGameFragment extends Fragment {
             }
         });
 
+        jocsViewModel.getPlataformes();
+        jocsViewModel.returnJocs().observe(getViewLifecycleOwner(), new Observer<List<Plataformes>>() {
+            @Override
+            public void onChanged(List<Plataformes> plataformes) {
+                Log.d(TAG, "Plataformes" +plataformes);
+                List<String> plataformes_names = new ArrayList<>(plataformes.size());
+                for (Plataformes plataforma : plataformes) {
+                    plataformes_names.add(plataforma.getName());
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                       android.R.layout.simple_spinner_item, List plataformes_names);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                // Apply the adapter to the spinner
+                 plataformes_spinner.setAdapter(adapter);
+            }
+        });
 
 
         addGameViewModel.jocIsCreated().observe(getViewLifecycleOwner(),

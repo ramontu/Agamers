@@ -47,7 +47,7 @@ public class JocsViewModel extends ViewModel {
 
     public void getPlataformes(){plataformesRepo.download_plataformes_info();}
 
-    public MutableLiveData<List<Plataformes>> returnPlataformes(){return this.plataformesRepo}
+    public MutableLiveData<List<Plataformes>> returnPlataformes(){return this.plataformesRepo.getmPlataformesInfo();}
 
 
 }
