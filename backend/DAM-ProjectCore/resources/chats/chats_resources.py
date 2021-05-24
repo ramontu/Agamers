@@ -21,9 +21,12 @@ class ResourceAllUserChats(DAMCoreResource):
         print(kwargs)
         if "id" in kwargs:
             try:
-                chats = self.db_session.query()
-
-
+                user = self.db_session.query(User).filter(User.id == kwargs["id"]).one_or_none()
+                res = []
+                for i in user.xats:
+                    res.append(i.json_model)
+                resp.media = res
+                falcon.HTTP_200
             except NoResultFound:
                 raise falcon.HTTPBadRequest(description=messages.user_not_found)
 

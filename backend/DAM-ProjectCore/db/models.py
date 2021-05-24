@@ -184,7 +184,8 @@ class UserToken(SQLAlchemyBase):
 
 
 class Xats(SQLAlchemyBase):
-    __tablename__ = "xats"
+    __tablename__ = "all_chats"
+
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.datetime.now)
     firebase_chat_id = Column(UnicodeText, nullable=False)
@@ -193,8 +194,8 @@ class Xats(SQLAlchemyBase):
     def json_model(self):
         return {
             "id": self.id,
-            "created_at": self.created_at,
-            "firebase_chat_id": self.firebase_chat_id,
+            "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
+            "firebase_chat_id": self.firebase_chat_id
         }
 
 
@@ -235,7 +236,7 @@ class User(SQLAlchemyBase, JSONModel):
                               ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
                               nullable=False),
                        Column("xats_id", Integer,
-                              ForeignKey("xats.id", onupdate="CASCADE", ondelete="CASCADE"),
+                              ForeignKey("all_chats.id", onupdate="CASCADE", ondelete="CASCADE"),
                               nullable=False),
                        )
 
@@ -333,14 +334,14 @@ class User(SQLAlchemyBase, JSONModel):
             "points": self.points,
             "password": self.password,
             "email": self.email,
-            "xats": [Xats.id for _ in self.xats],
+            "xats": [xats.id for xats in self.xats],
             "name": self.name,
             "surname": self.surname,
             "birthday": self.birthday,
             "genere": self.genere.value,
             "photo": self.photo_url,
             "location": self.location,
-            "tipo_jugador": self.tipo_de_jugador
+            "tipo_jugador": self.tipo_de_jugador.value
         }
 
 
