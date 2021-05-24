@@ -59,6 +59,7 @@ dependencies {
     // RecyclerView from JetPack
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'com.github.User:Repo:Tag'
 
     //Images
 
