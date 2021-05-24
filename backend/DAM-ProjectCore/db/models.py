@@ -242,6 +242,7 @@ class User(SQLAlchemyBase, JSONModel):
                               nullable=False),
                        )
 
+    '''
     Games_User = Table("games_user", SQLAlchemyBase.metadata,
                        Column("user_id", Integer,
                               ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
@@ -253,7 +254,7 @@ class User(SQLAlchemyBase, JSONModel):
                        Column("age_diference", Integer, ),
                        Column("distance", Integer, ),  # TODO pel futur
                        )
-
+    '''
 
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, default=datetime.datetime.now, nullable=False,)
@@ -271,7 +272,7 @@ class User(SQLAlchemyBase, JSONModel):
     email = Column(Unicode(255), nullable=False, unique=True)
     tokens = relationship("UserToken", cascade="all, delete-orphan")
     xats = relationship("Xats", secondary=Chats_User)  # OK
-    games_played = relationship("Jocs", secondary=Games_User)
+    #games_played = relationship("Jocs", secondary=Games_User)
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -525,3 +526,8 @@ class Peticionsamistat(SQLAlchemyBase, JSONModel):
             "reciver": self.reciver,
             "sended_on": self.sended_on
         }
+
+class Matching_data(SQLAlchemyBase, JSONModel):
+    __tablename__ = "matching_data"
+    id = Column(Integer, primary_key=True)
+    #user1 = Column()
