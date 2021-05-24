@@ -22,5 +22,5 @@ public interface PlataformesService {
     Call<ResponseBody> create_platform(@Body Plataformes plataformes);
 
     @DELETE("/platform/delete/{id}")
-    Call<ResponseBody> delete_plataform(@Body Plataformes plataformes, @Path("id") Integer id);
+    Call<ResponseBody> delete_platform(@Body Plataformes plataformes, @Path("id") Integer id);
 }

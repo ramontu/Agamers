@@ -182,6 +182,8 @@
     <string name="succes_clossing_session">S\'ha tancat la sessió correctament</string>
     <string name="studio">Estudio</string>
     <string name="user_image">Imatge usuari</string>
+    <string name="delete_platform_ok">S\'ha borrat una plataforma</string>
+    <string name="delete_platform_error">Error en borrar una plataforma</string>
 
     <string-array name="categories">
         <item>Mercury</item>

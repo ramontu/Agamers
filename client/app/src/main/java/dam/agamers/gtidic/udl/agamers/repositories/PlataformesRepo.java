@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.io.IOException;
 import java.util.List;
 
+import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Plataformes;
 import dam.agamers.gtidic.udl.agamers.services.plataformes.PlataformesService;
 import dam.agamers.gtidic.udl.agamers.services.plataformes.PlataformesServiceImpl;
@@ -14,6 +15,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
 
 public class PlataformesRepo {
 
@@ -26,13 +29,13 @@ public class PlataformesRepo {
     private final PlataformesService plataformesService;
     private final MutableLiveData<List<Plataformes>> mPlataformesInfo;
     private final MutableLiveData<Boolean> mCreatePlataformesOk;
-    private final MutableLiveData<Integer> mResponseDeleteOk;
+    private final MutableLiveData<Integer> mResponseDeletePlatform;
 
     public PlataformesRepo(){
         this.plataformesService = new PlataformesServiceImpl();
         this.mPlataformesInfo = new MutableLiveData<>();
         this.mCreatePlataformesOk = new MutableLiveData<>();
-        this.mResponseDeleteOk = new MutableLiveData<>();
+        this.mResponseDeletePlatform = new MutableLiveData<>();
     }
 
     public void download_plataformes_info(){
@@ -83,5 +86,33 @@ public class PlataformesRepo {
         return mCreatePlataformesOk;
     }
 
+    public void delete_platform(){
+        Log.d(TAG,"Entrant deleteplatform");
+        plataformesService.delete_platform().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d(TAG,"delete plataformes response"+response.code()+response.errorBody());
+                int code = response.code();
+                if (code == 200){
+                    mResponseDeletePlatform.setValue(R.string.delete_platform_ok);
+                }
+                else{
+                    mResponseDeletePlatform.setValue(R.string.delete_platform_error);
+                    Log.d(TAG, "delete jocs error"+response.code()+response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                mResponseDeletePlatform.setValue(R.string.delete_platform_error);
+                Log.d(TAG, "delete plataformes error"+t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public MutableLiveData<Integer> getmResponseDeletePlatform(){
+        return mResponseDeletePlatform;
+    }
 
 }

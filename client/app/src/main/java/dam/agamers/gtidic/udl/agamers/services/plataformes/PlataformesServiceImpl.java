@@ -25,7 +25,7 @@ public class PlataformesServiceImpl implements PlataformesService {
     }
 
     @Override
-    public Call<ResponseBody> delete_plataform(@Body Plataformes plataformes, @Path("id") Integer id) {
-        return retrofit.create(PlataformesService.class).delete_plataform(plataformes,id);
+    public Call<ResponseBody> delete_platform(@Body Plataformes plataformes, @Path("id") Integer id) {
+        return retrofit.create(PlataformesService.class).delete_platform(plataformes,id);
     }
 }
