@@ -68,28 +68,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp" />
 
-            <LinearLayout
-                android:id="@+id/Categories_layout"
+            <Spinner
+                android:id="@+id/categories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/buscar_cate"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="TODO categories">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/buscar_cate_edit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TODO categories" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
+                />
 
             <Space
                 android:layout_width="match_parent"
@@ -118,8 +101,7 @@
                         android:id="@+id/min_players_edit"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:text="@={viewModel.m_Jocs.min_players_string}" />
+                        android:inputType="number"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,7 +120,8 @@
                         android:id="@+id/max_players_edit"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:text="" />
+                        android:inputType="number"
+                        />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -172,28 +155,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp" />
 
-            <LinearLayout
-                android:id="@+id/Plataformes_layout"
+            <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+                android:id="@+id/multipleItemSelectionSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/buscar_plat"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/plataforma">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/buscar_plat_edit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TODO List Buscar plataforma" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:hintText="Multi Item Selection" />
 
             <Space
                 android:layout_width="match_parent"

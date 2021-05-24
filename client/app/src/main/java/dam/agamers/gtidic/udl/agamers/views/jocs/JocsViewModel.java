@@ -6,18 +6,22 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
+import dam.agamers.gtidic.udl.agamers.models.Categories;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
+import dam.agamers.gtidic.udl.agamers.repositories.CategoriesRepo;
 import dam.agamers.gtidic.udl.agamers.repositories.JocsRepo;
 
 public class JocsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
     private JocsRepo jocsRepo;
+    private CategoriesRepo categoriesRepo;
 
     public JocsViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is jocs fragment");
         jocsRepo = new JocsRepo();
+        categoriesRepo = new CategoriesRepo();
     }
 
     public LiveData<String> getText() {
@@ -31,5 +35,9 @@ public class JocsViewModel extends ViewModel {
     public MutableLiveData<List<Jocs>> returnJocs() {
         return this.jocsRepo.getmResponseJocs();
     }
+
+    public void getCategories(){categoriesRepo.download_categories_info();}
+
+    public MutableLiveData<List<Categories>> returnCategories(){return this.categoriesRepo.getmCategoriesInfo();}
 
 }

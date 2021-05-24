@@ -36,7 +36,6 @@ public class TancarsessioFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_inici, container, false);
 
 
-
         //TODO inflar un dialeg de confirmació de tancar sessió
         //NO: tornar a principal
         //SI tancar()

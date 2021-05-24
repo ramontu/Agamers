@@ -18,7 +18,6 @@ public class Jocs {
     private List<String> platforms;
     @SerializedName("min_players")
     private int min_players;
-    private String min_players_string;
     @SerializedName("max_players")
     private int max_players;
     @SerializedName("online_mode")
@@ -68,14 +67,6 @@ public class Jocs {
 
     public void setMin_players(int min_players) {
         this.min_players = min_players;
-    }
-
-    public String getMin_players_string() {
-        return min_players_string;
-    }
-
-    public void setMin_players_string(String min_players_string) {
-        this.min_players_string = min_players_string;
     }
 
     public int getMax_players() {

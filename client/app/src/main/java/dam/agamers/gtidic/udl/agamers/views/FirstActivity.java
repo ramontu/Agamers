@@ -119,7 +119,6 @@ public class FirstActivity extends CommonActivity {
                         token.continuePermissionRequest();
                     }
                 }).check();
-
     }
 
     public void pick() {
