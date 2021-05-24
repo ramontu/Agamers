@@ -17,6 +17,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +38,8 @@ public class AddGameFragment extends Fragment {
     private Button crearJocButton;
     private final int PICK_IMAGE_REQUEST = 14;
     private Spinner categories_spinner;
+    private MultiSpinnerSearch plataformes_spinner;
 
-    //@TODO: Mirar de que quan l'usuari seleccioni una categoria es guardi
-    //@TODO: la seva opció al donar click al botó de crearjoc
     //@TODO: Mirar que l'usuari pugui crear una nova categoria
     //@TODO: Spinners plataformes
 
@@ -52,6 +53,7 @@ public class AddGameFragment extends Fragment {
         estudio_edit = root.findViewById(R.id.studio_edit);
         crearJocButton = root.findViewById(R.id.crear_joc);
         categories_spinner = (Spinner) root.findViewById(R.id.categories);
+        plataformes_spinner = (MultiSpinnerSearch) root.findViewById(R.id.multipleItemSelectionSpinner);
 
         jocsViewModel.getCategories();
         jocsViewModel.returnCategories().observe(getViewLifecycleOwner(), new Observer<List<Categories>>() {
@@ -72,6 +74,8 @@ public class AddGameFragment extends Fragment {
 
             }
         });
+
+
 
         addGameViewModel.jocIsCreated().observe(getViewLifecycleOwner(),
                 new Observer<Boolean>() {

@@ -20,8 +20,6 @@ import retrofit2.http.Path;
 
 public class PlataformesRepo {
 
-    //TODO:Acabar de crear el delete_platform pasandole un id
-    //TODO: Crear los parametros de la clase plataformes
     //TODO: Omplir el oncreate de el multispinner seguint el tutorial: https://github.com/pratikbutani/MultiSelectSpinner
     //TODO: Seguir els passos fets amb les categories :D
 
@@ -86,9 +84,9 @@ public class PlataformesRepo {
         return mCreatePlataformesOk;
     }
 
-    public void delete_platform(){
+    public void delete_platform(Plataformes plataformes){
         Log.d(TAG,"Entrant deleteplatform");
-        plataformesService.delete_platform().enqueue(new Callback<ResponseBody>() {
+        plataformesService.delete_platform(plataformes, plataformes.getId()).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.d(TAG,"delete plataformes response"+response.code()+response.errorBody());
