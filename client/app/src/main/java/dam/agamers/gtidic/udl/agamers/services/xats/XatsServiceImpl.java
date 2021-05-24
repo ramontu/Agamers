@@ -27,10 +27,5 @@ public class XatsServiceImpl implements XatsService {
         return retrofit.create(XatsService.class).create_new_xat(chat_id, user_id);
     }
 
-    @Override
-    public Call<ResponseBody> save_new_chat(Integer id) {
-        return retrofit.create(XatsService.class).save_new_chat(id);
-    }
 
-    //TODO falta una d'eliminar
 }

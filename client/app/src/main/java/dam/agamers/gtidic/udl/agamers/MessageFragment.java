@@ -34,6 +34,7 @@ public class MessageFragment extends Fragment {
         mViewModel =
                 new ViewModelProvider(this).get(MessageFragmentViewModel.class);
 
+        /*
         View root = inflater.inflate(R.layout.all_xats_fragment, container, R.layout.message);
         //floatingActionButton = container.findViewById(R.id.floatingActionButtonsendmessage);
         MessageFragmentBinding xatFragmentBinding =

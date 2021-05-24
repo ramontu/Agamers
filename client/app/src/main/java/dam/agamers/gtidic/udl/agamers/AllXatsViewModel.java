@@ -25,7 +25,7 @@ public class AllXatsViewModel extends ViewModel {
 
     private Integer open_chats = 0;
 
-    private
+
 
     public AllXatsViewModel(){
 

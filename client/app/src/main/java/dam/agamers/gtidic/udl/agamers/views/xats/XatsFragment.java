@@ -47,7 +47,7 @@ public class XatsFragment extends Fragment {
                 textView.setText(s);
             }
         });
-        NavHostFragment.findNavController((XatsFragment.this)).navigate(R.id.action_navegacio_xats_to_allxatmessages); //TODO de moment
+        NavHostFragment.findNavController((XatsFragment.this)).navigate(R.id.action_navegacio_xats_to_allxatsfragment); //TODO de moment
         return root;
     }
 

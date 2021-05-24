@@ -16,8 +16,8 @@
         android:label="@string/titol_xats"
         tools:layout="@layout/fragment_xats" >
         <action
-            android:id="@+id/action_navegacio_xats_to_allxatmessages"
-            app:destination="@id/allxatmessages" />
+            android:id="@+id/action_navegacio_xats_to_allxatsfragment"
+            app:destination="@id/allxatsfragment" />
     </fragment>
 
     <fragment
@@ -94,8 +94,9 @@
             app:destination="@id/fragmentaddgame" />
     </fragment>
     <fragment
-        android:id="@+id/allxatmessages"
-        android:name="dam.agamers.gtidic.udl.agamers.allxatmessages"
-        android:label="allxatmessages" />
+        android:id="@+id/allxatsfragment"
+        android:name="dam.agamers.gtidic.udl.agamers.allxatsfragment"
+        android:label="all_xats_fragment"
+        tools:layout="@layout/all_xats_fragment" />
 
 </navigation>

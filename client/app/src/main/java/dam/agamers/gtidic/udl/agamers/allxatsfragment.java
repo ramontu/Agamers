@@ -12,12 +12,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter;
 
-public class AllXatsFragment extends Fragment {
+public class allxatsfragment extends Fragment {
 
     private AllXatsViewModel mViewModel;
 
@@ -32,11 +31,6 @@ public class AllXatsFragment extends Fragment {
     LinearLayoutManager manager;
 
     //BINDING
-
-    public static AllXatsFragment newInstance() {
-        return new AllXatsFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
