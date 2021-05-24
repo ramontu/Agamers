@@ -2,23 +2,16 @@
 # -*- coding: utf-8 -*-
 
 import falcon
-from falcon.media.validators import jsonschema
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
 import messages
-from db.models import Jocs, Categories, Platforms, Xats, User
-from hooks import requires_game_id
-from resources import utils
-from resources.base_resources import DAMCoreResource, mylogger
-from resources.schemas import SchemaNewGame, SchemaUpdateGame
+from db.models import Xats, User
+from resources.base_resources import DAMCoreResource
 
 
 class ResourceAllUserChats(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
         super(ResourceAllUserChats, self).on_get(req, resp, *args, **kwargs)
-
-        print(kwargs)
         if "id" in kwargs:
             try:
                 user = self.db_session.query(User).filter(User.id == kwargs["id"]).one_or_none()
@@ -26,23 +19,17 @@ class ResourceAllUserChats(DAMCoreResource):
                 for i in user.xats:
                     res.append(i.json_model)
                 resp.media = res
-                falcon.HTTP_200
             except NoResultFound:
                 raise falcon.HTTPBadRequest(description=messages.user_not_found)
+            resp.status = falcon.HTTP_200
+        else:
+            raise falcon.HTTPInvalidParam(description="Falta passar el id")
 
 
 class ResourceAddUserToChat(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceAddUserToChat, self).on_post(req, resp, *args, **kwargs)
-
-        print(kwargs)
-
-        # TODO buscar si aquest xat existeix, si no existei crear-lo i si no només afegir-lo al usuari que li passem
-
         if ("user_id" and "chat_id") in kwargs:
-
-            # TODO obtenir l'usuari al que es vol afegir el xat
-            # TODO afegir a user.xats el xat que acabem de crear
 
             user = self.db_session.query(User).filter(User.id == kwargs["user_id"]).one_or_none()
             if user is not None:
