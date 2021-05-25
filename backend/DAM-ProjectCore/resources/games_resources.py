@@ -12,11 +12,11 @@ from resources.schemas import SchemaNewGame, SchemaUpdateGame
 
 
 class ResourceNewGame(DAMCoreResource):
-    @jsonschema.validate(SchemaNewGame)
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceNewGame, self).on_post(req, resp, *args, **kwargs)
 
         aux_game = Jocs()
+        print(req.media)
         try:
             for i in req.media:  # ToDO es possible que falli amb més d'una categoria
                 print("passo per " + i)
@@ -29,7 +29,7 @@ class ResourceNewGame(DAMCoreResource):
                             print("Categoria trobada" + aux.name)
                             aux_game.categories.append(aux)
 
-                if i == "platforms":
+                elif i == "platforms":
                     aux_game.platforms = []
                     for k in valor:
                         aux = self.db_session.query(Platforms).filter(Platforms.name == k).one_or_none()
@@ -39,6 +39,8 @@ class ResourceNewGame(DAMCoreResource):
 
                 else:
                     setattr(aux_game, i, valor)
+
+
 
             self.db_session.add(aux_game)
 
