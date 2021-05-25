@@ -116,10 +116,10 @@ public class AddGameFragment extends Fragment {
                     public void onChanged(Boolean aBoolean) {
                         FirstActivity firstActivity = (FirstActivity) getActivity();
                         if (aBoolean){
-                            firstActivity.showInfoUser(getView(),getString(R.string.succes_clossing_session));
+                            firstActivity.showInfoUser(getView(),getString(R.string.succes_create_game));
                         }//cambiar el valor de las strings
                         else {
-                            firstActivity.showInfoUser(getView(),getString(R.string.error_clossing_session));
+                            firstActivity.showInfoUser(getView(),getString(R.string.error_create_game));
                         }
                         //Al cap de 2000 milisegons crida al metode change_to_login que canvia la pantalla
                         (new Handler()).postDelayed(this::navegacioJoc, 2000);
