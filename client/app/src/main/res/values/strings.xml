@@ -184,6 +184,7 @@
     <string name="user_image">Imatge usuari</string>
     <string name="delete_platform_ok">S\'ha borrat una plataforma</string>
     <string name="delete_platform_error">Error en borrar una plataforma</string>
+    <string name="categoria">Categoria</string>
 
     <string-array name="categories">
         <item>Mercury</item>

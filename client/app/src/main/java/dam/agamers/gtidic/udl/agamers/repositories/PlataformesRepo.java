@@ -40,6 +40,8 @@ public class PlataformesRepo {
         plataformesService.download_plataformes_info().enqueue(new Callback<List<Plataformes>>() {
             @Override
             public void onResponse(Call<List<Plataformes>> call, Response<List <Plataformes>> response) {
+                Log.d(TAG, "DownloadInfo() : " +response.code());
+                Log.d(TAG, "DownloadInfo() : " +response.body().toString());
                 mPlataformesInfo.setValue(response.body());
                 Log.d(TAG, "DownloadInfo() : " +response.code() +"plataforma:" +response.body().toString());
             }

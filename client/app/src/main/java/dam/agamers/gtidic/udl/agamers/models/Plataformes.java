@@ -10,10 +10,13 @@ public class Plataformes {
     private Integer id;
     @SerializedName("name")
     private String name;
+    @SerializedName("manufacturer")
+    private String manufacturer;
 
-    public Plataformes(Integer id, String name) {
+    public Plataformes(Integer id, String name, String manufacturer) {
         this.id = id;
         this.name = name;
+        this.manufacturer = manufacturer;
     }
 
     public Integer getId() {
@@ -32,8 +35,12 @@ public class Plataformes {
         this.name = name;
     }
 
-    @NotNull
-    public String toString(){
-        return "name" + name;
+    public String getManufacturer() {
+        return manufacturer;
     }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
 }
