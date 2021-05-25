@@ -24,7 +24,7 @@ class ResourceNewGame(DAMCoreResource):
                 if i == "categories":  # TODO fer el mateix amb les plataformes
                     aux_game.categories = []
                     for k in valor:
-                        aux = self.db_session.query(Categories).filter(Categories.id == k).one_or_none()
+                        aux = self.db_session.query(Categories).filter(Categories.name == k).one_or_none()
                         if aux is not None:
                             print("Categoria trobada" + aux.name)
                             aux_game.categories.append(aux)
@@ -32,7 +32,7 @@ class ResourceNewGame(DAMCoreResource):
                 if i == "platforms":
                     aux_game.platforms = []
                     for k in valor:
-                        aux = self.db_session.query(Platforms).filter(Platforms.id == k).one_or_none()
+                        aux = self.db_session.query(Platforms).filter(Platforms.name == k).one_or_none()
                         if aux is not None:
                             print("Plataforma trobada" + aux.name)
                             aux_game.platforms.append(aux)

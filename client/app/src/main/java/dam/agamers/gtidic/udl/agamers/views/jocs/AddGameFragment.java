@@ -17,6 +17,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.androidbuts.multispinnerfilter.KeyPairBoolData;
+import com.androidbuts.multispinnerfilter.MultiSpinnerListener;
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import dam.agamers.gtidic.udl.agamers.models.Categories;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 import dam.agamers.gtidic.udl.agamers.models.Plataformes;
 import dam.agamers.gtidic.udl.agamers.views.FirstActivity;
+import okhttp3.internal.platform.Platform;
 
 public class AddGameFragment extends Fragment {
 
@@ -40,6 +43,7 @@ public class AddGameFragment extends Fragment {
     private final int PICK_IMAGE_REQUEST = 14;
     private Spinner categories_spinner;
     private MultiSpinnerSearch plataformes_spinner;
+    private List<String> selected_platform;
 
     //@TODO: Mirar que l'usuari pugui crear una nova categoria
     //@TODO: Spinners plataformes
@@ -82,17 +86,26 @@ public class AddGameFragment extends Fragment {
             public void onChanged(List<Plataformes> plataformes) {
                 Log.d(TAG, "Plataformes" +plataformes);
                 if(plataformes != null){
-                    List<String> plataformes_names = new ArrayList<>(plataformes.size());
+                    List<KeyPairBoolData>  platformsList = new ArrayList<>(plataformes.size());
                     for (Plataformes plataforma : plataformes) {
-                        plataformes_names.add(plataforma.getName());
+                        KeyPairBoolData aux = new KeyPairBoolData();
+                        aux.setId(plataforma.getId());
+                        aux.setName(plataforma.getName());
+                        aux.setObject(plataforma);
+                        aux.setSelected(false);
+                        platformsList.add(aux);
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                            android.R.layout.simple_spinner_item, plataformes_names);
-                    // Specify the layout to use when the list of choices appears
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    // Apply the adapter to the spinner
-                    plataformes_spinner.setAdapter(adapter);
 
+                    plataformes_spinner.setItems(platformsList, new MultiSpinnerListener() {
+                        @Override
+                        public void onItemsSelected(List<KeyPairBoolData> selectedItems) {
+                            Log.d(TAG,"I am selected: " + selectedItems);
+                            selected_platform = new ArrayList<String>();
+                            for(KeyPairBoolData item: selectedItems){
+                                selected_platform.add(item.getName());
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -133,7 +146,7 @@ public class AddGameFragment extends Fragment {
                 ArrayList<String> categories = new ArrayList<>(); //com espero una llista, agafo la llista
                 categories.add(category); //aquí li passo l'string i el fico a la llista category
                 j.setCategories(categories);
-                j.setPlatforms(new ArrayList<String>());
+                j.setPlatforms(selected_platform);
 
                 Log.d(TAG, j.toString());
                 addGameViewModel.createJoc(j);
