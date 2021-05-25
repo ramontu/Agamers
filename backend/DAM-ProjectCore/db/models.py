@@ -6,24 +6,26 @@ import datetime
 import enum
 import logging
 import os
-from _operator import and_
 from builtins import getattr
 from collections import Set
 from urllib.parse import urljoin
 
 import falcon
 from passlib.hash import pbkdf2_sha256
-from sqlalchemy import Column, Date, DateTime, Enum, ForeignKey, Integer, Unicode, \
-    UnicodeText, Table, type_coerce, case, Boolean, String
+from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, Unicode, \
+    UnicodeText, Table, Boolean, ARRAY
+from sqlalchemy.dialects import postgresql
+from sqlalchemy.dialects.mysql import SET
 from sqlalchemy.dialects.postgresql import array
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql.sqltypes import SchemaType
 from sqlalchemy_i18n import make_translatable
 
 import messages
-from db.json_model import JSONModel
 import settings
+from db.json_model import JSONModel
 
 mylogger = logging.getLogger(__name__)
 
@@ -250,14 +252,14 @@ class User(SQLAlchemyBase, JSONModel):
                        Column("game_id", Integer,
                               ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
                               nullable=False),
-                       Column("common_games", array,), #Fer amb un relationship en una classe
+                       Column("common_games", ARRAY(Integer,dimensions=20),), #Fer amb un relationship en una classe
                        Column("age_diference", Integer, ),
                        Column("distance", Integer, ),  # TODO pel futur
                        )
     '''
 
     id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, default=datetime.datetime.now, nullable=False,)
+    created_at = Column(DateTime, default=datetime.datetime.now, nullable=False, )
     username = Column(Unicode(50), nullable=False, unique=True)
     account_type = Column(Enum(AccountTypeEnum), default=AccountTypeEnum.free)
     # following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #TODO no funciona
@@ -272,7 +274,7 @@ class User(SQLAlchemyBase, JSONModel):
     email = Column(Unicode(255), nullable=False, unique=True)
     tokens = relationship("UserToken", cascade="all, delete-orphan")
     xats = relationship("Xats", secondary=Chats_User)  # OK
-    #games_played = relationship("Jocs", secondary=Games_User)
+    # games_played = relationship("Jocs", secondary=Games_User)
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -527,7 +529,26 @@ class Peticionsamistat(SQLAlchemyBase, JSONModel):
             "sended_on": self.sended_on
         }
 
+
 class Matching_data(SQLAlchemyBase, JSONModel):
     __tablename__ = "matching_data"
+
     id = Column(Integer, primary_key=True)
-    #user1 = Column()
+    user1 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    user2 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    common_games = Column('myarray', ARRAY(Integer))
+
+    '''
+        Games_User = Table("games_user", SQLAlchemyBase.metadata,
+                           Column("user_id", Integer,
+                                  ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
+                                  nullable=False),
+                           Column("game_id", Integer,
+                                  ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
+                                  nullable=False),
+                           Column("common_games", array,), #Fer amb un relationship en una classe
+                           Column("age_diference", Integer, ),
+                           Column("distance", Integer, ),  # TODO pel futur
+                           )
+    '''
+

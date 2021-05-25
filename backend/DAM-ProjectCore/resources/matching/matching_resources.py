@@ -27,7 +27,7 @@ class Resource_Recalculate_Matching_Score(DAMCoreResource):
                     llista_ids_other = []
                     for o in llista_games_other:
                         llista_ids_other.append(o.id)
-                    puntuacio = 0 #TODO
+                    puntuacio = 0
 
             print(llista_ids)
 

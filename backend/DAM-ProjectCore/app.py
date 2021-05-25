@@ -59,7 +59,7 @@ application.add_route("/user/download_menu_items", user_resources.DownloadMenuIn
 application.add_route("/jocs/create_jocs", games_resources.ResourceNewGame())
 application.add_route("/jocs/update_jocs/{id:int}", games_resources.ResourceUpdateGame())  # TODO provar
 application.add_route("/jocs/delete_jocs/{id:int}", games_resources.ResourceDeleteGame())  # TODO provar
-application.add_route("/jocs/get_game/{id:int}", games_resources.ResourceGetGame()) #TODO provar
+application.add_route("/jocs/get_game/{id:int}", games_resources.ResourceGetGame())  # OK
 application.add_route("/jocs", games_resources.ResourceGetGames())  # OK
 application.add_route("/jocs/update_profile_image", games_resources.ResourceJocsUpdateImage())  # TODO provar
 
