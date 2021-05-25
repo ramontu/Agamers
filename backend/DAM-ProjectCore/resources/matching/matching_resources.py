@@ -6,6 +6,7 @@ import falcon
 from falcon.media.validators import jsonschema
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy import or_, and_
 
 from resources import utils
 import messages
@@ -35,8 +36,17 @@ class ResourceMatchingTest(DAMCoreResource):
         users = self.db_session.query(User).filter(current_user.id != User.id).all()
 
         for user in users:
-            #jocs_en_comu = user[i][0]
-            #dif_edat = user[i][1]
+
+            # Check if exists a match
+            match = self.db_session.query(Matching_data).filter(and_(
+                                                                 or_(
+                                                                Matching_data.user1 == current_user.id,
+                                                                Matching_data.user2 == current_user.id
+                                                                 ),
+                                                                or_(
+                                                                    Matching_data.user1 == user.id,
+                                                                    Matching_data.user2 == user.id
+                                                                ))).one_or_none()
 
             # Calculte diff age
             if (current_user.birthday > user.birthday):
@@ -47,28 +57,59 @@ class ResourceMatchingTest(DAMCoreResource):
             if (dif_age == 0):
                 dif_age = 1
 
-            print(dif_age)
-
             # Calculate common_games
             setintersection = list(set(current_user.games) & set(user.games))
             games_common = (len(setintersection))
 
-            games_common = games_common**2
 
-            print(games_common)
+            if match is None:
+                aux = Matching_data(
+                    user1 = current_user.id,
+                    user2 = user.id,
+                    common_games = games_common,
+                    age_diff = dif_age,
+                    score = games_common / dif_age
+                )
 
-            aux = Matching_data(
-                user1 = current_user.id,
-                user2 = user.id,
-                common_games = games_common,
-                age_diff = dif_age,
-                score = games_common / dif_age
-            )
+                self.db_session.add(aux)
+                self.db_session.commit()
 
-            print(aux.json_model)
+            else:
+                if match.isAMatch == False:
+                    match.common_games = games_common,
+                    match.age_diff = dif_age,
+                    match.score = games_common / dif_age
 
-            self.db_session.add(aux)
-            self.db_session.commit()
+                self.db_session.commit()
+
+
+
+@falcon.before(requires_auth)
+class Resource_Get_Matchs(DAMCoreResource):
+    def on_get(self, req, resp, *args, **kwargs):
+        super(Resource_Get_Matchs, self).on_get(req, resp, *args, **kwargs)
+
+        # Get the user from the token
+        current_user = req.context["auth_user"]
+
+        cursor = self.db_session.query(Matching_data).filter(and_(
+                                                                 or_(
+                                                                Matching_data.user1 == current_user.id,
+                                                                Matching_data.user2 == current_user.id
+                                                                 ), Matching_data.isAMatch==False)).order_by(
+            Matching_data.score.desc()
+        )
+
+        matchs = list()
+
+        # all() retorna tot aixi marquem que retorni 3 maxim -> limit(3)
+        for c in cursor.limit(3):
+            if c.user1 != current_user.id:
+                matchs.append(c.user1)
+            else:
+                matchs.append(c.user2)
+
+        print(matchs)
 
 
 

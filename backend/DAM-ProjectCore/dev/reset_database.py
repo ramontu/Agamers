@@ -241,15 +241,18 @@ if __name__ == "__main__":
     # recalculate(current_user) -> quan detectis que un usuari actualitzi el seu perfil modificant els jocs
     # cridar a aquesta funcion (hauars d'importar la classe)
     # for user in users: recalculate(user)
-    print(users[0].id,)
+
+
     match = Matching_data(
         user1=2,
         user2=3,
         common_games=3,
-        age_diff=0,
-        score=1.3
+        age_diff=1,
+        score=1.3,
+        isAMatch=True
     )
     db_session.add(match)
+    db_session.commit()
 
 
     db_session.close()
