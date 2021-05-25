@@ -12,7 +12,7 @@ from urllib.parse import urljoin
 
 import falcon
 from passlib.hash import pbkdf2_sha256
-from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, Unicode, \
+from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, Unicode, Float,\
     UnicodeText, Table, Boolean, ARRAY
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.dialects.mysql import SET
@@ -177,6 +177,12 @@ class Event(SQLAlchemyBase, JSONModel): #TODO modificar per als tornejos
         }
 '''
 
+# Si necessiteu guardar alguna cosa extra de la relació jugador x amb joc z modificar taula per classe
+associationUserGames = Table("UserGames", SQLAlchemyBase.metadata,
+      Column( "user_id",Integer, ForeignKey("users.id")),
+      Column( "game_id",Integer, ForeignKey("jocs.id"))
+     )
+
 
 class UserToken(SQLAlchemyBase):
     __tablename__ = "users_tokens"
@@ -277,13 +283,15 @@ class User(SQLAlchemyBase, JSONModel):
     # games_played = relationship("Jocs", secondary=Games_User)
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
-    birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
+    birthday =  Column(DateTime, default=datetime.datetime.now, nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
     genere = Column(Enum(GenereEnum), default=GenereEnum.not_specified)
     # phone = Column(Unicode(50))
     photo = Column(Unicode(255), default="")
     recovery_code = Column(Unicode(6), nullable=True, unique=True)
     location = Column(Unicode(30), nullable=True)  # OK
     tipo_de_jugador = Column(Enum(UserTypeEnum), default=UserTypeEnum.casual, nullable=True)
+
+    games = relationship("Jocs", secondary=associationUserGames)
 
     # TODO implementar mes endavant: desactivat fins a implementar tornejos
     '''
@@ -300,6 +308,7 @@ class User(SQLAlchemyBase, JSONModel):
             "shortdesc": self.short_description,
             "image": self.photo,
             "location": self.location,
+            "jocs": [games.json_model for games in self.games]
         }
 
     # TODO mirar si funciona
@@ -536,7 +545,9 @@ class Matching_data(SQLAlchemyBase, JSONModel):
     id = Column(Integer, primary_key=True)
     user1 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
     user2 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
-    common_games = Column('myarray', ARRAY(Integer))
+    common_games = Column(Integer, nullable=True, default=0)
+    age_diff = Column(Integer, nullable=True, default=0)
+    score = Column(Float, nullable=True, default=0)
 
     '''
         Games_User = Table("games_user", SQLAlchemyBase.metadata,
@@ -552,3 +563,13 @@ class Matching_data(SQLAlchemyBase, JSONModel):
                            )
     '''
 
+    @hybrid_property
+    def json_model(self):
+        return {
+            "user1": self.user1,
+            "user2": self.user2,
+            "common_games": self.common_games,
+            "age_diff": self.age_diff,
+            "score": self.score,
+
+        }
