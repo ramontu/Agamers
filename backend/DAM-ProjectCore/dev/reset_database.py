@@ -7,12 +7,12 @@ import logging
 import os
 
 import random as rand
-
+import string
 from sqlalchemy.sql import text
 
 import db
 import settings
-from db.models import SQLAlchemyBase, User, AccountTypeEnum, GenereEnum, Jocs, Platforms, Categories
+from db.models import SQLAlchemyBase, User, UserToken, AccountTypeEnum, GenereEnum, Jocs, Platforms, Categories, Matching_data
 from settings import DEFAULT_LANGUAGE
 
 # LOGGING
@@ -40,21 +40,19 @@ if __name__ == "__main__":
     mylogger.info("Creating database...")
     SQLAlchemyBase.metadata.create_all(db.DB_ENGINE)
 
-    # -------------------- CREATE USERS --------------------
-    mylogger.info("Creating default users...")
-    # noinspection PyArgumentList
-    user_admin = User(
-        created_at=datetime.datetime(2020, 2, 2, 0, 1, 1),
-        username="admin",
-        account_type=AccountTypeEnum.premium,
-        email="admin@damcore.com",
-        name="Administrator",
-        surname="DamCore",
-        birthday="hoy",
-        genere=GenereEnum.male,
-    )
-    user_admin.set_password("admin")
-    db_session.add(user_admin)
+
+    # # noinspection PyArgumentList
+    # user_admin = User(
+    #     created_at=datetime.datetime(2020, 2, 2, 0, 1, 1),
+    #     username="admin",
+    #     account_type=AccountTypeEnum.premium,
+    #     email="admin@damcore.com",
+    #     name="Administrator",
+    #     surname="DamCore",
+    #     genere=GenereEnum.male,
+    # )
+    # user_admin.set_password("admin")
+    # db_session.add(user_admin)
 
     '''
     user_1 = User(
@@ -85,37 +83,10 @@ if __name__ == "__main__":
     user_2.set_password("r45tgt")
     user_2.tokens.append(UserToken(token="0a821f8ce58965eadc5ef884cf6f7ad99e0e7f58f429f584b2"))
     db_session.add(user_2)
+    '''
 
-    # -------------------- CREATE USERS PREMIUM I FREMIUM --------------------
-    for i in range(0, 10):
-        f = str(i) + "usfree"
 
-        # noinspection PyArgumentList
-        user_free = User(
-            username=f,
-            pago=PagoTypeEnum.Freemium,
-            email=f+"@gmail.com",
-            name=f,
-            surname="free",
-            birthdate=datetime.datetime(1989, 1, 1),
-            genere=GenereEnum.male
-        )
-        user_free.set_password(f+"pass")
-        db_session.add(user_free)
-
-        p = str(i) + "uspro"
-        # noinspection PyArgumentList
-        user_pre = User(
-            username=p,
-            pago=PagoTypeEnum.Premium,
-            email=p+"@gmail.com",
-            name=p+"user",
-            surname="pro",
-            birthdate=datetime.datetime(1989, 1, 1),
-            genere=GenereEnum.male
-        )
-        user_pre.set_password(p+"pass")
-        db_session.add(user_pre)
+    '''
     # -------------------- CREATE EVENTS --------------------
 
     day_period = datetime.timedelta(days=1)
@@ -237,5 +208,48 @@ if __name__ == "__main__":
 
         db_session.add(joc)
 
+
+
     db_session.commit()
+
+    # -------------------- CREATE USERS --------------------
+    mylogger.info("Creating default users...")
+    users = []
+    for i in range(0, 10):
+        f = str(i) + "usfree"
+
+        # noinspection PyArgumentList
+        user_free = User(
+            username=f,
+            email=f + "@gmail.com",
+            name=f,
+            surname="free",
+            birthday=datetime.datetime(rand.randint(1980,2006), 1, 1),
+            genere=GenereEnum.male,
+            games= rand.sample(jocs, rand.randint(1,3))
+        )
+        user_free.set_password(f + "pass")
+        user_free.tokens.append(UserToken(token=''.join([rand.choice( string.ascii_letters + string.digits) for n in range(50)])))
+        db_session.add(user_free)
+        users.append(user_free)
+        db_session.commit()
+
+
+    # -------------------- CREATE DEFAULT MATCHS --------------------
+
+    # Fer en un classe la funcio que ara hi ha a test
+    # recalculate(current_user) -> quan detectis que un usuari actualitzi el seu perfil modificant els jocs
+    # cridar a aquesta funcion (hauars d'importar la classe)
+    # for user in users: recalculate(user)
+    print(users[0].id,)
+    match = Matching_data(
+        user1=2,
+        user2=3,
+        common_games=3,
+        age_diff=0,
+        score=1.3
+    )
+    db_session.add(match)
+
+
     db_session.close()

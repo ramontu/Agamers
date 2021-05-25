@@ -83,6 +83,7 @@ application.add_route("/image/download", common_resources.ResourceDownloadImage(
 
 # Matching
 application.add_route("/matching/recalculate/{id:int}", matching_resources.Resource_Recalculate_Matching_Score())
+application.add_route("/matching/test", matching_resources.ResourceMatchingTest())
 '''
 application.add_route("/events", event_resources.ResourceGetEvents())
 application.add_route("/events/show/{id:int}", e vent_resources.ResourceGetEvent())
