@@ -121,5 +121,8 @@
     <string name="user_image">Imatge usuari</string>
     <string name="delete_platform_ok">S\'ha borrat una plataforma</string>
     <string name="delete_platform_error">Error en borrar una plataforma</string>
+    <string name="categoria">Categoria</string>
+    <string name="succes_create_game">S\'ha creat un joc</string>
+    <string name="error_create_game">"Error en crear un joc, revisa tots els camps. "</string>
 
 </resources>

@@ -17,13 +17,19 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.androidbuts.multispinnerfilter.KeyPairBoolData;
+import com.androidbuts.multispinnerfilter.MultiSpinnerListener;
+import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Categories;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
+import dam.agamers.gtidic.udl.agamers.models.Plataformes;
 import dam.agamers.gtidic.udl.agamers.views.FirstActivity;
+import okhttp3.internal.platform.Platform;
 
 public class AddGameFragment extends Fragment {
 
@@ -36,9 +42,9 @@ public class AddGameFragment extends Fragment {
     private Button crearJocButton;
     private final int PICK_IMAGE_REQUEST = 14;
     private Spinner categories_spinner;
+    private MultiSpinnerSearch plataformes_spinner;
+    private List<String> selected_platform;
 
-    //@TODO: Mirar de que quan l'usuari seleccioni una categoria es guardi
-    //@TODO: la seva opció al donar click al botó de crearjoc
     //@TODO: Mirar que l'usuari pugui crear una nova categoria
     //@TODO: Spinners plataformes
 
@@ -52,6 +58,7 @@ public class AddGameFragment extends Fragment {
         estudio_edit = root.findViewById(R.id.studio_edit);
         crearJocButton = root.findViewById(R.id.crear_joc);
         categories_spinner = (Spinner) root.findViewById(R.id.categories);
+        plataformes_spinner = (MultiSpinnerSearch) root.findViewById(R.id.multipleItemSelectionSpinner);
 
         jocsViewModel.getCategories();
         jocsViewModel.returnCategories().observe(getViewLifecycleOwner(), new Observer<List<Categories>>() {
@@ -73,16 +80,46 @@ public class AddGameFragment extends Fragment {
             }
         });
 
+        jocsViewModel.getPlataformes();
+        jocsViewModel.returnPlataformes().observe(getViewLifecycleOwner(), new Observer<List<Plataformes>>() {
+            @Override
+            public void onChanged(List<Plataformes> plataformes) {
+                Log.d(TAG, "Plataformes" +plataformes);
+                if(plataformes != null){
+                    List<KeyPairBoolData>  platformsList = new ArrayList<>(plataformes.size());
+                    for (Plataformes plataforma : plataformes) {
+                        KeyPairBoolData aux = new KeyPairBoolData();
+                        aux.setId(plataforma.getId());
+                        aux.setName(plataforma.getName());
+                        aux.setObject(plataforma);
+                        aux.setSelected(false);
+                        platformsList.add(aux);
+                    }
+
+                    plataformes_spinner.setItems(platformsList, new MultiSpinnerListener() {
+                        @Override
+                        public void onItemsSelected(List<KeyPairBoolData> selectedItems) {
+                            Log.d(TAG,"I am selected: " + selectedItems);
+                            selected_platform = new ArrayList<String>();
+                            for(KeyPairBoolData item: selectedItems){
+                                selected_platform.add(item.getName());
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
         addGameViewModel.jocIsCreated().observe(getViewLifecycleOwner(),
                 new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean aBoolean) {
                         FirstActivity firstActivity = (FirstActivity) getActivity();
                         if (aBoolean){
-                            firstActivity.showInfoUser(getView(),getString(R.string.succes_clossing_session));
+                            firstActivity.showInfoUser(getView(),getString(R.string.succes_create_game));
                         }//cambiar el valor de las strings
                         else {
-                            firstActivity.showInfoUser(getView(),getString(R.string.error_clossing_session));
+                            firstActivity.showInfoUser(getView(),getString(R.string.error_create_game));
                         }
                         //Al cap de 2000 milisegons crida al metode change_to_login que canvia la pantalla
                         (new Handler()).postDelayed(this::navegacioJoc, 2000);
@@ -109,7 +146,7 @@ public class AddGameFragment extends Fragment {
                 ArrayList<String> categories = new ArrayList<>(); //com espero una llista, agafo la llista
                 categories.add(category); //aquí li passo l'string i el fico a la llista category
                 j.setCategories(categories);
-                j.setPlatforms(new ArrayList<String>());
+                j.setPlatforms(selected_platform);
 
                 Log.d(TAG, j.toString());
                 addGameViewModel.createJoc(j);
