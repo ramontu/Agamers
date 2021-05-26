@@ -41,12 +41,13 @@ public class AddGameFragment extends Fragment {
     private View root;
     private Button crearJocButton;
     private final int PICK_IMAGE_REQUEST = 14;
-    private Spinner categories_spinner;
+    private MultiSpinnerSearch categories_spinner;
+    private List<String> selected_category;
     private MultiSpinnerSearch plataformes_spinner;
     private List<String> selected_platform;
 
     //@TODO: Mirar que l'usuari pugui crear una nova categoria
-    //@TODO: Spinners plataformes
+    //@TODO: Mirar que l'usuari pugui crear una nova plataforma
 
     public void initView(){
         nomjoc_edit = root.findViewById(R.id.nom_joc_edit);
@@ -57,7 +58,7 @@ public class AddGameFragment extends Fragment {
         datapublicacio_edit= root.findViewById(R.id.data_publicacio);
         estudio_edit = root.findViewById(R.id.studio_edit);
         crearJocButton = root.findViewById(R.id.crear_joc);
-        categories_spinner = (Spinner) root.findViewById(R.id.categories);
+        categories_spinner = (MultiSpinnerSearch) root.findViewById(R.id.categories);
         plataformes_spinner = (MultiSpinnerSearch) root.findViewById(R.id.multipleItemSelectionSpinner);
 
         jocsViewModel.getCategories();
@@ -65,20 +66,31 @@ public class AddGameFragment extends Fragment {
             @Override
             public void onChanged(List<Categories> categories) {
                 Log.d(TAG, "Categories" +categories);
-                List<String> categories_names = new ArrayList<>(categories.size());
-                for (Categories category : categories) {
-                    categories_names.add(category.getName());
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_spinner_item,
-                        categories_names);
-                // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                // Apply the adapter to the spinner
-                categories_spinner.setAdapter(adapter);
+                if(categories != null){
+                    List<KeyPairBoolData>  categoriesList = new ArrayList<>(categories.size());
+                    for (Categories category : categories) {
+                        KeyPairBoolData aux = new KeyPairBoolData();
+                        aux.setId(category.getId());
+                        aux.setName(category.getName());
+                        aux.setObject(category);
+                        aux.setSelected(false);
+                        categoriesList.add(aux);
+                    }
 
+                    categories_spinner.setItems(categoriesList, new MultiSpinnerListener() {
+                        @Override
+                        public void onItemsSelected(List<KeyPairBoolData> selectedItems) {
+                            Log.d(TAG,"I am selected: " + selectedItems);
+                            selected_category = new ArrayList<String>();
+                            for(KeyPairBoolData item: selectedItems){
+                                selected_category.add(item.getName());
+                            }
+                        }
+                    });
+                }
             }
         });
+
 
         jocsViewModel.getPlataformes();
         jocsViewModel.returnPlataformes().observe(getViewLifecycleOwner(), new Observer<List<Plataformes>>() {
