@@ -68,11 +68,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp" />
 
-            <Spinner
+            <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
                 android:id="@+id/categories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:layout_margin="10dp"
+                app:hintText="Selecció Múltiple" />
 
             <Space
                 android:layout_width="match_parent"
