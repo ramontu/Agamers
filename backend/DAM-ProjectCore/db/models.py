@@ -265,6 +265,7 @@ class User(SQLAlchemyBase, JSONModel):
     recovery_code = Column(Unicode(6), nullable=True, unique=True)
     location = Column(Unicode(30), nullable=True)  # OK
     tipo_de_jugador = Column(Enum(UserTypeEnum), default=UserTypeEnum.casual, nullable=True)
+    firebase_credential = Column(Unicode(100), default="")
 
     # TODO implementar mes endavant: desactivat fins a implementar tornejos
     '''
