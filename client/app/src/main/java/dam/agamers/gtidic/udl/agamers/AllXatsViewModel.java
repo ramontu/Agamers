@@ -58,7 +58,7 @@ public class AllXatsViewModel extends ViewModel {
         //Account user = accountRepo.getmAccountInfo().getValue();
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (true){  //user.getFirebase_credential().isEmpty()
+        if (firebaseAuth.getCurrentUser() != null){  //user.getFirebase_credential().isEmpty()
             firebaseAuth.createUserWithEmailAndPassword("prova@prova.com", "provaprova") //user.getEmail(), user.getPassword()
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -67,6 +67,7 @@ public class AllXatsViewModel extends ViewModel {
 
                                 FirebaseUser fire_user = firebaseAuth.getCurrentUser();
                                 Log.d("AuthFirebase", fire_user.getUid());
+                                
                                 //TODO guardar el token a user i actualitx¡zar la info
                             }
                         }

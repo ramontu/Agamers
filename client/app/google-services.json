@@ -8,43 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:994430971373:android:e235acd47c7c84fc0c8be4",
-        "android_client_info": {
-          "package_name": "dam.agamers.getidic.udl.agamers"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "994430971373-03ps88hijrblp042b74q3s2tnu7pe331.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "dam.agamers.getidic.udl.agamers",
-            "certificate_hash": "b8f7b0d85e7f88cc53677def61ae1b0abfda4025"
-          }
-        },
-        {
-          "client_id": "994430971373-lcb973r6gap7mi6o5dacblh0j1erqgnb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDrf5PhApDz7mTyveWMmH_upo7cb2NMVWU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "994430971373-lcb973r6gap7mi6o5dacblh0j1erqgnb.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:994430971373:android:0a419d2712b0bfd80c8be4",
         "android_client_info": {
           "package_name": "dam.agamers.gtidic.udl.agamers"

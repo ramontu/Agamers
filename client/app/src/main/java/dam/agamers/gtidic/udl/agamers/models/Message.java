@@ -1,9 +1,10 @@
 package dam.agamers.gtidic.udl.agamers.models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Message {
+public class Message implements Serializable {
     private String id;
     private String text;
     private String name;
@@ -12,12 +13,18 @@ public class Message {
     private String messageTime;
 
     // Empty constructor needed for Firestore serialization
-    void constructor(){
-
-    }
-
     public Message(){
     }
+
+    public Message(String id, String text, String name, String photoUrl, String imageUrl, String messageTime){
+        this.id = id;
+        this.text = text;
+        this.name = name;
+        this.photoUrl = photoUrl;
+        this.imageUrl = imageUrl;
+        this.messageTime = messageTime;
+    }
+
 
     public String getText() {
         return text;
@@ -53,6 +60,10 @@ public class Message {
 
     public String getMessageTime() {
         return messageTime;
+    }
+
+    public void setMessageTime(String messageTime) {
+        setMessageTime();
     }
 
     public void setMessageTime() {
