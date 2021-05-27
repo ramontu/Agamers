@@ -27,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+import dam.agamers.gtidic.udl.agamers.Observers.ScrollToBottom;
 import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter;
 import dam.agamers.gtidic.udl.agamers.models.Message;
 
@@ -73,6 +74,8 @@ public class allxatsfragment extends Fragment {
         DatabaseReference messageRef = db.getReference().child("messages");
 
 
+
+        
         //Creem un FirebaseRecyclerAdapter
         FirebaseRecyclerOptions<Message> options = new FirebaseRecyclerOptions.Builder<Message>()
                 .setQuery(messageRef,Message.class)
@@ -86,6 +89,14 @@ public class allxatsfragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
 
+        //Fer autoscroll down quan arribi un nou missatge
+        adapter.registerAdapterDataObserver(
+                ScrollToBottom() // passar la recycle view de la interfaç
+        );
+
+
+
+        //***********************************************************************************
 
         //proves anteriors
         Message a = new Message();
