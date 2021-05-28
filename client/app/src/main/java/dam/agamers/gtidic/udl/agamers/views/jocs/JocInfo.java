@@ -45,8 +45,8 @@ public class JocInfo extends Fragment {
             info_nomjoc.setText(joc.getName());
             info_categoriajoc.setText(joc.getCategories().toString());
             info_jugadorsminim.setText(String.valueOf(joc.getMin_players()));
-            info_jugadorsmaxim.setText(String.valueOf(joc.getMax_players())); //parse int??
-            info_modalitat.setText(joc.getOnline__mode().toString()); //??? es boolean
+            info_jugadorsmaxim.setText(String.valueOf(joc.getMax_players()));
+            info_modalitat.setText(joc.getOnline__mode().toString()); 
             info_estudio.setText(joc.getStudio());
             info_plataformes.setText(joc.getPlatforms().toString());
             info_descripcio.setText(joc.getDescription());

@@ -206,7 +206,7 @@ if __name__ == "__main__":
     platforms.append(p2)
     db_session.add(p2)
 
-    p2 = Platforms(
+    p3 = Platforms(
 
         id=3,
 
@@ -215,8 +215,8 @@ if __name__ == "__main__":
         manufacturer="Sony"
 
     )
-    platforms.append(p2)
-    db_session.add(p2)
+    platforms.append(p3)
+    db_session.add(p3)
 
     for u in range(1, 5):
         joc = Jocs(
