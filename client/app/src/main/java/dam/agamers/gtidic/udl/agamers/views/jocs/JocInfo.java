@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentResultListener;
 import org.jetbrains.annotations.NotNull;
 
 import dam.agamers.gtidic.udl.agamers.R;
+import dam.agamers.gtidic.udl.agamers.models.Jocs;
 
 
 public class JocInfo extends Fragment {
@@ -33,20 +34,18 @@ public class JocInfo extends Fragment {
         info_edatrecomanada = root.findViewById(R.id.info_edatrecomanada);
         info_datapublicacio = root.findViewById(R.id.info_datapublicacio);
 
+        Bundle b = getArguments();
+        if (b != null){
+            Jocs joc = b.getParcelable("joc");
+            displayReceivedGame(joc);
+        }
+
         return root;
-
-        result.setText("Nom joc: " + info_nomjoc + "Categories: " + info_categoriajoc + "Jugadors: " +info_jugadors+);
-
-        //buscar en google com passar informació entre fragments fer servir un bundle
-        //https://developer.android.com/training/basics/fragments/pass-data-between?hl=es
-
-        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull @NotNull String requestKey, @NonNull @NotNull Bundle bundle) {
-                String result = bundle.getString("bundleKey");
-            }
-        });
-
-
     }
+
+    public void displayReceivedGame(Jocs joc) {
+            info_nomjoc.setText(joc.getName());
+            info_descripcio.setText(joc.getName());
+    }
+
 }
