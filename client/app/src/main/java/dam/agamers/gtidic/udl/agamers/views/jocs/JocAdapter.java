@@ -3,6 +3,7 @@ package dam.agamers.gtidic.udl.agamers.views.jocs;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -17,6 +18,7 @@ import dam.agamers.gtidic.udl.agamers.models.Jocs;
 public class JocAdapter extends ListAdapter<Jocs, JocAdapter.JocHolder> {
 
     private JocCommonHolder jocCommonHolder;
+    private OnItemClickListener jocsItemListener;
 
     public JocAdapter(@NonNull @NotNull DiffUtil.ItemCallback<Jocs> diffCallback) {
         super(diffCallback);
@@ -42,7 +44,21 @@ public class JocAdapter extends ListAdapter<Jocs, JocAdapter.JocHolder> {
         public JocHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             jocCommonHolder = new JocCommonHolder(itemView);
+            itemView.setOnClickListener(v -> {
+                int position = getBindingAdapterPosition();
+                if (jocsItemListener != null && position != RecyclerView.NO_POSITION) {
+                    jocsItemListener.onItemClick(getItem(position));
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Jocs joc);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.jocsItemListener = listener;
     }
 
 }

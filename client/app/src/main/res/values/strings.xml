@@ -194,6 +194,7 @@
     <string name="edatrecomanada">Edat recomanada: </string>
     <string name="datapublicacio">Data publicació: </string>
     <string name="imatge_del_joc">Imatge del joc</string>
+    <string name="fragment_JocInfo">info-joc</string>
 
     <string-array name="categories">
         <item>Mercury</item>

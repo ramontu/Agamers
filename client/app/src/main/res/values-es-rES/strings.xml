@@ -128,4 +128,5 @@
     <string name="edatrecomanada">"Edad recomendada: "</string>
     <string name="datapublicacio">Fecha publicación:</string>
     <string name="imatge_del_joc">Imagen del juego</string>
+    <string name="fragment_JocInfo">info-joc</string>
 </resources>
