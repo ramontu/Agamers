@@ -72,13 +72,9 @@ public class JocsFragment extends Fragment {
             public void onItemClick(Jocs joc) {
                 NavHostFragment.findNavController(JocsFragment.this)
                         .navigate(R.id.action_fragmentjocs_to_fragmentainfojoc);
-
             }
         });
-
     }
-
-
 
     public void refresh(){
         jocsViewModel.getJocs();
