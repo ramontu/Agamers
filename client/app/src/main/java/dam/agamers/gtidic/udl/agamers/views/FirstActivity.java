@@ -166,8 +166,10 @@ public class FirstActivity extends CommonActivity {
          */
 
 
+        boolean vull_autenticar = false;
+
         //CORRECTE
-        if (auth.getCurrentUser() == null) {
+        if (auth.getCurrentUser() == null && vull_autenticar) {
             auth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull @NotNull Task<AuthResult> task) {

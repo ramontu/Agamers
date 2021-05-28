@@ -24,6 +24,8 @@ public class allxatsfragment extends Fragment {
 
     private AllXatsViewModel mViewModel;
 
+    private DatabaseReference mDatabase;
+
     Button button;
 
     //LAYOUT
@@ -35,8 +37,7 @@ public class allxatsfragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(AllXatsViewModel.class);
 
-        DatabaseReference data;
-        data = FirebaseDatabase.getInstance().getReference();
+
 
 
         return inflater.inflate(R.layout.all_xats_fragment, container, false);
@@ -47,11 +48,19 @@ public class allxatsfragment extends Fragment {
 
         //DESCARREGO TOTS ELS XATS
         //TODO descarregar tots els ids dels xats de l'usuari
-        button = requireActivity().findViewById(R.id.button6);
+
+        button = (Button) getView().findViewById(R.id.button6);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //PROVA PER A ACCEDIR JA DINS D?UN XAT
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController((allxatsfragment.this)).navigate(R.id.action_allxatsfragment_to_inxat);
+                System.out.println("Enviat missatge");
+                mDatabase.child("Name").setValue("Ramon");
             }
         });
 
@@ -199,21 +208,4 @@ public class allxatsfragment extends Fragment {
         //FI de la prova
     }
 
-    private void enviar_missatge(){
-        /*
-        db.getReference("messages").push().setValue(new Message()).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                System.out.println("onFailure");
-                e.printStackTrace();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                System.out.println("onSucces");
-            }
-        });
-
-         */
-    }
 }
