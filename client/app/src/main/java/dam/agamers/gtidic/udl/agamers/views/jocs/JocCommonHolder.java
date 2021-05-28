@@ -6,14 +6,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 import com.squareup.picasso.Picasso;
 
 import dam.agamers.gtidic.udl.agamers.R;
-import dam.agamers.gtidic.udl.agamers.models.Event;
-import dam.agamers.gtidic.udl.agamers.models.EventStatus;
-import dam.agamers.gtidic.udl.agamers.models.EventType;
 import dam.agamers.gtidic.udl.agamers.models.Jocs;
 
 public class JocCommonHolder {
@@ -27,7 +23,6 @@ public class JocCommonHolder {
 
             jocName = itemView.findViewById(R.id.jocItemName);
             jocPoster = itemView.findViewById(R.id.jocItemPoster);
-
         }
 
         public void bindHolder(Jocs j) {
@@ -39,5 +34,9 @@ public class JocCommonHolder {
             Log.d(TAG, "onBindViewHolder() -> cJocs: " + j.getPoster_url());
             Picasso.get().load(j.getPoster_url()).into(this.jocPoster);
         }
+
+
+
+
 
 }

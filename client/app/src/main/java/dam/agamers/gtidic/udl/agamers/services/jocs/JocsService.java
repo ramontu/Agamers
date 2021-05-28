@@ -38,4 +38,7 @@ public interface JocsService {
 
     @GET("jocs")
     Call<List<Jocs>> getJocs();
+
+    @GET("/jocs/{id}")
+    Call<Jocs> infojocs(@Path("id") Integer id);
 }

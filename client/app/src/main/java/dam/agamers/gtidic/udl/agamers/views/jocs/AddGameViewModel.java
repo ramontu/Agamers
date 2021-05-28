@@ -41,6 +41,8 @@ public class AddGameViewModel extends ViewModel {
 
     public MutableLiveData<Jocs> getm_Jocs(){return jocsRepo.getmJocsInfo(); }
 
+    public MutableLiveData<Jocs> get_JocFromRepo(){return jocsRepo.getmDescarregarInfoJocs();}
+
     /*public void set_date(View v) {
         TextInputLayout publicaciotil = addGameFragment.getActivity().findViewById(R.id.data_publicaciotil);
         Calendar calendar = Calendar.getInstance();

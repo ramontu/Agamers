@@ -53,4 +53,8 @@ public class JocsServiceImpl implements JocsService {
     public Call<List<Jocs>> getJocs() {
         return retrofit.create(JocsService.class).getJocs();
     }
+
+    public Call<Jocs> infojocs(@Path("id") Integer id){
+        return retrofit.create(JocsService.class).infojocs(id);
+    }
 }

@@ -28,6 +28,7 @@ public class JocsRepo {
     private MutableLiveData<Integer> mResponseDeleteJocs;
     private MutableLiveData<Boolean> mCreateOk;
     private MutableLiveData<List<Jocs>> mResponseJocs;
+    private MutableLiveData<Jocs> mDescarregarInfoJocs;
 
     public JocsRepo(){
         this.jocsService = new JocsServiceImpl();
@@ -36,6 +37,7 @@ public class JocsRepo {
         this.mResponseDeleteJocs = new MutableLiveData<>();
         this.mCreateOk = new MutableLiveData<>();
         this.mResponseJocs = new MutableLiveData<>();
+        this.mDescarregarInfoJocs = new MutableLiveData<>();
     }
 
     private void download_jocs_info(){
@@ -174,6 +176,29 @@ public class JocsRepo {
     public MutableLiveData<List<Jocs>> getmResponseJocs() {
         return mResponseJocs;
     }
+
+    public void infojocs(int id){
+        Log.d(TAG,"descarregar info");
+        jocsService.infojocs(id).enqueue(new Callback<Jocs>() {
+            @Override
+            public void onResponse(Call<Jocs> call, Response<Jocs> response) {
+                mDescarregarInfoJocs.setValue(response.body());
+                Log.d(TAG, "DownloadInfo() : "+response.code() +"joc:"+response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<Jocs> call, Throwable t) {
+                Log.d(TAG, "DownloadInfo() : Error"+ t.getMessage());
+                t.printStackTrace();
+            }
+
+        });
+    }
+
+    public MutableLiveData<Jocs> getmDescarregarInfoJocs(){return mDescarregarInfoJocs;}
+
+
+
     //public AddGameViewModel uploadPhoto(File imageFile) {
   //  }
 }

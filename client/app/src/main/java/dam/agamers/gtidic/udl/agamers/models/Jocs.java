@@ -1,12 +1,15 @@
 package dam.agamers.gtidic.udl.agamers.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class Jocs {
+public class Jocs implements Parcelable {
 
     @SerializedName("id")
     private Integer id;
@@ -36,6 +39,44 @@ public class Jocs {
     private Boolean aproved;
     @SerializedName("poster_url")
     private String poster_url;
+
+    public Jocs() {
+    }
+
+    protected Jocs(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        name = in.readString();
+        categories = in.createStringArrayList();
+        platforms = in.createStringArrayList();
+        min_players = in.readInt();
+        max_players = in.readInt();
+        byte tmpOnline__mode = in.readByte();
+        online__mode = tmpOnline__mode == 0 ? null : tmpOnline__mode == 1;
+        published = in.readString();
+        studio = in.readString();
+        image = in.readString();
+        description = in.readString();
+        pegi = in.readInt();
+        byte tmpAproved = in.readByte();
+        aproved = tmpAproved == 0 ? null : tmpAproved == 1;
+        poster_url = in.readString();
+    }
+
+    public static final Creator<Jocs> CREATOR = new Creator<Jocs>() {
+        @Override
+        public Jocs createFromParcel(Parcel in) {
+            return new Jocs(in);
+        }
+
+        @Override
+        public Jocs[] newArray(int size) {
+            return new Jocs[size];
+        }
+    };
 
     public Integer getId() {
         return id;
@@ -179,7 +220,24 @@ public class Jocs {
     @Override
     public String toString(){
 
-        return "name: " + name  + " descripciío: " + description + " platforms: " +platforms.toString();
+        return "name: " + name  + " descripcio: " + description + " platforms: " +platforms.toString();
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.description);
+        dest.writeString(this.published);
+        dest.writeString(this.studio);
+        dest.writeString(String.valueOf(this.categories));
+        dest.writeString(String.valueOf(this.platforms));
+        dest.writeString(String.valueOf(this.min_players));
+        dest.writeString(String.valueOf(this.max_players));
+        dest.writeString(String.valueOf(this.pegi));
+    }
 }

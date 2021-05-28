@@ -13,12 +13,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/imatge_del_joc" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="409dp"
-        android:layout_height="528dp"
+        android:layout_width="338dp"
+        android:layout_height="530dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -26,7 +27,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/info_nomjoc"
@@ -49,10 +50,81 @@
                 android:layout_height="14dp" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/info_jugadorsminim"
+                android:layout_width="151dp"
+                android:layout_height="35dp"
+                android:text="@string/jugadors_minim" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/info_jugadorsmaxim"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:text="@string/jugadors_maxim" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/info_modalitat"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="TextView" />
+                android:text="@string/modalitat" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/info_estudio"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/estudio" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/info_plataformes"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/plataformes" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/info_descripcio"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/descripcio" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/info_edatrecomanada"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/edatrecomanada" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/info_datapublicacio"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/datapublicacio" />
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

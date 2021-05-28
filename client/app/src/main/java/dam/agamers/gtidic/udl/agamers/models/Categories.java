@@ -30,6 +30,6 @@ public class Categories {
 
     @NotNull
     public String toString(){
-        return "name" + name;
+        return name;
     }
 }
