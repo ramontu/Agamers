@@ -70,8 +70,10 @@ public class JocsFragment extends Fragment {
         jocAdapter.setOnItemClickListener(new JocAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Jocs joc) {
+                Bundle b = new Bundle();
+                b.putParcelable("joc", joc);
                 NavHostFragment.findNavController(JocsFragment.this)
-                        .navigate(R.id.action_fragmentjocs_to_fragmentainfojoc);
+                        .navigate(R.id.action_fragmentjocs_to_fragmentainfojoc, b);
             }
         });
     }

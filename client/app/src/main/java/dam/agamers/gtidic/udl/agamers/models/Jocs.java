@@ -1,12 +1,15 @@
 package dam.agamers.gtidic.udl.agamers.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class Jocs {
+public class Jocs implements Parcelable {
 
     @SerializedName("id")
     private Integer id;
@@ -182,4 +185,15 @@ public class Jocs {
         return "name: " + name  + " descripciío: " + description + " platforms: " +platforms.toString();
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.description);
+
+    }
 }
