@@ -88,6 +88,21 @@
         <action
             android:id="@+id/action_fragmentjocs_to_fragmentaddgame"
             app:destination="@id/fragmentaddgame" />
+
+        <action
+            android:id="@+id/action_fragmentjocs_to_fragmentainfojoc"
+            app:destination="@id/fragmentInfoJoc" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/fragmentInfoJoc"
+        android:name="dam.agamers.gtidic.udl.agamers.views.jocs.JocInfo"
+        android:label="@string/fragment_JocInfo"
+        tools:layout="@layout/fragment_infojocs">
+
+    </fragment>
+
+
 
 </navigation>
