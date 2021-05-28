@@ -51,9 +51,15 @@ public class allxatsfragment extends Fragment {
 
         button = (Button) getView().findViewById(R.id.button6);
 
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        //PROVA PER A ACCEDIR JA DINS D?UN XAT
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
 
 
         button.setOnClickListener(new View.OnClickListener() {
