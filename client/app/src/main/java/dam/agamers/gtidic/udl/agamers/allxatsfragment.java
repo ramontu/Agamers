@@ -39,17 +39,24 @@ public class allxatsfragment extends Fragment {
 
 
 
-
+        onCreate();
         return inflater.inflate(R.layout.all_xats_fragment, container, false);
     }
 
 
+    @Override
+    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        System.out.println("ONcreate");
+    }
+
     public void onCreate(){
 
+        System.out.println("Hola");
         //DESCARREGO TOTS ELS XATS
         //TODO descarregar tots els ids dels xats de l'usuari
 
-        button = (Button) getView().findViewById(R.id.button6);
+        //button = (Button) this.
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -61,7 +68,13 @@ public class allxatsfragment extends Fragment {
 
         myRef.setValue("Hello, World!");
 
-
+        
+        //TODO BUG 
+        /*
+            D/libc-netbsd: getaddrinfo: get result from proxy gai_error = 0
+    W/System: ClassLoader referenced unknown path: system/framework/mediatek-cta.jar
+    I/System.out: e:java.lang.ClassNotFoundException: com.mediatek.cta.CtaHttp
+        /*
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +82,8 @@ public class allxatsfragment extends Fragment {
                 mDatabase.child("Name").setValue("Ramon");
             }
         });
+
+         */
 
 
         /*
