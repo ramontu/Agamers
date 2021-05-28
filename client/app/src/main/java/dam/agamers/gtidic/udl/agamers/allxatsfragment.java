@@ -62,6 +62,14 @@ public class allxatsfragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
+        //TODO BUG
+        /*
+            D/libc-netbsd: getaddrinfo: get result from proxy gai_error = 0
+            W/System: ClassLoader referenced unknown path: system/framework/mediatek-cta.jar
+            I/System.out: e:java.lang.ClassNotFoundException: com.mediatek.cta.CtaHttp
+        /*
+        
+         */
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -69,12 +77,7 @@ public class allxatsfragment extends Fragment {
         myRef.setValue("Hello, World!");
 
         
-        //TODO BUG 
-        /*
-            D/libc-netbsd: getaddrinfo: get result from proxy gai_error = 0
-    W/System: ClassLoader referenced unknown path: system/framework/mediatek-cta.jar
-    I/System.out: e:java.lang.ClassNotFoundException: com.mediatek.cta.CtaHttp
-        /*
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
