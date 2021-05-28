@@ -4,43 +4,27 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import dam.agamers.gtidic.udl.agamers.Observers.ScrollToBottom;
-import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter;
-import dam.agamers.gtidic.udl.agamers.models.Message;
+import dam.agamers.gtidic.udl.agamers.views.xats.XatsFragment;
 
 public class allxatsfragment extends Fragment {
 
     private AllXatsViewModel mViewModel;
 
-
-    //FIREBASE
-    private FirebaseAuth auth;
-    private FirebaseDatabase db;
-    private MessageAdapter adapter;
-
+    Button button;
 
     //LAYOUT
     LinearLayoutManager manager;
@@ -49,33 +33,93 @@ public class allxatsfragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        mViewModel = new ViewModelProvider(this).get(AllXatsViewModel.class);
+
+        DatabaseReference data;
+        data = FirebaseDatabase.getInstance().getReference();
 
 
         return inflater.inflate(R.layout.all_xats_fragment, container, false);
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(AllXatsViewModel.class);
+
+    public void onCreate(){
+
+        //DESCARREGO TOTS ELS XATS
+        //TODO descarregar tots els ids dels xats de l'usuari
+        button = requireActivity().findViewById(R.id.button6);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController((allxatsfragment.this)).navigate(R.id.action_allxatsfragment_to_inxat);
+            }
+        });
 
 
-        //Iniciar sessió a la bbdd si no s'ha registrat cap usuari abans
-        auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() == null){
-            auth = mViewModel.signIn_Firebase();
-        }
+        /*
+        DatabaseReference
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+         */
+
+
+
+        /*
+        //TUTORIAL
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+        //PROVA
+        Message a = new Message();
+        a.setText("hola prova des de android");
+        a.setName("Ramon Trilla Urtreaga");
+        a.setMessageTime();
+        a.setPhotoUrl(null);
+        a.setImageUrl(null);
+        a.setId("1");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                // inside the method of on Data change we are setting
+                // our object class to our database reference.
+                // data base reference will sends data to firebase.
+                myRef.child("messages").push().setValue(a);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                System.out.println("ERROR");
+            }
+        });
+        //myRef.child("users").child("userId").child("username").setValue("name");
+        //FI TUTORIAL
 
 
         //Inicialitza Realtime Database
-        db = FirebaseDatabase.getInstance();
+        //db = FirebaseDatabase.getInstance();
         //Obtenim la referencia
-        DatabaseReference messageRef = db.getReference().child("messages");
+        //DatabaseReference messageRef = db.getReference().child("messages");
 
 
 
-        
+        /*
         //Creem un FirebaseRecyclerAdapter
         FirebaseRecyclerOptions<Message> options = new FirebaseRecyclerOptions.Builder<Message>()
                 .setQuery(messageRef,Message.class)
@@ -85,19 +129,34 @@ public class allxatsfragment extends Fragment {
         adapter = new MessageAdapter(options, "Current name prova"); //TODO canviar per l'username
         manager = new LinearLayoutManager(getActivity());
         manager.setStackFromEnd(true);
-        RecyclerView recyclerView = getView().findViewById(R.id.messageRecyclerView);
+        RecyclerView recyclerView = getView().findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
 
+
+         */
         //Fer autoscroll down quan arribi un nou missatge
+        /*
         adapter.registerAdapterDataObserver(
-                ScrollToBottom() // passar la recycle view de la interfaç
+                new ScrollToBottom(getActivity().findViewById(R.id.recyclerView),adapter,manager) // TODO passar la recycle view de la interfaç
         );
+
+         */
+
+
+
+
+        /*
+        FirebaseApp abc = db.getApp();
+        DatabaseReference abcd = db.getReference();
+        //db.getReference();
+        //db.getReference().push().setValue(a);
 
 
 
         //***********************************************************************************
 
+        /*
         //proves anteriors
         Message a = new Message();
         a.setText("hola prova des de android");
@@ -109,6 +168,9 @@ public class allxatsfragment extends Fragment {
 
 
 
+         */
+
+        /*
         System.out.println("Obtenint instance");
 
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
@@ -116,6 +178,7 @@ public class allxatsfragment extends Fragment {
         System.out.println("Obtenint reference");
         DatabaseReference data_reference = mDatabase.getReference("Missatges");
 
+         */
         /*
         FirebaseRecyclerOptions<Message> options = new FirebaseRecyclerOptions.Builder<Message>()
                 .setQuery(ref_fill, Message.class)
@@ -134,5 +197,23 @@ public class allxatsfragment extends Fragment {
 
         //re
         //FI de la prova
+    }
+
+    private void enviar_missatge(){
+        /*
+        db.getReference("messages").push().setValue(new Message()).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                System.out.println("onFailure");
+                e.printStackTrace();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                System.out.println("onSucces");
+            }
+        });
+
+         */
     }
 }

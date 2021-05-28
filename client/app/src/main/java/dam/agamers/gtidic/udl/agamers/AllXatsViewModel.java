@@ -1,32 +1,16 @@
 package dam.agamers.gtidic.udl.agamers;
 
-import android.os.Handler;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import org.jetbrains.annotations.NotNull;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
-import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
 
 public class AllXatsViewModel extends ViewModel {
     private MutableLiveData<Boolean> singinOK = new MutableLiveData<Boolean>(false);
     private AtomicInteger vegades_intentat = new AtomicInteger(0);
-    private FirebaseAuth firebaseAuth = null;
-
-    private AuthResult authResult;
 
     private Integer open_chats = 0;
 
@@ -37,7 +21,7 @@ public class AllXatsViewModel extends ViewModel {
     }
 
 
-    public FirebaseAuth signIn_Firebase(){
+    public void signIn_Firebase(){
         //S'ha de fer inici de sessió anonimament sino s'ha de protar tot el servei a firebase
         //Iniciar sessió anonimament i buscar dins de la nostra base de dades el nom del xat
 
@@ -50,11 +34,12 @@ public class AllXatsViewModel extends ViewModel {
 
 
         auth_firebase();
-        return firebaseAuth;
+
     }
 
     private void auth_firebase(){
 
+        /*
         //Account user = accountRepo.getmAccountInfo().getValue();
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -75,9 +60,11 @@ public class AllXatsViewModel extends ViewModel {
         }
 
 
+         */
 
 
-        FirebaseUser a = firebaseAuth.getCurrentUser();
+
+        //FirebaseUser a = firebaseAuth.getCurrentUser();
 
 
 
