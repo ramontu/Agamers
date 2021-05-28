@@ -43,4 +43,9 @@ public class Plataformes {
         this.manufacturer = manufacturer;
     }
 
+    @NotNull
+    public String toString(){
+        return name;
+    }
+
 }

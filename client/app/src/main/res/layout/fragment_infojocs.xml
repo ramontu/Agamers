@@ -50,10 +50,20 @@
                 android:layout_height="14dp" />
 
             <TextView
-                android:id="@+id/info_jugadors"
-                android:layout_width="match_parent"
+                android:id="@+id/info_jugadorsminim"
+                android:layout_width="151dp"
                 android:layout_height="35dp"
-                android:text="@string/jugadors" />
+                android:text="@string/jugadors_minim" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/info_jugadorsmaxim"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:text="@string/jugadors_maxim" />
 
             <Space
                 android:layout_width="match_parent"
