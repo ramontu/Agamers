@@ -115,4 +115,17 @@
     <string name="error_clossing_session">Error en la hora de cerrar sesión. El token no se ha eliminado de la base de datos a causa de un error.</string>
     <string name="succes_clossing_session">Se ha cerrado la sesión correctamente</string>
     <string name="studio">Compañía</string>
+    <string name="user_image">Imagen del usuario</string>
+    <string name="delete_platform_ok">Se ha borrado una plataforma</string>
+    <string name="delete_platform_error">Error en borrar una plataforma</string>
+    <string name="categoria">"Categoría: "</string>
+    <string name="succes_create_game">Se ha creado un juego</string>
+    <string name="error_create_game">Error en crear un juego, revisa todos los campos</string>
+    <string name="jugadors">"Jugadores: "</string>
+    <string name="modalitat">"Modalidad: "</string>
+    <string name="plataformes">"Plataformas: "</string>
+    <string name="descripcio">"Descripción: "</string>
+    <string name="edatrecomanada">"Edad recomendada: "</string>
+    <string name="datapublicacio">Fecha publicación:</string>
+    <string name="imatge_del_joc">Imagen del juego</string>
 </resources>

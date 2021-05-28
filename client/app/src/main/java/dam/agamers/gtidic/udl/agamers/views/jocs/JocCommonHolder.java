@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 
 import com.squareup.picasso.Picasso;
 
@@ -27,7 +28,12 @@ public class JocCommonHolder {
 
             jocName = itemView.findViewById(R.id.jocItemName);
             jocPoster = itemView.findViewById(R.id.jocItemPoster);
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fragmentManager = itemView.get
+                }
+            });
         }
 
         public void bindHolder(Jocs j) {
@@ -39,5 +45,7 @@ public class JocCommonHolder {
             Log.d(TAG, "onBindViewHolder() -> cJocs: " + j.getPoster_url());
             Picasso.get().load(j.getPoster_url()).into(this.jocPoster);
         }
+
+
 
 }
