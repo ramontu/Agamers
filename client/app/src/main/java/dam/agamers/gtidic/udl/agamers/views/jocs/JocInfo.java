@@ -38,6 +38,7 @@ public class JocInfo extends Fragment {
         result.setText("Nom joc: " + info_nomjoc + "Categories: " + info_categoriajoc + "Jugadors: " +info_jugadors+);
 
         //buscar en google com passar informació entre fragments fer servir un bundle
+        //https://developer.android.com/training/basics/fragments/pass-data-between?hl=es
 
         getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
             @Override
