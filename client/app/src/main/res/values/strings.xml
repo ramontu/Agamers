@@ -196,6 +196,7 @@
     <string name="fragment_JocInfo">info-joc</string>
     <string name="jugadors_minim">Minim jugadors:</string>
     <string name="jugadors_maxim">Màxim jugadors:</string>
+    <string name="zona_en_construcci">Zona en construcció</string>
 
     <string-array name="categories">
         <item>Mercury</item>

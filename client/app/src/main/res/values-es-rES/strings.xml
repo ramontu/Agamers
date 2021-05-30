@@ -129,4 +129,5 @@
     <string name="datapublicacio">Fecha publicación:</string>
     <string name="imatge_del_joc">Imagen del juego</string>
     <string name="fragment_JocInfo">info-joc</string>
+    <string name="zona_en_construcci">Zona en construcción</string>
 </resources>

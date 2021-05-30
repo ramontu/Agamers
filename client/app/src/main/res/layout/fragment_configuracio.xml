@@ -7,6 +7,31 @@
     android:layout_height="match_parent"
     tools:context=".views.configuracio.ConfiguracioFragment">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/text_forums"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="295dp"
+            android:layout_height="263dp"
+            android:src="@drawable/ic_undercon_icon_black" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="79dp"
+            android:text="@string/zona_en_construcci"
+            android:textAlignment="center"
+            android:textSize="34sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/text_configuracio"
         android:layout_width="match_parent"
