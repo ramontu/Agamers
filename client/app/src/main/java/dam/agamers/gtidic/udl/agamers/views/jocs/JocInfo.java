@@ -43,12 +43,14 @@ public class JocInfo extends Fragment {
 
     public void displayReceivedGame(Jocs joc) {
             info_nomjoc.setText(joc.getName());
-            info_categoriajoc.setText(joc.getCategories().toString());
+            String cat = joc.getCategories().toString();
+            info_categoriajoc.setText(cat.substring(1, cat.length() - 1));
             info_jugadorsminim.setText(String.valueOf(joc.getMin_players()));
             info_jugadorsmaxim.setText(String.valueOf(joc.getMax_players()));
             info_modalitat.setText(joc.getOnline__mode().toString()); 
             info_estudio.setText(joc.getStudio());
-            info_plataformes.setText(joc.getPlatforms().toString());
+            String plat = joc.getPlatforms().toString();
+            info_plataformes.setText(plat.substring(1, plat.length() - 1));
             info_descripcio.setText(joc.getDescription());
             info_edatrecomanada.setText(String.valueOf(joc.getPegi()));
             info_datapublicacio.setText(joc.getPublished());
