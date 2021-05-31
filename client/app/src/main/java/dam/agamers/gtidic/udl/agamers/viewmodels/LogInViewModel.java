@@ -1,5 +1,6 @@
 package dam.agamers.gtidic.udl.agamers.viewmodels;
 
+import android.app.Activity;
 import android.util.Base64;
 import android.util.Log;
 
@@ -7,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.nio.charset.StandardCharsets;
 
+import dam.agamers.gtidic.udl.agamers.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
@@ -16,6 +18,7 @@ public class LogInViewModel {
     private final AccountRepo accountRepo;
     public MutableLiveData<String> username;
     public MutableLiveData<String> password;
+    public LoandingFragment loandingFragment;
 
     public LogInViewModel() {
         accountRepo = new AccountRepo();
@@ -25,6 +28,8 @@ public class LogInViewModel {
 
     public void onLogin() {
         // @TODO: Revisar que username i password siguin valids
+
+        loandingFragment.startLoadingDialog();
         Log.d(TAG,username.getValue() + ":" + password.getValue());
         String auth_token = username.getValue() + ":" + password.getValue();
         byte[] data = auth_token.getBytes(StandardCharsets.UTF_8);
