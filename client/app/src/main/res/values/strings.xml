@@ -193,7 +193,7 @@
     <string name="edatrecomanada">Edat recomanada: </string>
     <string name="datapublicacio">Data publicació: </string>
     <string name="imatge_del_joc">Imatge del joc</string>
-    <string name="fragment_JocInfo">info-joc</string>
+    <string name="fragment_JocInfo">Informació del joc</string>
     <string name="jugadors_minim">Minim jugadors:</string>
     <string name="jugadors_maxim">Màxim jugadors:</string>
 
@@ -207,5 +207,6 @@
         <item>Uranus</item>
         <item>Neptune</item>
     </string-array>
+    <string name="jugadors">Jugadors:</string>
 
 </resources>

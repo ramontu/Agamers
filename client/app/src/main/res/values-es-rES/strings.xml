@@ -129,4 +129,6 @@
     <string name="datapublicacio">Fecha publicación:</string>
     <string name="imatge_del_joc">Imagen del juego</string>
     <string name="fragment_JocInfo">info-joc</string>
+    <string name="jugadors_minim">Mínimo jugadores:</string>
+    <string name="jugadors_maxim">"Máximo jugadores: "</string>
 </resources>

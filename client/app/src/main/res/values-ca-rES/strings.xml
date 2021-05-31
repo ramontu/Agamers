@@ -133,5 +133,6 @@
     <string name="fragment_JocInfo">info-joc</string>
     <string name="jugadors_minim">Minim jugadors:</string>
     <string name="jugadors_maxim">Màxim jugadors:</string>
+    <string name="jugadors">Jugadors:</string>
 
 </resources>
