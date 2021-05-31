@@ -30,6 +30,7 @@ public class UserInfoActivity extends CommonActivity {
     private TextView bioTextView;
 
     private ImageView imatgePerfil;
+    UserInfoViewModel userInfoViewModel = new UserInfoViewModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class UserInfoActivity extends CommonActivity {
         getSupportActionBar().hide();
         profileInfoViewModel = new ProfileViewModel();
         profileInfoViewModel.getProfile();
+
 
         profileInfoViewModel.agafarProfile().observe(this, new Observer<Profile>() {
             @Override
@@ -79,6 +81,23 @@ public class UserInfoActivity extends CommonActivity {
         goTo(EditAccountActivity.class);
     }
 
+
+    public void close_session(View view){
+        userInfoViewModel.close_session();
+        finish();
+        goTo(LogInActivity.class);
+        finishAffinity();
+    }
+
+    public void delete_account (View view) {
+        userInfoViewModel.delete_account();
+        String response = getString(userInfoViewModel.getmResponseDeleteAccount().getValue());
+        crear_snackbar(response, view);
+        if (!response.contains("Error:")) {
+            goTo(LogInActivity.class);
+            finishAffinity();
+        }
+    }
 
     public void  button3OnClick(View view){
 
