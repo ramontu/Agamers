@@ -140,7 +140,6 @@ public class AddGameFragment extends Fragment {
                     private void navegacioJoc() {
                         NavHostFragment.findNavController((AddGameFragment.this)).navigate(R.id.action_fragmentaddgame_to_fragmentjocs);
                     }
-
                 });
 
         crearJocButton.setOnClickListener(new View.OnClickListener() {

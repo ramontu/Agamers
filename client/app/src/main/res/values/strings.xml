@@ -167,10 +167,10 @@
     <string name="compartir">Compartir</string>
     <string name="numero_de_jugadors">Numero de jugadors:</string>
     <string name="imatge_joc">Imatge Joc</string>
-    <string name="nom_joc">Nom Joc</string>
+    <string name="nom_joc">Nom Joc:</string>
     <string name="max_players">Jugadors màxims</string>
     <string name="min_players">Jugadros mínims</string>
-    <string name="estudio">Companyia</string>
+    <string name="estudio">Companyia:</string>
     <string name="plataforma">Plataforma</string>
     <string name="descripcio_joc">Descripció del joc</string>
     <string name="pegi_joc">Edat recomanada</string>
