@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Objects;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
+import dam.agamers.gtidic.udl.agamers.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
@@ -22,9 +23,9 @@ public class RecoverPasswordActivity_1 extends CommonActivity {
 
     AccountRepo accountRepo;
     View view;
-    ProgressBar progressBar;
     TextInputLayout _email;
     Button button;
+    LoandingFragment loandingFragment = new LoandingFragment(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,6 @@ public class RecoverPasswordActivity_1 extends CommonActivity {
         setContentView(R.layout.activity_recover_password_1);
         getSupportActionBar().hide();
         accountRepo = new AccountRepo();
-        progressBar = findViewById(R.id.recover_1_progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
         _email = findViewById(R.id.recover_1_email_textinputlayout);
         button = findViewById(R.id.recover_1_button);
         button.setEnabled(false);
@@ -44,9 +43,7 @@ public class RecoverPasswordActivity_1 extends CommonActivity {
     public void recover1(View view) {
 
         this.view = view;
-        progressBar.setIndeterminate(true);
-        progressBar.bringToFront();
-        progressBar.setVisibility(View.VISIBLE);
+        loandingFragment.startLoadingDialog();
 
         TextInputLayout til = findViewById(R.id.recover_1_email_textinputlayout);
         Account account = new Account();
@@ -58,7 +55,7 @@ public class RecoverPasswordActivity_1 extends CommonActivity {
 
     private void watcher(){
         accountRepo.getmRecover1Ok().observe(this, aBoolean -> {
-            progressBar.setVisibility(View.INVISIBLE);
+            loandingFragment.dismisDialog();
             Toast toast;
             if (accountRepo.getmRecover1Ok().getValue()){
                 toast = Toast.makeText(getBaseContext(),R.string.recover_pass_1_ok,Toast.LENGTH_LONG);

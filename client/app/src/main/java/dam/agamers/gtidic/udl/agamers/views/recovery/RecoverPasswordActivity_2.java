@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer;
 import com.google.android.material.textfield.TextInputLayout;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
+import dam.agamers.gtidic.udl.agamers.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.databinding.ActivityIniciDeSessioBinding;
 import dam.agamers.gtidic.udl.agamers.databinding.ActivityRecoverPassword2Binding;
@@ -26,7 +27,6 @@ import dam.agamers.gtidic.udl.agamers.views.activitatsuser.LogInActivity;
 public class RecoverPasswordActivity_2 extends CommonActivity {
 
     AccountRepo accountRepo;
-    ProgressBar progressBar;
     TextInputLayout _mail;
     TextInputLayout _recoverycode;
     TextInputLayout _newpass;
@@ -36,12 +36,14 @@ public class RecoverPasswordActivity_2 extends CommonActivity {
     Boolean codeValid = false;
     Boolean newpassValid = false;
     Boolean newpass_same = false;
+    LoandingFragment loandingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recover_password_2);
         getSupportActionBar().hide();
+
 
         _mail = findViewById(R.id.recover_2_email_textinputlayout);
         _recoverycode = findViewById(R.id.recover_2_code_textinputlayout);
@@ -50,14 +52,13 @@ public class RecoverPasswordActivity_2 extends CommonActivity {
 
         accountRepo = new AccountRepo();
         show_response();
-        progressBar = findViewById(R.id.recover_2_progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
         RecoverPasswordViewModel_2 recoverPasswordViewModel_2 = new RecoverPasswordViewModel_2();
          ActivityRecoverPassword2Binding recoverPassword2Binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_recover_password_2);
         recoverPassword2Binding.setLifecycleOwner(this);
         recoverPassword2Binding.setViewModel(recoverPasswordViewModel_2);
         observe_result(recoverPasswordViewModel_2);
+        loandingFragment = recoverPasswordViewModel_2.loandingFragment = new LoandingFragment(this);
     }
 
     public void observe_result(RecoverPasswordViewModel_2 recoverPasswordViewModel_2){
@@ -92,7 +93,7 @@ public class RecoverPasswordActivity_2 extends CommonActivity {
 
     public void show_response(){
         accountRepo.getmRecover2Ok().observe(this, aBoolean -> {
-            progressBar.setVisibility(View.INVISIBLE);
+            loandingFragment.dismisDialog();
             Toast toast;
             if (accountRepo.getmRecover2Ok().getValue()){
                 toast = Toast.makeText(getBaseContext(),R.string.recover_pass_2_ok,Toast.LENGTH_LONG);
