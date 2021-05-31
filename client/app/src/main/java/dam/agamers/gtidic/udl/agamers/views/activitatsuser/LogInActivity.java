@@ -1,13 +1,21 @@
 package dam.agamers.gtidic.udl.agamers.views.activitatsuser;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.DialogFragment;
+
+import java.util.zip.Inflater;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
+import dam.agamers.gtidic.udl.agamers.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.databinding.ActivityIniciDeSessioBinding;
 import dam.agamers.gtidic.udl.agamers.viewmodels.LogInViewModel;
@@ -31,7 +39,12 @@ public class LogInActivity extends CommonActivity {
         activityLogInBinding.setLifecycleOwner(this);
         activityLogInBinding.setViewModel(logInViewModel);
 
+        logInViewModel.loandingFragment = new LoandingFragment(this);
+
+
+
         logInViewModel.getResponseLogin().observe(this, s -> {
+            logInViewModel.loandingFragment.dismisDialog();
             if (s.contains("Error: ")){
                 showInfoUser(getCurrentFocus(), getString(R.string.login_error));
             }

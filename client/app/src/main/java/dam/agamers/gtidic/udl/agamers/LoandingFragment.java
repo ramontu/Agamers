@@ -1,27 +1,39 @@
 package dam.agamers.gtidic.udl.agamers;
 
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
+import android.app.Activity;
 
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
+
+import dam.agamers.gtidic.udl.agamers.views.activitatsuser.LogInActivity;
 
 
-public class LoandingFragment extends Fragment {
+public class LoandingFragment extends DialogFragment {
 
-    public LoandingFragment() {
-        // Required empty public constructor
+    private Activity activity;
+    private AlertDialog alertDialog;
+
+    public LoandingFragment(Activity activity) {
+        this.activity= activity;
     }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+    public void startLoadingDialog()
+    {
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
+        LayoutInflater inflater = activity.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.fragment_loanding,null));
+        builder.setCancelable(false);
+
+
+        alertDialog = builder.create();
+        alertDialog.show();
     }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_loanding, container, false);
+
+
+    public void dismisDialog()
+    {
+        alertDialog.dismiss();
     }
 }
