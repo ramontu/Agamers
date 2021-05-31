@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -40,11 +41,18 @@
                 android:id="@+id/info_nomjoc"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="TextView" />
+                android:text="@string/nom_joc" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/label_categoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/categoria" />
+
 
             <TextView
                 android:id="@+id/info_categoriajoc"
@@ -52,10 +60,15 @@
                 android:layout_height="35dp"
                 android:text="@string/categoria" />
 
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/label_jugadorsminim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/jugadors_minim" />
 
             <TextView
                 android:id="@+id/info_jugadorsminim"
@@ -68,6 +81,12 @@
                 android:layout_height="14dp" />
 
             <TextView
+                android:id="@+id/label_jugadorsmaxim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/jugadors_maxim" />
+
+            <TextView
                 android:id="@+id/info_jugadorsmaxim"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -76,6 +95,12 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/label_modalitat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/modalitat" />
 
             <TextView
                 android:id="@+id/info_modalitat"
@@ -88,6 +113,12 @@
                 android:layout_height="14dp" />
 
             <TextView
+                android:id="@+id/label_estudio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/estudio" />
+
+            <TextView
                 android:id="@+id/info_estudio"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -96,6 +127,12 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/label_plataformes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/plataformes" />
 
             <TextView
                 android:id="@+id/info_plataformes"
@@ -108,6 +145,12 @@
                 android:layout_height="14dp" />
 
             <TextView
+                android:id="@+id/label_descripcio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descripcio" />
+
+            <TextView
                 android:id="@+id/info_descripcio"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -118,6 +161,12 @@
                 android:layout_height="14dp" />
 
             <TextView
+                android:id="@+id/label_edatrecomanada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/edatrecomanada" />
+
+            <TextView
                 android:id="@+id/info_edatrecomanada"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -126,6 +175,12 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/label_datapublicacio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/datapublicacio" />
 
             <TextView
                 android:id="@+id/info_datapublicacio"

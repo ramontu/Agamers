@@ -111,7 +111,7 @@
     <string name="delete_jocs_error">Error en eliminiar un joc</string>
     <string name="compartir">Compartir</string>
     <string name="imatge_joc">Imatge Joc</string>
-    <string name="nom_joc">Nom Joc</string>
+    <string name="nom_joc">Nom:</string>
     <string name="max_players">Jugadors màxims</string>
     <string name="estudio">Companyia</string>
     <string name="plataforma">Plataforma</string>
@@ -125,7 +125,7 @@
     <string name="succes_create_game">S\'ha creat un joc</string>
     <string name="error_create_game">"Error en crear un joc, revisa tots els camps."</string>
     <string name="modalitat">Modalitat:</string>
-    <string name="plataformes">Plataformes: </string>
+    <string name="plataformes">"Plataformes disponibles: "</string>
     <string name="descripcio">Descripció: </string>
     <string name="edatrecomanada">Edat recomanada: </string>
     <string name="datapublicacio">Data publicació: </string>
@@ -134,5 +134,6 @@
     <string name="jugadors_minim">Minim jugadors:</string>
     <string name="jugadors_maxim">Màxim jugadors:</string>
     <string name="jugadors">Jugadors:</string>
+    <string name="icona_crear_joc">Icona crear nou joc</string>
 
 </resources>
