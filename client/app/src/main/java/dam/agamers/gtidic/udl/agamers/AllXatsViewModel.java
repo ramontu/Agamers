@@ -1,10 +1,27 @@
 package dam.agamers.gtidic.udl.agamers;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import dam.agamers.gtidic.udl.agamers.models.Message;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
 
@@ -16,73 +33,48 @@ public class AllXatsViewModel extends ViewModel {
 
     private AccountRepo accountRepo;
 
+    private MutableLiveData<List<Message>> messageListUpdated;
+
+    private List<Message> messageList;
+
+    private DatabaseReference databaseReference;
+
+
     public AllXatsViewModel(){
         accountRepo = new AccountRepo();
+        databaseReference = FirebaseDatabase.getInstance("https://agamers-49311-default-rtdb.europe-west1.firebasedatabase.app/").getReference(); //FER axo a tot arreu
+        messageList = new ArrayList<>();
     }
 
+    private void loadmessages(){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    for (DataSnapshot message : snapshot1.getChildren()){
+                        Message m = new Message();
+                        m.setName((String) message.child("name").getValue());
+                        messageList.add(m);
 
-    public void signIn_Firebase(){
-        //S'ha de fer inici de sessió anonimament sino s'ha de protar tot el servei a firebase
-        //Iniciar sessió anonimament i buscar dins de la nostra base de dades el nom del xat
+                    }
+                }
+                messageListUpdated.setValue(messageList);
+            }
 
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
-        //TODO al actualitzar la informació del compte també fer-ho de firebase
-        //Iniciar sessió amb el correu i la contrasenya si no te un tocken guardat
-
-
-        //fer un child dins de missatges per a cada xat i aixi no haver de guardar cada numero de missatge
-
-
-        auth_firebase();
-
-    }
-
-    private void auth_firebase(){
-
-        /*
-        //Account user = accountRepo.getmAccountInfo().getValue();
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        if (firebaseAuth.getCurrentUser() != null){  //user.getFirebase_credential().isEmpty()
-            firebaseAuth.createUserWithEmailAndPassword("prova@prova.com", "provaprova") //user.getEmail(), user.getPassword()
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-
-                                FirebaseUser fire_user = firebaseAuth.getCurrentUser();
-                                Log.d("AuthFirebase", fire_user.getUid());
-                                
-                                //TODO guardar el token a user i actualitx¡zar la info
-                            }
-                        }
-                    });
-        }
-
-
-         */
-
-
-
-        //FirebaseUser a = firebaseAuth.getCurrentUser();
-
-
-
-        /*
-        FirebaseAuth.getInstance().signInWithCustomToken("user.getUsername()") //TODO Canviar pel real
-                .addOnSuccessListener(authResult -> {
-                    Log.d("Auth_firebase()","Succes");
-                    singinOK.setValue(true);
-                    this.authResult =  authResult;
-                }).addOnFailureListener(e -> {
-            Log.d("Auth_firebase()","Failure, Torno a intentar connectar-me a la base de dades");
-            singinOK.setValue(false);
-            //TODO posar un control per a que no ho pugui fer de manera indefinida
-            //Al cap de 1500 milisegons crida al metode auth_firebase que torna a intentar-ho
-            (new Handler()).postDelayed(this::auth_firebase, 1500);
-            e.printStackTrace();
+            }
         });
-
-         */
     }
+
+    public LiveData<List<Message>> getMessage(){
+        if (messageListUpdated == null){
+            messageListUpdated = new MutableLiveData<>();
+            loadmessages();
+        }
+        return messageListUpdated;
+    }
+
+
 }

@@ -9,15 +9,21 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
 import java.util.Objects;
 
+import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter;
+import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter2;
+import dam.agamers.gtidic.udl.agamers.models.Message;
 import dam.agamers.gtidic.udl.agamers.views.xats.XatsFragment;
 
 public class allxatsfragment extends Fragment {
@@ -25,6 +31,11 @@ public class allxatsfragment extends Fragment {
     private AllXatsViewModel mViewModel;
 
     private DatabaseReference mDatabase;
+
+    private RecyclerView recyclerView;
+    private View root;
+
+    private MessageAdapter2 adapter2;
 
     Button button;
 
@@ -37,12 +48,26 @@ public class allxatsfragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(AllXatsViewModel.class);
 
+        root = inflater.inflate(R.layout.all_xats_fragment, container, false);
 
-
-        onCreate();
-        return inflater.inflate(R.layout.all_xats_fragment, container, false);
+        initView();
+        return root;
     }
 
+
+    public void initView(){
+        recyclerView = root.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mDatabase = FirebaseDatabase.getInstance("https://agamers-49311-default-rtdb.europe-west1.firebasedatabase.app/").getReference(); //FER axo a tot arreu
+        mViewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
+            @Override
+            public void onChanged(List<Message> messages) {
+                recyclerView.setAdapter(new MessageAdapter2(getContext(), messages));
+            }
+        });
+
+
+    }
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -59,7 +84,7 @@ public class allxatsfragment extends Fragment {
         //button = (Button) this.
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance("https://agamers-49311-default-rtdb.europe-west1.firebasedatabase.app/").getReference(); //FER axo a tot arreu
 
 
         //TODO BUG
@@ -71,12 +96,11 @@ public class allxatsfragment extends Fragment {
         
          */
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        myRef.setValue("Hello, World!");
 
-        
+
+        /*
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +112,16 @@ public class allxatsfragment extends Fragment {
 
          */
 
+        Message a = new Message();
+        a.setText("hola prova des de android");
+        a.setName("Ramon Trilla Urtreaga");
+        a.setMessageTime();
+        a.setPhotoUrl(null);
+        a.setImageUrl(null);
+        a.setId("1");
+
+
+        mDatabase.child("messages").child(a.getId()).setValue(a);
 
         /*
         DatabaseReference
