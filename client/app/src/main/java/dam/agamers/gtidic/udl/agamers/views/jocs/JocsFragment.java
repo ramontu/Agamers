@@ -1,18 +1,12 @@
 package dam.agamers.gtidic.udl.agamers.views.jocs;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,11 +29,8 @@ public class JocsFragment extends Fragment {
         jocsViewModel = new ViewModelProvider(this).get(JocsViewModel.class);
         root = inflater.inflate(R.layout.fragment_jocs, container, false);
 
-
         recyclerView = root.findViewById(R.id.jocsRecyclerView);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false));
-
         jocAdapter = new JocAdapter(new JocDiffCallBack());
         recyclerView.setAdapter (jocAdapter);
         initView();

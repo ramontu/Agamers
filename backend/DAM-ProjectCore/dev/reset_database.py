@@ -162,19 +162,58 @@ if __name__ == "__main__":
     mylogger.info("Creating default categories...")
 
     categories = []
+    c1 = Categories(
 
-    for u in range(1, 10):
-        cat = Categories(
+        id=1,
+        name="Acció"
 
-            id=u,
+    )
+    categories.append(c1)
+    db_session.add(c1)
 
-            name="Categoria " + str(u)
+    c2 = Categories(
 
-        )
+        id=2,
+        name="Adventura i casual"
 
-        categories.append(cat)
+    )
+    categories.append(c2)
+    db_session.add(c2)
 
-        db_session.add(cat)
+    c3 = Categories(
+
+        id=3,
+        name="Rol-playing"
+
+    )
+    categories.append(c3)
+    db_session.add(c3)
+
+    c4 = Categories(
+
+        id=4,
+        name="Simulació"
+
+    )
+    categories.append(c4)
+    db_session.add(c4)
+
+    c5 = Categories(
+
+        id=5,
+        name="Estràtegia"
+    )
+    categories.append(c5)
+    db_session.add(c5)
+
+    c6 = Categories(
+
+        id=6,
+        name="Esports i ràcing"
+    )
+    categories.append(c6)
+    db_session.add(c6)
+
 
     mylogger.info("Creating default games...")
 
@@ -185,9 +224,7 @@ if __name__ == "__main__":
     p1 = Platforms(
 
         id=1,
-
         name="PS4",
-
         manufacturer="Sony"
 
     )
@@ -197,9 +234,7 @@ if __name__ == "__main__":
     p2 = Platforms(
 
         id=2,
-
         name="Xbox One",
-
         manufacturer="Microsoft"
 
     )
@@ -209,14 +244,57 @@ if __name__ == "__main__":
     p3 = Platforms(
 
         id=3,
-
         name="PS5",
-
         manufacturer="Sony"
 
     )
     platforms.append(p3)
     db_session.add(p3)
+
+    p4 = Platforms(
+
+        id=4,
+        name="PS3",
+        manufacturer="Sony"
+    )
+    platforms.append(p4)
+    db_session.add(p4)
+
+    p5 = Platforms(
+
+        id=5,
+        name="Nintendo Switch",
+        manufacturer="Nintendo"
+    )
+    platforms.append(p5)
+    db_session.add(p5)
+
+    p6 = Platforms(
+
+        id=6,
+        name="Nintendo DS",
+        manufacturer="Nintendo"
+    )
+    platforms.append(p6)
+    db_session.add(p6)
+
+    p7 = Platforms(
+
+        id=7,
+        name="Microsoft Windows",
+        manufacturer= "Microsoft"
+    )
+    platforms.append(p7)
+    db_session.add(p7)
+
+    p8 = Platforms(
+
+        id=8,
+        name="MacOs",
+        manufacturer="Apple"
+    )
+    platforms.append(p8)
+    db_session.add(p8)
 
     for u in range(1, 5):
         joc = Jocs(
@@ -234,7 +312,6 @@ if __name__ == "__main__":
         )
 
         jocs.append(joc)
-
         db_session.add(joc)
 
     db_session.commit()
