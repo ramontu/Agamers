@@ -136,5 +136,16 @@
     <string name="jugadors">Jugadors:</string>
     <string name="icona_crear_joc">Icona crear nou joc</string>
     <string name="zona_en_construcci">Zona en construcció</string>
+    <string name="nom_usuari">Nom</string>
+    <string name="perfil_d_usuari">"Perfil "</string>
+    <string name="sobre_usuari_x">Sobre mi</string>
+    <string name="assoliments_recents">Assoliments recents</string>
+    <string name="Enviar_peticio_amistat">Enviar sol·licitut amistat</string>
+    <string name="compartir_perfil">Compartir perfil</string>
+    <string name="xatejar">Xatejar</string>
+    <string name="medalla_2">Medalla 2</string>
+    <string name="medalla_1">Medalla 1</string>
+    <string name="valoracions">Valoracions</string>
+    <string name="imatge_perfil">Imatge de perfil</string>
 
 </resources>
