@@ -9,15 +9,10 @@
     <ImageView
 
         android:id="@+id/jocItemPoster"
-
         android:layout_width="48dp"
-
         android:layout_height="60dp"
-
         android:layout_weight="1"
-
         android:contentDescription="@string/user_image"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,11 +21,8 @@
     <TextView
 
         android:id="@+id/jocItemName"
-
         android:layout_width="61dp"
-
         android:layout_height="17dp"
-
         android:text="@string/nom_joc"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"

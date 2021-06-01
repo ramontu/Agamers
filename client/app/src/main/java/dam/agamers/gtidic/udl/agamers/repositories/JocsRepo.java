@@ -138,7 +138,6 @@ public class JocsRepo {
                         e.printStackTrace();
                     }
                 }
-
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {

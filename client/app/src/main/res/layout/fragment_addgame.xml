@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:hintText="Selecció Múltiple" />
+                app:hintText="Selecció Categories" />
 
             <Space
                 android:layout_width="match_parent"
@@ -161,7 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:hintText="Selecció Múltiple" />
+                app:hintText="Selecció Plataformes" />
 
             <Space
                 android:layout_width="match_parent"
