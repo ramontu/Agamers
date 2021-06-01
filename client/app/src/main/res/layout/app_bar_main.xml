@@ -10,13 +10,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/purple"
         android:theme="@style/Theme.Agamers.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/color_fondobotonseccion"
             app:popupTheme="@style/Theme.Agamers.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -4,14 +4,17 @@
     <item
         android:id="@+id/navegacio_xats"
         android:icon="@drawable/chat_icon"
+        android:iconTint="#EDE7F6"
         android:title="@string/titol_xats" />
     <item
         android:id="@+id/navegacio_match"
         android:icon="@drawable/ic_meet"
+        android:iconTint="#EDE7F6"
         android:title="@string/titol_match" />
     <item
         android:id="@+id/navegacio_forums"
         android:icon="@drawable/list_icon"
+        android:iconTint="#EDE7F6"
         android:title="@string/titol_forums" />
 
 </menu>
