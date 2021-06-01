@@ -132,4 +132,6 @@
     <string name="jugadors_minim">Mínimo jugadores:</string>
     <string name="jugadors_maxim">"Máximo jugadores: "</string>
     <string name="icona_crear_joc">Icono crear nuevo juego</string>
+    <string name="zona_en_construcci">Zona en construcción</string>
+
 </resources>

@@ -40,6 +40,7 @@ public class SignUpActivity extends CommonActivity {
         initView();
         checking();
         missatge_registrat();
+        signUpViewModel.loandingFragment = new LoandingFragment(this);
     }
 
     private void initView(){
@@ -213,7 +214,7 @@ public class SignUpActivity extends CommonActivity {
     @SuppressLint("ResourceType")
     public void missatge_registrat(){
         signUpViewModel.getSignUpResponse().observe(this, aBoolean -> {
-
+            signUpViewModel.loandingFragment.dismisDialog();
             Log.d("SignUpActivity", "El valor de aBoolean és: " + aBoolean);
             if(aBoolean){
                 finish();

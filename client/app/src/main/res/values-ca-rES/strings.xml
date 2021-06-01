@@ -135,5 +135,6 @@
     <string name="jugadors_maxim">Màxim jugadors:</string>
     <string name="jugadors">Jugadors:</string>
     <string name="icona_crear_joc">Icona crear nou joc</string>
+    <string name="zona_en_construcci">Zona en construcció</string>
 
 </resources>

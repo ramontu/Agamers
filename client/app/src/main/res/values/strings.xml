@@ -196,6 +196,22 @@
     <string name="fragment_JocInfo">Informació del joc</string>
     <string name="jugadors_minim">Minim jugadors:</string>
     <string name="jugadors_maxim">Màxim jugadors:</string>
+    <string name="zona_en_construcci">Zona en construcció</string>
+
+    <string name="Text_bio" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="nom_usuari" >nom</string>
+    <string name="perfil_d_usuari" >Perfil usuari</string>
+    <string name="sobre_usuari_x">Sobre usuari</string>
+    <string name="assoliments_recents">Assoliments recents</string>
+    <string name="Enviar_peticio_amistat">Enviar solicitud amistat</string>
+    <string name="compartir_perfil">Compartir perfil</string>
+    <string name="xatejar">Xatejar</string>
+    <string name="medalla_2">Medalla 2</string>
+    <string name="medalla_1">Medalla 1</string>
+    <string name="valoracions">Valoracions</string>
+    <string name="imatge_perfil">Imatge de perfil</string>
+
+
 
     <string-array name="categories">
         <item>Mercury</item>
