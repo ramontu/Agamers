@@ -153,10 +153,7 @@ public class AddGameFragment extends Fragment {
                 j.setPegi(Integer.parseInt(edatrecomanada_edit.getText().toString()));
                 j.setPublished(datapublicacio_edit.getText().toString());
                 j.setStudio(estudio_edit.getText().toString());
-                String category = categories_spinner.getSelectedItem().toString();
-                ArrayList<String> categories = new ArrayList<>(); //com espero una llista, agafo la llista
-                categories.add(category); //aquí li passo l'string i el fico a la llista category
-                j.setCategories(categories);
+                j.setCategories(selected_category);
                 j.setPlatforms(selected_platform);
 
                 Log.d(TAG, j.toString());

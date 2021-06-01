@@ -2,11 +2,8 @@ package dam.agamers.gtidic.udl.agamers.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import com.google.gson.annotations.SerializedName;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class Jocs implements Parcelable {
@@ -31,7 +28,7 @@ public class Jocs implements Parcelable {
     private String studio;
     @SerializedName("image")
     private String image;
-    @SerializedName("descrition")
+    @SerializedName("description")
     private String description;
     @SerializedName("pegi")
     private int pegi;
