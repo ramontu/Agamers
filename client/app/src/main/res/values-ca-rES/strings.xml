@@ -111,7 +111,7 @@
     <string name="delete_jocs_error">Error en eliminiar un joc</string>
     <string name="compartir">Compartir</string>
     <string name="imatge_joc">Imatge Joc</string>
-    <string name="nom_joc">Nom Joc</string>
+    <string name="nom_joc">Nom:</string>
     <string name="max_players">Jugadors màxims</string>
     <string name="estudio">Companyia</string>
     <string name="plataforma">Plataforma</string>
@@ -125,7 +125,7 @@
     <string name="succes_create_game">S\'ha creat un joc</string>
     <string name="error_create_game">"Error en crear un joc, revisa tots els camps."</string>
     <string name="modalitat">Modalitat:</string>
-    <string name="plataformes">Plataformes: </string>
+    <string name="plataformes">"Plataformes disponibles: "</string>
     <string name="descripcio">Descripció: </string>
     <string name="edatrecomanada">Edat recomanada: </string>
     <string name="datapublicacio">Data publicació: </string>
@@ -133,6 +133,19 @@
     <string name="fragment_JocInfo">info-joc</string>
     <string name="jugadors_minim">Minim jugadors:</string>
     <string name="jugadors_maxim">Màxim jugadors:</string>
+    <string name="jugadors">Jugadors:</string>
+    <string name="icona_crear_joc">Icona crear nou joc</string>
     <string name="zona_en_construcci">Zona en construcció</string>
+    <string name="nom_usuari">Nom</string>
+    <string name="perfil_d_usuari">"Perfil "</string>
+    <string name="sobre_usuari_x">Sobre mi</string>
+    <string name="assoliments_recents">Assoliments recents</string>
+    <string name="Enviar_peticio_amistat">Enviar sol·licitut amistat</string>
+    <string name="compartir_perfil">Compartir perfil</string>
+    <string name="xatejar">Xatejar</string>
+    <string name="medalla_2">Medalla 2</string>
+    <string name="medalla_1">Medalla 1</string>
+    <string name="valoracions">Valoracions</string>
+    <string name="imatge_perfil">Imatge de perfil</string>
 
 </resources>

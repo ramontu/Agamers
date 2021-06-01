@@ -101,7 +101,7 @@
     <string name="delete_jocs_error">Error en eliminar un juego</string>
     <string name="numero_de_jugadors">Número de jugadores:</string>
     <string name="imatge_joc">Imagen juego</string>
-    <string name="nom_joc">Nombre juego</string>
+    <string name="nom_joc">Nombre:</string>
     <string name="max_players">Jugadores máximos</string>
     <string name="min_players">Jugadores mínimos</string>
     <string name="estudio">Companyia</string>
@@ -123,11 +123,26 @@
     <string name="error_create_game">Error en crear un juego, revisa todos los campos</string>
     <string name="jugadors">"Jugadores: "</string>
     <string name="modalitat">"Modalidad: "</string>
-    <string name="plataformes">"Plataformas: "</string>
+    <string name="plataformes">"Plataformas disponibles: "</string>
     <string name="descripcio">"Descripción: "</string>
     <string name="edatrecomanada">"Edad recomendada: "</string>
     <string name="datapublicacio">Fecha publicación:</string>
     <string name="imatge_del_joc">Imagen del juego</string>
     <string name="fragment_JocInfo">info-joc</string>
+    <string name="jugadors_minim">Mínimo jugadores:</string>
+    <string name="jugadors_maxim">"Máximo jugadores: "</string>
+    <string name="icona_crear_joc">Icono crear nuevo juego</string>
     <string name="zona_en_construcci">Zona en construcción</string>
+    <string name="nom_usuari">Nombre</string>
+    <string name="perfil_d_usuari">"Perfil "</string>
+    <string name="sobre_usuari_x">Sobre mi</string>
+    <string name="assoliments_recents">Logros recientes</string>
+    <string name="Enviar_peticio_amistat">Enviar solicitud amistad</string>
+    <string name="compartir_perfil">Compartir perfil</string>
+    <string name="xatejar">Chatear</string>
+    <string name="medalla_2">Medalla 2</string>
+    <string name="medalla_1">Medalla 1</string>
+    <string name="valoracions">Valoracions</string>
+    <string name="imatge_perfil">Imatge de perfil</string>
+
 </resources>

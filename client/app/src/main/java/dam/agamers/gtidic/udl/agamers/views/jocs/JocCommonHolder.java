@@ -31,12 +31,7 @@ public class JocCommonHolder {
 
             this.jocName.setText(j.getName());
 
-            Log.d(TAG, "onBindViewHolder() -> cJocs: " + j.getPoster_url());
-            Picasso.get().load(j.getPoster_url()).into(this.jocPoster);
+            Log.d(TAG, "onBindViewHolder() -> cJocs: " + j.getImage());
+            Picasso.get().load(j.getImage()).into(this.jocPoster); //per obtenir la imatge des de una URL
         }
-
-
-
-
-
 }

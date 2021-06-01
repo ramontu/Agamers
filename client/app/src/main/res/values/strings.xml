@@ -167,7 +167,7 @@
     <string name="compartir">Compartir</string>
     <string name="numero_de_jugadors">Numero de jugadors:</string>
     <string name="imatge_joc">Imatge Joc</string>
-    <string name="nom_joc">Nom Joc:</string>
+    <string name="nom_joc">Nom:</string>
     <string name="max_players">Jugadors màxims</string>
     <string name="min_players">Jugadros mínims</string>
     <string name="estudio">Companyia:</string>
@@ -188,17 +188,17 @@
     <string name="succes_create_game">S\'ha creat un joc</string>
     <string name="error_create_game">"Error en crear un joc, revisa tots els camps. "</string>
     <string name="modalitat">Modalitat:</string>
-    <string name="plataformes">Plataformes: </string>
+    <string name="plataformes">"Plataformes disponibles: "</string>
     <string name="descripcio">Descripció: </string>
     <string name="edatrecomanada">Edat recomanada: </string>
     <string name="datapublicacio">Data publicació: </string>
     <string name="imatge_del_joc">Imatge del joc</string>
-    <string name="fragment_JocInfo">info-joc</string>
+    <string name="fragment_JocInfo">Informació del joc</string>
     <string name="jugadors_minim">Minim jugadors:</string>
     <string name="jugadors_maxim">Màxim jugadors:</string>
     <string name="zona_en_construcci">Zona en construcció</string>
 
-    <string name="Text_bio" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="Text_bio" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="nom_usuari" >nom</string>
     <string name="perfil_d_usuari" >Perfil usuari</string>
     <string name="sobre_usuari_x">Sobre usuari</string>
@@ -211,8 +211,6 @@
     <string name="valoracions">Valoracions</string>
     <string name="imatge_perfil">Imatge de perfil</string>
 
-
-
     <string-array name="categories">
         <item>Mercury</item>
         <item>Venus</item>
@@ -223,5 +221,6 @@
         <item>Uranus</item>
         <item>Neptune</item>
     </string-array>
-
+    <string name="jugadors">Jugadors:</string>
+    <string name="icona_crear_joc">Icona crear nou joc</string>
 </resources>

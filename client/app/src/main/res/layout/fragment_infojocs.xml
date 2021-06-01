@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,193 +30,163 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nom_joc"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
+            <TextView
+                android:id="@+id/label_nomjoc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/nom_joc">
+                android:text="@string/nom_joc" />
 
-                <TextView
-                    android:id="@+id/info_nomjoc"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/nom_joc" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/info_nomjoc"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/nom_joc" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/categoria"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <TextView
+                android:id="@+id/label_categoria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/categoria">
+                android:text="@string/categoria" />
 
-                <TextView
-                    android:id="@+id/info_categoriajoc"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/categoria" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/info_categoriajoc"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/categoria" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/jugadors_minims"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <TextView
+                android:id="@+id/label_jugadorsminim"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/jugadors_minim">
+                android:text="@string/jugadors_minim" />
 
-                <TextView
-                    android:id="@+id/info_jugadorsminim"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/jugadors_minim" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/info_jugadorsminim"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/jugadors_minim" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/jugadors_maxims"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <TextView
+                android:id="@+id/label_jugadorsmaxim"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/jugadors_maxim">
+                android:text="@string/jugadors_maxim" />
 
-                <TextView
-                    android:id="@+id/info_jugadorsmaxim"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/jugadors_maxim" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/info_jugadorsmaxim"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/jugadors_maxim" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/modalitat"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <TextView
+                android:id="@+id/label_modalitat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/modalitat">
+                android:text="@string/modalitat" />
 
-                <TextView
-                    android:id="@+id/info_modalitat"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/modalitat" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/info_modalitat"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/modalitat" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/estudio"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <TextView
+                android:id="@+id/label_estudio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/estudio">
+                android:text="@string/estudio" />
 
-                <TextView
-                    android:id="@+id/info_estudio"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/estudio" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/info_estudio"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/estudio" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/plataformes"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <TextView
+                android:id="@+id/label_plataformes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/plataformes">
+                android:text="@string/plataformes" />
 
-                <TextView
-                    android:id="@+id/info_plataformes"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/plataformes" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/info_plataformes"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/plataformes" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/descripcio"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <TextView
+                android:id="@+id/label_descripcio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/descripcio">
+                android:text="@string/descripcio" />
 
-                <TextView
-                    android:id="@+id/info_descripcio"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/descripcio" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/info_descripcio"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/descripcio" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pegi"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <TextView
+                android:id="@+id/label_edatrecomanada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/edatrecomanada">
+                android:text="@string/edatrecomanada" />
 
-                <TextView
-                    android:id="@+id/info_edatrecomanada"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/edatrecomanada" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/info_edatrecomanada"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/edatrecomanada" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="14dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/datapublicacio"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <TextView
+                android:id="@+id/label_datapublicacio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/datapublicacio">
+                android:text="@string/datapublicacio" />
 
-                <TextView
-                    android:id="@+id/info_datapublicacio"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="@string/datapublicacio" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/info_datapublicacio"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="@string/datapublicacio" />
 
         </LinearLayout>
     </ScrollView>
