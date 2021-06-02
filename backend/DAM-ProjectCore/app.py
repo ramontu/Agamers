@@ -82,8 +82,6 @@ application.add_route("/xats/add_user_to_chat/{chat_id}/{user_id:int}",
 application.add_route("/image/download", common_resources.ResourceDownloadImage())  # TODO provar
 
 # Matching
-application.add_route("/matching/recalculate/{id:int}", matching_resources.Resource_Recalculate_Matching_Score())
-application.add_route("/matching/calculate_score", matching_resources.ResourceMatchingCalculateScore())
 application.add_route("/matching", matching_resources.Resource_Get_Matchs())
 '''
 application.add_route("/events", event_resources.ResourceGetEvents())

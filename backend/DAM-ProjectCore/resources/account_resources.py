@@ -18,10 +18,11 @@ from jinja2 import Environment
 from sqlalchemy.orm.exc import NoResultFound
 
 import messages
-from db.models import User, UserToken, GenereEnum, AccountTypeEnum
+from db.models import User, UserToken, GenereEnum, AccountTypeEnum, Jocs
 from hooks import requires_auth
 from resources import utils
 from resources.base_resources import DAMCoreResource
+from resources.matching.matching_resources import recalculate_score
 from resources.schemas import SchemaUserToken
 
 mylogger = logging.getLogger(__name__)
@@ -415,8 +416,16 @@ class ResourceAccountUpdate(DAMCoreResource):
 
         for i in req.media:
             valor = req.media[i]
-
-            if i == "genere":
+            if i == "games":
+                games = []
+                for game_id in valor:
+                    game = self.db_session.query(Jocs).filter(Jocs.id == game_id).one_or_none()
+                    if game is not None:
+                        games.append(game)
+                current_user.games = games
+                self.db_session.commit()
+                recalculate_score(current_user)
+            elif i == "genere":
                 if valor is "M":
                     valor = GenereEnum.male
                 elif valor is "F":
@@ -428,8 +437,8 @@ class ResourceAccountUpdate(DAMCoreResource):
 
             elif i == "account_type":
                 valor = AccountTypeEnum(valor.upper)
-
-            setattr(current_user, i, valor)
+            else:
+                setattr(current_user, i, valor)
 
         self.db_session.add(current_user)
         self.db_session.commit()

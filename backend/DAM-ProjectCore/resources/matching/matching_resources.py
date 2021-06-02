@@ -23,66 +23,59 @@ mylogger = logging.getLogger(__name__)
 
 #user = [[8, 12], [6, 6], [9, 3], [10, 6], [14, 5]] #jocs en comú, diferencia d'edat
 #result=[0]*len(user)
+def recalculate_score(current_user):
+    import db
+    db_session = db.create_db_session()
+    # Get all users in db different from the one that request
+    users = db_session.query(User).filter(current_user.id != User.id).all()
 
-@falcon.before(requires_auth)
-class ResourceMatchingCalculateScore(DAMCoreResource):
-    def on_post(self, req, resp, *args, **kwargs):
-        super(ResourceMatchingCalculateScore, self).on_post(req, resp, *args, **kwargs)
+    for user in users:
 
-        # Get the user from the token
-        current_user = req.context["auth_user"]
+        # Check if exists a match
+        match = db_session.query(Matching_data).filter(and_(
+            or_(
+                Matching_data.user1 == current_user.id,
+                Matching_data.user2 == current_user.id
+            ),
+            or_(
+                Matching_data.user1 == user.id,
+                Matching_data.user2 == user.id
+            ))).one_or_none()
 
-        # Get all users in db different from the one that request
-        users = self.db_session.query(User).filter(current_user.id != User.id).all()
+        # Calculte diff age
+        if (current_user.birthday > user.birthday):
+            dif_age = relativedelta(current_user.birthday, user.birthday).years
+        else:
+            dif_age = relativedelta(user.birthday, current_user.birthday).years
 
-        for user in users:
+        if (dif_age == 0):
+            dif_age = 1
 
-            # Check if exists a match
-            match = self.db_session.query(Matching_data).filter(and_(
-                                                                 or_(
-                                                                Matching_data.user1 == current_user.id,
-                                                                Matching_data.user2 == current_user.id
-                                                                 ),
-                                                                or_(
-                                                                    Matching_data.user1 == user.id,
-                                                                    Matching_data.user2 == user.id
-                                                                ))).one_or_none()
+        # Calculate common_games
+        setintersection = list(set(current_user.games) & set(user.games))
+        games_common = (len(setintersection))
 
-            # Calculte diff age
-            if (current_user.birthday > user.birthday):
-                dif_age = relativedelta(current_user.birthday, user.birthday).years
-            else:
-                dif_age = relativedelta(user.birthday, current_user.birthday).years
+        if match is None:
+            aux = Matching_data(
+                user1=current_user.id,
+                user2=user.id,
+                common_games=games_common,
+                age_diff=dif_age,
+                score=games_common / dif_age
+            )
 
-            if (dif_age == 0):
-                dif_age = 1
+            db_session.add(aux)
+            db_session.commit()
 
-            # Calculate common_games
-            setintersection = list(set(current_user.games) & set(user.games))
-            games_common = (len(setintersection))
+        else:
+            if match.isAMatch == False:
+                match.common_games = games_common,
+                match.age_diff = dif_age,
+                match.score = games_common / dif_age
 
+            db_session.commit()
 
-            if match is None:
-                aux = Matching_data(
-                    user1 = current_user.id,
-                    user2 = user.id,
-                    common_games = games_common,
-                    age_diff = dif_age,
-                    score = games_common / dif_age
-                )
-
-                self.db_session.add(aux)
-                self.db_session.commit()
-
-            else:
-                if match.isAMatch == False:
-                    match.common_games = games_common,
-                    match.age_diff = dif_age,
-                    match.score = games_common / dif_age
-
-                self.db_session.commit()
-
-
+    db_session.close()
 
 @falcon.before(requires_auth)
 class Resource_Get_Matchs(DAMCoreResource):
@@ -113,41 +106,3 @@ class Resource_Get_Matchs(DAMCoreResource):
 
 
 
-class Resource_Recalculate_Matching_Score(DAMCoreResource):
-    def on_post(self, req, resp, *args, **kwargs):
-        super(Resource_Recalculate_Matching_Score, self).on_post(req, resp, *args, **kwargs)
-
-        if "id" in kwargs:
-            user_who_calculates = self.db_session.query(User).filter(User.id == kwargs["id"]).one()
-            users = self.db_session.query(User).all()
-
-            user_who_game_list = user_who_calculates.games_played
-
-            llista_ids_user = []
-            for i in user_who_game_list:
-                llista_ids_user.append(i.id)
-
-            for i in users:
-                if i.id is not user_who_calculates.id:
-                    llista_games_other = i.games_played
-                    llista_ids_other = []
-                    for o in llista_games_other:
-                        llista_ids_other.append(o.id)
-                    puntuacio = 0
-
-            print(llista_ids)
-
-
-
-            '''
-            result = [0] * len(user)
-            for i in users:
-                jocs_en_comu = user[i][0]
-                dif_edat = user[i][1]
-                if (dif_edat == 0):
-                    dif_edat = 1
-                n = jocs_encomu
-                for in range(2):
-                    jocs_en_comu = jocs_en_comu * n
-                result[i] = jocs_en_comu / dif_edat
-            '''

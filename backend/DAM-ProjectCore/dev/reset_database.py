@@ -54,115 +54,7 @@ if __name__ == "__main__":
     # user_admin.set_password("admin")
     # db_session.add(user_admin)
 
-    '''
-    user_1 = User(
-        created_at=datetime.datetime(2020, 1, 1, 0, 1, 1),
-        username="usuari1",
-        pago=PagoTypeEnum.Freemium,
-        email="usuari1@gmail.com",
-        name="usuari",
-        surname="1",
-        birthdate=datetime.datetime(1989, 1, 1),
-        genere=GenereEnum.male
-    )
-    user_1.set_password("a1s2d3f4")
-    user_1.tokens.append(UserToken(token="656e50e154865a5dc469b80437ed2f963b8f58c8857b66c9bf"))
-    db_session.add(user_1)
 
-    # noinspection PyArgumentList
-    user_2 = User(
-        created_at=datetime.datetime(2020, 1, 1, 0, 1, 1),
-        username="user2",
-        pago=PagoTypeEnum.Premium,
-        email="user2@gmail.com",
-        name="user",
-        surname="2",
-        birthdate=datetime.datetime(2017, 1, 1),
-        genere=GenereEnum.male,
-    )
-    user_2.set_password("r45tgt")
-    user_2.tokens.append(UserToken(token="0a821f8ce58965eadc5ef884cf6f7ad99e0e7f58f429f584b2"))
-    db_session.add(user_2)
-<<<<<<< Updated upstream
-    '''
-
-
-=======
-'''
-    # -------------------- CREATE USERS PREMIUM I FREMIUM --------------------
-    for i in range(0, 10):
-        f = str(i) + "usfree"
-
-        # noinspection PyArgumentList
-        user_free = User(
-            username=f,
-            pago=PagoTypeEnum.Freemium,
-            email=f+"@gmail.com",
-            name=f,
-            surname="free",
-            birthdate=datetime.datetime(1989, 1, 1),
-            genere=GenereEnum.male
-        )
-        user_free.set_password(f+"pass")
-        db_session.add(user_free)
-
-        p = str(i) + "uspro"
-        # noinspection PyArgumentList
-        user_pre = User(
-            username=p,
-            pago=PagoTypeEnum.Premium,
-            email=p+"@gmail.com",
-            name=p+"user",
-            surname="pro",
-            birthdate=datetime.datetime(1989, 1, 1),
-            genere=GenereEnum.male
-        )
-        user_pre.set_password(p+"pass")
-        db_session.add(user_pre)
->>>>>>> Stashed changes
-    '''
-    # -------------------- CREATE EVENTS --------------------
-
-    day_period = datetime.timedelta(days=1)
-
-    event_lanparty = Event(
-        created_at=datetime.datetime.now(),
-        name="event3",
-        description="desc3",
-        type=EventTypeEnum.lanparty,
-        start_date=datetime.datetime.now(),
-        finish_date=datetime.datetime.now() + (day_period * 1),
-        owner_id=1,
-        registered=[]
-    )
-    db_session.add(event_lanparty)
-
-    event_hackatoon = Event(
-        created_at=datetime.datetime.now(),
-        name="event1",
-        description="description 1",
-        type=EventTypeEnum.hackathon,
-        start_date=datetime.datetime.now() + (day_period * 3),
-        finish_date=datetime.datetime.now() + (day_period * 5),
-        owner_id=0,
-        poster="logo.png",
-        registered=[user_1]
-    )
-
-    db_session.add(event_hackatoon)
-
-    event_livecoding = Event(
-        created_at=datetime.datetime.now(),
-        name="event2",
-        description="descr2",
-        type=EventTypeEnum.livecoding,
-        start_date=datetime.datetime.now() - (day_period * 5),
-        finish_date=datetime.datetime.now() - (day_period * 4),
-        owner_id=1,
-        registered=[user_1,user_2]
-    )
-    db_session.add(event_livecoding)
-    '''
 
     mylogger.info("Creating default categories...")
 
@@ -278,15 +170,6 @@ if __name__ == "__main__":
 
 
 
-    match = Matching_data(
-        user1=2,
-        user2=3,
-        common_games=3,
-        age_diff=1,
-        score=1.3,
-        isAMatch=True
-    )
-    db_session.add(match)
     db_session.commit()
 
 
