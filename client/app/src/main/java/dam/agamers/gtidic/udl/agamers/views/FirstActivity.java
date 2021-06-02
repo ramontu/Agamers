@@ -87,7 +87,6 @@ public class FirstActivity extends CommonActivity {
         db = FirebaseDatabase.getInstance();
         singInFirebase();
 
-
     }
 
     public void onBackPressed() {

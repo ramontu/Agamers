@@ -36,7 +36,7 @@ public class LogInActivity extends CommonActivity {
                 showInfoUser(getCurrentFocus(), getString(R.string.login_error));
             }
             else {
-                showInfoUser(getCurrentFocus(), getString(R.string.login_succes));
+                showInfoUser(getCurrentFocus(), getString(R.string.login_succes)); 
                 goTo(FirstActivity.class);
             }
         });

@@ -4,14 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,12 +17,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
-import java.util.Objects;
 
-import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter;
-import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter2;
+import dam.agamers.gtidic.udl.agamers.adapters.ChatAdapter;
+import dam.agamers.gtidic.udl.agamers.models.Chat;
 import dam.agamers.gtidic.udl.agamers.models.Message;
-import dam.agamers.gtidic.udl.agamers.views.xats.XatsFragment;
+import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
 public class allxatsfragment extends Fragment {
 
@@ -35,9 +32,9 @@ public class allxatsfragment extends Fragment {
     private RecyclerView recyclerView;
     private View root;
 
-    private MessageAdapter2 adapter2;
+    private ChatAdapter adapter2;
 
-    Button button;
+
 
     //LAYOUT
     LinearLayoutManager manager;
@@ -47,7 +44,7 @@ public class allxatsfragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(AllXatsViewModel.class);
-
+        mViewModel.account = new AccountRepo().getmAccountInfo();
         root = inflater.inflate(R.layout.all_xats_fragment, container, false);
 
         initView();
@@ -59,10 +56,10 @@ public class allxatsfragment extends Fragment {
         recyclerView = root.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mDatabase = FirebaseDatabase.getInstance("https://agamers-49311-default-rtdb.europe-west1.firebasedatabase.app/").getReference(); //FER axo a tot arreu
-        mViewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
+        mViewModel.getChats().observe(getViewLifecycleOwner(), new Observer<List<Chat>>() {
             @Override
-            public void onChanged(List<Message> messages) {
-                recyclerView.setAdapter(new MessageAdapter2(getContext(), messages));
+            public void onChanged(List<Chat> chats) {
+                recyclerView.setAdapter(new ChatAdapter(getContext(), chats));
             }
         });
 
@@ -112,6 +109,7 @@ public class allxatsfragment extends Fragment {
 
          */
 
+        /*
         Message a = new Message();
         a.setText("hola prova des de android");
         a.setName("Ramon Trilla Urtreaga");
@@ -123,6 +121,8 @@ public class allxatsfragment extends Fragment {
 
         mDatabase.child("messages").child(a.getId()).setValue(a);
 
+
+         */
         /*
         DatabaseReference
         // Read from the database

@@ -47,6 +47,7 @@ class ResourceCreateUserToken(DAMCoreResource):
         if (current_user is not None) and (current_user.check_password(auth_password)):
             current_token = current_user.create_token()
             try:
+                self.db_session.add(current_token)
                 self.db_session.commit()
                 resp.media = {"token": current_token.token}
                 resp.status = falcon.HTTP_200

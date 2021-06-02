@@ -11,6 +11,10 @@ import dam.agamers.gtidic.udl.agamers.utils.Utils;
 
 public class Account {
 
+
+
+    @SerializedName("id")
+    private int id;
     @SerializedName("created_at")
     private String created_at;
     @SerializedName("username")
@@ -49,6 +53,9 @@ public class Account {
 
 
     private File imatge;
+
+    public Account() {
+    }
 
     public File getImatge() {
         return imatge;
@@ -122,6 +129,14 @@ public class Account {
 
     public void setFirebase_credential(String firebase_credential) {
         this.firebase_credential = firebase_credential;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

@@ -241,7 +241,7 @@ class User(SQLAlchemyBase, JSONModel):
                        )
 
     id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, default=datetime.datetime.now, nullable=False,)
+    created_at = Column(DateTime, default=datetime.datetime.now, nullable=False, )
     username = Column(Unicode(50), nullable=False, unique=True)
     account_type = Column(Enum(AccountTypeEnum), default=AccountTypeEnum.free)
     # following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #TODO no funciona
@@ -322,6 +322,7 @@ class User(SQLAlchemyBase, JSONModel):
     @hybrid_property
     def json_model(self):
         return {
+            "id": self.id,
             "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
             "username": self.username,
             "account_type": self.account_type.value,

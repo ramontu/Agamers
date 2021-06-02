@@ -8,7 +8,8 @@ public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
     // Producción
-    private static final String BASE_URL = "http://192.168.101.86:8000";
+    //private static final String BASE_URL = "http://192.168.101.86:8000";
+    private static final String BASE_URL = "http://10.0.2.2:8000"; //si executo amb emulador i amb docker
 
     // Test en mi pc con docker levantado
     // Esta ip se consigue compartiendo internet con el tel. y cmd ipconfig
