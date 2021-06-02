@@ -25,9 +25,9 @@ mylogger = logging.getLogger(__name__)
 #result=[0]*len(user)
 
 @falcon.before(requires_auth)
-class ResourceMatchingTest(DAMCoreResource):
+class ResourceMatchingCalculateScore(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
-        super(ResourceMatchingTest, self).on_post(req, resp, *args, **kwargs)
+        super(ResourceMatchingCalculateScore, self).on_post(req, resp, *args, **kwargs)
 
         # Get the user from the token
         current_user = req.context["auth_user"]
