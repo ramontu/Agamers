@@ -83,9 +83,43 @@ if __name__ == "__main__":
     user_2.set_password("r45tgt")
     user_2.tokens.append(UserToken(token="0a821f8ce58965eadc5ef884cf6f7ad99e0e7f58f429f584b2"))
     db_session.add(user_2)
+<<<<<<< Updated upstream
     '''
 
 
+=======
+'''
+    # -------------------- CREATE USERS PREMIUM I FREMIUM --------------------
+    for i in range(0, 10):
+        f = str(i) + "usfree"
+
+        # noinspection PyArgumentList
+        user_free = User(
+            username=f,
+            pago=PagoTypeEnum.Freemium,
+            email=f+"@gmail.com",
+            name=f,
+            surname="free",
+            birthdate=datetime.datetime(1989, 1, 1),
+            genere=GenereEnum.male
+        )
+        user_free.set_password(f+"pass")
+        db_session.add(user_free)
+
+        p = str(i) + "uspro"
+        # noinspection PyArgumentList
+        user_pre = User(
+            username=p,
+            pago=PagoTypeEnum.Premium,
+            email=p+"@gmail.com",
+            name=p+"user",
+            surname="pro",
+            birthdate=datetime.datetime(1989, 1, 1),
+            genere=GenereEnum.male
+        )
+        user_pre.set_password(p+"pass")
+        db_session.add(user_pre)
+>>>>>>> Stashed changes
     '''
     # -------------------- CREATE EVENTS --------------------
 

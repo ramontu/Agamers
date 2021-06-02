@@ -542,12 +542,21 @@ class Peticionsamistat(SQLAlchemyBase, JSONModel):
 class Matching_data(SQLAlchemyBase, JSONModel):
     __tablename__ = "matching_data"
 
+<<<<<<< Updated upstream
     user1 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False,primary_key=True)
     user2 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False,primary_key=True)
     common_games = Column(Integer, nullable=True, default=0)
     age_diff = Column(Integer, nullable=True, default=0)
     score = Column(Float, nullable=True, default=0)
     isAMatch =Column(Boolean, nullable=True, default=False)
+=======
+    id = Column(Integer, primary_key=True)
+    user1 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    user2 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    common_games = Column(Integer, nullable=True, default=0)
+    dif_edat = Column(Integer, nullable=True, default=0)
+    score = Column(Float, nullable=True, default=0)
+>>>>>>> Stashed changes
 
     '''
         Games_User = Table("games_user", SQLAlchemyBase.metadata,
