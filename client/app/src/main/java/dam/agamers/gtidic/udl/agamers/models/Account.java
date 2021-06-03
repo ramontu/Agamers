@@ -1,5 +1,8 @@
 package dam.agamers.gtidic.udl.agamers.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.File;
@@ -9,7 +12,7 @@ import dam.agamers.gtidic.udl.agamers.models.enums.AccountTypeEnum;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
 import dam.agamers.gtidic.udl.agamers.utils.Utils;
 
-public class Account {
+public class Account implements Parcelable {
 
     @SerializedName("created_at")
     private String created_at;
@@ -45,7 +48,32 @@ public class Account {
     private String level;
 
 
+    public Account(){
 
+    }
+    protected Account(Parcel in){
+        if (in.readByte() == 0) {
+            username = null;
+        } else {
+            username = in.readString();
+        }
+        username = in.readString();
+        level = in.readString();
+        common_games = in.readString();
+        photo = in.readString();
+        birthday = in.readString();
+    }
+    public static final Creator<Account> CREATOR = new Creator<Account>() {
+        @Override
+        public Account createFromParcel(Parcel in) {
+            return new Account(in);
+        }
+
+        @Override
+        public Account[] newArray(int size) {
+            return new Account[size];
+        }
+    };
     private File imatge;
 
     public File getImatge() {
@@ -114,11 +142,44 @@ public class Account {
     public String getLevel() { return level; }
     public void setLevel(String level) { this.level = level; }
 
+    @Override
+    public boolean equals(Object o) {
+
+        // If the object is compared with itself then return true
+        if (o == this) {
+            return true;
+        }
+
+       /* Check if o is an instance of Complex or not
+         "null instanceof [type]" also returns false */
+        if (!(o instanceof Account)) {
+            return false;
+        }
+
+        // typecast o to Complex so that we can compare data members
+        Account e = (Account) o;
+
+        // Compare the data members and return accordingly
+        return this.name.equals(e.getName());
+    }
 
     @Override
     public String toString(){
         return this.name + " " + this.surname  + " " + this.username  + " Birthday:" + this.birthday  + " " + this.email + " " + this.password;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.username);
+        dest.writeString(this.level);
+        dest.writeString(this.birthday);
+        dest.writeString(this.common_games);
+        dest.writeString(this.photo);
+    }
 
 }

@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
 
-public class MatchDiffCallBack extends DiffUtil.ItemCallback<Account> {
+public class MatchDiffCallback extends DiffUtil.ItemCallback<Account> {
     @Override
     public boolean areItemsTheSame(@NonNull Account oldItem, @NonNull Account newItem) {
         return oldItem.getName().equals(newItem.getName());
@@ -13,6 +13,6 @@ public class MatchDiffCallBack extends DiffUtil.ItemCallback<Account> {
 
     @Override
     public boolean areContentsTheSame(@NonNull Account oldItem, @NonNull Account newItem) {
-        //return oldItem.equals(newItem);
+        return oldItem.equals(newItem);
     }
 }
