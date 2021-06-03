@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,8 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.adapters.ChatAdapter;
+import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.Chat;
 import dam.agamers.gtidic.udl.agamers.models.Message;
+import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
 public class allxatsfragment extends Fragment {
@@ -44,7 +47,18 @@ public class allxatsfragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(AllXatsViewModel.class);
-        mViewModel.account = new AccountRepo().getmAccountInfo();
+        if (!PreferencesProvider.providePreferences().contains("id")){
+            System.out.println("Obtenint accountinfo");
+            AccountRepo a = new AccountRepo();
+            MutableLiveData<Account> b = a.getmAccountInfo();
+            b.observe(getViewLifecycleOwner(), new Observer<Account>() {
+                @Override
+                public void onChanged(Account account) {
+                    PreferencesProvider.providePreferences().edit().putInt("id", account.getId()).commit();
+                }
+            });
+
+        }
         root = inflater.inflate(R.layout.all_xats_fragment, container, false);
 
         initView();

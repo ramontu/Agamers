@@ -20,6 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.Chat;
 import dam.agamers.gtidic.udl.agamers.models.Message;
+import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 import dam.agamers.gtidic.udl.agamers.repositories.ChatRepo;
 
@@ -41,6 +42,9 @@ public class AllXatsViewModel extends ViewModel {
 
     public MutableLiveData<Account> account;
 
+    List<DataSnapshot> messages_snapshot = new ArrayList<>();
+
+    private int id;
 
     public AllXatsViewModel(){
         accountRepo = new AccountRepo();
@@ -49,74 +53,35 @@ public class AllXatsViewModel extends ViewModel {
         chatList = new ArrayList<Chat>();
     }
 
-    private void loadmessages(){
+    //FUNCIONA
+    private void load_my_chats(){
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                chatList = new ArrayList<>();
-                List<DataSnapshot> messages_snapshot = new ArrayList<>();
+                messages_snapshot = new ArrayList<>();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    for (DataSnapshot chat : snapshot1.getChildren()) {
 
-                for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    for (DataSnapshot chat : snapshot1.getChildren()){
-                        //TODO abans de fer res comprovar que el teu id esta a participants
-
-
-                        Double id = (double) account.getValue().getId();
+                        //Obtenim l'id de l'usuari per a que es pugui comprovar si esta en aquell xat o no
+                        id =  PreferencesProvider.providePreferences().getInt("id", 0);
                         boolean id_ok = false;
 
-                        for (DataSnapshot a : chat.child("Participants").getChildren()){
-                            //TODO els obte ok
-                            System.out.println("Ids"+a.getValue());
-                            if (a.getValue() == id){
+                        for (DataSnapshot a : chat.child("Participants").child("ids_name").getChildren()) {
+                            System.out.println("Ids" + a.getKey()); //TODO debug
+                            System.out.println("MyID: "+id); //TODO debug
+                            if (a.getKey().toString().equals(String.valueOf(id))) {
                                 id_ok = true;
                                 System.out.println("He trobat un xat meu");
                             }
                         }
 
-                        if (id_ok){
+                        if (id_ok) {
                             messages_snapshot.add(chat);
                         }
-
-
-                        Chat m = new Chat();
-
-                        //Assignació del nom del xat, si en te significa que es una crew,
-                        //sino es tracta de un xat entre 2 usuaris
-                        if (chat.child("Name").exists()){
-                            m.setName((String) chat.child("Name").getValue());
-
-                            //Assignació de foto si en te
-                            if (chat.child("ImageUrl").exists()){
-                                m.setImageUrl((String) chat.child("ImageUrl").getValue());
-                            }
-                        }
-                        else {
-                            //TODO descarregar ids dels participants de firebase
-                            //TODO mirar quin dels 2 ids correspon a l'actual i quin a l'altre
-                            //TODO descarregar els username i foto de l'altre
-                            //Assignar el nom del xat i la photo de l'altre usuari
-                        }
-
-
-
-
-                        for (DataSnapshot messages : chat.child("Messages").getChildren()){
-                            Message me = new Message();
-                            me.setName((String) messages.child("senderName").getValue());
-                            if (messages.child("text").exists()){
-                                me.setText((String) messages.child("text").getValue());
-                                //TODO debug
-                                System.out.println(me.getText());
-                            }
-
-                            m.getMessages().add(me);
-                        }
-
-                        chatList.add(m);
                     }
                 }
-                chatListUpdated.setValue(chatList);
+                poces_chats();
             }
 
             @Override
@@ -129,10 +94,54 @@ public class AllXatsViewModel extends ViewModel {
     public LiveData<List<Chat>> getChats(){
         if (chatListUpdated == null){
             chatListUpdated = new MutableLiveData<List<Chat>>();
-            loadmessages();
+            load_my_chats();
         }
         return chatListUpdated;
     }
+
+    private void poces_chats() {
+        chatList = new ArrayList<>();
+
+
+        for (DataSnapshot a : messages_snapshot) {
+            Chat m = new Chat();
+            //Assignació del nom del xat, si en te significa que es una crew,
+            //sino es tracta de un xat entre 2 usuaris
+
+            if (a.child("Name").exists()){
+                m.setName((String) a.child("Name").getValue());
+
+                //Assignació de foto si en te
+                if (a.child("ImageUrl").exists()){
+                    m.setImageUrl((String) a.child("ImageUrl").getValue());
+                }
+            }
+            else {
+                for (DataSnapshot participants : a.child("Participants").child("ids_name").getChildren()){
+                    if (!participants.getKey().equals(String.valueOf(id))){
+                        m.setName((String) participants.getValue());
+                        //TODO descarregar la imatge des de publicprofile i assignar-la com a imatge
+
+                    }
+                }
+            }
+            /*
+        for (DataSnapshot messages : chat.child("Messages").getChildren()){
+            Message me = new Message();
+            me.setName((String) messages.child("senderName").getValue());
+            if (messages.child("text").exists()){
+                me.setText((String) messages.child("text").getValue());
+                //TODO debug
+                System.out.println(me.getText());
+            }
+
+            m.getMessages().add(me);
+
+
+             */
+                chatList.add(m);
+        }
+        chatListUpdated.setValue(chatList);
 
     /*
     public LiveData<List<Chat>> getMessage(){
@@ -144,6 +153,7 @@ public class AllXatsViewModel extends ViewModel {
     }
 
      */
+    }
 
 
 }
