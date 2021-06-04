@@ -309,6 +309,8 @@ class User(SQLAlchemyBase, JSONModel):
             "image": self.photo,
             "location": self.location,
             "jocs": [games.json_model for games in self.games],
+            "level": self.points,
+
         }
 
     # TODO mirar si funciona

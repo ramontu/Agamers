@@ -13,6 +13,7 @@ from sqlalchemy.sql import text
 import db
 import settings
 from db.models import SQLAlchemyBase, User, UserToken, AccountTypeEnum, GenereEnum, Jocs, Platforms, Categories, Matching_data
+from resources.matching.matching_resources import recalculate_score
 from settings import DEFAULT_LANGUAGE
 
 # LOGGING
@@ -229,7 +230,8 @@ if __name__ == "__main__":
             surname="free",
             birthday=datetime.datetime(rand.randint(1980,2006), 1, 1),
             genere=GenereEnum.male,
-            games= rand.sample(jocs, rand.randint(1,3))
+            games= rand.sample(jocs, rand.randint(1,3)),
+            points=rand.randint(1, 50)
         )
         user_free.set_password(f + "pass")
         user_free.tokens.append(UserToken(token=''.join([rand.choice( string.ascii_letters + string.digits) for n in range(50)])))
@@ -249,5 +251,7 @@ if __name__ == "__main__":
 
     db_session.commit()
 
-
+    for u in users:
+        recalculate_score(u)
+    db_session.commit()
     db_session.close()

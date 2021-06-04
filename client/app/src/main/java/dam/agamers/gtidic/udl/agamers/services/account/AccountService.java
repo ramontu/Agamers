@@ -57,11 +57,9 @@ public interface AccountService {
     Call<ResponseBody> setPassword(@Body Account account);
 
 
-    @GET("matching")
+    @GET("/matching")
     Call<List<Account>> getInfoMatch();
 
-    @GET("/matching")
-    Call<Account> infoMatch();
 
 
 

@@ -78,7 +78,4 @@ public class AccountServiceImpl implements AccountService {
 
     public Call<List<Account>> getInfoMatch() { return retrofit.create(AccountService.class).getInfoMatch(); }
 
-    public Call<Account> infoMatch() {
-        return retrofit.create(AccountService.class).infoMatch();
-    }
 }

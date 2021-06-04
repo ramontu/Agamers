@@ -47,6 +47,6 @@ public class allxatsfragment extends Fragment {
 
         //Iniciar sessió a la bbdd
         //RETORNA NULL si no ha acoseguit entrar a la bbdd i el user si si que ha entrat
-        auth = mViewModel.signIn_Firebase();
+        //auth = mViewModel.signIn_Firebase();
     }
 }

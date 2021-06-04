@@ -21,9 +21,9 @@ public class CommonActivity extends AppCompatActivity {
     }
 
     public void showInfoUser(View view, String string){
-        Snackbar snackbar;
-        snackbar = Snackbar.make(view, string,5000);
-        snackbar.show();
+        //Snackbar snackbar;
+        //snackbar = Snackbar.make(view, string,5000);
+        //snackbar.show();
     }
 
 }

@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.models.enums.AccountTypeEnum;
 import dam.agamers.gtidic.udl.agamers.models.enums.GenereEnum;
@@ -42,8 +43,8 @@ public class Account implements Parcelable {
     private String recovery_code;
     @SerializedName("location")
     private String location;
-    @SerializedName("common_games")
-    private String common_games;
+    @SerializedName("jocs")
+    private List<Jocs> common_games;
     @SerializedName("level")
     private String level;
 
@@ -59,7 +60,6 @@ public class Account implements Parcelable {
         }
         username = in.readString();
         level = in.readString();
-        common_games = in.readString();
         photo = in.readString();
         birthday = in.readString();
     }
@@ -133,8 +133,8 @@ public class Account implements Parcelable {
     public String getRecovery_code() { return recovery_code; }
     public void setRecovery_code(String recovery_code) { this.recovery_code = recovery_code; }
 
-    public String getCommon_games() { return common_games; }
-    public void setCommon_games(String common_games) { this.common_games = common_games; }
+    public List<Jocs> getCommon_games() { return common_games; }
+    public void setCommon_games(List<Jocs> common_games) { this.common_games = common_games; }
 
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }
@@ -178,7 +178,6 @@ public class Account implements Parcelable {
         dest.writeString(this.username);
         dest.writeString(this.level);
         dest.writeString(this.birthday);
-        dest.writeString(this.common_games);
         dest.writeString(this.photo);
     }
 

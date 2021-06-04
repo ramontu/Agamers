@@ -30,8 +30,8 @@ public class MatchCommonHolder {
     }
     public void bindHolder(Account a){
         Log.d(TAG, "bindHolder()->Account:" +a);
-        this.matchName.setText(a.getName());
-        this.matchCommonGames.setText(a.getCommon_games());
+        this.matchName.setText(a.getUsername());
+        this.matchCommonGames.setText(""+a.getCommon_games().size());
         this.matchLevel.setText(a.getLevel());
         this.matchBday.setText(a.getBirthday());
         Log.d(TAG, "onBindViewHolder()->Account:" +a.getPhoto());

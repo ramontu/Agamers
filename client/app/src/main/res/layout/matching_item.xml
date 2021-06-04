@@ -11,10 +11,11 @@
 
         <TextView
             android:id="@+id/textName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono"
             android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
@@ -24,7 +25,7 @@
 
         <TextView
             android:id="@+id/textAge"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/roboto_mono"
@@ -37,7 +38,7 @@
 
         <TextView
             android:id="@+id/textCommonGames"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono"
             android:textAlignment="viewStart"
@@ -48,20 +49,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textLevel"
             app:layout_constraintVertical_bias="0.104" />
 
-        <TextView
-            android:id="@+id/textLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_mono"
-            android:textAlignment="viewStart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textCommonGames"
-            app:layout_constraintVertical_bias="0.122" />
-
-    <ImageView
+        <ImageView
         android:id="@+id/imageUser"
         android:layout_width="237dp"
         android:layout_height="280dp"
@@ -79,10 +67,10 @@
             android:text="@string/v"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.273"
+            app:layout_constraintHorizontal_bias="0.3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textLevel"
-            app:layout_constraintVertical_bias="0.504" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/next"
@@ -91,7 +79,22 @@
             android:text="@string/x"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.369"
             app:layout_constraintStart_toEndOf="@+id/okay"
-            app:layout_constraintTop_toBottomOf="@+id/textLevel" />
+            app:layout_constraintTop_toBottomOf="@+id/textLevel"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textLevel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textAge"
+            app:layout_constraintVertical_bias="0.038" />
 
     </androidx.constraintlayout.widget.ConstraintLayout> </layout>

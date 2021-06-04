@@ -369,25 +369,6 @@ public class AccountRepo {
     }
 
     public MutableLiveData<List<Account>> getmResponseMatch() { return mResponseMatch; }
-
-    public void infoMatch(){
-        Log.d(TAG, "descarregar info");
-        accountService.infoMatch().enqueue(new Callback<Account>() {
-            @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                mDescarregarInfoMatch.setValue(response.body());
-                Log.d(TAG, "DownloadInfo() : "+response.code() +"match:"+response.body());
-            }
-
-            @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-                Log.d(TAG, "DownloadInfo() : Error"+ t.getMessage());
-                t.printStackTrace();
-            }
-        });
-    }
-
-    public MutableLiveData<Account> getmDescarregarInfoMatch() {return mDescarregarInfoMatch; }
 }
 
 

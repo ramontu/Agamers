@@ -13,6 +13,7 @@ import messages
 from db.models import User, GenereEnum, AccountTypeEnum, Matching_data
 from hooks import requires_auth
 from resources.base_resources import DAMCoreResource
+from resources.matching.matching_resources import recalculate_score
 from resources.schemas import SchemaRegisterUser
 
 
@@ -50,6 +51,7 @@ class ResourceRegisterUser(DAMCoreResource):
 
             try:
                 self.db_session.commit()
+                recalculate_score(aux_user)
             except IntegrityError:
                 raise falcon.HTTPBadRequest(description=messages.user_exists)
 

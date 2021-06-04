@@ -15,7 +15,7 @@ public class ServiceInterceptor implements Interceptor {
 
         Request request = chain.request();
         String token = PreferencesProvider.providePreferences().getString("token","");
-
+        System.out.println(token);
         if(request.header("No-Authentication") == null){
             request = request.newBuilder()
                     .addHeader("Authorization", token)
