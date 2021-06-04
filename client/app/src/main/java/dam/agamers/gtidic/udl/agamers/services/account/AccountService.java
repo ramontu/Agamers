@@ -2,6 +2,8 @@ package dam.agamers.gtidic.udl.agamers.services.account;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+
 import dam.agamers.gtidic.udl.agamers.models.Account;
 
 import dam.agamers.gtidic.udl.agamers.models.Token;
@@ -55,7 +57,11 @@ public interface AccountService {
     Call<ResponseBody> setPassword(@Body Account account);
 
 
+    @GET("matching")
+    Call<List<Account>> getInfoMatch();
 
+    @GET("/matching")
+    Call<Account> infoMatch();
 
 
 

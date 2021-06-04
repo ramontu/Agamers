@@ -98,11 +98,14 @@ class Resource_Get_Matchs(DAMCoreResource):
         # all() retorna tot aixi marquem que retorni 3 maxim -> limit(3)
         for c in cursor.limit(3):
             if c.user1 != current_user.id:
-                matchs.append(c.user1)
+                userinf = self.db_session.query(User).filter(User.id == c.user1).one()
+                matchs.append(userinf.public_profile)
             else:
-                matchs.append(c.user2)
+                userinf = self.db_session.query(User).filter(User.id == c.user2).one()
+                matchs.append(userinf.public_profile)
 
         print(matchs)
+        resp.media=matchs
 
 
 

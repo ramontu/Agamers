@@ -2,6 +2,8 @@ package dam.agamers.gtidic.udl.agamers.services.account;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.Token;
 import dam.agamers.gtidic.udl.agamers.network.RetrofitClientInstance;
@@ -74,5 +76,9 @@ public class AccountServiceImpl implements AccountService {
         return retrofit.create(AccountService.class).setPassword(account);
     }
 
+    public Call<List<Account>> getInfoMatch() { return retrofit.create(AccountService.class).getInfoMatch(); }
 
+    public Call<Account> infoMatch() {
+        return retrofit.create(AccountService.class).infoMatch();
+    }
 }

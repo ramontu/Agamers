@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Account;
@@ -42,6 +43,8 @@ public class AccountRepo {
     private MutableLiveData<Boolean> mUpdateOk;
     private MutableLiveData<Boolean> mSignUpOk;
     private MutableLiveData<Boolean> mDeleteTokenOk;
+    private MutableLiveData<List<Account>> mResponseMatch;
+    private MutableLiveData<Account> mDescarregarInfoMatch;
 
 
 
@@ -58,6 +61,8 @@ public class AccountRepo {
         this.mUpdateOk = new MutableLiveData<>();
         this.mSignUpOk = new MutableLiveData<>();
         this.mDeleteTokenOk = new MutableLiveData<>();
+        this.mResponseMatch = new MutableLiveData<>();
+        this.mDescarregarInfoMatch = new MutableLiveData<>();
     }
 
     public void registerAccount(Account account){
@@ -338,6 +343,51 @@ public class AccountRepo {
     public MutableLiveData<Boolean> getmDeleteTokenOk() {
         return mDeleteTokenOk;
     }
+
+
+    public void getInfoMatch() {
+        this.accountService.getInfoMatch().enqueue(new Callback<List<Account>>() {
+            @Override
+            public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
+                int code = response.code();
+
+                if (code == 200) {
+                    Log.d("AccountRepo", "getInfoMatch() -> ha rebut el codi: " + code);
+                    List<Account> match = response.body();
+                    mResponseMatch.setValue(match);
+                } else {
+                    Log.d("AccountRepo", "getInfoMatch() -> ha rebut el codi: " + code);
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<List<Account>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public MutableLiveData<List<Account>> getmResponseMatch() { return mResponseMatch; }
+
+    public void infoMatch(){
+        Log.d(TAG, "descarregar info");
+        accountService.infoMatch().enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                mDescarregarInfoMatch.setValue(response.body());
+                Log.d(TAG, "DownloadInfo() : "+response.code() +"match:"+response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {
+                Log.d(TAG, "DownloadInfo() : Error"+ t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public MutableLiveData<Account> getmDescarregarInfoMatch() {return mDescarregarInfoMatch; }
 }
 
 
