@@ -10,18 +10,19 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from resources import utils
 import messages
-from db.models import User, GenereEnum, AccountTypeEnum
+from db.models import User, GenereEnum, AccountTypeEnum, Matching_data
 from hooks import requires_auth
 from resources.base_resources import DAMCoreResource
 from resources.schemas import SchemaRegisterUser
 
+
 mylogger = logging.getLogger(__name__)
+
 
 
 class ResourceGetUserProfile(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
         super(ResourceGetUserProfile, self).on_get(req, resp, *args, **kwargs)
-
         if "username" in kwargs:
             try:
                 aux_user = self.db_session.query(User).filter(User.username == kwargs["username"]).one()
@@ -70,4 +71,15 @@ class DownloadUserImage(DAMCoreResource):
         # Run the common part for reading
         file = utils.get_static_media_file(current_user.photo_path)
         resp.media = file
+        resp.status = falcon.HTTP_200
+
+
+@falcon.before(requires_auth)
+class DownloadMenuInfo(DAMCoreResource):
+    def on_get(self, req, resp, *args, **kwargs):
+        super(DownloadMenuInfo, self).on_get(req, resp, *args, **kwargs)
+        current_user = req.context["auth_user"]
+
+        file = utils.get_static_media_file(current_user.photo_path)
+        resp.media = [file, current_user.username]
         resp.status = falcon.HTTP_200

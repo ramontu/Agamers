@@ -6,22 +6,26 @@ import datetime
 import enum
 import logging
 import os
-from _operator import and_
 from builtins import getattr
+from collections import Set
 from urllib.parse import urljoin
 
 import falcon
 from passlib.hash import pbkdf2_sha256
-from sqlalchemy import Column, Date, DateTime, Enum, ForeignKey, Integer, Unicode, \
-    UnicodeText, Table, type_coerce, case, Boolean
+from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, Unicode, Float,\
+    UnicodeText, Table, Boolean, ARRAY
+from sqlalchemy.dialects import postgresql
+from sqlalchemy.dialects.mysql import SET
+from sqlalchemy.dialects.postgresql import array
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql.sqltypes import SchemaType
 from sqlalchemy_i18n import make_translatable
 
 import messages
-from db.json_model import JSONModel
 import settings
+from db.json_model import JSONModel
 
 mylogger = logging.getLogger(__name__)
 
@@ -173,6 +177,12 @@ class Event(SQLAlchemyBase, JSONModel): #TODO modificar per als tornejos
         }
 '''
 
+# Si necessiteu guardar alguna cosa extra de la relació jugador x amb joc z modificar taula per classe
+associationUserGames = Table("UserGames", SQLAlchemyBase.metadata,
+      Column( "user_id",Integer, ForeignKey("users.id")),
+      Column( "game_id",Integer, ForeignKey("jocs.id"))
+     )
+
 
 class UserToken(SQLAlchemyBase):
     __tablename__ = "users_tokens"
@@ -180,6 +190,23 @@ class UserToken(SQLAlchemyBase):
     id = Column(Integer, primary_key=True)
     token = Column(Unicode(50), nullable=False, unique=True)
     user_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    user = relationship("User", back_populates="tokens")
+
+
+class Xats(SQLAlchemyBase):
+    __tablename__ = "all_chats"
+
+    id = Column(Integer, primary_key=True)
+    created_at = Column(DateTime, nullable=False, default=datetime.datetime.now)
+    firebase_chat_id = Column(UnicodeText, nullable=False)
+
+    @hybrid_property
+    def json_model(self):
+        return {
+            "id": self.id,
+            "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
+            "firebase_chat_id": self.firebase_chat_id
+        }
 
 
 # Forums seguits TODO
@@ -214,30 +241,57 @@ Banned_Forums   = Table("b_forums", SQLAlchemyBase.metadata,
 class User(SQLAlchemyBase, JSONModel):
     __tablename__ = "users"
 
+    Chats_User = Table("chats_user", SQLAlchemyBase.metadata,
+                       Column("user_id", Integer,
+                              ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
+                              nullable=False),
+                       Column("xats_id", Integer,
+                              ForeignKey("all_chats.id", onupdate="CASCADE", ondelete="CASCADE"),
+                              nullable=False),
+                       )
+
+    '''
+    Games_User = Table("games_user", SQLAlchemyBase.metadata,
+                       Column("user_id", Integer,
+                              ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
+                              nullable=False),
+                       Column("game_id", Integer,
+                              ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
+                              nullable=False),
+                       Column("common_games", ARRAY(Integer,dimensions=20),), #Fer amb un relationship en una classe
+                       Column("age_diference", Integer, ),
+                       Column("distance", Integer, ),  # TODO pel futur
+                       )
+    '''
+
     id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, nullable=False, default=datetime.datetime.now)
+    created_at = Column(DateTime, default=datetime.datetime.now, nullable=False, )
     username = Column(Unicode(50), nullable=False, unique=True)
     account_type = Column(Enum(AccountTypeEnum), default=AccountTypeEnum.free)
     # following_forums = relationship("Jocs", secondary=Following_Forums, back_populates="seguint") #TODO no funciona
     # banned_forums = relationship("Jocs") #foros dels que estas banejat TODO no funciona
     # banned_users = relationship("User") #usuaris bloquejats TODO no funciona
     # friends = relationship("User") #amics todo no funciona
-    # firends_request = relationship("User") #solicituds amics todo no funciona
+    # firends_request = relationship("User", secondary=Peticionsamistat)  # solicituds amics todo no funciona
     short_description = Column(Unicode(100), default="")  # OK
     long_description = Column(UnicodeText, default="")  # OK
     points = Column(Integer, default=0, nullable=True)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
     tokens = relationship("UserToken", cascade="all, delete-orphan")
+    xats = relationship("Xats", secondary=Chats_User)  # OK
+    # games_played = relationship("Jocs", secondary=Games_User)
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
-    birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
+    birthday =  Column(DateTime, default=datetime.datetime.now, nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
     genere = Column(Enum(GenereEnum), default=GenereEnum.not_specified)
     # phone = Column(Unicode(50))
-    photo = Column(Unicode(255), default="")  # TODO mirar si funciona
+    photo = Column(Unicode(255), default="")
     recovery_code = Column(Unicode(6), nullable=True, unique=True)
-    location = Column(Unicode(30), default="", nullable=True)  # OK
+    location = Column(Unicode(30), nullable=True)  # OK
     tipo_de_jugador = Column(Enum(UserTypeEnum), default=UserTypeEnum.casual, nullable=True)
+
+    games = relationship("Jocs", secondary=associationUserGames)
 
     # TODO implementar mes endavant: desactivat fins a implementar tornejos
     '''
@@ -254,6 +308,7 @@ class User(SQLAlchemyBase, JSONModel):
             "shortdesc": self.short_description,
             "image": self.photo,
             "location": self.location,
+            "jocs": [games.json_model for games in self.games]
         }
 
     # TODO mirar si funciona
@@ -307,13 +362,15 @@ class User(SQLAlchemyBase, JSONModel):
             "points": self.points,
             "password": self.password,
             "email": self.email,
+            "xats": [xats.id for xats in self.xats],
+            "games": [jocs.id for jocs in self.games],
             "name": self.name,
             "surname": self.surname,
             "birthday": self.birthday,
             "genere": self.genere.value,
             "photo": self.photo_url,
             "location": self.location,
-            "tipo_jugador": self.tipo_de_jugador
+            "tipo_jugador": self.tipo_de_jugador.value
         }
 
 
@@ -385,7 +442,7 @@ class Categories(SQLAlchemyBase, JSONModel):
 
 
 # Base de dades dels jocs
-class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
+class Jocs(SQLAlchemyBase, JSONModel):  # OK
     __tablename__ = "jocs"
 
     Categories_game = Table("cat_game", SQLAlchemyBase.metadata,
@@ -417,11 +474,19 @@ class Jocs(SQLAlchemyBase, JSONModel):  # TODO: comprovar
     studio = Column(Unicode(100), nullable=False)
     image = Column(Unicode(255), default="")
 
-
     platforms = relationship("Platforms", secondary=Platforms_game)
     description = Column(UnicodeText, default="")
     pegi = Column(Integer, default=18, nullable=False)  # Edat recomanada
     aproved = Column(Boolean, default=False, nullable=False)
+
+    def __hash__(self):
+        return hash((self.id))
+
+    def __eq__(self, other):
+        return self.id == other.id
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
     @hybrid_property
     def json_model(self):
@@ -461,5 +526,59 @@ class Modesjocs(SQLAlchemyBase, JSONModel):
     nom_complert = Column(Unicode(210), unique=True, nullable=False)
 '''
 
+
 # TODO implementar mes endavant: crear model per a les tendes
 # Base de dades per a les tendes
+
+
+class Peticionsamistat(SQLAlchemyBase, JSONModel):
+    __tablename__ = "peticions_amistat"
+
+    id = Column(Integer, primary_key=True)
+    sender = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    reciver = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    sended_on = Column(DateTime, nullable=False, default=datetime.datetime.now)
+
+    @hybrid_property
+    def json_model(self):
+        return {
+            "sender": self.sender,
+            "reciver": self.reciver,
+            "sended_on": self.sended_on
+        }
+
+
+class Matching_data(SQLAlchemyBase, JSONModel):
+    __tablename__ = "matching_data"
+
+    user1 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False,primary_key=True)
+    user2 = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False,primary_key=True)
+    common_games = Column(Integer, nullable=True, default=0)
+    age_diff = Column(Integer, nullable=True, default=0)
+    score = Column(Float, nullable=True, default=0)
+    isAMatch =Column(Boolean, nullable=True, default=False)
+
+    '''
+        Games_User = Table("games_user", SQLAlchemyBase.metadata,
+                           Column("user_id", Integer,
+                                  ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
+                                  nullable=False),
+                           Column("game_id", Integer,
+                                  ForeignKey("jocs.id", onupdate="CASCADE", ondelete="CASCADE"),
+                                  nullable=False),
+                           Column("common_games", array,), #Fer amb un relationship en una classe
+                           Column("age_diference", Integer, ),
+                           Column("distance", Integer, ),  # TODO pel futur
+                           )
+    '''
+
+    @hybrid_property
+    def json_model(self):
+        return {
+            "user1": self.user1,
+            "user2": self.user2,
+            "common_games": self.common_games,
+            "age_diff": self.age_diff,
+            "score": self.score,
+
+        }

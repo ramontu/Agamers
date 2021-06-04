@@ -95,6 +95,7 @@ public class AddGameFragment extends Fragment {
         jocsViewModel.getPlataformes();
         jocsViewModel.returnPlataformes().observe(getViewLifecycleOwner(), new Observer<List<Plataformes>>() {
             @Override
+
             public void onChanged(List<Plataformes> plataformes) {
                 Log.d(TAG, "Plataformes" +plataformes);
                 if(plataformes != null){
