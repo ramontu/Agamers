@@ -2,8 +2,10 @@ package dam.agamers.gtidic.udl.agamers;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,9 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.adapters.ChatAdapter;
+
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.Chat;
 import dam.agamers.gtidic.udl.agamers.models.Message;
@@ -35,9 +41,7 @@ public class allxatsfragment extends Fragment {
     private RecyclerView recyclerView;
     private View root;
 
-    private ChatAdapter adapter2;
-
-
+    private ChatAdapter chatAdapter;
 
     //LAYOUT
     LinearLayoutManager manager;
@@ -59,7 +63,13 @@ public class allxatsfragment extends Fragment {
             });
 
         }
+
         root = inflater.inflate(R.layout.all_xats_fragment, container, false);
+        recyclerView = root.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+        
+        chatAdapter = new ChatAdapter(getContext(), new ArrayList<>());
+        recyclerView.setAdapter(chatAdapter);
 
         initView();
         return root;
@@ -67,16 +77,23 @@ public class allxatsfragment extends Fragment {
 
 
     public void initView(){
-        recyclerView = root.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         mDatabase = FirebaseDatabase.getInstance("https://agamers-49311-default-rtdb.europe-west1.firebasedatabase.app/").getReference(); //FER axo a tot arreu
         mViewModel.getChats().observe(getViewLifecycleOwner(), new Observer<List<Chat>>() {
             @Override
             public void onChanged(List<Chat> chats) {
-                recyclerView.setAdapter(new ChatAdapter(getContext(), chats));
+                System.out.println("Descarregant chats");
+                chatAdapter.addChats(chats);
+                recyclerView.setAdapter(chatAdapter);
             }
         });
 
+        chatAdapter.setOnItemClickListener(new ChatAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Chat chat) {
+                System.out.println(chat.getName());
+            }
+        });
 
     }
 
@@ -86,16 +103,11 @@ public class allxatsfragment extends Fragment {
         System.out.println("ONcreate");
     }
 
+/*
     public void onCreate(){
 
-        System.out.println("Hola");
-        //DESCARREGO TOTS ELS XATS
-        //TODO descarregar tots els ids dels xats de l'usuari
-
-        //button = (Button) this.
 
 
-        mDatabase = FirebaseDatabase.getInstance("https://agamers-49311-default-rtdb.europe-west1.firebasedatabase.app/").getReference(); //FER axo a tot arreu
 
 
         //TODO BUG
@@ -274,10 +286,11 @@ public class allxatsfragment extends Fragment {
         Message mes = new Message("1","prova prova","hello soy prova","","","ara");
         db.getReference().child(Objects.requireNonNull(auth.getUid())).push().setValue(a);
 
-         */
+
 
         //re
         //FI de la prova
     }
+    */
 
 }

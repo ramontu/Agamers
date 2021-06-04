@@ -68,11 +68,8 @@ public class AllXatsViewModel extends ViewModel {
                         boolean id_ok = false;
 
                         for (DataSnapshot a : chat.child("Participants").child("ids_name").getChildren()) {
-                            System.out.println("Ids" + a.getKey()); //TODO debug
-                            System.out.println("MyID: "+id); //TODO debug
                             if (a.getKey().toString().equals(String.valueOf(id))) {
                                 id_ok = true;
-                                System.out.println("He trobat un xat meu");
                             }
                         }
 
@@ -125,6 +122,22 @@ public class AllXatsViewModel extends ViewModel {
                     }
                 }
             }
+
+            //Obtenim els missatges
+            for (DataSnapshot message : a.child("Messages").getChildren()){
+                Message new_message = new Message();
+                new_message.setText((String) message.child("text").getValue());
+                m.getMessages().add(new_message);
+            }
+
+            //Obtenim els participants del xat
+            for (DataSnapshot participant : a.child("Participants").child("ids_name").getChildren()){
+                String [] participants = new String[2];
+                participants[0] = participant.getKey();
+                participants[1] = (String) participant.getValue();
+                m.getParticipants().add(participants);
+            }
+
             /*
         for (DataSnapshot messages : chat.child("Messages").getChildren()){
             Message me = new Message();
