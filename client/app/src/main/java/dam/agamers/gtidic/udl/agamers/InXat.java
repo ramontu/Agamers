@@ -12,21 +12,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
 
-public class inxat extends Fragment {
+public class InXat extends Fragment {
 
     private InxatViewModel mViewModel;
+    DataSnapshot chat_snapshot;
 
-    public static inxat newInstance() {
-        return new inxat();
+    public InXat(DataSnapshot chat_snapshot){
+        this.chat_snapshot = chat_snapshot;
+    }
+
+    public InXat(){
+
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        //Desactivem barra inferior
+        getActivity().findViewById(R.id.bottom_nav).setVisibility(View.INVISIBLE);
         return inflater.inflate(R.layout.inxat_fragment, container, false);
     }
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -34,6 +43,5 @@ public class inxat extends Fragment {
         mViewModel = new ViewModelProvider(this).get(InxatViewModel.class);
         // TODO: Use the ViewModel
 
-        FirebaseDatabase.getInstance().getReference().child("User1").setValue("NomProva");
     }
 }

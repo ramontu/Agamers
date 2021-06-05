@@ -119,5 +119,6 @@
     <string name="error_clossing_session">Error a l\'hora de tancar sessió. El token no s\'ha eliminat de la base de dades a causa d\'un error.</string>
     <string name="succes_clossing_session">S\'ha tancat la sessió correctament</string>
     <string name="user_image">Imatge usuari</string>
+    <string name="say_something">Escriu el missatge...</string>
 
 </resources>

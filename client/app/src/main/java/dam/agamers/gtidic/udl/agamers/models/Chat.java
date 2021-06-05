@@ -1,11 +1,16 @@
 package dam.agamers.gtidic.udl.agamers.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -15,22 +20,23 @@ import java.util.List;
 import dam.agamers.gtidic.udl.agamers.R;
 
 public class Chat {
-    private List<Message> messages = new ArrayList<>();
+    private DataSnapshot messages;
     private String name;
     private String imageUrl;
     private List<String[]> participants = new ArrayList<>();
 
 
 
-    public Chat(String name, List<Message> messages){
-        this.name = name;
+    private DataSnapshot self;
 
-        this.messages = messages;
+
+    public Chat(String name){
+        this.name = name;
     }
     public Chat(){
     }
 
-    public void setMessages(List<Message> messages) {
+    public void setMessages(DataSnapshot messages) {
         this.messages = messages;
     }
 
@@ -38,7 +44,7 @@ public class Chat {
         this.name = name;
     }
 
-    public List<Message> getMessages() {
+    public DataSnapshot getMessages() {
         return messages;
     }
 
@@ -60,6 +66,14 @@ public class Chat {
 
     public void setParticipants(List<String[]> participants) {
         this.participants = participants;
+    }
+
+    public DataSnapshot getSelf() {
+        return self;
+    }
+
+    public void setSelf(DataSnapshot self) {
+        this.self = self;
     }
 
     public class ChatHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -91,5 +105,6 @@ public class Chat {
 
         }
     }
+
 }
 

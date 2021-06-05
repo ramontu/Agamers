@@ -104,7 +104,7 @@
     </fragment>
     <fragment
         android:id="@+id/inxat"
-        android:name="dam.agamers.gtidic.udl.agamers.inxat"
+        android:name="dam.agamers.gtidic.udl.agamers.InXat"
         android:label="inxat_fragment"
         tools:layout="@layout/inxat_fragment" />
 

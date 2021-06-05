@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import dam.agamers.gtidic.udl.agamers.InXat;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Chat;
 
@@ -60,11 +62,21 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder>{
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    onItemClickListener.onItemClick(chatList.get(position));
+                }
+            });
+            /*
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    InXat xat = new InXat(chatList.get(position).getMessages());
                     System.out.println("Opening xat: <<"+chatList.get(position).getName()+">> position"+position);
                     System.out.println("Participants"+chatList.get(position).getParticipants());
                     System.out.println("Messages"+chatList.get(position).getMessages());
                 }
             });
+
+             */
     }
 
     @Override

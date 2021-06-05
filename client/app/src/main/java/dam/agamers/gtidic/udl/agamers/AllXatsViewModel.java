@@ -123,12 +123,20 @@ public class AllXatsViewModel extends ViewModel {
                 }
             }
 
-            //Obtenim els missatges
+            //Assignem el datasnapshot dels missatges
+            m.setMessages(a.child("Messages"));
+
+            //Assignem el datasnapshot del chat sencer
+            m.setSelf(a);
+
+            /* OUTDATED
             for (DataSnapshot message : a.child("Messages").getChildren()){
                 Message new_message = new Message();
                 new_message.setText((String) message.child("text").getValue());
                 m.getMessages().add(new_message);
             }
+
+             */
 
             //Obtenim els participants del xat
             for (DataSnapshot participant : a.child("Participants").child("ids_name").getChildren()){

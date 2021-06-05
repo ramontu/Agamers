@@ -1,5 +1,6 @@
 package dam.agamers.gtidic.udl.agamers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,9 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -51,6 +54,9 @@ public class allxatsfragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(AllXatsViewModel.class);
+        //Desactivem barra inferior
+        getActivity().findViewById(R.id.bottom_nav).setVisibility(View.VISIBLE);
+
         if (!PreferencesProvider.providePreferences().contains("id")){
             System.out.println("Obtenint accountinfo");
             AccountRepo a = new AccountRepo();
@@ -91,7 +97,12 @@ public class allxatsfragment extends Fragment {
         chatAdapter.setOnItemClickListener(new ChatAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Chat chat) {
-                System.out.println(chat.getName());
+                Bundle b = new Bundle();
+                b.putString("ref", chat.getSelf().getRef().toString());
+                NavHostFragment.findNavController(allxatsfragment.this)
+                        .navigate(R.id.action_allxatsfragment_to_inxat, b);
+
+                System.out.println(chat.getSelf().getRef().toString());
             }
         });
 
