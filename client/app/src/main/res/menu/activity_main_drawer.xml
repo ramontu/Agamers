@@ -34,7 +34,7 @@
             android:title="@string/menu_tornejos" />
         <item
             android:id="@+id/nav_compte"
-            android:icon="@drawable/question"
+            android:icon="@drawable/iconfinder_user_ciecle_round_account_person_3209203"
             android:title="@string/menu_el_meu_compte" />
         <item
             android:id="@+id/nav_configuracio"
