@@ -120,6 +120,9 @@ public class AllXatsViewModel extends ViewModel {
                         //TODO descarregar la imatge des de publicprofile i assignar-la com a imatge
 
                     }
+                    else {
+                        PreferencesProvider.providePreferences().edit().putString("username", (String) participants.getValue()).commit();
+                    }
                 }
             }
 

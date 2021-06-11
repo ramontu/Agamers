@@ -98,7 +98,8 @@ public class allxatsfragment extends Fragment {
             @Override
             public void onItemClick(Chat chat) {
                 Bundle b = new Bundle();
-                b.putString("ref", chat.getSelf().getRef().toString());
+                b.putString("ref", chat.getSelf().getRef().getKey());
+                b.putString("name", chat.getName());
                 NavHostFragment.findNavController(allxatsfragment.this)
                         .navigate(R.id.action_allxatsfragment_to_inxat, b);
 

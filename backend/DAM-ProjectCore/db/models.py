@@ -251,11 +251,11 @@ class User(SQLAlchemyBase, JSONModel):
     # firends_request = relationship("User", secondary=Peticionsamistat)  # solicituds amics todo no funciona
     short_description = Column(Unicode(100), default="")  # OK
     long_description = Column(UnicodeText, default="")  # OK
-    points = Column(Integer, default=0, nullable=True)  # OK
+    points = Column(Integer, default=0, nullable=False)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
     tokens = relationship("UserToken", cascade="all, delete-orphan")
-    xats = relationship("Xats", secondary=Chats_User)  # TODO provar
+    xats = relationship("Xats", secondary=Chats_User)  # TODO provar borrar
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday = Column(Unicode(10), nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -265,7 +265,7 @@ class User(SQLAlchemyBase, JSONModel):
     recovery_code = Column(Unicode(6), nullable=True, unique=True)
     location = Column(Unicode(30), nullable=True)  # OK
     tipo_de_jugador = Column(Enum(UserTypeEnum), default=UserTypeEnum.casual, nullable=True)
-    firebase_credential = Column(Unicode(100), default="")
+    firebase_credential = Column(Unicode(100), default="") #TODO borrar
 
     # TODO implementar mes endavant: desactivat fins a implementar tornejos
     '''

@@ -1,10 +1,6 @@
 package dam.agamers.gtidic.udl.agamers.Observers;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter;
-
+/*
 public class ScrollToBottom extends RecyclerView.AdapterDataObserver {
 
     private RecyclerView recycler;
@@ -32,4 +28,7 @@ public class ScrollToBottom extends RecyclerView.AdapterDataObserver {
 
     }
 
+
+
 }
+ */

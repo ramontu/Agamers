@@ -65,18 +65,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder>{
                     onItemClickListener.onItemClick(chatList.get(position));
                 }
             });
-            /*
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    InXat xat = new InXat(chatList.get(position).getMessages());
-                    System.out.println("Opening xat: <<"+chatList.get(position).getName()+">> position"+position);
-                    System.out.println("Participants"+chatList.get(position).getParticipants());
-                    System.out.println("Messages"+chatList.get(position).getMessages());
-                }
-            });
-
-             */
     }
 
     @Override

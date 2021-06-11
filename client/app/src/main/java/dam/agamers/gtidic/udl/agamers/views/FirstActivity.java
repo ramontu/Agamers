@@ -32,7 +32,6 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
-import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter;
 import dam.agamers.gtidic.udl.agamers.databinding.NavHeaderMainBinding;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
@@ -46,7 +45,7 @@ public class FirstActivity extends CommonActivity {
 
     private FirebaseAuth auth;
     private FirebaseDatabase db;
-    private MessageAdapter adapter;
+
 
 
 
@@ -90,9 +89,15 @@ public class FirstActivity extends CommonActivity {
     }
 
     public void onBackPressed() {
+        //TODO fallo, sempre torna a loguin si fem boto enradere
         goTo(LogInActivity.class);
     }
 
+
+    /**
+     * @deprecated No s'utilitza
+     * @param view
+     */
     public void obrir_info_user(View view) {
         goTo(UserInfoActivity.class);
     }

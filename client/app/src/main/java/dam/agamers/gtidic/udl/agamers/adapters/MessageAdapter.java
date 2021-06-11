@@ -1,32 +1,6 @@
 package dam.agamers.gtidic.udl.agamers.adapters;
 
-import android.graphics.Color;
-import android.net.Uri;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-
-import com.bumptech.glide.Glide;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import org.jetbrains.annotations.NotNull;
-
-import dam.agamers.gtidic.udl.agamers.R;
-import dam.agamers.gtidic.udl.agamers.databinding.ImageMessageBinding;
-import dam.agamers.gtidic.udl.agamers.databinding.MessageBinding;
-import dam.agamers.gtidic.udl.agamers.models.Message;
-
+/*
 
 public class MessageAdapter extends FirebaseRecyclerAdapter<Message, ViewHolder>{
 
@@ -40,6 +14,8 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<Message, ViewHolder>
     private Message message;
     private FirebaseRecyclerOptions<Message> options;
     private String currentUserName;
+
+
 
 
 
@@ -57,13 +33,13 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<Message, ViewHolder>
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         if (viewType == VIEW_TYPE_TEXT){
-            View view = inflater.inflate(R.layout.message, parent, false);
+            View view = inflater.inflate(R.layout.item_message, parent, false);
             MessageBinding binding = MessageBinding.bind(view);
             a = new MessageViewHolder(binding);
             return a;
         }
         else {
-            View view = inflater.inflate(R.layout.image_message, parent, false);
+            View view = inflater.inflate(R.layout.item_image_message, parent, false);
             ImageMessageBinding binding = ImageMessageBinding.bind(view);
             return new ImageMessageViewHolder(binding);
         }
@@ -187,4 +163,6 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<Message, ViewHolder>
 
 
 }
+
+ */
 
