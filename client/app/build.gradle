@@ -62,7 +62,7 @@ dependencies {
 
     // RecyclerView from JetPack
 
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     //Firebase (xats)
     // Google Sign In SDK
