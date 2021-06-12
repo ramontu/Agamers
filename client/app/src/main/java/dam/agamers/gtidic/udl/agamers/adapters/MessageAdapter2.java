@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,6 +21,9 @@ import com.google.firebase.storage.StorageReference;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Chat;
 import dam.agamers.gtidic.udl.agamers.models.Message;
@@ -29,45 +33,85 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final String TAG = "MessageAdapter2";
+
     Context context;
+    ViewGroup parent;
+    List<Message2> messageList = new ArrayList<>();
     String currentUserName;
 
-    public MessageAdapter2(Context context){
+
+    public MessageAdapter2(Context context,  List<Message2> list){
         this.context = context;
+        messageList = list;
         currentUserName = PreferencesProvider.providePreferences().getString("username", "error");
+    }
+
+    public MessageViewHolder addMessages(List<Message2> list){
+        messageList = list;
+        //TODO distingir entre tipus
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.item_message, parent, false);
+        return new MessageViewHolder(view);
     }
 
     @NonNull
     @NotNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        return null;
+        this.parent = parent;
+        return assign();
+    }
+
+
+    private RecyclerView.ViewHolder assign(){
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.item_message, parent, false);
+        return new MessageViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull RecyclerView.ViewHolder holder, int position) {
+        if (messageList.get(position).getImageUrl() == null){
+            MessageViewHolder messageViewHolder = new MessageViewHolder(holder.itemView);
+            messageViewHolder.bind(messageList.get(position));
+        }
+        else {
+            ImageMessageHolder imageMessageHolder = new ImageMessageHolder(holder.itemView);
+            imageMessageHolder.bind(messageList.get(position));
+        }
+    }
 
+
+
+    public void onBindViewHolder(@NonNull @NotNull ImageMessageHolder holder, int position) {
+        holder.bind(messageList.get(position));
+    }
+
+
+    public void onBindViewHolder(@NonNull @NotNull MessageViewHolder holder, int position) {
+        holder.bind(messageList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return messageList.size();
     }
+
 
     public class ImageMessageHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
-        TextView textView;
+        TextView senderName;
 
         public ImageMessageHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             //Imageview i textview
             imageView = itemView.findViewById(R.id.messengerImageView);
-            textView = itemView.findViewById(R.id.textView8);
+            senderName = itemView.findViewById(R.id.messengerTextView);
 
         }
 
         public void bind(@NotNull Message2 item){
-            textView.setText(item.getSendername());
+            senderName.setText(item.getSendername());
             loadImageIntoView(imageView, item.getImageUrl());
         }
     }
@@ -84,6 +128,7 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
             messageView = itemView.findViewById(R.id.messageTextView);
             sendername = itemView.findViewById(R.id.messengerTextView);
+            senderPhotoUrl = itemView.findViewById(R.id.messengerImageView);
         }
 
         //DONE

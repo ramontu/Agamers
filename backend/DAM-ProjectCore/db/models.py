@@ -269,7 +269,9 @@ class User(SQLAlchemyBase, JSONModel):
 
     # TODO implementar mes endavant: desactivat fins a implementar tornejos
     '''
-    events_owner = relationship("Event", back_populates="owner", cascade="all, delete-orphan")
+   
+   
+   
     events_enrolled = relationship("Event", back_populates="registered")
     '''
 
