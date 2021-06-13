@@ -144,5 +144,7 @@
     <string name="medalla_1">Medalla 1</string>
     <string name="valoracions">Valoracions</string>
     <string name="imatge_perfil">Imatge de perfil</string>
+    <string name="actualitzar">ACTUALIZAR</string>
+    <string name="esborrar_compte">BORRAR CUENTA</string>
 
 </resources>

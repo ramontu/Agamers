@@ -80,7 +80,7 @@
                         android:layout_width="168dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/imatge_del_usuari"
                         app:layout_constraintBottom_toBottomOf="@+id/space"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.497"
@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
-                        android:text="TextView"
+                        android:text="@string/nom_usuari"
                         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -134,8 +134,8 @@
                 android:id="@+id/update_info_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Actualitzar"
-                android:onClick="open_edit_info" />
+                android:onClick="open_edit_info"
+                android:text="@string/actualitzar" />
 
             <Button
                 android:id="@+id/close_session"
@@ -148,8 +148,8 @@
                 android:id="@+id/delete_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Esborrar compte"
-                android:onClick="delete_account"/>
+                android:onClick="delete_account"
+                android:text="@string/esborrar_compte" />
 
         </LinearLayout>
     </ScrollView>

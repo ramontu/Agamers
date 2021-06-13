@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "402648210374",
+    "firebase_url": "https://agamers-49311-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "agamers-49311",
+    "storage_bucket": "agamers-49311.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402648210374:android:fcbdc1c0b97105176870c7",
+        "android_client_info": {
+          "package_name": "dam.agamers.gtidic.udl.agamers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402648210374-a13s2itqejpg00td1mv6tas1um4cvmfl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwkRdGJnEbu1kgzqZJs50OCBxEx8JeSbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402648210374-a13s2itqejpg00td1mv6tas1um4cvmfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

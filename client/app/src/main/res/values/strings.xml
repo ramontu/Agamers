@@ -223,4 +223,6 @@
     </string-array>
     <string name="jugadors">Jugadors:</string>
     <string name="icona_crear_joc">Icona crear nou joc</string>
+    <string name="actualitzar">Actualitzar</string>
+    <string name="esborrar_compte">ESBORRAR COMPTE</string>
 </resources>
