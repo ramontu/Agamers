@@ -165,7 +165,7 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 textView.setTextColor(Color.WHITE);
             }
             else {
-                textView.setBackgroundResource(R.drawable.rounded_message_gray);
+                textView.setBackgroundResource(R.drawable.rounded_message_white);
                 textView.setTextColor(Color.BLACK);
             }
         }
