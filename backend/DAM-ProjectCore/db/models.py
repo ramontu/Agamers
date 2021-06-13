@@ -344,7 +344,7 @@ class User(SQLAlchemyBase, JSONModel):
             "games": [jocs.id for jocs in self.games],
             "name": self.name,
             "surname": self.surname,
-            "birthday": self.birthday,
+            "birthday": self.birthday.strftime(settings.DATETIME_DEFAULT_FORMAT),
             "genere": self.genere.value,
             "photo": self.photo_url,
             "location": self.location,

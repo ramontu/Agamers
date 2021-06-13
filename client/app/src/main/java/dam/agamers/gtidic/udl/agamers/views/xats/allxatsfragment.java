@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,10 +45,10 @@ public class allxatsfragment extends Fragment {
 
         //Comprovem si hi ha el id i el username guardat ja que s'utilitza per a determinar qui ets al firebase
         if (!PreferencesProvider.providePreferences().contains("id") || !PreferencesProvider.providePreferences().contains("username")) {
-            System.out.println("Obtenint accountinfo");
+            System.out.println("AllXATSFRAGMENT: Obtenint accountinfo");
             AccountRepo a = new AccountRepo();
-            MutableLiveData<Account> b = a.getmAccountInfo();
-            b.observe(getViewLifecycleOwner(), account -> {
+
+            a.getmAccountInfo().observe(getViewLifecycleOwner(), account -> {
                 PreferencesProvider.providePreferences().edit().putInt("id", account.getId()).apply();
                 PreferencesProvider.providePreferences().edit().putString("username", account.getUsername()).apply();
             });

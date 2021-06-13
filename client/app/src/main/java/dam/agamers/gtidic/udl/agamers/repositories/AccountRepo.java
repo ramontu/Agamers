@@ -148,7 +148,6 @@ public class AccountRepo {
     }
 
     private void download_user_info(){
-
         accountService.download_user_info().enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
