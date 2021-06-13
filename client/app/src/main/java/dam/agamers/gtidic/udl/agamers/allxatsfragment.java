@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -54,8 +55,10 @@ public class allxatsfragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(AllXatsViewModel.class);
-        //Desactivem barra inferior
+        //Activem la barra inferior i treiem la icona
         getActivity().findViewById(R.id.bottom_nav).setVisibility(View.VISIBLE);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setLogo(null);
 
         if (!PreferencesProvider.providePreferences().contains("id")){
             System.out.println("Obtenint accountinfo");

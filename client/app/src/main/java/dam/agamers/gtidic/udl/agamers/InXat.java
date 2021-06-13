@@ -61,7 +61,10 @@ public class InXat extends Fragment {
 
         //assignem el nom
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(b.getCharSequence("name"));
+        toolbar.setTitle("  "+b.getCharSequence("name"));
+        //toolbar.setNavigationIcon(R.drawable.ic_account_circle_black_36dp);
+        toolbar.setLogo(R.drawable.ic_account_circle_black_24dp);
+        //toolbar.setCollapseIcon(R.drawable.ic_account_circle_black_36dp); //TODO canviar per la del usuari
 
 
         //Inflem layout
@@ -104,7 +107,7 @@ public class InXat extends Fragment {
                 System.out.println("Descarregant missatges");
                 messageadapter.addMessages(message);
                 recyclerView.setAdapter(messageadapter);
-                recyclerView.smoothScrollToPosition(message.size()); //OK
+                //recyclerView.smoothScrollToPosition(message.size()); //OK
                 System.out.println("DONE");
             }
         });
