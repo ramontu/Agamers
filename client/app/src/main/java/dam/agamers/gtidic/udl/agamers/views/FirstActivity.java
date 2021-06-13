@@ -43,11 +43,6 @@ public class FirstActivity extends CommonActivity {
     private static final int PICK_IMAGE_REQUEST = 14;
     private AppBarConfiguration mAppBarConfiguration;
 
-    private FirebaseAuth auth;
-    private FirebaseDatabase db;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +73,6 @@ public class FirstActivity extends CommonActivity {
         NavController leftNavigationController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, leftNavigationController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(leftNavView, leftNavigationController);
-
-
-
-        //FIREBASE
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseDatabase.getInstance();
-        singInFirebase();
 
     }
 
@@ -152,74 +140,6 @@ public class FirstActivity extends CommonActivity {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent, "Open Gallery"), PICK_IMAGE_REQUEST);
-    }
-
-
-    public void singInFirebase() {
-
-
-
-        /*
-        auth.signInWithCustomToken("USER1").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                System.err.println(task.isSuccessful());
-            }
-        });
-
-         */
-
-
-        boolean vull_autenticar = false;
-
-        //CORRECTE
-        if (auth.getCurrentUser() == null && vull_autenticar) {
-            auth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        System.out.println("Create User OK");
-                        //Guardar UID (userid a la nostra base de dades per saber a quin fill ens hem de referir
-                        //TODO mostrar missatge de que s'ha iniciat sessió correctament
-
-                    } else {
-                        System.out.println("Create User OK");
-                        //TODO mostrar missatge d'error i possiblement tornar a intentar-ho
-                    }
-                }
-            });
-        }
-
-        //PROVES
-        /*
-        db.getReference().setValue("Users");
-        db.getReference().child("Users").setValue("User1");
-        db.getReference().child("Users").child("user1").setValue("Hola")
-        .addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                System.out.println("Succes");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                System.out.println("Error");
-                e.printStackTrace();
-                System.err.println(e.getMessage());
-            }
-        }).addOnCanceledListener(new OnCanceledListener() {
-            @Override
-            public void onCanceled() {
-                System.out.println("Canceled");
-            }
-        }).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                System.out.println(task.getResult());
-            }
-        });
-
-         */
     }
 
 }

@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers;
+package dam.agamers.gtidic.udl.agamers.views.xats;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;

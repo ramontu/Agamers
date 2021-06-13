@@ -1,12 +1,9 @@
-package dam.agamers.gtidic.udl.agamers;
+package dam.agamers.gtidic.udl.agamers.views.xats;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,20 +16,17 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.adapters.ChatAdapter;
 
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.models.Chat;
-import dam.agamers.gtidic.udl.agamers.models.Message;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 
@@ -104,7 +98,7 @@ public class allxatsfragment extends Fragment {
                 b.putString("ref", chat.getSelf().getRef().getKey());
                 b.putString("name", chat.getName());
                 NavHostFragment.findNavController(allxatsfragment.this)
-                        .navigate(R.id.action_allxatsfragment_to_inxat, b);
+                        .navigate(R.id.action_navegacio_xats_to_inxat, b);
 
                 System.out.println(chat.getSelf().getRef().toString());
             }
