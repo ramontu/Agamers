@@ -80,9 +80,6 @@ public class Account implements Parcelable {
     };
     private File imatge;
 
-    public Account() {
-    }
-
     public File getImatge() {
         return imatge;
     }
@@ -168,6 +165,8 @@ public class Account implements Parcelable {
 
         // Compare the data members and return accordingly
         return this.name.equals(e.getName());
+    }
+
     public int getId() {
         return id;
     }

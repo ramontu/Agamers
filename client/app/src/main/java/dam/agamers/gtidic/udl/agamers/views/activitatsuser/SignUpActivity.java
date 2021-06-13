@@ -24,6 +24,7 @@ import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.databinding.ActivitySignupBinding;
 import dam.agamers.gtidic.udl.agamers.validators.AccountValidator;
 import dam.agamers.gtidic.udl.agamers.viewmodels.SignUpViewModel;
+import dam.agamers.gtidic.udl.agamers.views.LoandingFragment;
 
 public class SignUpActivity extends CommonActivity {
     final String TAG = "SignUp";

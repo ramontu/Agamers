@@ -1,6 +1,5 @@
 package dam.agamers.gtidic.udl.agamers.viewmodels;
 
-import android.app.Activity;
 import android.util.Base64;
 import android.util.Log;
 
@@ -8,9 +7,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.nio.charset.StandardCharsets;
 
-import dam.agamers.gtidic.udl.agamers.LoandingFragment;
+
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
+import dam.agamers.gtidic.udl.agamers.views.LoandingFragment;
 
 public class LogInViewModel {
 

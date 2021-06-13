@@ -5,11 +5,10 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.sql.Date;
 
-import dam.agamers.gtidic.udl.agamers.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
+import dam.agamers.gtidic.udl.agamers.views.LoandingFragment;
 
 public class SignUpViewModel extends ViewModel {
     private AccountRepo accountRepo;

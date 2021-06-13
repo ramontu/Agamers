@@ -1,25 +1,18 @@
 package dam.agamers.gtidic.udl.agamers.views.activitatsuser;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
-
-import java.util.zip.Inflater;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
-import dam.agamers.gtidic.udl.agamers.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.databinding.ActivityIniciDeSessioBinding;
 import dam.agamers.gtidic.udl.agamers.viewmodels.LogInViewModel;
 import dam.agamers.gtidic.udl.agamers.views.FirstActivity;
+import dam.agamers.gtidic.udl.agamers.views.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.views.recovery.RecoverPasswordActivity_1;
 
 public class LogInActivity extends CommonActivity {
