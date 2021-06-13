@@ -30,7 +30,7 @@ public class InxatViewModel extends ViewModel {
         messageList = new ArrayList<>();
     }
 
-    //TODO provar
+
     public void load_all_messages(DataSnapshot dataSnapshot){
 
         dataSnapshot.getRef().addValueEventListener(new ValueEventListener() {
@@ -63,7 +63,7 @@ public class InxatViewModel extends ViewModel {
         for (DataSnapshot a : messages_snapshot) {
             Message2 m = new Message2();
             //Assignem sendername
-            m.setSendername((String) a.child("senderName").getValue());
+            m.setSenderName((String) a.child("senderName").getValue());
             //Assignem temps
             m.setMessageTime((String) a.child("messageTime").getValue());
             //Assignem text si en te

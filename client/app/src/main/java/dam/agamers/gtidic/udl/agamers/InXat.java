@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
@@ -22,17 +24,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter2;
 import dam.agamers.gtidic.udl.agamers.models.Message2;
+import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 
 public class InXat extends Fragment {
 
     DataSnapshot chat_snapshot;
     RecyclerView recyclerView;
-    LinearLayoutManager manager;
     private MessageAdapter2 messageadapter;
     private InxatViewModel minXatViewModel;
     private View root;
@@ -62,91 +66,70 @@ public class InXat extends Fragment {
 
         //Inflem layout
         root = inflater.inflate(R.layout.inxat_fragment, container, false);
-
-
-
-
-
-
-
         recyclerView = root.findViewById(R.id.inxat_recycleview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
-        messageadapter = new MessageAdapter2(getContext(), new ArrayList<>());
-        recyclerView.setAdapter(messageadapter);
+        LinearLayoutManager lm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        lm.setStackFromEnd(true);
+        recyclerView.setLayoutManager(lm);
+        messageadapter = new MessageAdapter2(getContext());
 
 
+        //Ontenim el datasnapshot del chat
+        FirebaseDatabase
+                .getInstance("https://agamers-49311-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference().child("Chats").child(b.getString("ref")).get()
+                .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                    @Override
+                    public void onSuccess(DataSnapshot dataSnapshot) {
+                        chat_snapshot = dataSnapshot;
+                        System.out.println(b.getString("ref"));
+                        System.out.println(chat_snapshot.toString());
+                        InitView();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
 
-        if (b != null){
-            //Ontenim el datasnapshot del chat
-            FirebaseDatabase
-                    .getInstance("https://agamers-49311-default-rtdb.europe-west1.firebasedatabase.app/")
-                    .getReference().child("Chats").child(b.getString("ref")).get()
-                    .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-                        @Override
-                        public void onSuccess(DataSnapshot dataSnapshot) {
-                            chat_snapshot = dataSnapshot;
-                            System.out.println(b.getString("ref"));
-                            System.out.println(chat_snapshot.toString());
-                            InitView();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull @NotNull Exception e) {
+                    }
+                });
 
-                        }
-                    });
-            //Assignem el nom del fragment
-            //TODO
-        }
         return root;
     }
 
 
     public void InitView(){
-
         minXatViewModel.getMessage(chat_snapshot).observe(getViewLifecycleOwner(), new Observer<List<Message2>>() {
             @Override
             public void onChanged(List<Message2> message) {
                 System.out.println("Descarregant missatges");
                 messageadapter.addMessages(message);
                 recyclerView.setAdapter(messageadapter);
+                recyclerView.smoothScrollToPosition(message.size()); //OK
                 System.out.println("DONE");
             }
         });
-    }
 
-    /*
-    private void processar_chat(List<DataSnapshot> in){
-        List<Message2> llista = new ArrayList<>();
-
-        for (DataSnapshot a: in){
-            Message2 prov = new Message2();
-            prov.setMessageTime("messageTime");
-            prov.setSendername((String) a.child("senderName").getValue());
-            if (a.child("text").exists()){
-                prov.setText((String) a.child("text").getValue());
-            }
-            if (a.child("imageUrl").exists()){
-                prov.setImageUrl((String) a.child("imageUrl").getValue());
-            }
-            System.out.println(prov.toString());
-            llista.add(prov);
-
-        }
-        messagesListUpdated.setValue(llista);
-    }
-
-
-    private void updatemessage(){
-        messagesListUpdated.observe(getViewLifecycleOwner(), new Observer<List<Message2>>() {
+        getActivity().findViewById(R.id.sendButton2).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(List<Message2> message2s) {
-                messageadapter.addMessages(message2s);
-                recyclerView.setAdapter(messageadapter);
+            public void onClick(View v) {
+                Message2 a = new Message2();
+                //Assigenem temps d'enviament
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+                a.setMessageTime(dtf.format(now));
+                //Assignem senderName
+                a.setSenderName(PreferencesProvider.providePreferences().getString("username","error"));
+                //Assignem text i buidem el edittext
+                EditText messagetext = getActivity().findViewById(R.id.messageEditText2);
+                a.setText(messagetext.getText().toString());
+                messagetext.setText("");
+
+                chat_snapshot.child("Messages").getRef().push().setValue(a);
             }
         });
     }
 
-     */
+
+
+
 }

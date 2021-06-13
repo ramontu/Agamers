@@ -42,18 +42,13 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
     static Integer ViewTypeMessage = 1;
 
 
-    public MessageAdapter2(Context context,  List<Message2> list){
+    public MessageAdapter2(Context context){
         this.context = context;
-        messageList = list;
         currentUserName = PreferencesProvider.providePreferences().getString("username", "error");
     }
 
-    public MessageViewHolder addMessages(List<Message2> list){
+    public void addMessages(List<Message2> list){
         messageList = list;
-        //TODO distingir entre tipus
-        LayoutInflater inflater = LayoutInflater.from(context);
-        superView = inflater.inflate(R.layout.item_message, parent, false);
-        return new MessageViewHolder(superView);
     }
 
     @NonNull
@@ -114,7 +109,7 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void bind(@NotNull Message2 item){
-            senderName.setText(item.getSendername());
+            senderName.setText(item.getSenderName());
             loadImageIntoView(image, item.getImageUrl());
             //Treball futur: Assignar la foto corresponent al senderuser en el cercle
             //De moment utilitzem una predefinida
@@ -139,9 +134,9 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         //DONE
         public void bind(@NotNull Message2 item){
-            sendername.setText(item.getSendername());
+            sendername.setText(item.getSenderName());
             messageView.setText(item.getText());
-            setTextColor(item.getSendername(), messageView);
+            setTextColor(item.getSenderName(), messageView);
 
             //Treball futur: Assignar la foto corresponent al senderuser en el cercle
             //De moment utilitzem una predefinida

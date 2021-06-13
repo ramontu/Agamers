@@ -3,8 +3,7 @@ package dam.agamers.gtidic.udl.agamers.models;
 public class Message2 {
     private String text;
     private String imageUrl;
-    private String sendername;
-    private String senderphotoUrl;
+    private String senderName;
     private String messageTime;
 
     public String getText() {
@@ -23,20 +22,12 @@ public class Message2 {
         this.imageUrl = imageUrl;
     }
 
-    public String getSendername() {
-        return sendername;
+    public String getSenderName() {
+        return senderName;
     }
 
-    public void setSendername(String sendername) {
-        this.sendername = sendername;
-    }
-
-    public String getSenderphotoUrl() {
-        return senderphotoUrl;
-    }
-
-    public void setSenderphotoUrl(String senderphotoUrl) {
-        this.senderphotoUrl = senderphotoUrl;
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
     }
 
     public String getMessageTime() {
