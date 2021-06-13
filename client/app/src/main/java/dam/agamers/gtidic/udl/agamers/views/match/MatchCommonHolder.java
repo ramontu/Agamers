@@ -18,14 +18,14 @@ public class MatchCommonHolder {
     private TextView matchName;
     private TextView matchCommonGames;
     private TextView matchLevel;
-    private TextView matchBday;
+    //private TextView matchBday;
 
     public MatchCommonHolder(@NonNull View itemView){
         matchImage = itemView.findViewById(R.id.imageUser);
         matchName = itemView.findViewById(R.id.textName);
         matchCommonGames = itemView.findViewById(R.id.textCommonGames);
         matchLevel = itemView.findViewById(R.id.textLevel);
-        matchBday = itemView.findViewById(R.id.textAge);
+        //matchBday = itemView.findViewById(R.id.textAge);
 
     }
     public void bindHolder(Account a){
@@ -33,7 +33,7 @@ public class MatchCommonHolder {
         this.matchName.setText(a.getUsername());
         this.matchCommonGames.setText(""+a.getCommon_games().size());
         this.matchLevel.setText(a.getLevel());
-        this.matchBday.setText(a.getBirthday());
+        //this.matchBday.setText(a.getBirthday());
         Log.d(TAG, "onBindViewHolder()->Account:" +a.getPhoto());
         Picasso.get().load(a.getPhoto()).into(this.matchImage);
 
