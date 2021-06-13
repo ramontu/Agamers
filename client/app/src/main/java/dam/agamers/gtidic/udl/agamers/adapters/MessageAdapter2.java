@@ -74,15 +74,6 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
 
-    /*
-    private RecyclerView.ViewHolder assign(){
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_message, parent, false);
-        return new MessageViewHolder(view);
-    }
-
-     */
-
     @Override
     public void onBindViewHolder(@NonNull @NotNull RecyclerView.ViewHolder holder, int position) {
         if (messageList.get(position).getImageUrl() == null){

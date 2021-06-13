@@ -1,10 +1,10 @@
 package dam.agamers.gtidic.udl.agamers;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,9 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.adapters.MessageAdapter2;
-import dam.agamers.gtidic.udl.agamers.models.Chat;
 import dam.agamers.gtidic.udl.agamers.models.Message2;
 
 public class InXat extends Fragment {
@@ -49,16 +46,29 @@ public class InXat extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-        Bundle b = getArguments();
         //View Model
         minXatViewModel = new ViewModelProvider(this).get(InxatViewModel.class);
 
         //Desactivem barra inferior
         getActivity().findViewById(R.id.bottom_nav).setVisibility(View.INVISIBLE);
 
-        //Asi
+        Bundle b = getArguments();
+        assert b != null;
+
+        //assignem el nom
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle(b.getCharSequence("name"));
+
+
+        //Inflem layout
         root = inflater.inflate(R.layout.inxat_fragment, container, false);
+
+
+
+
+
+
+
         recyclerView = root.findViewById(R.id.inxat_recycleview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
         messageadapter = new MessageAdapter2(getContext(), new ArrayList<>());

@@ -120,5 +120,6 @@
     <string name="succes_clossing_session">S\'ha tancat la sessió correctament</string>
     <string name="user_image">Imatge usuari</string>
     <string name="say_something">Escriu el missatge...</string>
+    <string name="fragment_xats">Xats</string>
 
 </resources>

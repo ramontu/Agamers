@@ -93,19 +93,19 @@
             android:id="@+id/action_fragmentjocs_to_fragmentaddgame"
             app:destination="@id/fragmentaddgame" />
     </fragment>
+
     <fragment
         android:id="@+id/allxatsfragment"
         android:name="dam.agamers.gtidic.udl.agamers.allxatsfragment"
-        android:label="all_xats_fragment"
+        android:label="@string/fragment_xats"
         tools:layout="@layout/all_xats_fragment" >
         <action
             android:id="@+id/action_allxatsfragment_to_inxat"
             app:destination="@id/inxat" />
     </fragment>
+
     <fragment
         android:id="@+id/inxat"
         android:name="dam.agamers.gtidic.udl.agamers.InXat"
-        android:label="inxat_fragment"
         tools:layout="@layout/inxat_fragment" />
-
 </navigation>
