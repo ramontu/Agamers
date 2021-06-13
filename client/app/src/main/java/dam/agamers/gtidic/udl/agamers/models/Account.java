@@ -47,8 +47,6 @@ public class Account {
     private String common_games;
     @SerializedName("level")
     private String level;
-    @SerializedName("firebase_credential")
-    private String firebase_credential;
 
 
 
@@ -122,14 +120,6 @@ public class Account {
 
     public String getLevel() { return level; }
     public void setLevel(String level) { this.level = level; }
-
-    public String getFirebase_credential() {
-        return firebase_credential;
-    }
-
-    public void setFirebase_credential(String firebase_credential) {
-        this.firebase_credential = firebase_credential;
-    }
 
     public int getId() {
         return id;
