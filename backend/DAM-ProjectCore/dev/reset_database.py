@@ -230,7 +230,7 @@ if __name__ == "__main__":
             surname="free",
             birthday=datetime.datetime(rand.randint(1980,2006), 1, 1),
             genere=GenereEnum.male,
-            games= rand.sample(jocs, rand.randint(1,3)),
+            games=rand.sample(jocs, rand.randint(1,3)),
             points=rand.randint(1, 50)
         )
         user_free.set_password(f + "pass")

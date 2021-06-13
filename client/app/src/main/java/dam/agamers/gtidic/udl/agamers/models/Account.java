@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class Account implements Parcelable {
     public Account(){
 
     }
-    protected Account(Parcel in){
+    protected Account(Parcel in) throws ParseException {
         if (in.readByte() == 0) {
             username = null;
         } else {
@@ -70,7 +72,12 @@ public class Account implements Parcelable {
     public static final Creator<Account> CREATOR = new Creator<Account>() {
         @Override
         public Account createFromParcel(Parcel in) {
-            return new Account(in);
+            try {
+                return new Account(in);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         @Override

@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 
+import java.util.Date;
+
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
 import dam.agamers.gtidic.udl.agamers.views.LoandingFragment;
@@ -15,7 +17,7 @@ public class SignUpViewModel extends ViewModel {
     private final String TAG = "SignUpVM";
 
     public MutableLiveData<String> Username = new MutableLiveData<>();
-    public MutableLiveData<String> Birthdate = new MutableLiveData<>();
+    public MutableLiveData<String> Birthdate = new MutableLiveData<String>();
     public MutableLiveData<String> Email = new MutableLiveData<>();
     public MutableLiveData<String> Password = new MutableLiveData<>();
     public MutableLiveData<Boolean> mResponse = new MutableLiveData<>();

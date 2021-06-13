@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+import datetime
 import logging
+import tokenize
 
 import falcon
 from falcon.media.validators import jsonschema
@@ -45,8 +46,8 @@ class ResourceRegisterUser(DAMCoreResource):
             aux_user.username = req.media["username"]
             aux_user.password = req.media["password"]
             aux_user.email = req.media["email"]
-            aux_user.birthday = req.media["birthday"]
-
+            toke = req.media["birthday"].split("/")
+            aux_user.birthday = datetime.datetime(int(toke[2]), int(toke[1]), int(toke[0]), 0, 0, 1)
             self.db_session.add(aux_user)
 
             try:

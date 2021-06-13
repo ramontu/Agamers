@@ -257,7 +257,7 @@ class User(SQLAlchemyBase, JSONModel):
     tokens = relationship("UserToken", cascade="all, delete-orphan")
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
-    birthday =  Column(DateTime, default=datetime.datetime.now, nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
+    birthday = Column(DateTime, default=datetime.datetime.now, nullable=False) #No s'hauria d'assignar com a default
     genere = Column(Enum(GenereEnum), default=GenereEnum.not_specified)
     # phone = Column(Unicode(50))
     photo = Column(Unicode(255), default="")
