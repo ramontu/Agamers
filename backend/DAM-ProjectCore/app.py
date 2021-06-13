@@ -10,7 +10,6 @@ import middlewares
 from falcon_multipart.middleware import MultipartMiddleware
 from resources import account_resources, common_resources, user_resources, games_resources
 from resources.categories import categories_resources
-from resources.chats import chats_resources
 from resources.platforms import platform_resources
 from settings import configure_logging
 
@@ -47,7 +46,7 @@ application.add_route("/account/update_account", account_resources.ResourceAccou
 application.add_route("/account/recovery", account_resources.ResourceAccountRecovery())
 application.add_route("/account/password_update", account_resources.ResourceAccountPasswordUpdate())
 
-#USER
+# USER
 application.add_route("/users/register", user_resources.ResourceRegisterUser())
 application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile())
 application.add_route("/users/getuserimage", user_resources.DownloadUserImage())  # TODO comprovar
@@ -71,17 +70,7 @@ application.add_route("/category/create", categories_resources.ResourceNewCatego
 application.add_route('/category/delete/{id:int}', categories_resources.ResourceDeleteCategory())  # TODO provar
 application.add_route("/categories", categories_resources.ResourceGetCategories())  # OK
 
-
-# Xats
-application.add_route("/xats/all/{id}", chats_resources.ResourceAllUserChats())  # TODO provar
-application.add_route("/xats/add_user_to_chat/{chat_id}/{user_id:int}", chats_resources.ResourceAddUserToChat())  # TODO provar
-
 # General
 application.add_route("/image/download", common_resources.ResourceDownloadImage())  # TODO provar
 
-
-'''
-application.add_route("/events", event_resources.ResourceGetEvents())
-application.add_route("/events/show/{id:int}", e vent_resources.ResourceGetEvent())
-'''
 application.add_sink(handle_404, "")
