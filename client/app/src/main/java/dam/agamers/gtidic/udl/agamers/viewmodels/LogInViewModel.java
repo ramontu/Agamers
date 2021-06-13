@@ -36,7 +36,6 @@ public class LogInViewModel {
         auth_token = Base64.encodeToString(data, Base64.DEFAULT);
         auth_token = ("Autenthication " + auth_token).trim();
         System.err.println(auth_token);
-
         PreferencesProvider.providePreferences().edit().putString("token", auth_token).commit();
         this.accountRepo.createUserToken();
 

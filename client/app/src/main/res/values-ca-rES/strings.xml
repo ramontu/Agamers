@@ -149,5 +149,7 @@
     <string name="imatge_perfil">Imatge de perfil</string>
     <string name="actualitzar">ACTUALITZAR</string>
     <string name="esborrar_compte">ESBORRAR COMPTE</string>
+    <string name="say_something">Escriu el missatge...</string>
+    <string name="fragment_xats">Xats</string>
 
 </resources>

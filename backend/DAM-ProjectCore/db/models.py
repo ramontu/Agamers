@@ -193,22 +193,6 @@ class UserToken(SQLAlchemyBase):
     user = relationship("User", back_populates="tokens")
 
 
-class Xats(SQLAlchemyBase):
-    __tablename__ = "all_chats"
-
-    id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, nullable=False, default=datetime.datetime.now)
-    firebase_chat_id = Column(UnicodeText, nullable=False)
-
-    @hybrid_property
-    def json_model(self):
-        return {
-            "id": self.id,
-            "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
-            "firebase_chat_id": self.firebase_chat_id
-        }
-
-
 # Forums seguits TODO
 '''
 
@@ -241,14 +225,6 @@ Banned_Forums   = Table("b_forums", SQLAlchemyBase.metadata,
 class User(SQLAlchemyBase, JSONModel):
     __tablename__ = "users"
 
-    Chats_User = Table("chats_user", SQLAlchemyBase.metadata,
-                       Column("user_id", Integer,
-                              ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),
-                              nullable=False),
-                       Column("xats_id", Integer,
-                              ForeignKey("all_chats.id", onupdate="CASCADE", ondelete="CASCADE"),
-                              nullable=False),
-                       )
 
     '''
     Games_User = Table("games_user", SQLAlchemyBase.metadata,
@@ -275,12 +251,10 @@ class User(SQLAlchemyBase, JSONModel):
     # firends_request = relationship("User", secondary=Peticionsamistat)  # solicituds amics todo no funciona
     short_description = Column(Unicode(100), default="")  # OK
     long_description = Column(UnicodeText, default="")  # OK
-    points = Column(Integer, default=0, nullable=True)  # OK
+    points = Column(Integer, default=0, nullable=False)  # OK
     password = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255), nullable=False, unique=True)
     tokens = relationship("UserToken", cascade="all, delete-orphan")
-    xats = relationship("Xats", secondary=Chats_User)  # OK
-    # games_played = relationship("Jocs", secondary=Games_User)
     name = Column(Unicode(50), default="")
     surname = Column(Unicode(50), default="")
     birthday =  Column(DateTime, default=datetime.datetime.now, nullable=False)  # es queda com a string pk aixi es pot fer tot desde java
@@ -295,7 +269,9 @@ class User(SQLAlchemyBase, JSONModel):
 
     # TODO implementar mes endavant: desactivat fins a implementar tornejos
     '''
-    events_owner = relationship("Event", back_populates="owner", cascade="all, delete-orphan")
+   
+   
+   
     events_enrolled = relationship("Event", back_populates="registered")
     '''
 
@@ -351,6 +327,7 @@ class User(SQLAlchemyBase, JSONModel):
     @hybrid_property
     def json_model(self):
         return {
+            "id": self.id,
             "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
             "username": self.username,
             "account_type": self.account_type.value,
@@ -364,7 +341,6 @@ class User(SQLAlchemyBase, JSONModel):
             "points": self.points,
             "password": self.password,
             "email": self.email,
-            "xats": [xats.id for xats in self.xats],
             "games": [jocs.id for jocs in self.games],
             "name": self.name,
             "surname": self.surname,
@@ -411,7 +387,7 @@ class Comments(SQLAlchemyBase, JSONModel): #TODO: acabar
 '''
 
 
-# Base de dades deles plataformes de videjocs #TODO: comprovar
+# Base de dades deles plataformes de videjocs
 class Platforms(SQLAlchemyBase, JSONModel):
     __tablename__ = "platforms"
 

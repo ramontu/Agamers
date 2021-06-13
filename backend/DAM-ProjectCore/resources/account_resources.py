@@ -64,7 +64,7 @@ class ResourceCreateUserToken(DAMCoreResource):
 class ResourceDeleteUserToken(DAMCoreResource):
     @jsonschema.validate(SchemaUserToken)
     def on_delete(self, req, resp, *args, **kwargs):
-        super(ResourceDeleteUserToken, self).on_post(req, resp, *args, **kwargs)
+        super(ResourceDeleteUserToken, self).on_delete(req, resp, *args, **kwargs)
 
         current_user = req.context["auth_user"]
         selected_token_string = req.media["token"]
@@ -122,7 +122,7 @@ class ResourceAccountUpdateProfileImage(DAMCoreResource):
 
 class ResourceAccountRecovery(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
-        super().on_post(req, resp, *args, **kwargs)
+        super(ResourceAccountRecovery, self).on_post(req, resp, *args, **kwargs)
 
         email = req.media["email"]
         code = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=6))
@@ -386,13 +386,13 @@ class ResourceAccountRecovery(DAMCoreResource):
 
 class ResourceAccountPasswordUpdate(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
-        super().on_post(req, resp, *args, **kwargs)
+        super(ResourceAccountPasswordUpdate, self).on_post(req, resp, *args, **kwargs)
         email = req.media['email']
         password = req.media['password']
         code = req.media['recovery_code']
 
         try:
-            aux_user = self.db_session.query(User).filter(User.email == email, User.recovery_code == code).one()
+            aux_user = self.db_session.query(User).filter(User.email == email, User.recovery_code == code).one_or_none()
             if aux_user is None:
                 resp.status = falcon.HTTPBadRequest
             else:
@@ -410,7 +410,7 @@ class ResourceAccountPasswordUpdate(DAMCoreResource):
 @falcon.before(requires_auth)
 class ResourceAccountUpdate(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
-        super().on_post(req, resp, *args, **kwargs)
+        super(ResourceAccountUpdate, self).on_post(req, resp, *args, **kwargs)
         current_user = req.context["auth_user"]
 
         # bucle

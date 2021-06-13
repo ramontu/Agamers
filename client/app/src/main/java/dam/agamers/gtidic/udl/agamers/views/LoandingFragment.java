@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers;
+package dam.agamers.gtidic.udl.agamers.views;
 
 import android.app.Activity;
 
@@ -8,6 +8,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import dam.agamers.gtidic.udl.agamers.views.activitatsuser.LogInActivity;
+
+import dam.agamers.gtidic.udl.agamers.R;
 
 
 public class LoandingFragment extends DialogFragment {

@@ -22,7 +22,7 @@ class ResourceHome(DAMCoreResource):
         resp.status = falcon.HTTP_200
 
 
-# TODO: comprovar
+# TODO: No fa falta
 class ResourceDownloadImage(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
         super(ResourceDownloadImage, self).on_get(self, req, resp, *args, **kwargs)

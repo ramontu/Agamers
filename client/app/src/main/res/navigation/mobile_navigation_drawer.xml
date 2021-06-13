@@ -12,12 +12,12 @@
         tools:layout="@layout/fragment_forums" />
     <fragment
         android:id="@+id/navegacio_xats"
-        android:name="dam.agamers.gtidic.udl.agamers.views.xats.XatsFragment"
+        android:name="dam.agamers.gtidic.udl.agamers.views.xats.allxatsfragment"
         android:label="@string/titol_xats"
-        tools:layout="@layout/fragment_xats" >
+        tools:layout="@layout/fragment_all_xats" >
         <action
-            android:id="@+id/action_navegacio_xats_to_allxatsfragment"
-            app:destination="@id/allxatsfragment" />
+            android:id="@+id/action_navegacio_xats_to_inxat"
+            app:destination="@id/inxat" />
     </fragment>
 
     <fragment
@@ -97,11 +97,6 @@
             android:id="@+id/action_fragmentjocs_to_fragmentainfojoc"
             app:destination="@id/fragmentInfoJoc" />
     </fragment>
-    <fragment
-        android:id="@+id/allxatsfragment"
-        android:name="dam.agamers.gtidic.udl.agamers.allxatsfragment"
-        android:label="all_xats_fragment"
-        tools:layout="@layout/all_xats_fragment" />
 
 
     <fragment
@@ -114,4 +109,8 @@
 
 
 
+    <fragment
+        android:id="@+id/inxat"
+        android:name="dam.agamers.gtidic.udl.agamers.views.xats.InXat"
+        tools:layout="@layout/inxat_fragment" />
 </navigation>

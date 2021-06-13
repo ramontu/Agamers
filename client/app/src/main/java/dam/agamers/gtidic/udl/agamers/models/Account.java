@@ -15,6 +15,10 @@ import dam.agamers.gtidic.udl.agamers.utils.Utils;
 
 public class Account implements Parcelable {
 
+
+
+    @SerializedName("id")
+    private int id;
     @SerializedName("created_at")
     private String created_at;
     @SerializedName("username")
@@ -75,6 +79,9 @@ public class Account implements Parcelable {
         }
     };
     private File imatge;
+
+    public Account() {
+    }
 
     public File getImatge() {
         return imatge;
@@ -161,6 +168,12 @@ public class Account implements Parcelable {
 
         // Compare the data members and return accordingly
         return this.name.equals(e.getName());
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

@@ -1,5 +1,12 @@
 package dam.agamers.gtidic.udl.agamers.views;
 
+import android.Manifest;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,16 +15,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.Manifest;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.NotNull;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -27,7 +32,6 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
 import dam.agamers.gtidic.udl.agamers.R;
-import dam.agamers.gtidic.udl.agamers.databinding.FragmentTancarsessioBinding;
 import dam.agamers.gtidic.udl.agamers.databinding.NavHeaderMainBinding;
 import dam.agamers.gtidic.udl.agamers.models.Account;
 import dam.agamers.gtidic.udl.agamers.repositories.AccountRepo;
@@ -38,6 +42,7 @@ public class FirstActivity extends CommonActivity {
 
     private static final int PICK_IMAGE_REQUEST = 14;
     private AppBarConfiguration mAppBarConfiguration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +64,7 @@ public class FirstActivity extends CommonActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView leftNavView = findViewById(R.id.left_nav);
-        NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(),R.layout.nav_header_main, leftNavView, true);
+        NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header_main, leftNavView, true);
         navHeaderMainBinding.setAccount(new Account());
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navegacio_xats, R.id.navegacio_match, R.id.navegacio_forums, R.id.nav_inici, R.id.nav_notificacions, R.id.nav_peticions, R.id.nav_favorits, R.id.nav_jocs, R.id.nav_botiga, R.id.nav_tornejos, R.id.nav_compte, R.id.nav_configuracio, R.id.nav_tancarsessio, R.id.fragmentaddgame)
@@ -71,12 +76,20 @@ public class FirstActivity extends CommonActivity {
 
     }
 
-    public void onBackPressed(){
+    public void onBackPressed() {
+        //TODO fallo, sempre torna a loguin si fem boto enradere
         goTo(LogInActivity.class);
     }
+
+
+    /**
+     * @deprecated No s'utilitza
+     * @param view
+     */
     public void obrir_info_user(View view) {
         goTo(UserInfoActivity.class);
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -90,18 +103,18 @@ public class FirstActivity extends CommonActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void close_session(View view){
+    public void close_session(View view) {
 
         AccountRepo accountRepo = new AccountRepo();
         accountRepo.deleteToken();
-        if (accountRepo.getmDeleteTokenOk().getValue()){
+        if (accountRepo.getmDeleteTokenOk().getValue()) {
             goTo(LogInActivity.class);
             finish();
         }
         showInfoUser(getCurrentFocus(), "Error al tancar la sesió");
     }
 
-    public void checkExternalStoragePermission_addgame(View view){
+    public void checkExternalStoragePermission_addgame(View view) {
         Dexter.withActivity(this)
                 .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .withListener(new PermissionListener() {
@@ -127,6 +140,5 @@ public class FirstActivity extends CommonActivity {
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent, "Open Gallery"), PICK_IMAGE_REQUEST);
     }
-
 
 }

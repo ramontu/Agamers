@@ -225,4 +225,9 @@
     <string name="icona_crear_joc">Icona crear nou joc</string>
     <string name="actualitzar">Actualitzar</string>
     <string name="esborrar_compte">ESBORRAR COMPTE</string>
+    <string name="say_something">Escriu el missatge...</string>
+    <string name="todo">TODO</string>
+    <string name="fragment_xats">Xats</string>
+
+
 </resources>

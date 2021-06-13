@@ -14,6 +14,7 @@ public class CommonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     public void goTo(Class _class){
         Log.d(TAG, "goTo() -> Navigate to " + _class.getSimpleName());
         Intent intent = new Intent(this, _class);
