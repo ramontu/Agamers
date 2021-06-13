@@ -25,8 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dam.agamers.gtidic.udl.agamers.R;
-import dam.agamers.gtidic.udl.agamers.models.Chat;
-import dam.agamers.gtidic.udl.agamers.models.Message;
 import dam.agamers.gtidic.udl.agamers.models.Message2;
 import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -38,6 +36,10 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
     ViewGroup parent;
     List<Message2> messageList = new ArrayList<>();
     String currentUserName;
+    View superView;
+
+    static Integer ViewTypeImage = 2;
+    static Integer ViewTypeMessage = 1;
 
 
     public MessageAdapter2(Context context,  List<Message2> list){
@@ -50,8 +52,8 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
         messageList = list;
         //TODO distingir entre tipus
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_message, parent, false);
-        return new MessageViewHolder(view);
+        superView = inflater.inflate(R.layout.item_message, parent, false);
+        return new MessageViewHolder(superView);
     }
 
     @NonNull
@@ -59,15 +61,27 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         this.parent = parent;
-        return assign();
+        System.out.println("ViewType:"+viewType);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        if (viewType == ViewTypeMessage){
+            superView = inflater.inflate(R.layout.item_message, parent, false);
+            return new MessageViewHolder(superView);
+        }
+        else {
+            superView = inflater.inflate(R.layout.item_image_message, parent, false);
+            return new ImageMessageHolder(superView);
+        }
     }
 
 
+    /*
     private RecyclerView.ViewHolder assign(){
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_message, parent, false);
         return new MessageViewHolder(view);
     }
+
+     */
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull RecyclerView.ViewHolder holder, int position) {
@@ -82,37 +96,38 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
 
-
-    public void onBindViewHolder(@NonNull @NotNull ImageMessageHolder holder, int position) {
-        holder.bind(messageList.get(position));
-    }
-
-
-    public void onBindViewHolder(@NonNull @NotNull MessageViewHolder holder, int position) {
-        holder.bind(messageList.get(position));
-    }
-
     @Override
     public int getItemCount() {
         return messageList.size();
     }
 
+    public int getItemViewType(int position){
+        if (messageList.get(position).getImageUrl() == null){
+            return ViewTypeMessage;
+        }
+        return ViewTypeImage;
+    }
+
 
     public class ImageMessageHolder extends RecyclerView.ViewHolder{
-        ImageView imageView;
+        ImageView senderImage;
         TextView senderName;
+        ImageView image;
 
         public ImageMessageHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             //Imageview i textview
-            imageView = itemView.findViewById(R.id.messengerImageView);
             senderName = itemView.findViewById(R.id.messengerTextView);
-
+            image = itemView.findViewById(R.id.messageImageView);
+            senderImage = itemView.findViewById(R.id.messengerImageView);
         }
 
         public void bind(@NotNull Message2 item){
             senderName.setText(item.getSendername());
-            loadImageIntoView(imageView, item.getImageUrl());
+            loadImageIntoView(image, item.getImageUrl());
+            //Treball futur: Assignar la foto corresponent al senderuser en el cercle
+            //De moment utilitzem una predefinida
+            senderImage.setImageResource(R.drawable.ic_account_circle_black_36dp);
         }
     }
 
@@ -144,6 +159,7 @@ public class MessageAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         //DONE
         private void setTextColor(String username, TextView textView){
+            System.out.println("Username:"+username+", currentUsername:"+ currentUserName);
             if (currentUserName.equals(username) && !currentUserName.equals("error")){
                 textView.setBackgroundResource(R.drawable.rounded_message_blue);
                 textView.setTextColor(Color.WHITE);
