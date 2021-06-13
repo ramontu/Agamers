@@ -3,14 +3,12 @@ package dam.agamers.gtidic.udl.agamers.views.activitatsuser;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
@@ -21,7 +19,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Calendar;
 
 import dam.agamers.gtidic.udl.agamers.CommonActivity;
-import dam.agamers.gtidic.udl.agamers.LoandingFragment;
 import dam.agamers.gtidic.udl.agamers.R;
 
 import dam.agamers.gtidic.udl.agamers.databinding.ActivitySignupBinding;

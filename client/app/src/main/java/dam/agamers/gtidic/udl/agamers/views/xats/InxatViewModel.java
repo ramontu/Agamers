@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers;
+package dam.agamers.gtidic.udl.agamers.views.xats;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -14,14 +14,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import dam.agamers.gtidic.udl.agamers.models.Message2;
+import dam.agamers.gtidic.udl.agamers.models.Message;
 
 public class InxatViewModel extends ViewModel {
 
 
-    private MutableLiveData<List<Message2>> messageListUpdated;
+    private MutableLiveData<List<Message>> messageListUpdated;
 
-    private List<Message2> messageList;
+    private List<Message> messageList;
 
     List<DataSnapshot> messages_snapshot = new ArrayList<>();
 
@@ -50,9 +50,9 @@ public class InxatViewModel extends ViewModel {
         });
     }
 
-    public LiveData<List<Message2>> getMessage(DataSnapshot dataSnapshot){
+    public LiveData<List<Message>> getMessage(DataSnapshot dataSnapshot){
         if (messageListUpdated == null){
-            messageListUpdated = new MutableLiveData<List<Message2>>();
+            messageListUpdated = new MutableLiveData<>();
             load_all_messages(dataSnapshot);
         }
         return messageListUpdated;
@@ -61,10 +61,11 @@ public class InxatViewModel extends ViewModel {
     private void poces_chats() {
         messageList = new ArrayList<>();
         for (DataSnapshot a : messages_snapshot) {
-            Message2 m = new Message2();
+            Message m = new Message();
             //Assignem sendername
             m.setSenderName((String) a.child("senderName").getValue());
             //Assignem temps
+            //TODO caldria afegir la diferencia horaria si hi ha
             m.setMessageTime((String) a.child("messageTime").getValue());
             //Assignem text si en te
             if (a.child("text").exists()){

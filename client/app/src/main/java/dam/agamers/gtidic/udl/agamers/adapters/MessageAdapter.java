@@ -1,141 +1,161 @@
 package dam.agamers.gtidic.udl.agamers.adapters;
 
-/*
+import android.content.Context;
+import android.graphics.Color;
+import android.net.Uri;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class MessageAdapter extends FirebaseRecyclerAdapter<Message, ViewHolder>{
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-    private final String TAG = "MessageAdapter";
-    private final Integer VIEW_TYPE_TEXT = 1;
-    private final Integer VIEW_TYPE_IMAGE = 2;
-    private final String ANONYMUS = "anonymous";
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-    private ViewHolder a;
+import org.jetbrains.annotations.NotNull;
 
-    private Message message;
-    private FirebaseRecyclerOptions<Message> options;
-    private String currentUserName;
+import java.util.ArrayList;
+import java.util.List;
+
+import dam.agamers.gtidic.udl.agamers.R;
+import dam.agamers.gtidic.udl.agamers.models.Message;
+import dam.agamers.gtidic.udl.agamers.preferences.PreferencesProvider;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    private static final String TAG = "MessageAdapter";
+
+    Context context;
+    ViewGroup parent;
+    List<Message> messageList = new ArrayList<>();
+    String currentUserName;
+    View superView;
+
+    static Integer ViewTypeImage = 2;
+    static Integer ViewTypeMessage = 1;
 
 
-
-
-
-    public MessageAdapter(FirebaseRecyclerOptions<Message> options, String currentUserName){
-        super(options);
-        this.options = options;
-        this.currentUserName = currentUserName;
+    public MessageAdapter(Context context){
+        this.context = context;
+        currentUserName = PreferencesProvider.providePreferences().getString("username", "error");
     }
 
+    public void addMessages(List<Message> list){
+        messageList = list;
+    }
 
-
+    @NonNull
     @NotNull
     @Override
-    public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType){
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-
-        if (viewType == VIEW_TYPE_TEXT){
-            View view = inflater.inflate(R.layout.item_message, parent, false);
-            MessageBinding binding = MessageBinding.bind(view);
-            a = new MessageViewHolder(binding);
-            return a;
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+        this.parent = parent;
+        System.out.println("ViewType:"+viewType);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        if (viewType == ViewTypeMessage){
+            superView = inflater.inflate(R.layout.item_message, parent, false);
+            return new MessageViewHolder(superView);
         }
         else {
-            View view = inflater.inflate(R.layout.item_image_message, parent, false);
-            ImageMessageBinding binding = ImageMessageBinding.bind(view);
-            return new ImageMessageViewHolder(binding);
+            superView = inflater.inflate(R.layout.item_image_message, parent, false);
+            return new ImageMessageHolder(superView);
         }
     }
 
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position, Message model) {
-
-        if (options.getSnapshots().get(position).getText() != null){
-            MessageViewHolder messageViewHolder= (MessageViewHolder) a;
-            messageViewHolder.bind(model);
+    public void onBindViewHolder(@NonNull @NotNull RecyclerView.ViewHolder holder, int position) {
+        if (messageList.get(position).getImageUrl() == null){
+            MessageViewHolder messageViewHolder = new MessageViewHolder(holder.itemView);
+            messageViewHolder.bind(messageList.get(position));
         }
         else {
-            ImageMessageViewHolder imageMessageViewHolder = (ImageMessageViewHolder)a;
-            imageMessageViewHolder.bind(model);
+            ImageMessageHolder imageMessageHolder = new ImageMessageHolder(holder.itemView);
+            imageMessageHolder.bind(messageList.get(position));
         }
     }
 
-    //DONE
-    @Override
-    public int getItemViewType(int position){
-        if (options.getSnapshots().get(position).getText() != null){
-            return VIEW_TYPE_TEXT;
-        }
-        else {
-            return VIEW_TYPE_IMAGE;
-        }
-    }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return messageList.size();
+    }
+
+    public int getItemViewType(int position){
+        if (messageList.get(position).getImageUrl() == null){
+            return ViewTypeMessage;
+        }
+        return ViewTypeImage;
     }
 
 
-    //DONE
-    class MessageViewHolder extends ViewHolder{
+    public class ImageMessageHolder extends RecyclerView.ViewHolder{
+        ImageView senderImage;
+        TextView senderName;
+        ImageView image;
 
-        MessageBinding binding;
+        public ImageMessageHolder(@NonNull @NotNull View itemView) {
+            super(itemView);
+            //Imageview i textview
+            senderName = itemView.findViewById(R.id.messengerTextView);
+            image = itemView.findViewById(R.id.messageImageView);
+            senderImage = itemView.findViewById(R.id.messengerImageView);
+        }
 
-        public MessageViewHolder(MessageBinding binding){
-            super(binding.getRoot());
-            this.binding = binding;
+        public void bind(@NotNull Message item){
+            senderName.setText(item.getSenderName());
+            loadImageIntoView(image, item.getImageUrl());
+            //Treball futur: Assignar la foto corresponent al senderuser en el cercle
+            //De moment utilitzem una predefinida
+            senderImage.setImageResource(R.drawable.ic_account_circle_black_36dp);
+        }
+    }
+
+
+    //OK
+    class MessageViewHolder extends RecyclerView.ViewHolder {
+
+        TextView messageView;
+        TextView sendername;
+        CircleImageView senderPhotoUrl; //TODO de moment no s'utilitzarà
+
+        public MessageViewHolder(@NonNull @NotNull View itemView){
+            super(itemView);
+            messageView = itemView.findViewById(R.id.messageTextView);
+            sendername = itemView.findViewById(R.id.messengerTextView);
+            senderPhotoUrl = itemView.findViewById(R.id.messengerImageView);
         }
 
         //DONE
         public void bind(@NotNull Message item){
-            binding.messengerTextView.setText(item.getName());
-            binding.messageTextView.setText(item.getText());
-            setTextColor(item.getName(), binding.messageTextView);
+            sendername.setText(item.getSenderName());
+            messageView.setText(item.getText());
+            setTextColor(item.getSenderName(), messageView);
 
-            if (item.getPhotoUrl() != null){
-                loadImageIntoView(binding.messengerImageView, item.getPhotoUrl());
-            } else {
-                binding.messengerImageView.setImageResource(R.drawable.ic_account_circle_black_36dp);
-            }
+            //Treball futur: Assignar la foto corresponent al senderuser en el cercle
+            //De moment utilitzem una predefinida
+            senderPhotoUrl.setImageResource(R.drawable.ic_account_circle_black_36dp);
         }
 
         //DONE
         private void setTextColor(String username, TextView textView){
-            if (username != ANONYMUS && currentUserName == username && username != null){
+            System.out.println("Username:"+username+", currentUsername:"+ currentUserName);
+            if (currentUserName.equals(username) && !currentUserName.equals("error")){
                 textView.setBackgroundResource(R.drawable.rounded_message_blue);
                 textView.setTextColor(Color.WHITE);
             }
             else {
-                textView.setBackgroundResource(R.drawable.rounded_message_gray);
+                textView.setBackgroundResource(R.drawable.rounded_message_white);
                 textView.setTextColor(Color.BLACK);
             }
         }
     }
-
-
-    class ImageMessageViewHolder extends ViewHolder{
-        ImageMessageBinding imageMessageBinding;
-
-
-        public ImageMessageViewHolder(ImageMessageBinding binding){
-            super(binding.getRoot());
-            imageMessageBinding = binding;
-        }
-
-        public void bind(@NotNull Message item) {
-            loadImageIntoView(imageMessageBinding.messageImageView, item.getImageUrl());
-
-            imageMessageBinding.messengerTextView.setText(item.getName());
-
-            if (item.getPhotoUrl() != null){
-                loadImageIntoView(imageMessageBinding.messengerImageView, item.getPhotoUrl());
-            } else {
-                imageMessageBinding.messengerImageView.setImageResource(R.drawable.ic_account_circle_black_36dp);
-            }
-        }
-    }
-
-
 
     private void loadImageIntoView(ImageView imageView, String url){
         if (url.startsWith("gs://")){
@@ -160,9 +180,4 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<Message, ViewHolder>
             Glide.with(imageView.getContext()).load(url).into(imageView);
         }
     }
-
-
 }
-
- */
-

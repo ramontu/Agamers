@@ -8,15 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import dam.agamers.gtidic.udl.agamers.InXat;
 import dam.agamers.gtidic.udl.agamers.R;
 import dam.agamers.gtidic.udl.agamers.models.Chat;
 
@@ -25,7 +22,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder>{
 
     Context context;
     ViewGroup parent;
-    List<Chat> chatList = new ArrayList<>();
+    List<Chat> chatList;
     OnItemClickListener onItemClickListener;
 
 
@@ -59,12 +56,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder>{
     @Override
     public void onBindViewHolder(@NonNull @NotNull ChatHolder holder, int position) {
             holder.bind(chatList.get(position));
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClickListener.onItemClick(chatList.get(position));
-                }
-            });
+            holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(chatList.get(position)));
     }
 
     @Override
@@ -75,13 +67,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder>{
 
 
 
-    public class ChatHolder extends RecyclerView.ViewHolder{
+    public static class ChatHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
         TextView textView;
 
         public ChatHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            //Imageview i textview
+            //Assignem Imageview i textview
             imageView = itemView.findViewById(R.id.messengerImageView);
             textView = itemView.findViewById(R.id.textView8);
 

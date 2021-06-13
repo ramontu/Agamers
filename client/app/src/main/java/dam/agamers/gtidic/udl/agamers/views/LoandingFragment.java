@@ -1,4 +1,4 @@
-package dam.agamers.gtidic.udl.agamers;
+package dam.agamers.gtidic.udl.agamers.views;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import dam.agamers.gtidic.udl.agamers.R;
 
 
 public class LoandingFragment extends Fragment {
