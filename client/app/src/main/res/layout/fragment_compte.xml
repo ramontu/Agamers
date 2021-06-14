@@ -105,7 +105,6 @@
                     android:id="@+id/update_info_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="open_edit_info"
                     android:text="@string/actualitzar" />
 
                 <Button

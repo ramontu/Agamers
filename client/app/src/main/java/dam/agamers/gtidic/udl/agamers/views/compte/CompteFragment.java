@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
@@ -27,19 +28,22 @@ import dam.agamers.gtidic.udl.agamers.viewmodels.UserInfoViewModel;
 import dam.agamers.gtidic.udl.agamers.views.FirstActivity;
 import dam.agamers.gtidic.udl.agamers.views.activitatsuser.EditAccountActivity;
 import dam.agamers.gtidic.udl.agamers.views.activitatsuser.LogInActivity;
+import dam.agamers.gtidic.udl.agamers.views.xats.allxatsfragment;
 
 public class CompteFragment extends Fragment {
 
     private Button EnviarPet;
     private Button Xatejar;
     private Button Compartir;
+    private Button update;
+
 
     private TextView usernameTextView;
     private TextView bioTextView;
 
     private ImageView imatgePerfil;
     private CompteViewModel compteViewModel;
-
+    private View root;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -47,13 +51,15 @@ public class CompteFragment extends Fragment {
         compteViewModel =
                 new ViewModelProvider(this).get(CompteViewModel.class);
 
+
+        root = inflater.inflate(R.layout.fragment_compte, container, false);
         Initview();
-        View root = inflater.inflate(R.layout.fragment_compte, container, false);
         return root;
     }
 
     public void Initview() {
 
+        update = root.findViewById(R.id.update_info_button);
         /*
         EnviarPet = requireActivity().findViewById(R.id.boto_solicitud);
         Xatejar = requireActivity().findViewById(R.id.boto_xat);
@@ -91,11 +97,26 @@ public class CompteFragment extends Fragment {
          */
 
 
+
+
+        listeners();
+    }
+
+    private void listeners(){
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open_edit_info();
+            }
+        });
+
+
     }
 
 
-    public void open_edit_info(View view){
-        //goTo(EditAccountActivity.class); //TODO arreglar
+    private void open_edit_info(){
+        NavHostFragment.findNavController(CompteFragment.this)
+                .navigate(R.id.action_nav_compte_to_editAccountFragment);
     }
 
 
