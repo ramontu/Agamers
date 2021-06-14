@@ -260,7 +260,7 @@ class User(SQLAlchemyBase, JSONModel):
     birthday = Column(DateTime, default=datetime.datetime.now, nullable=False) #No s'hauria d'assignar com a default
     genere = Column(Enum(GenereEnum), default=GenereEnum.not_specified)
     # phone = Column(Unicode(50))
-    photo = Column(Unicode(255), default="")
+    photo = Column(Unicode(255), nullable=True)
     recovery_code = Column(Unicode(6), nullable=True, unique=True)
     location = Column(Unicode(30), nullable=True)  # OK
     tipo_de_jugador = Column(Enum(UserTypeEnum), default=UserTypeEnum.casual, nullable=True)

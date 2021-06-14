@@ -17,9 +17,7 @@ from resources.base_resources import DAMCoreResource
 from resources.matching.matching_resources import recalculate_score
 from resources.schemas import SchemaRegisterUser
 
-
 mylogger = logging.getLogger(__name__)
-
 
 
 class ResourceGetUserProfile(DAMCoreResource):

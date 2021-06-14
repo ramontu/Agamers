@@ -58,8 +58,9 @@ public class CompteFragment extends Fragment {
     }
 
     public void Initview() {
-
+        usernameTextView = root.findViewById(R.id.textView4);
         update = root.findViewById(R.id.update_info_button);
+        imatgePerfil = root.findViewById(R.id.imageView6);
         /*
         EnviarPet = requireActivity().findViewById(R.id.boto_solicitud);
         Xatejar = requireActivity().findViewById(R.id.boto_xat);
@@ -73,8 +74,16 @@ public class CompteFragment extends Fragment {
             @Override
             public void onChanged(Account profile) {
                 usernameTextView.setText(profile.getUsername());
-                bioTextView.setText(profile.getLong_description());
-                Picasso.get().load(profile.getPhoto()).into(imatgePerfil);
+                //bioTextView.setText(profile.getLong_description());
+                System.out.println("Imageresource"+profile.getPhoto());
+                if ((profile.getPhoto() == null) || (profile.getPhoto().equals(""))){
+                    imatgePerfil.setImageResource(R.drawable.ic_account_circle_black_36dp);
+                }
+                else {
+                    Picasso.get().load(profile.getPhoto()).into(imatgePerfil);
+                }
+
+
             }
         });
 

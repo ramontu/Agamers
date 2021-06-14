@@ -176,5 +176,6 @@ public class AddGameFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView();
     }
-    
+
+
 }

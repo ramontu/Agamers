@@ -228,6 +228,7 @@
     <string name="say_something">Escriu el missatge...</string>
     <string name="todo">TODO</string>
     <string name="fragment_xats">Xats</string>
+    <string name="fragment_EditInfo">Editar la meva informació</string>
 
 
 </resources>

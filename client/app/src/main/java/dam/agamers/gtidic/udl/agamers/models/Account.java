@@ -85,15 +85,6 @@ public class Account implements Parcelable {
             return new Account[size];
         }
     };
-    private File imatge;
-
-    public File getImatge() {
-        return imatge;
-    }
-
-    public void setImatge(File imatge) {
-        this.imatge = imatge;
-    }
 
     public String getEmail() {
         return email;

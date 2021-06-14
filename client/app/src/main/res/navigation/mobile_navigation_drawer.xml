@@ -120,5 +120,5 @@
     <fragment
         android:id="@+id/editAccountFragment"
         android:name="dam.agamers.gtidic.udl.agamers.views.compte.EditAccountFragment"
-        android:label="EditAccountFragment" />
+        android:label="@string/fragment_EditInfo" />
 </navigation>
