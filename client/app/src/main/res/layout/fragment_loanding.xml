@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#BE000000"
     android:minHeight="125dp"
-    tools:context=".LoandingFragment">
+    tools:context=".views.LoandingFragment">
 
 
     <ProgressBar

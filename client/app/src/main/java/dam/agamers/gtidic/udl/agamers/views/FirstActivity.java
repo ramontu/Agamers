@@ -104,7 +104,6 @@ public class FirstActivity extends CommonActivity {
     }
 
     public void close_session(View view) {
-
         AccountRepo accountRepo = new AccountRepo();
         accountRepo.deleteToken();
         if (accountRepo.getmDeleteTokenOk().getValue()) {

@@ -91,7 +91,7 @@
     </string-array>
     <string name="edit_account_message_data_not_saved">La informació que has editat no es guardarà</string>
     <string name="option_cancell">Enrere</string>
-    <string name="option_ok">Ok</string>
+    <string name="option_ok">OK</string>
     <string name="edit_account_not_saved_title">Les dades no es guardaràn</string>
     <string name="genere_male">Home</string>
     <string name="genere_female">Dona</string>
@@ -199,8 +199,8 @@
     <string name="zona_en_construcci">Zona en construcció</string>
 
     <string name="Text_bio" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
-    <string name="nom_usuari" >nom</string>
-    <string name="perfil_d_usuari" >Perfil usuari</string>
+    <string name="nom_usuari">nom</string>
+    <string name="perfil_d_usuari">Perfil usuari</string>
     <string name="sobre_usuari_x">Sobre usuari</string>
     <string name="assoliments_recents">Assoliments recents</string>
     <string name="Enviar_peticio_amistat">Enviar solicitud amistat</string>

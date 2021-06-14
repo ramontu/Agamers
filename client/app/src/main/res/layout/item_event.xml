@@ -28,7 +28,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <ImageView
 
         android:id="@+id/jocItemPoster"
@@ -37,18 +36,21 @@
 
         android:layout_height="60dp"
 
+        android:layout_marginStart="24dp"
+
         android:layout_marginEnd="4dp"
+
+        android:layout_marginBottom="1dp"
 
         android:layout_weight="1"
 
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent"
-
-        app:srcCompat="@drawable/user_imagen"
-
         android:contentDescription="@string/user_image"
-        android:layout_marginRight="4dp" />
+
+        app:layout_constraintBottom_toTopOf="@+id/eventDistanceToInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/eventNameInfo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user_imagen" />
 
 
 
@@ -93,7 +95,6 @@
         app:layout_constraintTop_toBottomOf="@+id/eventNameInfo" />
 
 
-
     <ImageView
 
         android:id="@+id/eventPosterInfo"
@@ -106,15 +107,16 @@
 
         android:layout_marginTop="8dp"
 
+        android:layout_marginEnd="6dp"
+
         android:contentDescription="@string/user_image"
 
+        app:layout_constraintBottom_toTopOf="@+id/jocItemName"
+
+        app:layout_constraintEnd_toStartOf="@+id/eventNameInfo"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
-
-        app:srcCompat="@drawable/user_imagen"
-        android:layout_marginLeft="24dp" />
-
+        app:srcCompat="@drawable/user_imagen" />
 
 
     <TextView
@@ -125,17 +127,18 @@
 
         android:layout_height="wrap_content"
 
+        android:layout_marginStart="21dp"
+
         android:layout_marginEnd="4dp"
 
         android:layout_weight="1"
 
         android:gravity="end|bottom"
 
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/eventPosterInfo"
-        android:layout_marginRight="4dp" />
-
+        app:layout_constraintStart_toEndOf="@+id/jocItemName"
+        app:layout_constraintTop_toBottomOf="@+id/eventPosterInfo" />
 
 
     <TextView
@@ -148,17 +151,16 @@
 
         android:layout_marginEnd="1dp"
 
-        android:text="hola"
+        android:layout_marginBottom="1dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toStartOf="@+id/eventDistanceToInfo"
 
         app:layout_constraintHorizontal_bias="0.555"
 
         app:layout_constraintStart_toEndOf="@+id/eventStatusColourInfo"
-
         app:layout_constraintTop_toBottomOf="@+id/eventPosterInfo"
-
-        tools:text="Status"
-        android:layout_marginRight="1dp" />
+        tools:text="Status" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

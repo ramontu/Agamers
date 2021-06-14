@@ -146,5 +146,8 @@
     <string name="imatge_perfil">Imatge de perfil</string>
     <string name="actualitzar">ACTUALIZAR</string>
     <string name="esborrar_compte">BORRAR CUENTA</string>
+    <string name="say_something">Escribe el mensaje...</string>
+    <string name="todo">Todo</string>
+    <string name="fragment_xats">Chats</string>
 
 </resources>

@@ -6,14 +6,15 @@
     <data>
         <variable
             name="viewModel"
-            type="dam.agamers.gtidic.udl.agamers.viewmodels.UserInfoViewModel"
+            type="dam.agamers.gtidic.udl.agamers.views.compte.CompteViewModel"
             />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.activitatsuser.UserInfoActivity">
+        android:layout_marginBottom="60dp"
+        tools:context=".views.compte.CompteFragemnt">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -24,37 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/userinfo_titulopantalla"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:text="@string/userinfo_titulopantalla"
-                        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/imageView5" />
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="match_parent"
-                        android:layout_height="93dp"
-                        android:adjustViewBounds="false"
-                        android:contentDescription="@string/fondo_agamers"
-                        android:scaleType="fitXY"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/barra_superior" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -141,8 +112,8 @@
                     android:id="@+id/close_session"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_info_tancar_sessio"
-                    android:onClick="close_session" />
+                    android:onClick="close_session"
+                    android:text="@string/user_info_tancar_sessio" />
 
                 <Button
                     android:id="@+id/delete_user"
